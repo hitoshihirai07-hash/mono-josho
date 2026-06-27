@@ -26,8 +26,11 @@ const previousRanks = new Map(previous.items.map((item) => [item.code, item.rank
 
 const response = await fetch(url, {
   headers: {
-    Referer: siteUrl
-  }
+    Referer: siteUrl,
+    Origin: new URL(siteUrl).origin
+  },
+  referrer: siteUrl,
+  referrerPolicy: "no-referrer-when-downgrade"
 });
 if (!response.ok) throw new Error(`Rakuten API failed: ${response.status} ${await response.text()}`);
 const payload = await response.json();
