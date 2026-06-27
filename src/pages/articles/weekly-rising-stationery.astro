@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import RankingTable from "../../components/RankingTable.astro";
+import ranking from "../../data/ranking.json";
+---
+<BaseLayout title="今週ランキングが急上昇した文具5選｜モノ上昇便">
+  <article class="article-page">
+    <header>
+      <p class="breadcrumbs"><a href="/">ホーム</a> › <a href="/articles/">記事一覧</a></p>
+      <h1>今週ランキングが<br /><span>急上昇</span>した文具5選</h1>
+      <p>楽天市場の文具カテゴリで順位を大きく上げた商品を、価格・レビュー情報とともに整理します。</p>
+      <div class="article-meta">公開準備中　｜　データ接続後に最終確認</div>
+    </header>
+    <section>
+      <h2><span>01</span>まとめ（一覧表）</h2>
+      <RankingTable items={ranking.items} />
+    </section>
+    <section>
+      <h2><span>02</span>データの出典・集計方法</h2>
+      <p>楽天商品ランキングAPIから取得した順位を前回データと比較し、順位上昇幅の大きい順に掲載します。商品情報は公開前に再確認します。</p>
+    </section>
+    <aside class="notice"><strong>Amazon比較について</strong><p>Amazonアソシエイトの承認と商品情報の確認後に追加します。</p></aside>
+  </article>
+</BaseLayout>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mono-josho.pages.dev/sitemap-index.xml

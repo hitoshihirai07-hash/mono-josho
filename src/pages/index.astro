@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import RankingTable from "../components/RankingTable.astro";
+import ranking from "../data/ranking.json";
+const updated = ranking.updatedAt
+  ? new Intl.DateTimeFormat("ja-JP", { dateStyle: "medium", timeStyle: "short", timeZone: "Asia/Tokyo" }).format(new Date(ranking.updatedAt))
+  : "API接続後に更新";
+---
+<BaseLayout title="モノ上昇便｜文具・雑貨のランキング変動と価格比較">
+  <section class="hero">
+    <div>
+      <h1>いま<span>上がっているモノ</span>を、ひと目で。</h1>
+      <p>文具・シール・小型玩具の新登場、ランキング変動、価格差を毎日整理します。</p>
+    </div>
+    <p class="updated"><span>最終更新</span>{updated}</p>
+  </section>
+
+  <div class="dashboard">
+    <section class="main-panel" id="rising">
+      <header class="panel-title"><h2>今日の急上昇</h2></header>
+      <RankingTable items={ranking.items} />
+      <a class="more-link" href="/articles/">急上昇ランキングをもっと見る →</a>
+    </section>
+    <aside class="side-panel" id="new">
+      <header class="panel-title"><h2>新登場</h2></header>
+      <div class="empty-side">楽天API接続後に<br />新登場商品を表示します</div>
+    </aside>
+  </div>
+
+  <section class="article-strip">
+    <header class="panel-title"><h2>今週のまとめ記事</h2></header>
+    <a href="/articles/weekly-rising-stationery/"><span>01</span><strong>今週ランキングが急上昇した文具5選</strong><time>準備中</time><b>›</b></a>
+    <a href="/articles/"><span>02</span><strong>シール人気の変化と価格動向</strong><time>準備中</time><b>›</b></a>
+    <a href="/articles/"><span>03</span><strong>小型玩具の週間ランキング推移</strong><time>準備中</time><b>›</b></a>
+  </section>
+
+  <section class="method" id="compare">
+    <h2>モノ上昇便の見方</h2>
+    <div><strong>新登場</strong><p>ランキングに新しく入った商品を表示します。</p></div>
+    <div><strong>ランキング上昇</strong><p>前回取得時から順位を上げた商品を可視化します。</p></div>
+    <div><strong>価格比較</strong><p>同一商品のショップ間価格を比較します。Amazonは承認後に追加します。</p></div>
+  </section>
+</BaseLayout>

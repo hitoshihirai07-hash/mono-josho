@@ -1,0 +1,59 @@
+---
+import "../styles/global.css";
+import "../styles/overrides.css";
+import { siteConfig } from "../config";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = siteConfig.name,
+  description = siteConfig.description
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const contactHref = siteConfig.xUrl || "/contact/";
+---
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/brand/icon.png" type="image/png" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL("/brand/header.png", Astro.site)} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">
+        <img src="/brand/icon.png" alt="" width="52" height="52" />
+        <span>モノ<span class="accent">上昇</span>便</span>
+      </a>
+      <nav aria-label="メインナビゲーション">
+        <a href="/#rising">急上昇</a>
+        <a href="/#new">新登場</a>
+        <a href="/#compare">価格比較</a>
+        <a href="/articles/">記事一覧</a>
+      </nav>
+      <a class="contact-button" href={contactHref} target={siteConfig.xUrl ? "_blank" : undefined} rel={siteConfig.xUrl ? "noopener" : undefined}>{siteConfig.contactLabel}</a>
+    </header>
+    <main><slot /></main>
+    <footer>
+      <p class="ad-disclosure">当サイトはアフィリエイト広告を利用しています</p>
+      <div class="footer-links">
+        <a href="/about/">運営情報</a>
+        <a href="/privacy/">プライバシーポリシー</a>
+        <a href={contactHref}>{siteConfig.contactLabel}</a>
+      </div>
+      <small>© 2026 モノ上昇便</small>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+---
+import EmptyRanking from "./EmptyRanking.astro";
+const { items = [] } = Astro.props;
+---
+{items.length === 0 ? <EmptyRanking /> : (
+  <div class="ranking-table">
+    <div class="ranking-head">
+      <span>順位</span><span>前日比</span><span>商品名</span><span>カテゴリ</span><span>価格</span><span>レビュー</span><span></span>
+    </div>
+    {items.slice(0, 5).map((item: any) => (
+      <article class="ranking-row">
+        <strong class="rank">{item.rank}</strong>
+        <span class:list={["delta", { up: item.delta > 0 }]}>{item.delta > 0 ? `↑ ${item.delta}` : "→ 0"}</span>
+        <div class="product-name">
+          {item.image && <img src={item.image} alt="" loading="lazy" />}
+          <strong>{item.name}</strong>
+        </div>
+        <span>{item.category || "文具・雑貨"}</span>
+        <strong class="price">¥{Number(item.price).toLocaleString()}</strong>
+        <span>{item.reviewAverage || "—"}（{Number(item.reviewCount || 0).toLocaleString()}件）</span>
+        <a class="item-link" href={item.affiliateUrl || item.url} target="_blank" rel="nofollow sponsored noopener">商品を見る</a>
+      </article>
+    ))}
+  </div>
+)}
