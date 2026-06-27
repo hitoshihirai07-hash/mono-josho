@@ -1,13 +1,14 @@
 ---
 import EmptyRanking from "./EmptyRanking.astro";
 const { items = [] } = Astro.props;
+const sortedItems = [...items].sort((a: any, b: any) => Number(a.rank) - Number(b.rank));
 ---
 {items.length === 0 ? <EmptyRanking /> : (
   <div class="ranking-table">
     <div class="ranking-head">
       <span>順位</span><span>前日比</span><span>商品名</span><span>カテゴリ</span><span>価格</span><span>レビュー</span><span></span>
     </div>
-    {items.slice(0, 5).map((item: any) => (
+    {sortedItems.slice(0, 5).map((item: any) => (
       <article class="ranking-row">
         <strong class="rank">{item.rank}</strong>
         <span class:list={["delta", { up: item.delta > 0 }]}>{item.delta > 0 ? `↑ ${item.delta}` : "→ 0"}</span>

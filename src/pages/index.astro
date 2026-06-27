@@ -5,6 +5,12 @@ import ranking from "../data/ranking.json";
 const updated = ranking.updatedAt
   ? new Intl.DateTimeFormat("ja-JP", { dateStyle: "medium", timeStyle: "short", timeZone: "Asia/Tokyo" }).format(new Date(ranking.updatedAt))
   : "API接続後に更新";
+const stationeryItems = ranking.items
+  .filter((item: any) => !item.categoryKey || item.categoryKey === "stationery")
+  .sort((a: any, b: any) => a.rank - b.rank);
+const gameItems = ranking.items
+  .filter((item: any) => item.categoryKey === "games")
+  .sort((a: any, b: any) => a.rank - b.rank);
 ---
 <BaseLayout title="モノ上昇便｜文具・雑貨のランキング変動と価格比較">
   <section class="hero">
@@ -18,7 +24,7 @@ const updated = ranking.updatedAt
   <div class="dashboard">
     <section class="main-panel" id="rising">
       <header class="panel-title"><h2>今日の急上昇</h2></header>
-      <RankingTable items={ranking.items} />
+      <RankingTable items={stationeryItems} />
       <a class="more-link" href="/articles/">急上昇ランキングをもっと見る →</a>
     </section>
     <aside class="side-panel" id="new">
@@ -26,6 +32,11 @@ const updated = ranking.updatedAt
       <div class="empty-side">楽天API接続後に<br />新登場商品を表示します</div>
     </aside>
   </div>
+
+  <section class="main-panel games-panel" id="games">
+    <header class="panel-title"><h2>ゲームランキング</h2></header>
+    <RankingTable items={gameItems} />
+  </section>
 
   <section class="article-strip">
     <header class="panel-title"><h2>今週のまとめ記事</h2></header>

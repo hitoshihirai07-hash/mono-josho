@@ -9,3 +9,14 @@
     white-space: nowrap;
   }
 }
+
+.games-panel {
+  max-width: calc(var(--max) - 64px);
+  margin: 4px auto 18px;
+}
+
+@media (max-width: 900px) {
+  .games-panel {
+    margin: 12px;
+  }
+}
