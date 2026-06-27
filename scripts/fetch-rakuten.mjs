@@ -4,6 +4,7 @@ const appId = process.env.RAKUTEN_APPLICATION_ID;
 const accessKey = process.env.RAKUTEN_ACCESS_KEY;
 const affiliateId = process.env.RAKUTEN_AFFILIATE_ID;
 const genreId = process.env.RAKUTEN_GENRE_ID || "100901";
+const siteUrl = process.env.SITE_URL || "https://mono-josho.pages.dev/";
 
 if (!appId || !accessKey) {
   console.log("Rakuten credentials are not configured; keeping preparing state.");
@@ -23,7 +24,11 @@ let previous = { items: [] };
 try { previous = JSON.parse(await fs.readFile(previousPath, "utf8")); } catch {}
 const previousRanks = new Map(previous.items.map((item) => [item.code, item.rank]));
 
-const response = await fetch(url);
+const response = await fetch(url, {
+  headers: {
+    Referer: siteUrl
+  }
+});
 if (!response.ok) throw new Error(`Rakuten API failed: ${response.status} ${await response.text()}`);
 const payload = await response.json();
 const sourceItems = payload.Items || payload.items || [];
