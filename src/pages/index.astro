@@ -4,13 +4,17 @@ import RankingTable from "../components/RankingTable.astro";
 import ranking from "../data/ranking.json";
 const updated = ranking.updatedAt
   ? new Intl.DateTimeFormat("ja-JP", { dateStyle: "medium", timeStyle: "short", timeZone: "Asia/Tokyo" }).format(new Date(ranking.updatedAt))
-  : "API接続後に更新";
+  : "更新準備中";
 const stationeryItems = ranking.items
   .filter((item: any) => !item.categoryKey || item.categoryKey === "stationery")
   .sort((a: any, b: any) => a.rank - b.rank);
 const gameItems = ranking.items
   .filter((item: any) => item.categoryKey === "games")
   .sort((a: any, b: any) => a.rank - b.rank);
+const newItems = ranking.items
+  .filter((item: any) => item.isNew)
+  .sort((a: any, b: any) => a.rank - b.rank)
+  .slice(0, 3);
 ---
 <BaseLayout title="モノ上昇便｜文具・雑貨のランキング変動と価格比較">
   <section class="hero">
@@ -29,7 +33,19 @@ const gameItems = ranking.items
     </section>
     <aside class="side-panel" id="new">
       <header class="panel-title"><h2>新登場</h2></header>
-      <div class="empty-side">楽天API接続後に<br />新登場商品を表示します</div>
+      {newItems.length > 0 ? (
+        <div class="new-list">
+          {newItems.map((item: any) => (
+            <a href={item.affiliateUrl || item.url} target="_blank" rel="nofollow sponsored noopener">
+              <span>{item.category}</span>
+              <strong>{item.name}</strong>
+              <b>{item.rank}位　¥{Number(item.price).toLocaleString()}</b>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <div class="empty-side">新しくランクインした商品はありません</div>
+      )}
     </aside>
   </div>
 

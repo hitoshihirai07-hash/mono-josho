@@ -15,6 +15,32 @@
   margin: 4px auto 18px;
 }
 
+.new-list a {
+  display: grid;
+  gap: 5px;
+  padding: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.new-list a:hover strong {
+  color: var(--orange);
+}
+
+.new-list span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.new-list strong {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.new-list b {
+  color: var(--orange);
+  font-size: 13px;
+}
+
 @media (max-width: 900px) {
   .games-panel {
     margin: 12px;
