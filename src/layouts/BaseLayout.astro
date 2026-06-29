@@ -39,10 +39,10 @@ const contactHref = siteConfig.xUrl || "/contact/";
         <span>モノ<span class="accent">上昇</span>便</span>
       </a>
       <nav aria-label="メインナビゲーション">
-        <a href="/#rising">急上昇</a>
+        <a href="/#rising">文具</a>
         <a href="/#new">新登場</a>
         <a href="/#games">ゲーム</a>
-        <a href="/#compare">価格比較</a>
+        <a href="/#compare">価格情報</a>
         <a href="/articles/">記事一覧</a>
       </nav>
       <a class="contact-button" href={contactHref} target={siteConfig.xUrl ? "_blank" : undefined} rel={siteConfig.xUrl ? "noopener" : undefined}>{siteConfig.contactLabel}</a>
@@ -50,6 +50,9 @@ const contactHref = siteConfig.xUrl || "/contact/";
     <main><slot /></main>
     <footer>
       <p class="ad-disclosure">当サイトはアフィリエイト広告を利用しています</p>
+      <!-- Rakuten Web Services Attribution Snippet FROM HERE -->
+      <a href="https://developers.rakuten.com/" target="_blank">Supported by Rakuten Developers</a>
+      <!-- Rakuten Web Services Attribution Snippet TO HERE -->
       <div class="footer-links">
         <a href="/about/">運営情報</a>
         <a href="/privacy/">プライバシーポリシー</a>

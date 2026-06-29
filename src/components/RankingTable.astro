@@ -6,7 +6,7 @@ const sortedItems = [...items].sort((a: any, b: any) => Number(a.rank) - Number(
 {items.length === 0 ? <EmptyRanking /> : (
   <div class="ranking-table">
     <div class="ranking-head">
-      <span>順位</span><span>前日比</span><span>商品名</span><span>カテゴリ</span><span>価格</span><span>レビュー</span><span></span>
+      <span>順位</span><span>前回比</span><span>商品名</span><span>カテゴリ</span><span>価格</span><span>レビュー</span><span></span>
     </div>
     {sortedItems.slice(0, 5).map((item: any) => (
       <article class="ranking-row">

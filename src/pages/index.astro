@@ -16,20 +16,20 @@ const newItems = ranking.items
   .sort((a: any, b: any) => a.rank - b.rank)
   .slice(0, 3);
 ---
-<BaseLayout title="モノ上昇便｜文具・雑貨のランキング変動と価格比較">
+<BaseLayout title="モノ上昇便｜文具・雑貨・ゲームのランキング情報">
   <section class="hero">
     <div>
       <h1>いま<span>上がっているモノ</span>を、ひと目で。</h1>
-      <p>文具・シール・小型玩具の新登場、ランキング変動、価格差を毎日整理します。</p>
+      <p>文具・シール・小型玩具・ゲームの新登場、ランキング変動、価格情報を毎日整理します。</p>
     </div>
     <p class="updated"><span>最終更新</span>{updated}</p>
   </section>
 
   <div class="dashboard">
     <section class="main-panel" id="rising">
-      <header class="panel-title"><h2>今日の急上昇</h2></header>
+      <header class="panel-title"><h2>文具ランキング</h2></header>
       <RankingTable items={stationeryItems} />
-      <a class="more-link" href="/articles/">急上昇ランキングをもっと見る →</a>
+      <a class="more-link" href="/articles/weekly-rising-stationery/">文具ランキングを詳しく見る →</a>
     </section>
     <aside class="side-panel" id="new">
       <header class="panel-title"><h2>新登場</h2></header>
@@ -55,16 +55,15 @@ const newItems = ranking.items
   </section>
 
   <section class="article-strip">
-    <header class="panel-title"><h2>今週のまとめ記事</h2></header>
-    <a href="/articles/weekly-rising-stationery/"><span>01</span><strong>今週ランキングが急上昇した文具5選</strong><time>準備中</time><b>›</b></a>
-    <a href="/articles/"><span>02</span><strong>シール人気の変化と価格動向</strong><time>準備中</time><b>›</b></a>
-    <a href="/articles/"><span>03</span><strong>小型玩具の週間ランキング推移</strong><time>準備中</time><b>›</b></a>
+    <header class="panel-title"><h2>ランキング記事</h2></header>
+    <a href="/articles/weekly-rising-stationery/"><span>01</span><strong>楽天市場で現在注目の文具5選</strong><time>随時更新</time><b>›</b></a>
+    <a href="/articles/current-game-ranking/"><span>02</span><strong>楽天市場で現在注目のゲーム5選</strong><time>随時更新</time><b>›</b></a>
   </section>
 
   <section class="method" id="compare">
     <h2>モノ上昇便の見方</h2>
     <div><strong>新登場</strong><p>ランキングに新しく入った商品を表示します。</p></div>
     <div><strong>ランキング上昇</strong><p>前回取得時から順位を上げた商品を可視化します。</p></div>
-    <div><strong>価格比較</strong><p>同一商品のショップ間価格を比較します。Amazonは承認後に追加します。</p></div>
+    <div><strong>価格情報</strong><p>ランキング掲載時点の価格を表示し、販売ページで確認できるようにします。</p></div>
   </section>
 </BaseLayout>
