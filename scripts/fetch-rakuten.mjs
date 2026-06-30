@@ -17,6 +17,45 @@ const genres = [
   }
 ];
 
+const toComparableText = (value = "") =>
+  value.toString().toLowerCase().replace(/[Ａ-Ｚａ-ｚ０-９]/g, (char) =>
+    String.fromCharCode(char.charCodeAt(0) - 0xfee0)
+  );
+
+function detectGamePlatform(name = "") {
+  const text = toComparableText(name);
+
+  if (/(nintendo switch|switch|スイッチ|任天堂|joy-con|joycon|プロコン)/.test(text)) {
+    return { platformKey: "switch", platformLabel: "Nintendo Switch" };
+  }
+
+  if (/(playstation|プレイステーション|プレステ|ps5|ps 5|ps4|ps 4|dualshock|dualsense)/.test(text)) {
+    return { platformKey: "playstation", platformLabel: "PlayStation" };
+  }
+
+  return { platformKey: "other", platformLabel: "その他ゲーム" };
+}
+
+function detectGameType(name = "") {
+  const text = toComparableText(name);
+
+  if (/(本体|console|同梱版|ディスクドライブ|digital edition)/.test(text)) {
+    return { itemTypeKey: "hardware", itemTypeLabel: "本体・セット" };
+  }
+
+  if (
+    /(コントローラー|joy-con|joycon|dualsense|dualshock|プロコン|周辺機器|ケース|保護|フィルム|充電|スタンド|ケーブル|カバー|収納|ヘッドセット|micro.?sd|メモリーカード)/.test(text)
+  ) {
+    return { itemTypeKey: "accessory", itemTypeLabel: "周辺機器" };
+  }
+
+  if (/(ソフト|ゲーム|版|特典|予約|パッケージ|ダウンロード)/.test(text)) {
+    return { itemTypeKey: "software", itemTypeLabel: "ゲームソフト" };
+  }
+
+  return { itemTypeKey: "other", itemTypeLabel: "その他" };
+}
+
 if (!appId || !accessKey) {
   console.log("Rakuten credentials are not configured; keeping preparing state.");
   process.exit(0);
@@ -56,6 +95,10 @@ async function fetchGenre(genre) {
     .slice(0, 30)
     .map((item) => {
       const oldRank = previousRanks.get(item.itemCode);
+      const gameMeta = genre.key === "games"
+        ? { ...detectGamePlatform(item.itemName), ...detectGameType(item.itemName) }
+        : {};
+
       return {
         code: item.itemCode,
         rank: Number(item.rank),
@@ -69,6 +112,7 @@ async function fetchGenre(genre) {
         reviewCount: Number(item.reviewCount || 0),
         category: genre.label,
         categoryKey: genre.key,
+        ...gameMeta,
         url: item.itemUrl,
         affiliateUrl: item.affiliateUrl || item.itemUrl,
         shopName: item.shopName || "楽天市場",

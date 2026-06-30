@@ -2,29 +2,73 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import RankingTable from "../../components/RankingTable.astro";
 import ranking from "../../data/ranking.json";
+import {
+  createItemListSchema,
+  formatPublishedDate,
+  getGameItems,
+  getPlatformGroups,
+  getTypeGroups
+} from "../../lib/ranking";
 
-const gameItems = ranking.items
-  .filter((item: any) => item.categoryKey === "games")
-  .sort((a: any, b: any) => a.rank - b.rank);
-const published = ranking.updatedAt
-  ? new Intl.DateTimeFormat("ja-JP", { dateStyle: "long", timeZone: "Asia/Tokyo" }).format(new Date(ranking.updatedAt))
-  : "更新準備中";
+const gameItems = getGameItems(ranking);
+const platformGroups = getPlatformGroups(gameItems);
+const typeGroups = getTypeGroups(gameItems);
+const published = formatPublishedDate(ranking.updatedAt, "更新準備中");
+const pageUrl = new URL("/articles/current-game-ranking/", Astro.site).toString();
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "楽天市場で現在注目のゲーム5選",
+    dateModified: ranking.updatedAt || undefined,
+    datePublished: ranking.updatedAt || undefined,
+    inLanguage: "ja",
+    mainEntityOfPage: pageUrl
+  },
+  gameItems.length > 0 ? createItemListSchema(gameItems, pageUrl) : null
+].filter(Boolean);
 ---
-<BaseLayout title="楽天市場で現在注目のゲーム5選｜モノ上昇便">
+<BaseLayout
+  title="楽天市場で現在注目のゲーム5選｜Switch・PS別にも確認｜モノ上昇便"
+  description="楽天市場のテレビゲームランキングから、ゲームソフト・本体・周辺機器をSwitch/PlayStationなどの機種別に整理します。"
+  structuredData={structuredData}
+>
   <article class="article-page">
     <header>
-      <p class="breadcrumbs"><a href="/">ホーム</a> › <a href="/articles/">記事一覧</a></p>
+      <p class="breadcrumbs"><a href="/">ホーム</a> › <a href="/articles/">記事一覧</a> › ゲーム</p>
       <h1>楽天市場で現在<br /><span>注目</span>のゲーム5選</h1>
-      <p>楽天市場のテレビゲームランキングから、ゲームソフト・本体・周辺機器の上位商品を整理します。</p>
+      <p>楽天市場のテレビゲームランキングから、ゲームソフト・本体・周辺機器の上位商品を整理します。機種別のページも用意しました。</p>
       <div class="article-meta">{published}更新　｜　楽天市場ランキングを基に掲載</div>
     </header>
     <section>
-      <h2><span>01</span>現在の上位5商品</h2>
-      <RankingTable items={gameItems} />
+      <h2><span>01</span>現在の上位商品</h2>
+      <RankingTable items={gameItems} showPlatform={true} categoryFallback="ゲーム" />
     </section>
     <section>
-      <h2><span>02</span>確認したいポイント</h2>
+      <h2><span>02</span>機種別に見る</h2>
+      <div class="platform-grid">
+        {platformGroups.map((group) => (
+          <a class="platform-card" href={group.href}>
+            <span>{group.shortLabel}</span>
+            <strong>{group.label}</strong>
+            <p>{group.description}</p>
+            <b>{group.items.length}件</b>
+          </a>
+        ))}
+      </div>
+    </section>
+    <section>
+      <h2><span>03</span>確認したいポイント</h2>
       <p>同じタイトルでも、対応機種、特典、商品状態、発送時期が異なる場合があります。ゲーム機本体では国内版・セット内容も確認してください。</p>
+      <div class="type-grid">
+        {typeGroups.map((group) => (
+          <div>
+            <strong>{group.label}</strong>
+            <span>{group.items.length}件</span>
+            <p>{group.description}</p>
+          </div>
+        ))}
+      </div>
     </section>
     <aside class="notice"><strong>掲載情報について</strong><p>価格や在庫は変動します。購入前に販売ページで最新情報をご確認ください。</p></aside>
   </article>

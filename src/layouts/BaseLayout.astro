@@ -6,14 +6,17 @@ import { siteConfig } from "../config";
 interface Props {
   title?: string;
   description?: string;
+  structuredData?: Record<string, any> | Record<string, any>[];
 }
 
 const {
   title = siteConfig.name,
-  description = siteConfig.description
+  description = siteConfig.description,
+  structuredData = []
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const contactHref = siteConfig.xUrl || "/contact/";
+const schemas = Array.isArray(structuredData) ? structuredData : [structuredData];
 ---
 <!doctype html>
 <html lang="ja">
@@ -30,6 +33,9 @@ const contactHref = siteConfig.xUrl || "/contact/";
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={new URL("/brand/header.png", Astro.site)} />
     <meta name="twitter:card" content="summary_large_image" />
+    {schemas.filter(Boolean).map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
     <title>{title}</title>
   </head>
   <body>
@@ -39,10 +45,10 @@ const contactHref = siteConfig.xUrl || "/contact/";
         <span>モノ<span class="accent">上昇</span>便</span>
       </a>
       <nav aria-label="メインナビゲーション">
-        <a href="/#rising">文具</a>
-        <a href="/#new">新登場</a>
-        <a href="/#games">ゲーム</a>
-        <a href="/#compare">価格情報</a>
+        <a href="/categories/stationery/">文具</a>
+        <a href="/games/">ゲーム</a>
+        <a href="/games/switch/">Switch</a>
+        <a href="/games/playstation/">PS</a>
         <a href="/articles/">記事一覧</a>
       </nav>
       <a class="contact-button" href={contactHref} target={siteConfig.xUrl ? "_blank" : undefined} rel={siteConfig.xUrl ? "noopener" : undefined}>{siteConfig.contactLabel}</a>
@@ -51,12 +57,12 @@ const contactHref = siteConfig.xUrl || "/contact/";
     <footer>
       <p class="ad-disclosure">当サイトはアフィリエイト広告を利用しています</p>
       <!-- Rakuten Web Services Attribution Snippet FROM HERE -->
-      <a href="https://developers.rakuten.com/" target="_blank">Supported by Rakuten Developers</a>
+      <a href="https://developers.rakuten.com/" target="_blank" rel="noopener">Supported by Rakuten Developers</a>
       <!-- Rakuten Web Services Attribution Snippet TO HERE -->
       <div class="footer-links">
         <a href="/about/">運営情報</a>
         <a href="/privacy/">プライバシーポリシー</a>
-        <a href={contactHref}>{siteConfig.contactLabel}</a>
+        <a href="/contact/">お問い合わせ</a>
       </div>
       <small>© 2026 モノ上昇便</small>
     </footer>

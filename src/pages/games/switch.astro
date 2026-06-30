@@ -1,0 +1,62 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import RankingTable from "../../components/RankingTable.astro";
+import ranking from "../../data/ranking.json";
+import { createItemListSchema, formatPublishedDate, getPlatformItems, getTypeGroups } from "../../lib/ranking";
+
+const items = getPlatformItems(ranking, "switch");
+const typeGroups = getTypeGroups(items);
+const published = formatPublishedDate(ranking.updatedAt);
+const pageUrl = new URL("/games/switch/", Astro.site).toString();
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "ホーム", item: new URL("/", Astro.site).toString() },
+      { "@type": "ListItem", position: 2, name: "ゲーム", item: new URL("/games/", Astro.site).toString() },
+      { "@type": "ListItem", position: 3, name: "Switchランキング", item: pageUrl }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Switch関連ランキング",
+    description: "Nintendo Switchのソフト、本体、周辺機器ランキングを整理します。",
+    url: pageUrl
+  },
+  items.length > 0 ? createItemListSchema(items, pageUrl) : null
+].filter(Boolean);
+---
+<BaseLayout
+  title="Switch関連ランキング｜ソフト・本体・周辺機器｜モノ上昇便"
+  description="Nintendo Switch関連のランキングを、ソフト・本体・周辺機器に分けて整理します。価格やレビューも確認できます。"
+  structuredData={structuredData}
+>
+  <article class="article-page game-page">
+    <header>
+      <p class="breadcrumbs"><a href="/">ホーム</a> › <a href="/games/">ゲーム</a> › Switch</p>
+      <h1>Switch関連<br /><span>ランキング</span></h1>
+      <p>Nintendo Switchのソフト、本体、Joy-Conや保護用品などをまとめて確認できます。</p>
+      <div class="article-meta">{published}更新　｜　楽天市場ランキングを基に掲載</div>
+    </header>
+    <section>
+      <h2><span>01</span>Switchの上位商品</h2>
+      <RankingTable items={items} limit={10} showPlatform={true} categoryFallback="Nintendo Switch" />
+    </section>
+    <section class="seo-block">
+      <h2><span>02</span>種類別の内訳</h2>
+      <div class="type-grid">
+        {typeGroups.map((group) => (
+          <div>
+            <strong>{group.label}</strong>
+            <span>{group.items.length}件</span>
+            <p>{group.description}</p>
+          </div>
+        ))}
+      </div>
+      <p>Switchは通常版、有機ELモデル、Lite、ソフト単品、特典付き、周辺機器で価格差が出やすいジャンルです。商品名と販売ページのセット内容を必ず確認してください。</p>
+    </section>
+    <aside class="notice"><strong>ほかの機種も見る</strong><p><a href="/games/playstation/">PlayStationランキング</a>、または<a href="/games/">ゲーム全体</a>へ戻れます。</p></aside>
+  </article>
+</BaseLayout>

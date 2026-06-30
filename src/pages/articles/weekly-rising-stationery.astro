@@ -2,25 +2,44 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import RankingTable from "../../components/RankingTable.astro";
 import ranking from "../../data/ranking.json";
-const published = ranking.updatedAt
-  ? new Intl.DateTimeFormat("ja-JP", { dateStyle: "long", timeZone: "Asia/Tokyo" }).format(new Date(ranking.updatedAt))
-  : "データ更新待ち";
+import { createItemListSchema, formatPublishedDate, getStationeryItems } from "../../lib/ranking";
+
+const items = getStationeryItems(ranking);
+const published = formatPublishedDate(ranking.updatedAt);
+const pageUrl = new URL("/articles/weekly-rising-stationery/", Astro.site).toString();
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "楽天市場で現在注目の文具5選",
+    dateModified: ranking.updatedAt || undefined,
+    datePublished: ranking.updatedAt || undefined,
+    inLanguage: "ja",
+    mainEntityOfPage: pageUrl
+  },
+  items.length > 0 ? createItemListSchema(items, pageUrl) : null
+].filter(Boolean);
 ---
-<BaseLayout title="楽天市場で現在注目の文具5選｜モノ上昇便">
+<BaseLayout
+  title="楽天市場で現在注目の文具5選｜モノ上昇便"
+  description="楽天市場の文具ランキングから、現在注目の商品を価格・レビュー・確認ポイントとともに整理します。"
+  structuredData={structuredData}
+>
   <article class="article-page">
     <header>
-      <p class="breadcrumbs"><a href="/">ホーム</a> › <a href="/articles/">記事一覧</a></p>
+      <p class="breadcrumbs"><a href="/">ホーム</a> › <a href="/articles/">記事一覧</a> › 文具</p>
       <h1>楽天市場で現在<br /><span>注目</span>の文具5選</h1>
       <p>楽天市場の文具ランキングから、現在掲載されている商品を価格・レビュー情報とともに整理します。</p>
       <div class="article-meta">{published}更新　｜　楽天市場ランキングを基に掲載</div>
     </header>
     <section>
-      <h2><span>01</span>まとめ（一覧表）</h2>
-      <RankingTable items={ranking.items} />
+      <h2><span>01</span>現在の上位商品</h2>
+      <RankingTable items={items} />
     </section>
     <section>
-      <h2><span>02</span>データの出典・集計方法</h2>
-      <p>楽天市場ランキングの順位、価格、レビュー情報を掲載しています。価格・在庫・販売条件は変わる場合があるため、購入前に楽天市場の商品ページで最新情報をご確認ください。</p>
+      <h2><span>02</span>確認したいポイント</h2>
+      <p>文具は、セット内容、サイズ、色、配送条件で使い勝手が変わります。ランキング順位、価格、レビュー件数を並べて見たうえで、販売ページで仕様を確認してください。</p>
+      <p>文具だけをまとめて確認したい場合は、<a href="/categories/stationery/">文具・シールランキング</a>も利用できます。</p>
     </section>
     <aside class="notice"><strong>掲載情報について</strong><p>価格や在庫は変動します。購入前に販売ページで最新情報をご確認ください。</p></aside>
   </article>
