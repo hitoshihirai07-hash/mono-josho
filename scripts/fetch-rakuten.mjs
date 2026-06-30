@@ -56,6 +56,24 @@ const toComparableText = (value = "") =>
     String.fromCharCode(char.charCodeAt(0) - 0xfee0)
   );
 
+const requestDelayMs = Number(process.env.RAKUTEN_REQUEST_DELAY_MS || 1200);
+const maxRetries = Number(process.env.RAKUTEN_MAX_RETRIES || 4);
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+function getRetryDelayMs(response, body = "") {
+  const retryAfter = Number(response.headers.get("retry-after"));
+  if (Number.isFinite(retryAfter) && retryAfter > 0) {
+    return Math.ceil(retryAfter * 1000);
+  }
+
+  const messageDelay = body.match(/Try again in\s+(\d+(?:\.\d+)?)\s+seconds?/i);
+  if (messageDelay) {
+    return Math.ceil(Number(messageDelay[1]) * 1000);
+  }
+
+  return requestDelayMs;
+}
+
 function detectGamePlatform(name = "") {
   const text = toComparableText(name);
 
@@ -109,16 +127,33 @@ async function fetchGenre(genre) {
   url.searchParams.set("formatVersion", "2");
   if (affiliateId) url.searchParams.set("affiliateId", affiliateId);
 
-  const response = await fetch(url, {
-    headers: {
-      Referer: siteUrl,
-      Origin: new URL(siteUrl).origin
-    },
-    referrer: siteUrl,
-    referrerPolicy: "no-referrer-when-downgrade"
-  });
-  if (!response.ok) {
-    throw new Error(`Rakuten API failed for ${genre.sourceLabel}: ${response.status} ${await response.text()}`);
+  let response;
+  let errorText = "";
+
+  for (let attempt = 0; attempt <= maxRetries; attempt += 1) {
+    response = await fetch(url, {
+      headers: {
+        Referer: siteUrl,
+        Origin: new URL(siteUrl).origin
+      },
+      referrer: siteUrl,
+      referrerPolicy: "no-referrer-when-downgrade"
+    });
+
+    if (response.ok) {
+      break;
+    }
+
+    errorText = await response.text();
+    if (response.status !== 429 || attempt === maxRetries) {
+      throw new Error(`Rakuten API failed for ${genre.sourceLabel}: ${response.status} ${errorText}`);
+    }
+
+    const retryDelayMs = Math.max(getRetryDelayMs(response, errorText), requestDelayMs);
+    console.warn(
+      `Rakuten API rate limited for ${genre.sourceLabel}; retrying in ${Math.ceil(retryDelayMs / 1000)}s (${attempt + 1}/${maxRetries}).`
+    );
+    await sleep(retryDelayMs);
   }
 
   const payload = await response.json();
@@ -164,7 +199,15 @@ async function fetchGenre(genre) {
     });
 }
 
-const items = (await Promise.all(genres.map(fetchGenre))).flat();
+const items = [];
+for (const [index, genre] of genres.entries()) {
+  const genreItems = await fetchGenre(genre);
+  items.push(...genreItems);
+
+  if (index < genres.length - 1) {
+    await sleep(requestDelayMs);
+  }
+}
 
 await fs.writeFile(previousPath, JSON.stringify({
   updatedAt: new Date().toISOString(),
