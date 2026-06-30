@@ -6,11 +6,15 @@ const candidates = ranking.items
   .sort((a, b) => (b.delta - a.delta) || (a.rank - b.rank))
   .slice(0, 3)
   .map((item, index) => {
-    const platformLine = item.platformLabel ? `機種：${item.platformLabel}${item.itemTypeLabel ? ` / ${item.itemTypeLabel}` : ""}\n` : "";
+    const sourceLine = item.sourceLabel
+      ? `ランキング：${item.sourceLabel}${item.itemTypeLabel ? ` / ${item.itemTypeLabel}` : ""}\n`
+      : item.platformLabel
+        ? `機種：${item.platformLabel}${item.itemTypeLabel ? ` / ${item.itemTypeLabel}` : ""}\n`
+        : "";
 
     return {
       slot: ["08:00", "13:00", "20:00"][index],
-      text: `${item.isNew ? "【新登場】" : "【ランキング急上昇】"}\n${item.name}\n${platformLine}${item.isNew ? `現在${item.rank}位` : `${item.previousRank}位 → ${item.rank}位（${item.delta}ランク上昇）`}\n価格：¥${item.price.toLocaleString()}\n${item.affiliateUrl}\n\n※広告`,
+      text: `${item.isNew ? "【新登場】" : "【ランキング急上昇】"}\n${item.name}\n${sourceLine}${item.isNew ? `現在${item.rank}位` : `${item.previousRank}位 → ${item.rank}位（${item.delta}ランク上昇）`}\n価格：¥${item.price.toLocaleString()}\n${item.affiliateUrl}\n\n※広告`,
       itemCode: item.code
     };
   });

@@ -4,16 +4,50 @@ const appId = process.env.RAKUTEN_APPLICATION_ID;
 const accessKey = process.env.RAKUTEN_ACCESS_KEY;
 const affiliateId = process.env.RAKUTEN_AFFILIATE_ID;
 const siteUrl = process.env.SITE_URL || "https://mono-josho.pages.dev/";
+
 const genres = [
   {
     id: process.env.RAKUTEN_GENRE_ID || "100901",
     key: "stationery",
-    label: "文房具・事務用品"
+    label: "文房具・事務用品",
+    sourceKey: "stationery",
+    sourceLabel: "文房具・事務用品ランキング"
   },
   {
     id: process.env.RAKUTEN_GAME_GENRE_ID || "101205",
     key: "games",
-    label: "テレビゲーム"
+    label: "テレビゲーム",
+    sourceKey: "games-overall",
+    sourceLabel: "テレビゲーム総合ランキング",
+    platformKey: "overall",
+    platformLabel: "テレビゲーム総合"
+  },
+  {
+    id: process.env.RAKUTEN_SWITCH_GENRE_ID || "565950",
+    key: "games",
+    label: "Nintendo Switch",
+    sourceKey: "switch",
+    sourceLabel: "Nintendo Switchランキング",
+    platformKey: "switch",
+    platformLabel: "Nintendo Switch"
+  },
+  {
+    id: process.env.RAKUTEN_PS5_GENRE_ID || "568375",
+    key: "games",
+    label: "プレイステーション5",
+    sourceKey: "ps5",
+    sourceLabel: "PlayStation 5ランキング",
+    platformKey: "playstation",
+    platformLabel: "PlayStation 5"
+  },
+  {
+    id: process.env.RAKUTEN_PS4_GENRE_ID || "563544",
+    key: "games",
+    label: "プレイステーション4",
+    sourceKey: "ps4",
+    sourceLabel: "PlayStation 4ランキング",
+    platformKey: "playstation",
+    platformLabel: "PlayStation 4"
   }
 ];
 
@@ -33,7 +67,7 @@ function detectGamePlatform(name = "") {
     return { platformKey: "playstation", platformLabel: "PlayStation" };
   }
 
-  return { platformKey: "other", platformLabel: "その他ゲーム" };
+  return { platformKey: "overall", platformLabel: "テレビゲーム総合" };
 }
 
 function detectGameType(name = "") {
@@ -64,7 +98,7 @@ if (!appId || !accessKey) {
 const previousPath = new URL("../src/data/ranking.json", import.meta.url);
 let previous = { items: [] };
 try { previous = JSON.parse(await fs.readFile(previousPath, "utf8")); } catch {}
-const previousRanks = new Map(previous.items.map((item) => [item.code, item.rank]));
+const previousRanks = new Map(previous.items.map((item) => [`${item.sourceKey || item.categoryKey || "unknown"}:${item.code}`, item.rank]));
 
 async function fetchGenre(genre) {
   const url = new URL("https://openapi.rakuten.co.jp/ichibaranking/api/IchibaItem/Ranking/20220601");
@@ -84,7 +118,7 @@ async function fetchGenre(genre) {
     referrerPolicy: "no-referrer-when-downgrade"
   });
   if (!response.ok) {
-    throw new Error(`Rakuten API failed for ${genre.label}: ${response.status} ${await response.text()}`);
+    throw new Error(`Rakuten API failed for ${genre.sourceLabel}: ${response.status} ${await response.text()}`);
   }
 
   const payload = await response.json();
@@ -94,9 +128,15 @@ async function fetchGenre(genre) {
     .sort((a, b) => Number(a.rank) - Number(b.rank))
     .slice(0, 30)
     .map((item) => {
-      const oldRank = previousRanks.get(item.itemCode);
+      const previousKey = `${genre.sourceKey}:${item.itemCode}`;
+      const oldRank = previousRanks.get(previousKey);
       const gameMeta = genre.key === "games"
-        ? { ...detectGamePlatform(item.itemName), ...detectGameType(item.itemName) }
+        ? {
+            ...(genre.platformKey && genre.platformLabel
+              ? { platformKey: genre.platformKey, platformLabel: genre.platformLabel }
+              : detectGamePlatform(item.itemName)),
+            ...detectGameType(item.itemName)
+          }
         : {};
 
       return {
@@ -112,6 +152,9 @@ async function fetchGenre(genre) {
         reviewCount: Number(item.reviewCount || 0),
         category: genre.label,
         categoryKey: genre.key,
+        sourceKey: genre.sourceKey,
+        sourceLabel: genre.sourceLabel,
+        genreId: genre.id,
         ...gameMeta,
         url: item.itemUrl,
         affiliateUrl: item.affiliateUrl || item.itemUrl,
@@ -128,4 +171,4 @@ await fs.writeFile(previousPath, JSON.stringify({
   status: "ready",
   items
 }, null, 2) + "\n");
-console.log(`Saved ${items.length} Rakuten ranking items across ${genres.length} genres.`);
+console.log(`Saved ${items.length} Rakuten ranking items across ${genres.length} ranking sources.`);

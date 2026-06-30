@@ -49,7 +49,7 @@ const structuredData = [
   <section class="hero">
     <div class="hero-content">
       <h1>ランキングからではなく、<span>欲しい種類</span>から探す。</h1>
-      <p>モノ上昇便は、順位表を眺めるだけのサイトから、文具・ゲーム・Switch・PlayStation・周辺機器へすぐ進める入口ページに変えました。</p>
+      <p>モノ上昇便は、順位表を眺めるだけのサイトから、文具・ゲーム総合・Switch・PS5・PS4へすぐ進める入口ページに変えました。</p>
       <div class="hero-actions">
         <a class="cta-link" href="/games/">ゲームを種類別に探す</a>
         <a class="secondary-link" href="/games/switch/">Switchを見る</a>
@@ -71,12 +71,12 @@ const structuredData = [
       <section class="route-panel route-panel-games">
         <span>GAME</span>
         <h3>ゲームは機種・種類で分けて見る</h3>
-        <p>Switch、PlayStation、ソフト、本体、周辺機器を分けて確認できます。ゲーム目的の人はここから入るのが一番早いです。</p>
+        <p>ゲーム総合、Switch、PS5、PS4を別ランキングとして確認できます。ゲーム目的の人はここから入るのが一番早いです。</p>
         <div class="route-list">
           {platformGroups.map((group) => (
             <a href={group.href}>
               <strong>{group.shortLabel}</strong>
-              <span>{group.items.length > 0 ? `${group.items.length}件` : "準備中"}</span>
+              <span>{group.key === "playstation" ? "PS5/PS4別" : group.key === "switch" ? "Switch専用" : "総合"}</span>
             </a>
           ))}
         </div>
@@ -102,7 +102,7 @@ const structuredData = [
   <section class="return-reasons" aria-labelledby="return-title">
     <h2 id="return-title">今日見るなら、この順番</h2>
     <ol>
-      <li><strong>機種で絞る</strong><span>Switch / PS / その他から入る</span></li>
+      <li><strong>機種で絞る</strong><span>総合 / Switch / PS5 / PS4から入る</span></li>
       <li><strong>種類で比べる</strong><span>ソフト・本体・周辺機器を見る</span></li>
       <li><strong>最後にランキング確認</strong><span>順位・価格・レビューを見る</span></li>
     </ol>
@@ -151,7 +151,7 @@ const structuredData = [
         <a class="platform-card" href={group.href}>
           <span>{group.shortLabel}</span>
           <strong>{group.label}</strong>
-          <p>{group.items.length > 0 ? `${group.items.length}件を掲載中` : "データ取得後に掲載"}</p>
+          <p>{group.key === "playstation" ? "PS5/PS4を別表示" : group.key === "switch" ? "Switch専用ランキング" : "テレビゲーム総合"}</p>
         </a>
       ))}
     </div>
@@ -169,7 +169,7 @@ const structuredData = [
   <section class="method" id="compare">
     <h2>モノ上昇便の見方</h2>
     <div><strong>新登場</strong><p>ランキングに新しく入った商品を表示します。</p></div>
-    <div><strong>種類別</strong><p>ゲームは Switch / PlayStation、ソフト / 本体 / 周辺機器に分けて探しやすくします。</p></div>
+    <div><strong>種類別</strong><p>ゲームは総合 / Switch / PS5 / PS4、ソフト / 本体 / 周辺機器に分けて探しやすくします。</p></div>
     <div><strong>価格情報</strong><p>掲載時点の価格を表示し、販売ページで最新の在庫・条件を確認できるようにします。</p></div>
   </section>
 </BaseLayout>

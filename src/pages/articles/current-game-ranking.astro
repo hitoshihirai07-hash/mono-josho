@@ -5,13 +5,15 @@ import ranking from "../../data/ranking.json";
 import {
   createItemListSchema,
   formatPublishedDate,
+  getGameOverallItems,
   getGameItems,
-  getPlatformGroups,
+  getGameSourceGroups,
   getTypeGroups
 } from "../../lib/ranking";
 
 const gameItems = getGameItems(ranking);
-const platformGroups = getPlatformGroups(gameItems);
+const overallItems = getGameOverallItems(ranking);
+const sourceGroups = getGameSourceGroups(gameItems).filter((group) => group.key !== "games-overall");
 const typeGroups = getTypeGroups(gameItems);
 const published = formatPublishedDate(ranking.updatedAt, "更新準備中");
 const pageUrl = new URL("/articles/current-game-ranking/", Astro.site).toString();
@@ -25,34 +27,34 @@ const structuredData = [
     inLanguage: "ja",
     mainEntityOfPage: pageUrl
   },
-  gameItems.length > 0 ? createItemListSchema(gameItems, pageUrl) : null
+  overallItems.length > 0 ? createItemListSchema(overallItems, pageUrl) : null
 ].filter(Boolean);
 ---
 <BaseLayout
-  title="楽天市場で現在注目のゲーム5選｜Switch・PS別にも確認｜モノ上昇便"
-  description="楽天市場のテレビゲームランキングから、ゲームソフト・本体・周辺機器をSwitch/PlayStationなどの機種別に整理します。"
+  title="楽天市場で現在注目のゲーム5選｜Switch・PS5・PS4別にも確認｜モノ上昇便"
+  description="楽天市場のテレビゲーム総合ランキングと、Switch・PS5・PS4の各ジャンルランキングへの入口を整理します。"
   structuredData={structuredData}
 >
   <article class="article-page">
     <header>
       <p class="breadcrumbs"><a href="/">ホーム</a> › <a href="/articles/">記事一覧</a> › ゲーム</p>
       <h1>楽天市場で現在<br /><span>注目</span>のゲーム5選</h1>
-      <p>楽天市場のテレビゲームランキングから、ゲームソフト・本体・周辺機器の上位商品を整理します。機種別のページも用意しました。</p>
+      <p>楽天市場のテレビゲーム総合ランキングを整理します。Switch、PS5、PS4は別ジャンルのランキングとして確認できます。</p>
       <div class="article-meta">{published}更新　｜　楽天市場ランキングを基に掲載</div>
     </header>
     <section>
-      <h2><span>01</span>現在の上位商品</h2>
-      <RankingTable items={gameItems} showPlatform={true} categoryFallback="ゲーム" />
+      <h2><span>01</span>テレビゲーム総合の上位商品</h2>
+      <RankingTable items={overallItems} showPlatform={true} categoryFallback="ゲーム" />
     </section>
     <section>
       <h2><span>02</span>機種別に見る</h2>
       <div class="platform-grid">
-        {platformGroups.map((group) => (
+        {sourceGroups.map((group) => (
           <a class="platform-card" href={group.href}>
             <span>{group.shortLabel}</span>
             <strong>{group.label}</strong>
             <p>{group.description}</p>
-            <b>{group.items.length}件</b>
+            <b>{group.key === "switch" ? "Switch専用" : "別ランキング"}</b>
           </a>
         ))}
       </div>

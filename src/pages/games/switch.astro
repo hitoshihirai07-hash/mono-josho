@@ -2,9 +2,9 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import RankingTable from "../../components/RankingTable.astro";
 import ranking from "../../data/ranking.json";
-import { createItemListSchema, formatPublishedDate, getPlatformItems, getTypeGroups } from "../../lib/ranking";
+import { createItemListSchema, formatPublishedDate, getGameSourceItems, getTypeGroups } from "../../lib/ranking";
 
-const items = getPlatformItems(ranking, "switch");
+const items = getGameSourceItems(ranking, "switch");
 const typeGroups = getTypeGroups(items);
 const published = formatPublishedDate(ranking.updatedAt);
 const pageUrl = new URL("/games/switch/", Astro.site).toString();
@@ -22,7 +22,7 @@ const structuredData = [
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: "Switch関連ランキング",
-    description: "Nintendo Switchのソフト、本体、周辺機器ランキングを整理します。",
+    description: "楽天のNintendo Switchジャンルから取得したSwitch専用ランキングを整理します。",
     url: pageUrl
   },
   items.length > 0 ? createItemListSchema(items, pageUrl) : null
@@ -37,7 +37,7 @@ const structuredData = [
     <header>
       <p class="breadcrumbs"><a href="/">ホーム</a> › <a href="/games/">ゲーム</a> › Switch</p>
       <h1>Switch関連<br /><span>ランキング</span></h1>
-      <p>Nintendo Switchのソフト、本体、Joy-Conや保護用品などをまとめて確認できます。</p>
+      <p>楽天のNintendo Switchジャンルから取得したランキングです。テレビゲーム総合からSwitch商品だけを抜いた一覧ではありません。</p>
       <div class="article-meta">{published}更新　｜　楽天市場ランキングを基に掲載</div>
     </header>
     <section>
@@ -55,7 +55,7 @@ const structuredData = [
           </div>
         ))}
       </div>
-      <p>Switchは通常版、有機ELモデル、Lite、ソフト単品、特典付き、周辺機器で価格差が出やすいジャンルです。商品名と販売ページのセット内容を必ず確認してください。</p>
+      <p>このページはSwitch専用ジャンルのランキングを表示します。通常版、有機ELモデル、Lite、ソフト単品、特典付き、周辺機器で価格差が出やすいため、商品名と販売ページのセット内容を必ず確認してください。</p>
     </section>
     <aside class="notice"><strong>ほかの機種も見る</strong><p><a href="/games/playstation/">PlayStationランキング</a>、または<a href="/games/">ゲーム全体</a>へ戻れます。</p></aside>
   </article>

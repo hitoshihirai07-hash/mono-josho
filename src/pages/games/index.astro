@@ -5,13 +5,18 @@ import ranking from "../../data/ranking.json";
 import {
   createItemListSchema,
   formatPublishedDate,
+  getGameOverallItems,
   getGameItems,
   getPlatformGroups,
+  getGameSourceGroups,
   getTypeGroups
 } from "../../lib/ranking";
 
 const gameItems = getGameItems(ranking);
+const overallItems = getGameOverallItems(ranking);
 const platformGroups = getPlatformGroups(gameItems);
+const sourceGroups = getGameSourceGroups(gameItems);
+const platformRankingGroups = sourceGroups.filter((group) => group.key !== "games-overall");
 const typeGroups = getTypeGroups(gameItems);
 const published = formatPublishedDate(ranking.updatedAt);
 const pageUrl = new URL("/games/", Astro.site).toString();
@@ -28,22 +33,22 @@ const structuredData = [
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: "ゲームランキング",
-    description: "楽天市場のゲームランキングをSwitch、PlayStation、ソフト、本体、周辺機器別に整理します。",
+    description: "楽天市場のテレビゲーム総合、Nintendo Switch、PS5、PS4の各ランキングを分けて整理します。",
     url: pageUrl
   },
-  gameItems.length > 0 ? createItemListSchema(gameItems, pageUrl) : null
+  overallItems.length > 0 ? createItemListSchema(overallItems, pageUrl) : null
 ].filter(Boolean);
 ---
 <BaseLayout
   title="ゲームランキング｜Switch・PlayStation別に探す｜モノ上昇便"
-  description="楽天市場のゲームランキングを、Switch・PlayStation・その他、ソフト・本体・周辺機器別に整理します。"
+  description="楽天市場のテレビゲーム総合、Nintendo Switch、PS5、PS4の各ランキングを混ぜずに整理します。"
   structuredData={structuredData}
 >
   <article class="article-page game-page">
     <header>
       <p class="breadcrumbs"><a href="/">ホーム</a> › ゲーム</p>
       <h1>ゲームランキングを<br /><span>機種別</span>に探す</h1>
-      <p>テレビゲームのランキングを、Switch / PlayStation / その他と、ソフト・本体・周辺機器に分けて見られるページです。</p>
+      <p>テレビゲーム総合、Nintendo Switch、PS5、PS4の各ランキングを混ぜずに見られるページです。</p>
       <div class="article-meta">{published}更新　｜　楽天市場ランキングを基に掲載</div>
     </header>
 
@@ -55,24 +60,24 @@ const structuredData = [
             <span>{group.shortLabel}</span>
             <strong>{group.label}</strong>
             <p>{group.description}</p>
-            <b>{group.items.length}件</b>
+            <b>{group.key === "playstation" ? "PS5/PS4別" : group.key === "switch" ? "Switch専用" : "総合"}</b>
           </a>
         ))}
       </div>
     </section>
 
     <section>
-      <h2><span>02</span>現在のゲーム上位</h2>
-      <RankingTable items={gameItems} limit={10} showPlatform={true} categoryFallback="ゲーム" />
+      <h2><span>02</span>テレビゲーム総合ランキング</h2>
+      <RankingTable items={overallItems} limit={10} showPlatform={true} categoryFallback="ゲーム" />
     </section>
 
     <section>
-      <h2><span>03</span>機種ごとのランキング</h2>
-      {platformGroups.map((group) => (
+      <h2><span>03</span>取得元ごとの機種別ランキング</h2>
+      {platformRankingGroups.map((group) => (
         <section class="platform-section" id={`${group.key}-ranking`}>
           <header>
             <h3>{group.label}</h3>
-            <p>{group.items.length > 0 ? `${group.items.length}件を掲載しています。` : "データ取得後にここへ掲載します。"}</p>
+            <p>{group.description}</p>
           </header>
           <RankingTable items={group.items} limit={5} showPlatform={true} categoryFallback="ゲーム" />
         </section>

@@ -11,6 +11,9 @@ export type RankingItem = {
   reviewCount?: number | string;
   category?: string;
   categoryKey?: string;
+  sourceKey?: string;
+  sourceLabel?: string;
+  genreId?: string;
   platformKey?: string;
   platformLabel?: string;
   itemTypeKey?: string;
@@ -38,25 +41,56 @@ export type RankingGroup = {
 
 export const platformDefinitions = [
   {
+    key: "overall",
+    label: "テレビゲーム総合",
+    shortLabel: "総合",
+    href: "/games/#overall-ranking",
+    description: "楽天のテレビゲーム総合ジャンルのランキングです。"
+  },
+  {
     key: "switch",
-    label: "Nintendo Switch",
+    label: "Nintendo Switchランキング",
     shortLabel: "Switch",
     href: "/games/switch/",
-    description: "Switchソフト、本体、Joy-Conや周辺機器をまとめて確認できます。"
+    description: "楽天のNintendo Switchジャンルから取得するSwitch専用ランキングです。"
   },
   {
     key: "playstation",
-    label: "PlayStation",
-    shortLabel: "PS",
+    label: "PlayStationランキング",
+    shortLabel: "PS5 / PS4",
     href: "/games/playstation/",
-    description: "PS5・PS4のソフト、本体、コントローラーや周辺機器を整理します。"
+    description: "PS5ランキングとPS4ランキングを混ぜずに別々に確認できます。"
+  }
+] as const;
+
+export const gameSourceDefinitions = [
+  {
+    key: "games-overall",
+    label: "テレビゲーム総合ランキング",
+    shortLabel: "総合",
+    href: "/games/#overall-ranking",
+    description: "楽天のテレビゲーム総合ジャンルから取得します。"
   },
   {
-    key: "other",
-    label: "その他ゲーム",
-    shortLabel: "その他",
-    href: "/games/#other",
-    description: "機種名が明確でないゲーム用品や、複数機種向けの商品をまとめます。"
+    key: "switch",
+    label: "Nintendo Switchランキング",
+    shortLabel: "Switch",
+    href: "/games/switch/",
+    description: "楽天のNintendo Switchジャンルから取得します。"
+  },
+  {
+    key: "ps5",
+    label: "PlayStation 5ランキング",
+    shortLabel: "PS5",
+    href: "/games/playstation/#ps5-ranking",
+    description: "楽天のプレイステーション5ジャンルから取得します。"
+  },
+  {
+    key: "ps4",
+    label: "PlayStation 4ランキング",
+    shortLabel: "PS4",
+    href: "/games/playstation/#ps4-ranking",
+    description: "楽天のプレイステーション4ジャンルから取得します。"
   }
 ] as const;
 
@@ -135,7 +169,7 @@ export const detectGamePlatform = (name = "") => {
     return { platformKey: "playstation", platformLabel: "PlayStation" };
   }
 
-  return { platformKey: "other", platformLabel: "その他ゲーム" };
+  return { platformKey: "overall", platformLabel: "テレビゲーム総合" };
 };
 
 export const detectGameType = (name = "") => {
@@ -180,10 +214,24 @@ export const getGameItems = (ranking: RankingPayload) =>
       .map(enrichGameItem)
   );
 
+export const getGameOverallItems = (ranking: RankingPayload) =>
+  sortByRank(
+    getGameItems(ranking).filter((item) => !item.sourceKey || item.sourceKey === "games-overall")
+  );
+
+export const getGameSourceItems = (ranking: RankingPayload, sourceKey: string) =>
+  sortByRank(getGameItems(ranking).filter((item) => item.sourceKey === sourceKey));
+
+export const getGameSourceGroups = (items: RankingItem[] = []) =>
+  gameSourceDefinitions.map((definition) => ({
+    ...definition,
+    items: sortByRank(items.filter((item) => item.sourceKey === definition.key))
+  }));
+
 export const getPlatformGroups = (items: RankingItem[] = []): RankingGroup[] =>
   platformDefinitions.map((definition) => ({
     ...definition,
-    items: sortByRank(items.filter((item) => (item.platformKey || "other") === definition.key))
+    items: sortByRank(items.filter((item) => (item.platformKey || "overall") === definition.key))
   }));
 
 export const getTypeGroups = (items: RankingItem[] = []) =>
@@ -193,7 +241,7 @@ export const getTypeGroups = (items: RankingItem[] = []) =>
   }));
 
 export const getPlatformItems = (ranking: RankingPayload, platformKey: string) =>
-  getGameItems(ranking).filter((item) => (item.platformKey || "other") === platformKey);
+  getGameItems(ranking).filter((item) => (item.platformKey || "overall") === platformKey);
 
 export const getItemUrl = (item: RankingItem) => item.affiliateUrl || item.url || "";
 
