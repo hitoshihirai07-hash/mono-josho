@@ -105,6 +105,7 @@ const rankChange = (item: RankingItem) => {
       </div>
     )}
   </div>
+  <p class="change-status" data-change-status aria-live="polite"></p>
 
   {changes.map((change, index) => {
     const changeItems = getChangeItems(items, change.key, 50);
@@ -163,6 +164,7 @@ const rankChange = (item: RankingItem) => {
     const panels = [...board.querySelectorAll("[data-change-panel]")];
     const filters = [...board.querySelectorAll("[data-source-filter]")];
     const limit = Number(board.dataset.limit || 5);
+    const status = board.querySelector("[data-change-status]");
     let activeChange = tabs[0]?.dataset.changeTab || "new";
     let activeSource = "all";
 
@@ -176,12 +178,12 @@ const rankChange = (item: RankingItem) => {
         filter.setAttribute("aria-pressed", String(filter.dataset.sourceFilter === activeSource));
       });
 
+      let visibleCount = 0;
       panels.forEach((panel) => {
         const active = panel.dataset.changePanel === activeChange;
         panel.hidden = !active;
         if (!active) return;
 
-        let visibleCount = 0;
         const rows = [...panel.querySelectorAll("[data-change-row]")];
         rows.forEach((row) => {
           const sourceMatches = activeSource === "all" || row.dataset.source === activeSource;
@@ -193,6 +195,12 @@ const rankChange = (item: RankingItem) => {
         const empty = panel.querySelector("[data-filter-empty]");
         if (empty) empty.hidden = rows.length === 0 || visibleCount > 0;
       });
+
+      if (status) {
+        const changeLabel = tabs.find((tab) => tab.dataset.changeTab === activeChange)?.textContent?.trim() || "";
+        const sourceLabel = filters.find((filter) => filter.dataset.sourceFilter === activeSource)?.textContent?.trim() || "すべて";
+        status.textContent = `${sourceLabel} / ${changeLabel}：${visibleCount}件を表示`;
+      }
     };
 
     tabs.forEach((tab) => {
