@@ -1,175 +1,91 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import RankingTable from "../components/RankingTable.astro";
+import ChangeBoard from "../components/ChangeBoard.astro";
 import ranking from "../data/ranking.json";
+import editorial from "../data/editorial.json";
 import {
   createItemListSchema,
   formatUpdated,
-  getGameItems,
-  getItemUrl,
-  getNewItems,
-  getPlatformGroups,
-  getTypeGroups,
-  getStationeryItems
+  gameSourceDefinitions,
+  getGameItems
 } from "../lib/ranking";
 
 const updated = formatUpdated(ranking.updatedAt, "更新準備中");
-const stationeryItems = getStationeryItems(ranking);
 const gameItems = getGameItems(ranking);
-const platformGroups = getPlatformGroups(gameItems);
-const typeGroups = getTypeGroups(gameItems);
-const newItems = getNewItems(ranking, 4);
-const allRankedItems = [...stationeryItems, ...gameItems];
-const hasRanking = allRankedItems.length > 0;
+const weekly = editorial.gameWeekly;
 const pageUrl = new URL("/", Astro.site).toString();
-const itemListSchema = hasRanking ? createItemListSchema(allRankedItems, pageUrl) : null;
 const structuredData = [
   {
     "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: "モノ上昇便",
-    url: pageUrl,
-    inLanguage: "ja"
-  },
-  {
-    "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "モノ上昇便｜文具・ゲームのランキング案内",
-    description: "文具・シール・小型玩具・ゲームをランキング変動、新登場、価格情報、Switch/PlayStationなどの種類別に整理します。",
-    url: pageUrl
+    name: "今日のゲームランキング｜Switch・PS5・PS4の変化",
+    description: "Nintendo Switch、PS5、PS4のランキングを分け、新登場・急上昇・値下がりを前回更新と比較します。",
+    url: pageUrl,
+    inLanguage: "ja",
+    isPartOf: { "@id": new URL("/#website", Astro.site).toString() }
   },
-  itemListSchema
+  gameItems.length > 0 ? createItemListSchema(gameItems, pageUrl) : null
 ].filter(Boolean);
+
+const platformLinks = gameSourceDefinitions.filter((source) =>
+  ["switch", "ps5", "ps4"].includes(source.key)
+);
 ---
 <BaseLayout
-  title="モノ上昇便｜文具・ゲームを種類別に探せるランキング情報"
-  description="文具・シール・小型玩具・ゲームを、ランキング変動・新登場・価格情報・Switch/PlayStationなどの種類別に整理します。"
+  title="今日のゲームランキング｜Switch・PS5・PS4の変化｜モノ上昇便"
+  description="Switch・PS5・PS4を別ランキングで比較。新登場・急上昇・値下がりを前回更新から追えるゲームランキング情報です。"
   structuredData={structuredData}
 >
-  <section class="hero">
+  <section class="hero game-first-hero">
     <div class="hero-content">
-      <h1>ランキングからではなく、<span>欲しい種類</span>から探す。</h1>
-      <p>モノ上昇便は、順位表を眺めるだけのサイトから、文具・ゲーム総合・Switch・PS5・PS4へすぐ進める入口ページに変えました。</p>
-      <div class="hero-actions">
-        <a class="cta-link" href="/games/">ゲームを種類別に探す</a>
-        <a class="secondary-link" href="/games/switch/">Switchを見る</a>
-        <a class="secondary-link" href="/games/playstation/">PSを見る</a>
-      </div>
+      <h1>今日のゲームランキング、<span>変わったところだけ。</span></h1>
+      <p>Switch・PS5・PS4を別ランキングで比較。新登場・急上昇・値下がりを前回更新から追えます。</p>
     </div>
     <p class="updated"><span>最終更新</span>{updated}</p>
   </section>
 
-  <section class="route-board" aria-labelledby="route-board-title">
-    <header class="route-board-heading">
+  <div class="change-editorial-layout">
+    <ChangeBoard items={gameItems} id="home-ranking-changes" />
+    <aside class="weekly-note" aria-labelledby="weekly-note-title">
+      <header><h2 id="weekly-note-title">今週の注目</h2></header>
       <div>
-        <h2 id="route-board-title">まず、ここから選ぶ</h2>
-        <p>ランキングの順位より先に「何を探しているか」を選べるようにしました。</p>
+        <h3>{weekly.headline}</h3>
+        <p>{weekly.summary}</p>
+        <ol>
+          {weekly.points.map((point) => (
+            <li>
+              <strong>{point.title}</strong>
+              <span>{point.body}</span>
+            </li>
+          ))}
+        </ol>
+        <p class="weekly-signature">{weekly.updatedAt}更新　{weekly.authorName}</p>
+        <a href="/articles/current-game-ranking/">今週のまとめを読む →</a>
       </div>
-      <a href="/articles/">記事からゆっくり見る →</a>
-    </header>
-    <div class="route-panels">
-      <section class="route-panel route-panel-games">
-        <span>GAME</span>
-        <h3>ゲームは機種・種類で分けて見る</h3>
-        <p>ゲーム総合、Switch、PS5、PS4を別ランキングとして確認できます。ゲーム目的の人はここから入るのが一番早いです。</p>
-        <div class="route-list">
-          {platformGroups.map((group) => (
-            <a href={group.href}>
-              <strong>{group.shortLabel}</strong>
-              <span>{group.key === "playstation" ? "PS5/PS4別" : group.key === "switch" ? "Switch専用" : "総合"}</span>
-            </a>
-          ))}
-        </div>
-        <div class="type-pills" aria-label="ゲームの種類">
-          {typeGroups.map((group) => <span>{group.label}</span>)}
-        </div>
-      </section>
-      <section class="route-panel">
-        <span>STATIONERY</span>
-        <h3>文具・シールはまとめて見る</h3>
-        <p>ペン、ノート、シール、小型玩具など、細かい商品をまとめて追える入口です。価格やレビューも一覧で確認できます。</p>
-        <a class="route-button" href="/categories/stationery/">文具ページへ進む</a>
-      </section>
-      <section class="route-panel">
-        <span>CHECK</span>
-        <h3>また見る理由を固定</h3>
-        <p>{hasRanking ? "更新後は、新登場・順位上昇・価格の変化を同じ場所で確認できます。" : "データ取得後は、新登場・順位上昇・価格の確認ポイントが自動で並びます。"}</p>
-        <a class="route-button" href="#new">新登場を確認する</a>
-      </section>
-    </div>
-  </section>
-
-  <section class="return-reasons" aria-labelledby="return-title">
-    <h2 id="return-title">今日見るなら、この順番</h2>
-    <ol>
-      <li><strong>機種で絞る</strong><span>総合 / Switch / PS5 / PS4から入る</span></li>
-      <li><strong>種類で比べる</strong><span>ソフト・本体・周辺機器を見る</span></li>
-      <li><strong>最後にランキング確認</strong><span>順位・価格・レビューを見る</span></li>
-    </ol>
-  </section>
-
-  <section class="ranking-zone" aria-labelledby="ranking-zone-title">
-    <header class="zone-heading">
-      <h2 id="ranking-zone-title">ランキング表は確認用</h2>
-      <p>ここから下は、選んだジャンルの順位・価格・レビューを確認するエリアです。</p>
-    </header>
-    <div class="dashboard">
-    <section class="main-panel" id="rising">
-      <header class="panel-title split-title">
-        <h2>文具ランキング</h2>
-        <a href="/categories/stationery/">文具ページへ</a>
-      </header>
-      <RankingTable items={stationeryItems} />
-      <a class="more-link" href="/articles/weekly-rising-stationery/">文具ランキングを記事で詳しく見る →</a>
-    </section>
-    <aside class="side-panel" id="new">
-      <header class="panel-title"><h2>新登場</h2></header>
-      {newItems.length > 0 ? (
-        <div class="new-list">
-          {newItems.map((item: any) => (
-            <a href={getItemUrl(item)} target="_blank" rel="nofollow sponsored noopener">
-              <span>{item.platformLabel || item.category}</span>
-              <strong>{item.name}</strong>
-              <b>{item.rank}位　¥{Number(item.price).toLocaleString()}</b>
-            </a>
-          ))}
-        </div>
-      ) : (
-        <div class="empty-side">新しくランクインした商品はありません。データ取得後にここへ表示します。</div>
-      )}
     </aside>
-    </div>
-  </section>
+  </div>
 
-  <section class="main-panel games-panel" id="games">
-    <header class="panel-title split-title">
-      <h2>ゲームランキング</h2>
-      <a href="/games/">ゲームページへ</a>
+  <section class="platform-entry" aria-labelledby="platform-entry-title">
+    <header>
+      <h2 id="platform-entry-title">機種別ランキング</h2>
+      <p>総合順位から抜き出さず、機種ごとの取得元をそのまま表示します。</p>
     </header>
-    <div class="platform-grid compact">
-      {platformGroups.map((group) => (
-        <a class="platform-card" href={group.href}>
-          <span>{group.shortLabel}</span>
-          <strong>{group.label}</strong>
-          <p>{group.key === "playstation" ? "PS5/PS4を別表示" : group.key === "switch" ? "Switch専用ランキング" : "テレビゲーム総合"}</p>
+    <div>
+      {platformLinks.map((source) => (
+        <a href={source.href}>
+          <span>{source.shortLabel}</span>
+          <strong>{source.shortLabel}ランキングを見る</strong>
+          <b aria-hidden="true">→</b>
         </a>
       ))}
     </div>
-    <RankingTable items={gameItems} showPlatform={true} />
   </section>
 
-  <section class="article-strip">
-    <header class="panel-title"><h2>ランキング記事</h2></header>
-    <a href="/articles/weekly-rising-stationery/"><span>01</span><strong>楽天市場で現在注目の文具5選</strong><time>随時更新</time><b>›</b></a>
-    <a href="/articles/current-game-ranking/"><span>02</span><strong>楽天市場で現在注目のゲーム5選</strong><time>随時更新</time><b>›</b></a>
-    <a href="/games/switch/"><span>03</span><strong>Switch関連のランキングをまとめて見る</strong><time>機種別</time><b>›</b></a>
-    <a href="/games/playstation/"><span>04</span><strong>PlayStation関連のランキングをまとめて見る</strong><time>機種別</time><b>›</b></a>
-  </section>
-
-  <section class="method" id="compare">
-    <h2>モノ上昇便の見方</h2>
-    <div><strong>新登場</strong><p>ランキングに新しく入った商品を表示します。</p></div>
-    <div><strong>種類別</strong><p>ゲームは総合 / Switch / PS5 / PS4、ソフト / 本体 / 周辺機器に分けて探しやすくします。</p></div>
-    <div><strong>価格情報</strong><p>掲載時点の価格を表示し、販売ページで最新の在庫・条件を確認できるようにします。</p></div>
+  <section class="stationery-entry" aria-labelledby="stationery-entry-title">
+    <h2 id="stationery-entry-title">文具も見る</h2>
+    <a href="/categories/stationery/">
+      <span>文具・シールのランキング、新登場、順位変動を確認できます。</span>
+      <strong>文具ランキングを見る →</strong>
+    </a>
   </section>
 </BaseLayout>

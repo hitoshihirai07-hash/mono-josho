@@ -116,7 +116,9 @@ if (!appId || !accessKey) {
 const previousPath = new URL("../src/data/ranking.json", import.meta.url);
 let previous = { items: [] };
 try { previous = JSON.parse(await fs.readFile(previousPath, "utf8")); } catch {}
-const previousRanks = new Map(previous.items.map((item) => [`${item.sourceKey || item.categoryKey || "unknown"}:${item.code}`, item.rank]));
+const previousItems = new Map(
+  previous.items.map((item) => [`${item.sourceKey || item.categoryKey || "unknown"}:${item.code}`, item])
+);
 
 async function fetchGenre(genre) {
   const url = new URL("https://openapi.rakuten.co.jp/ichibaranking/api/IchibaItem/Ranking/20220601");
@@ -164,7 +166,11 @@ async function fetchGenre(genre) {
     .slice(0, 30)
     .map((item) => {
       const previousKey = `${genre.sourceKey}:${item.itemCode}`;
-      const oldRank = previousRanks.get(previousKey);
+      const previousItem = previousItems.get(previousKey);
+      const oldRank = previousItem?.rank;
+      const oldPrice = Number(previousItem?.price);
+      const currentPrice = Number(item.itemPrice);
+      const hasPreviousPrice = Number.isFinite(oldPrice) && oldPrice > 0;
       const gameMeta = genre.key === "games"
         ? {
             ...(genre.platformKey && genre.platformLabel
@@ -179,9 +185,11 @@ async function fetchGenre(genre) {
         rank: Number(item.rank),
         previousRank: oldRank || null,
         delta: oldRank ? oldRank - Number(item.rank) : 0,
-        isNew: !oldRank,
+        isNew: !previousItem,
         name: item.itemName,
-        price: Number(item.itemPrice),
+        price: currentPrice,
+        previousPrice: hasPreviousPrice ? oldPrice : null,
+        priceChange: hasPreviousPrice ? currentPrice - oldPrice : null,
         image: item.mediumImageUrls?.[0]?.imageUrl || item.mediumImageUrls?.[0] || "",
         reviewAverage: item.reviewAverage || null,
         reviewCount: Number(item.reviewCount || 0),

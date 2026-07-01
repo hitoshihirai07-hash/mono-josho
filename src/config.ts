@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "モノ上昇便",
-  description: "文具・シール・小型玩具・ゲームを、ランキング変動・新登場・価格情報・Switch/PlayStationなどの種類別に整理する情報サイトです。",
+  description: "Switch・PS5・PS4を別ランキングで比較し、新登場・急上昇・値下がりを前回更新から追えるゲームランキング情報サイトです。",
   xUrl: import.meta.env.PUBLIC_X_URL || "https://x.com/mono_josho",
   contactLabel: "お問い合わせはXへ"
 };

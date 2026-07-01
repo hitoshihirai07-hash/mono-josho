@@ -1,0 +1,214 @@
+---
+import EmptyRanking from "./EmptyRanking.astro";
+import {
+  getChangeItems,
+  getItemUrl,
+  type RankingChangeKey,
+  type RankingItem
+} from "../lib/ranking";
+
+interface Props {
+  items?: RankingItem[];
+  id?: string;
+  limit?: number;
+  showSourceFilters?: boolean;
+  moreHref?: string;
+  title?: string;
+  headingLevel?: 2 | 3;
+}
+
+const {
+  items = [],
+  id = "ranking-changes",
+  limit = 5,
+  showSourceFilters = true,
+  moreHref = "/games/",
+  title = "今日の変化",
+  headingLevel = 2
+} = Astro.props;
+const Heading = headingLevel === 3 ? "h3" : "h2";
+
+const changes: Array<{ key: RankingChangeKey; label: string; empty: string }> = [
+  { key: "new", label: "新登場", empty: "前回更新から新しく入った商品はありません。" },
+  { key: "rising", label: "急上昇", empty: "前回更新から順位が上がった商品はありません。" },
+  { key: "price-drop", label: "値下がり", empty: "前回更新から値下がりした商品はありません。" }
+];
+
+const sourceFilters = [
+  { key: "all", label: "すべて" },
+  { key: "switch", label: "Switch" },
+  { key: "ps5", label: "PS5" },
+  { key: "ps4", label: "PS4" }
+];
+
+const sourceKey = (item: RankingItem) =>
+  ["switch", "ps5", "ps4"].includes(item.sourceKey || "") ? item.sourceKey : "overall";
+
+const sourceLabel = (item: RankingItem) => {
+  if (item.sourceKey === "switch") return "Switch";
+  if (item.sourceKey === "ps5") return "PS5";
+  if (item.sourceKey === "ps4") return "PS4";
+  return "総合";
+};
+
+const formatPrice = (value: number | string | null | undefined) => {
+  const price = Number(value);
+  return Number.isFinite(price) && price > 0 ? `¥${price.toLocaleString()}` : "販売ページで確認";
+};
+
+const rankChange = (item: RankingItem) => {
+  if (item.isNew) return { label: "NEW", className: "new" };
+  const delta = Number(item.delta || 0);
+  if (delta > 0) return { label: `↑ ${delta}`, className: "up" };
+  if (delta < 0) return { label: `↓ ${Math.abs(delta)}`, className: "down" };
+  return { label: "→ 0", className: "same" };
+};
+---
+<section
+  class="change-board"
+  id={id}
+  data-change-board
+  data-limit={limit}
+  aria-labelledby={`${id}-title`}
+>
+  <div class="change-board-heading">
+    <Heading id={`${id}-title`}>{title}</Heading>
+    <p>前回のデータ取得時点と比べて変わった商品だけを表示します。</p>
+  </div>
+
+  <div class="change-controls">
+    <div class="change-tabs" role="tablist" aria-label="変化の種類">
+      {changes.map((change, index) => (
+        <button
+          type="button"
+          role="tab"
+          id={`${id}-tab-${change.key}`}
+          aria-controls={`${id}-panel-${change.key}`}
+          aria-selected={index === 0 ? "true" : "false"}
+          data-change-tab={change.key}
+        >
+          {change.label}
+        </button>
+      ))}
+    </div>
+    {showSourceFilters && (
+      <div class="source-filters" aria-label="機種で絞り込む">
+        {sourceFilters.map((source, index) => (
+          <button
+            type="button"
+            aria-pressed={index === 0 ? "true" : "false"}
+            data-source-filter={source.key}
+          >
+            {source.label}
+          </button>
+        ))}
+      </div>
+    )}
+  </div>
+
+  {changes.map((change, index) => {
+    const changeItems = getChangeItems(items, change.key, 50);
+    return (
+      <div
+        class="change-panel"
+        id={`${id}-panel-${change.key}`}
+        role="tabpanel"
+        aria-labelledby={`${id}-tab-${change.key}`}
+        data-change-panel={change.key}
+        hidden={index !== 0}
+      >
+        {changeItems.length > 0 ? (
+          <div class="change-table">
+            <div class="change-table-head">
+              <span>機種</span><span>前回比</span><span>商品名</span><span>価格</span><span>レビュー</span>
+            </div>
+            {changeItems.map((item) => {
+              const changeState = rankChange(item);
+              const priceChange = Number(item.priceChange || 0);
+              return (
+                <article class="change-row" data-change-row data-source={sourceKey(item)}>
+                  <strong class="change-source">{sourceLabel(item)}</strong>
+                  <span class:list={["change-delta", changeState.className]}>{changeState.label}</span>
+                  <a class="change-product" href={getItemUrl(item)} target="_blank" rel="nofollow sponsored noopener">
+                    {item.name}
+                  </a>
+                  <div class="change-price">
+                    <strong>{formatPrice(item.price)}</strong>
+                    {priceChange < 0 && <small>{formatPrice(Math.abs(priceChange))}値下がり</small>}
+                  </div>
+                  <span class="change-review">
+                    {item.reviewAverage ? `★ ${item.reviewAverage}` : "評価なし"}
+                    <small>（{Number(item.reviewCount || 0).toLocaleString()}件）</small>
+                  </span>
+                </article>
+              );
+            })}
+          </div>
+        ) : (
+          <EmptyRanking />
+        )}
+        <div class="change-filter-empty" data-filter-empty hidden>{change.empty}</div>
+      </div>
+    );
+  })}
+  <a class="change-more" href={moreHref}>機種別ランキングをもっと見る →</a>
+</section>
+
+<script is:inline>
+  document.querySelectorAll("[data-change-board]").forEach((board) => {
+    if (board.dataset.initialized === "true") return;
+    board.dataset.initialized = "true";
+
+    const tabs = [...board.querySelectorAll("[data-change-tab]")];
+    const panels = [...board.querySelectorAll("[data-change-panel]")];
+    const filters = [...board.querySelectorAll("[data-source-filter]")];
+    const limit = Number(board.dataset.limit || 5);
+    let activeChange = tabs[0]?.dataset.changeTab || "new";
+    let activeSource = "all";
+
+    const render = () => {
+      tabs.forEach((tab) => {
+        const active = tab.dataset.changeTab === activeChange;
+        tab.setAttribute("aria-selected", String(active));
+      });
+
+      filters.forEach((filter) => {
+        filter.setAttribute("aria-pressed", String(filter.dataset.sourceFilter === activeSource));
+      });
+
+      panels.forEach((panel) => {
+        const active = panel.dataset.changePanel === activeChange;
+        panel.hidden = !active;
+        if (!active) return;
+
+        let visibleCount = 0;
+        const rows = [...panel.querySelectorAll("[data-change-row]")];
+        rows.forEach((row) => {
+          const sourceMatches = activeSource === "all" || row.dataset.source === activeSource;
+          const visible = sourceMatches && visibleCount < limit;
+          row.hidden = !visible;
+          if (visible) visibleCount += 1;
+        });
+
+        const empty = panel.querySelector("[data-filter-empty]");
+        if (empty) empty.hidden = rows.length === 0 || visibleCount > 0;
+      });
+    };
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        activeChange = tab.dataset.changeTab;
+        render();
+      });
+    });
+
+    filters.forEach((filter) => {
+      filter.addEventListener("click", () => {
+        activeSource = filter.dataset.sourceFilter;
+        render();
+      });
+    });
+
+    render();
+  });
+</script>

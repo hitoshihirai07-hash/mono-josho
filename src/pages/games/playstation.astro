@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ChangeBoard from "../../components/ChangeBoard.astro";
 import RankingTable from "../../components/RankingTable.astro";
 import ranking from "../../data/ranking.json";
 import { createItemListSchema, formatPublishedDate, getGameSourceItems, getTypeGroups } from "../../lib/ranking";
@@ -31,15 +32,15 @@ const structuredData = [
 ].filter(Boolean);
 ---
 <BaseLayout
-  title="PlayStation関連ランキング｜PS5・PS4を別々に確認｜モノ上昇便"
-  description="PlayStation関連のランキングを、楽天のPS5ジャンルとPS4ジャンルに分けて整理します。総合ランキングからPS商品だけを抜いた一覧ではありません。"
+  title="PS5・PS4ランキング｜機種別の新登場・急上昇｜モノ上昇便"
+  description="楽天市場のPS5ランキングとPS4ランキングを別々に掲載。各機種の順位、新登場、急上昇、値下がりを前回更新と比較できます。"
   structuredData={structuredData}
 >
   <article class="article-page game-page">
     <header>
       <p class="breadcrumbs"><a href="/">ホーム</a> › <a href="/games/">ゲーム</a> › PlayStation</p>
-      <h1>PlayStation関連<br /><span>ランキング</span></h1>
-      <p>楽天のPS5ジャンル、PS4ジャンルから取得したランキングです。PS5とPS4を混ぜて1つの順位にはしません。</p>
+      <h1>PS5・PS4<br /><span>機種別ランキング</span></h1>
+      <p>楽天のPS5ジャンル、PS4ジャンルから別々に取得します。世代の異なる商品を混ぜて1つの順位にはしません。</p>
       <div class="article-meta">{published}更新　｜　楽天市場ランキングを基に掲載</div>
     </header>
     <section class="platform-section" id="ps5-ranking">
@@ -47,14 +48,34 @@ const structuredData = [
         <h2><span>01</span>PlayStation 5ランキング</h2>
         <p>楽天のプレイステーション5ジャンルから取得します。</p>
       </header>
+      <ChangeBoard
+        items={ps5Items}
+        id="ps5-ranking-changes"
+        showSourceFilters={false}
+        moreHref="#ps5-products"
+        title="前回更新からの変化"
+        headingLevel={3}
+      />
+      <div id="ps5-products">
       <RankingTable items={ps5Items} limit={10} showPlatform={true} categoryFallback="PlayStation 5" />
+      </div>
     </section>
     <section class="platform-section" id="ps4-ranking">
       <header>
         <h2><span>02</span>PlayStation 4ランキング</h2>
         <p>楽天のプレイステーション4ジャンルから取得します。</p>
       </header>
+      <ChangeBoard
+        items={ps4Items}
+        id="ps4-ranking-changes"
+        showSourceFilters={false}
+        moreHref="#ps4-products"
+        title="前回更新からの変化"
+        headingLevel={3}
+      />
+      <div id="ps4-products">
       <RankingTable items={ps4Items} limit={10} showPlatform={true} categoryFallback="PlayStation 4" />
+      </div>
     </section>
     <section class="seo-block">
       <h2><span>03</span>種類別の内訳</h2>
@@ -68,6 +89,7 @@ const structuredData = [
         ))}
       </div>
       <p>PlayStation関連商品は、PS5版・PS4版、通常版・限定版、本体セット、コントローラーなどで条件が分かれます。対応機種と同梱内容を販売ページで確認してください。</p>
+      <p>取得元や更新方法は<a href="/about/">運営情報</a>で公開しています。</p>
     </section>
     <aside class="notice"><strong>ほかの機種も見る</strong><p><a href="/games/switch/">Switchランキング</a>、または<a href="/games/">ゲーム全体</a>へ戻れます。</p></aside>
   </article>

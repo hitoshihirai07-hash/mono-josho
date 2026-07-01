@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ChangeBoard from "../../components/ChangeBoard.astro";
 import RankingTable from "../../components/RankingTable.astro";
 import ranking from "../../data/ranking.json";
 import { createItemListSchema, formatPublishedDate, getGameSourceItems, getTypeGroups } from "../../lib/ranking";
@@ -29,23 +30,32 @@ const structuredData = [
 ].filter(Boolean);
 ---
 <BaseLayout
-  title="Switch関連ランキング｜ソフト・本体・周辺機器｜モノ上昇便"
-  description="Nintendo Switch関連のランキングを、ソフト・本体・周辺機器に分けて整理します。価格やレビューも確認できます。"
+  title="Nintendo Switchランキング｜新登場・急上昇・値下がり｜モノ上昇便"
+  description="楽天市場のNintendo Switch専用ランキングを掲載。ソフト・本体・周辺機器の順位と、前回更新からの新登場・急上昇・値下がりを確認できます。"
   structuredData={structuredData}
 >
   <article class="article-page game-page">
     <header>
       <p class="breadcrumbs"><a href="/">ホーム</a> › <a href="/games/">ゲーム</a> › Switch</p>
-      <h1>Switch関連<br /><span>ランキング</span></h1>
+      <h1>Nintendo Switch<br /><span>ランキング</span></h1>
       <p>楽天のNintendo Switchジャンルから取得したランキングです。テレビゲーム総合からSwitch商品だけを抜いた一覧ではありません。</p>
       <div class="article-meta">{published}更新　｜　楽天市場ランキングを基に掲載</div>
     </header>
-    <section>
-      <h2><span>01</span>Switchの上位商品</h2>
+    <section class="change-section">
+      <ChangeBoard
+        items={items}
+        id="switch-ranking-changes"
+        showSourceFilters={false}
+        moreHref="#switch-ranking"
+        title="01 前回更新からの変化"
+      />
+    </section>
+    <section id="switch-ranking">
+      <h2><span>02</span>Switchの上位商品</h2>
       <RankingTable items={items} limit={10} showPlatform={true} categoryFallback="Nintendo Switch" />
     </section>
     <section class="seo-block">
-      <h2><span>02</span>種類別の内訳</h2>
+      <h2><span>03</span>種類別の内訳</h2>
       <div class="type-grid">
         {typeGroups.map((group) => (
           <div>
@@ -56,6 +66,7 @@ const structuredData = [
         ))}
       </div>
       <p>このページはSwitch専用ジャンルのランキングを表示します。通常版、有機ELモデル、Lite、ソフト単品、特典付き、周辺機器で価格差が出やすいため、商品名と販売ページのセット内容を必ず確認してください。</p>
+      <p>取得元や更新方法は<a href="/about/">運営情報</a>で公開しています。</p>
     </section>
     <aside class="notice"><strong>ほかの機種も見る</strong><p><a href="/games/playstation/">PlayStationランキング</a>、または<a href="/games/">ゲーム全体</a>へ戻れます。</p></aside>
   </article>

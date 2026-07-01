@@ -6,6 +6,8 @@ export type RankingItem = {
   isNew?: boolean;
   name?: string;
   price?: number | string;
+  previousPrice?: number | string | null;
+  priceChange?: number | null;
   image?: string;
   reviewAverage?: number | string | null;
   reviewCount?: number | string;
@@ -23,6 +25,8 @@ export type RankingItem = {
   shopName?: string;
   fetchedAt?: string;
 };
+
+export type RankingChangeKey = "new" | "rising" | "falling" | "price-drop";
 
 export type RankingPayload = {
   updatedAt?: string | null;
@@ -129,7 +133,7 @@ export const formatUpdated = (updatedAt?: string | null, fallback = "更新準�
     dateStyle: "medium",
     timeStyle: "short",
     timeZone: "Asia/Tokyo"
-  }).format(new Date(updatedAt));
+  }).format(new Date(updatedAt)).replaceAll("/", ".");
 };
 
 export const formatPublishedDate = (updatedAt?: string | null, fallback = "データ更新待ち") => {
@@ -156,7 +160,44 @@ export const getNewItems = (ranking: RankingPayload, limit = 3) =>
   sortByRank(getAllItems(ranking).filter((item) => item.isNew)).slice(0, limit);
 
 export const getRisingItems = (ranking: RankingPayload, limit = 3) =>
-  sortByRank(getAllItems(ranking).filter((item) => Number(item.delta || 0) > 0)).slice(0, limit);
+  getChangeItems(getAllItems(ranking), "rising", limit);
+
+export const getFallingItems = (ranking: RankingPayload, limit = 3) =>
+  getChangeItems(getAllItems(ranking), "falling", limit);
+
+export const getPriceDropItems = (ranking: RankingPayload, limit = 3) =>
+  getChangeItems(getAllItems(ranking), "price-drop", limit);
+
+export const getChangeItems = (
+  items: RankingItem[] = [],
+  changeKey: RankingChangeKey,
+  limit = 10
+) => {
+  const filtered = items.filter((item) => {
+    if (changeKey === "new") return Boolean(item.isNew);
+    if (changeKey === "rising") return !item.isNew && Number(item.delta || 0) > 0;
+    if (changeKey === "falling") return !item.isNew && Number(item.delta || 0) < 0;
+    return !item.isNew && Number(item.priceChange || 0) < 0;
+  });
+
+  const sorted = [...filtered].sort((a, b) => {
+    if (changeKey === "rising") {
+      return Number(b.delta || 0) - Number(a.delta || 0) || Number(a.rank || 9999) - Number(b.rank || 9999);
+    }
+
+    if (changeKey === "falling") {
+      return Number(a.delta || 0) - Number(b.delta || 0) || Number(a.rank || 9999) - Number(b.rank || 9999);
+    }
+
+    if (changeKey === "price-drop") {
+      return Number(a.priceChange || 0) - Number(b.priceChange || 0) || Number(a.rank || 9999) - Number(b.rank || 9999);
+    }
+
+    return Number(a.rank || 9999) - Number(b.rank || 9999);
+  });
+
+  return sorted.slice(0, limit);
+};
 
 export const detectGamePlatform = (name = "") => {
   const text = toComparableText(name);

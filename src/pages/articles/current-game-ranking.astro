@@ -1,77 +1,97 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ChangeBoard from "../../components/ChangeBoard.astro";
 import RankingTable from "../../components/RankingTable.astro";
 import ranking from "../../data/ranking.json";
+import editorial from "../../data/editorial.json";
 import {
   createItemListSchema,
   formatPublishedDate,
-  getGameOverallItems,
   getGameItems,
-  getGameSourceGroups,
-  getTypeGroups
+  getGameOverallItems,
+  gameSourceDefinitions
 } from "../../lib/ranking";
 
 const gameItems = getGameItems(ranking);
 const overallItems = getGameOverallItems(ranking);
-const sourceGroups = getGameSourceGroups(gameItems).filter((group) => group.key !== "games-overall");
-const typeGroups = getTypeGroups(gameItems);
-const published = formatPublishedDate(ranking.updatedAt, "更新準備中");
+const weekly = editorial.gameWeekly;
+const dataPublished = formatPublishedDate(ranking.updatedAt, "データ更新準備中");
 const pageUrl = new URL("/articles/current-game-ranking/", Astro.site).toString();
 const structuredData = [
   {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: "楽天市場で現在注目のゲーム5選",
-    dateModified: ranking.updatedAt || undefined,
-    datePublished: ranking.updatedAt || undefined,
+    headline: weekly.headline,
+    description: weekly.summary,
+    datePublished: weekly.publishedAt,
+    dateModified: weekly.updatedAt,
     inLanguage: "ja",
-    mainEntityOfPage: pageUrl
+    mainEntityOfPage: pageUrl,
+    author: {
+      "@type": "Organization",
+      name: weekly.authorName,
+      url: new URL("/about/", Astro.site).toString()
+    },
+    publisher: { "@id": new URL("/#organization", Astro.site).toString() }
   },
   overallItems.length > 0 ? createItemListSchema(overallItems, pageUrl) : null
 ].filter(Boolean);
 ---
 <BaseLayout
-  title="楽天市場で現在注目のゲーム5選｜Switch・PS5・PS4別にも確認｜モノ上昇便"
-  description="楽天市場のテレビゲーム総合ランキングと、Switch・PS5・PS4の各ジャンルランキングへの入口を整理します。"
+  title={`${weekly.headline}｜モノ上昇便`}
+  description={`${weekly.summary} Switch・PS5・PS4を別ランキングとして確認します。`}
   structuredData={structuredData}
+  ogType="article"
+  publishedTime={weekly.publishedAt}
+  modifiedTime={weekly.updatedAt}
 >
-  <article class="article-page">
+  <article class="article-page weekly-article">
     <header>
-      <p class="breadcrumbs"><a href="/">ホーム</a> › <a href="/articles/">記事一覧</a> › ゲーム</p>
-      <h1>楽天市場で現在<br /><span>注目</span>のゲーム5選</h1>
-      <p>楽天市場のテレビゲーム総合ランキングを整理します。Switch、PS5、PS4は別ジャンルのランキングとして確認できます。</p>
-      <div class="article-meta">{published}更新　｜　楽天市場ランキングを基に掲載</div>
+      <p class="breadcrumbs"><a href="/">ホーム</a> › <a href="/articles/">記事一覧</a> › 今週のゲーム</p>
+      <h1>今週のゲームランキングで<br /><span>気になった3つの動き</span></h1>
+      <p>{weekly.summary}</p>
+      <div class="article-meta">
+        {weekly.updatedAt}更新　｜　執筆：<a href="/about/">{weekly.authorName}</a>　｜　ランキングデータ：{dataPublished}
+      </div>
     </header>
+
     <section>
-      <h2><span>01</span>テレビゲーム総合の上位商品</h2>
-      <RankingTable items={overallItems} showPlatform={true} categoryFallback="ゲーム" />
+      <h2><span>01</span>今週の見方</h2>
+      <div class="editorial-points">
+        {weekly.points.map((point, index) => (
+          <article>
+            <span>0{index + 1}</span>
+            <h3>{point.title}</h3>
+            <p>{point.body}</p>
+          </article>
+        ))}
+      </div>
     </section>
+
+    <section class="change-section">
+      <ChangeBoard items={gameItems} id="article-ranking-changes" title="02 前回更新からの変化" />
+    </section>
+
     <section>
-      <h2><span>02</span>機種別に見る</h2>
-      <div class="platform-grid">
-        {sourceGroups.map((group) => (
-          <a class="platform-card" href={group.href}>
-            <span>{group.shortLabel}</span>
-            <strong>{group.label}</strong>
-            <p>{group.description}</p>
-            <b>{group.key === "switch" ? "Switch専用" : "別ランキング"}</b>
+      <h2><span>03</span>テレビゲーム総合の上位商品</h2>
+      <RankingTable items={overallItems} limit={5} showPlatform={true} categoryFallback="ゲーム総合" />
+    </section>
+
+    <section>
+      <h2><span>04</span>機種別に確認する</h2>
+      <div class="article-route-list">
+        {gameSourceDefinitions.filter((source) => source.key !== "games-overall").map((source) => (
+          <a href={source.href}>
+            <strong>{source.label}</strong>
+            <span>{source.description}</span>
           </a>
         ))}
       </div>
     </section>
-    <section>
-      <h2><span>03</span>確認したいポイント</h2>
-      <p>同じタイトルでも、対応機種、特典、商品状態、発送時期が異なる場合があります。ゲーム機本体では国内版・セット内容も確認してください。</p>
-      <div class="type-grid">
-        {typeGroups.map((group) => (
-          <div>
-            <strong>{group.label}</strong>
-            <span>{group.items.length}件</span>
-            <p>{group.description}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-    <aside class="notice"><strong>掲載情報について</strong><p>価格や在庫は変動します。購入前に販売ページで最新情報をご確認ください。</p></aside>
+
+    <aside class="notice">
+      <strong>記事の作り方</strong>
+      <p>楽天市場の各ジャンルランキングを自動取得し、機種別に整理したうえで、編集部が週1回ポイントを確認して追記します。価格や在庫は購入前に販売ページでご確認ください。</p>
+    </aside>
   </article>
 </BaseLayout>
