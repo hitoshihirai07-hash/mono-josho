@@ -1,4 +1,10 @@
 import fs from "node:fs/promises";
+import {
+  appendSnapshot,
+  buildComparisonFields,
+  compactSnapshot,
+  findComparisonSnapshot
+} from "./lib/ranking-history.mjs";
 
 const appId = process.env.RAKUTEN_APPLICATION_ID;
 const accessKey = process.env.RAKUTEN_ACCESS_KEY;
@@ -114,8 +120,17 @@ if (!appId || !accessKey) {
 }
 
 const previousPath = new URL("../src/data/ranking.json", import.meta.url);
+const historyPath = new URL("../src/data/ranking-history.json", import.meta.url);
 let previous = { items: [] };
 try { previous = JSON.parse(await fs.readFile(previousPath, "utf8")); } catch {}
+let history = { version: 1, snapshots: [] };
+try { history = JSON.parse(await fs.readFile(historyPath, "utf8")); } catch {}
+const nowIso = new Date().toISOString();
+const daySnapshot = findComparisonSnapshot(history.snapshots, nowIso, 24, 14);
+const weekSnapshot = findComparisonSnapshot(history.snapshots, nowIso, 24 * 7, 48);
+const previousSourceKeys = new Set(
+  previous.items.map((item) => item.sourceKey || item.categoryKey || "unknown")
+);
 const previousItems = new Map(
   previous.items.map((item) => [`${item.sourceKey || item.categoryKey || "unknown"}:${item.code}`, item])
 );
@@ -171,6 +186,7 @@ async function fetchGenre(genre) {
       const oldPrice = Number(previousItem?.price);
       const currentPrice = Number(item.itemPrice);
       const hasPreviousPrice = Number.isFinite(oldPrice) && oldPrice > 0;
+      const previousComparisonReady = previousSourceKeys.has(genre.sourceKey);
       const gameMeta = genre.key === "games"
         ? {
             ...(genre.platformKey && genre.platformLabel
@@ -185,11 +201,28 @@ async function fetchGenre(genre) {
         rank: Number(item.rank),
         previousRank: oldRank || null,
         delta: oldRank ? oldRank - Number(item.rank) : 0,
-        isNew: !previousItem,
+        isNew: previousComparisonReady && !previousItem,
+        previousComparisonReady,
         name: item.itemName,
         price: currentPrice,
         previousPrice: hasPreviousPrice ? oldPrice : null,
         priceChange: hasPreviousPrice ? currentPrice - oldPrice : null,
+        ...buildComparisonFields({
+          sourceKey: genre.sourceKey,
+          code: item.itemCode,
+          rank: Number(item.rank),
+          price: currentPrice,
+          snapshot: daySnapshot,
+          prefix: "day"
+        }),
+        ...buildComparisonFields({
+          sourceKey: genre.sourceKey,
+          code: item.itemCode,
+          rank: Number(item.rank),
+          price: currentPrice,
+          snapshot: weekSnapshot,
+          prefix: "week"
+        }),
         image: item.mediumImageUrls?.[0]?.imageUrl || item.mediumImageUrls?.[0] || "",
         reviewAverage: item.reviewAverage || null,
         reviewCount: Number(item.reviewCount || 0),
@@ -202,7 +235,7 @@ async function fetchGenre(genre) {
         url: item.itemUrl,
         affiliateUrl: item.affiliateUrl || item.itemUrl,
         shopName: item.shopName || "楽天市場",
-        fetchedAt: new Date().toISOString()
+        fetchedAt: nowIso
       };
     });
 }
@@ -217,9 +250,13 @@ for (const [index, genre] of genres.entries()) {
   }
 }
 
-await fs.writeFile(previousPath, JSON.stringify({
-  updatedAt: new Date().toISOString(),
+const nextRanking = {
+  updatedAt: nowIso,
   status: "ready",
   items
-}, null, 2) + "\n");
+};
+const nextHistory = appendSnapshot(history, compactSnapshot(items, nowIso), 30);
+
+await fs.writeFile(previousPath, JSON.stringify(nextRanking, null, 2) + "\n");
+await fs.writeFile(historyPath, JSON.stringify(nextHistory, null, 2) + "\n");
 console.log(`Saved ${items.length} Rakuten ranking items across ${genres.length} ranking sources.`);

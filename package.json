@@ -8,7 +8,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "fetch:rakuten": "node scripts/fetch-rakuten.mjs",
-    "generate:posts": "node scripts/generate-posts.mjs"
+    "generate:posts": "node scripts/generate-posts.mjs",
+    "generate:editorial": "node scripts/generate-editorial.mjs",
+    "test": "node --test"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.6.0",

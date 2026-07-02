@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "weeks": [
+    {
+      "weekKey": "2026-W26",
+      "periodLabel": "2026年6月22日〜6月28日",
+      "headline": "2026年6月22日〜6月28日のゲームランキングで動いた3商品",
+      "summary": "Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
+      "points": [
+        {
+          "kind": "rank-rise",
+          "sourceKey": "switch",
+          "itemCode": "archive-switch",
+          "itemName": "アーカイブSwitchソフト",
+          "title": "Switchで順位上昇",
+          "body": "前週18位から3位へ15ランク上昇しました。"
+        },
+        {
+          "kind": "price-drop",
+          "sourceKey": "ps5",
+          "itemCode": "archive-ps5",
+          "itemName": "アーカイブPS5ソフト",
+          "title": "PS5で値下がり",
+          "body": "前週から1,500円値下がりしました。"
+        },
+        {
+          "kind": "new",
+          "sourceKey": "ps4",
+          "itemCode": "archive-ps4",
+          "itemName": "アーカイブPS4ソフト",
+          "title": "PS4に新登場",
+          "body": "PS4ランキング7位に新しく入りました。"
+        }
+      ],
+      "publishedAt": "2026-06-22T00:00:00+09:00",
+      "updatedAt": "2026-06-28T20:00:00+09:00",
+      "authorName": "モノ上昇便データ編集部",
+      "generationMode": "automatic",
+      "comparisonReady": true,
+      "archiveEligible": true,
+      "dataDisclosure": "楽天市場の機種別ランキングを7日前と比較し、順位・価格の変化から自動生成しています。"
+    }
+  ]
+}

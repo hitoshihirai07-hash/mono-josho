@@ -1308,3 +1308,297 @@ body {
     font-size: 15px;
   }
 }
+
+/* Interactive state must win over grid/flex display declarations. */
+[hidden] {
+  display: none !important;
+}
+
+.comparison-pending {
+  margin: 14px 0;
+  border: 1px dashed var(--line);
+  background: #f7fafc;
+  padding: 18px;
+}
+
+.comparison-pending strong {
+  display: block;
+  color: var(--navy);
+  font-size: 17px;
+}
+
+.comparison-pending p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.change-product-cell {
+  min-width: 0;
+}
+
+.change-product-cell .change-product {
+  display: block;
+}
+
+.watch-button {
+  width: fit-content;
+  min-height: 30px;
+  margin-top: 6px;
+  border: 1px solid var(--navy);
+  border-radius: 0;
+  background: #fff;
+  color: var(--navy);
+  padding: 4px 9px;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 900;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.watch-button[aria-pressed="true"] {
+  border-color: var(--orange);
+  background: #fff2ed;
+  color: var(--orange);
+}
+
+.watch-button:focus-visible {
+  outline: 3px solid var(--sky);
+  outline-offset: 2px;
+}
+
+.product-name > div {
+  min-width: 0;
+}
+
+.product-name .watch-button {
+  display: block;
+}
+
+.today-highlights,
+.watchlist-panel {
+  max-width: var(--max);
+  margin: 16px auto;
+  border: 1px solid var(--navy);
+  background: #fff;
+}
+
+.today-highlights {
+  padding: 22px 32px 18px;
+}
+
+.today-highlights > header,
+.watchlist-panel > header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 2px solid var(--navy);
+  padding-bottom: 12px;
+}
+
+.today-highlights > header span,
+.watchlist-panel > header span {
+  color: var(--orange);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.today-highlights h2,
+.watchlist-panel h2 {
+  margin: 0;
+  color: var(--navy);
+  font-size: 27px;
+}
+
+.today-highlights > header p {
+  margin: 0;
+  font-size: 13px;
+}
+
+.today-highlight-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-right: 1px solid var(--line);
+}
+
+.today-highlight-grid article {
+  min-width: 0;
+  border-bottom: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+  padding: 18px;
+}
+
+.today-highlight-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--orange);
+  font-size: 12px;
+}
+
+.today-highlight-meta span {
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.today-highlight-grid h3 {
+  min-height: 3.4em;
+  margin: 10px 0;
+  overflow-wrap: anywhere;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.today-highlight-grid h3 a:hover {
+  color: var(--orange);
+}
+
+.today-highlight-grid article > p {
+  min-height: 3.8em;
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.today-highlight-grid article > div:last-child {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+}
+
+.today-highlight-grid article > div:last-child > strong {
+  color: var(--orange);
+}
+
+.today-highlight-grid .watch-button {
+  margin-top: 0;
+  margin-left: auto;
+}
+
+.today-highlight-help,
+.today-highlight-empty,
+.watchlist-note {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.watchlist-panel > header {
+  background: var(--navy);
+  color: #fff;
+  padding: 14px 20px;
+}
+
+.watchlist-panel h2 {
+  color: #fff;
+  font-size: 22px;
+}
+
+.watchlist-panel > header > strong {
+  color: #fff;
+}
+
+.watchlist-panel [data-watchlist-items] {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.watchlist-panel article {
+  display: grid;
+  grid-template-columns: 70px minmax(0, 1fr) auto;
+  gap: 5px 12px;
+  border-bottom: 1px solid var(--line);
+  padding: 14px 20px;
+}
+
+.watchlist-source {
+  grid-row: 1 / 3;
+  color: var(--orange);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.watchlist-product {
+  overflow-wrap: anywhere;
+  font-weight: 900;
+}
+
+.watchlist-panel article p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.watchlist-panel article .watch-button {
+  grid-column: 3;
+  grid-row: 1 / 3;
+  margin: 0;
+}
+
+.watchlist-note {
+  padding: 0 20px 14px;
+}
+
+.weekly-disclosure,
+.weekly-waiting {
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+  color: var(--muted) !important;
+  font-size: 11px !important;
+}
+
+.weekly-period {
+  margin-bottom: 8px !important;
+  color: var(--orange);
+  font-size: 14px !important;
+  font-weight: 900;
+}
+
+@media (max-width: 900px) {
+  .today-highlights,
+  .watchlist-panel {
+    margin: 12px;
+  }
+
+  .today-highlights {
+    padding: 18px 14px 14px;
+  }
+
+  .today-highlights > header,
+  .watchlist-panel > header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .today-highlight-grid,
+  .watchlist-panel [data-watchlist-items] {
+    grid-template-columns: 1fr;
+  }
+
+  .today-highlight-grid h3,
+  .today-highlight-grid article > p {
+    min-height: 0;
+  }
+
+  .today-highlight-grid .watch-button {
+    margin-left: 0;
+  }
+
+  .watchlist-panel article {
+    grid-template-columns: 58px minmax(0, 1fr);
+  }
+
+  .watchlist-panel article .watch-button {
+    grid-column: 2;
+    grid-row: auto;
+    justify-self: start;
+  }
+
+  .change-product-cell {
+    grid-column: 3;
+  }
+}

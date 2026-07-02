@@ -1,0 +1,50 @@
+<script is:inline>
+  (() => {
+    const storageKey = "monoJoshoWatchlist.v1";
+    const read = () => {
+      try {
+        const value = JSON.parse(localStorage.getItem(storageKey) || "[]");
+        return Array.isArray(value) ? value.slice(0, 20) : [];
+      } catch {
+        return [];
+      }
+    };
+    const write = (items) => localStorage.setItem(storageKey, JSON.stringify(items.slice(0, 20)));
+    const syncButtons = () => {
+      const saved = new Set(read().map((item) => item.key));
+      document.querySelectorAll("[data-watch-button]").forEach((button) => {
+        const active = saved.has(button.dataset.watchKey);
+        button.setAttribute("aria-pressed", String(active));
+        button.textContent = active ? "★ 保存済み" : "☆ 保存";
+      });
+    };
+
+    document.addEventListener("click", (event) => {
+      const button = event.target instanceof Element
+        ? event.target.closest("[data-watch-button]")
+        : null;
+      if (!button) return;
+
+      const items = read();
+      const existingIndex = items.findIndex((item) => item.key === button.dataset.watchKey);
+      if (existingIndex >= 0) {
+        items.splice(existingIndex, 1);
+      } else {
+        items.unshift({
+          key: button.dataset.watchKey,
+          sourceKey: button.dataset.watchSource,
+          code: button.dataset.watchCode,
+          name: button.dataset.watchName,
+          lastRank: Number(button.dataset.watchRank || 0) || null,
+          lastPrice: Number(button.dataset.watchPrice || 0) || null,
+          savedAt: new Date().toISOString()
+        });
+      }
+      write(items);
+      syncButtons();
+      document.dispatchEvent(new CustomEvent("mono-josho:watchlist"));
+    });
+
+    syncButtons();
+  })();
+</script>

@@ -1,18 +1,24 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ChangeBoard from "../components/ChangeBoard.astro";
+import TodayHighlights from "../components/TodayHighlights.astro";
+import WatchlistPanel from "../components/WatchlistPanel.astro";
 import ranking from "../data/ranking.json";
 import editorial from "../data/editorial.json";
 import {
   createItemListSchema,
+  formatPublishedDate,
   formatUpdated,
   gameSourceDefinitions,
-  getGameItems
+  getGameItems,
+  getPlatformRankingItems
 } from "../lib/ranking";
 
 const updated = formatUpdated(ranking.updatedAt, "更新準備中");
 const gameItems = getGameItems(ranking);
+const platformItems = getPlatformRankingItems(ranking);
 const weekly = editorial.gameWeekly;
+const weeklyUpdated = formatPublishedDate(weekly.updatedAt, "比較準備中");
 const pageUrl = new URL("/", Astro.site).toString();
 const structuredData = [
   {
@@ -44,22 +50,32 @@ const platformLinks = gameSourceDefinitions.filter((source) =>
     <p class="updated"><span>最終更新</span>{updated}</p>
   </section>
 
+  <WatchlistPanel items={platformItems} />
+  <TodayHighlights items={platformItems} updatedAt={ranking.updatedAt} />
+
   <div class="change-editorial-layout">
-    <ChangeBoard items={gameItems} id="home-ranking-changes" />
+    <ChangeBoard
+      items={platformItems}
+      id="home-ranking-changes"
+      title="24時間の変化"
+      comparisonWindow="day"
+      persistSource={true}
+    />
     <aside class="weekly-note" aria-labelledby="weekly-note-title">
       <header><h2 id="weekly-note-title">今週の注目</h2></header>
       <div>
         <h3>{weekly.headline}</h3>
         <p>{weekly.summary}</p>
-        <ol>
-          {weekly.points.map((point) => (
+        {weekly.points?.length > 0 ? <ol>
+          {weekly.points.slice(0, 3).map((point) => (
             <li>
               <strong>{point.title}</strong>
               <span>{point.body}</span>
             </li>
           ))}
-        </ol>
-        <p class="weekly-signature">{weekly.updatedAt}更新　{weekly.authorName}</p>
+        </ol> : <p class="weekly-waiting">7日間の比較データを準備中です。</p>}
+        <p class="weekly-disclosure">{weekly.dataDisclosure}</p>
+        <p class="weekly-signature">{weeklyUpdated}更新　{weekly.authorName}</p>
         <a href="/articles/current-game-ranking/">今週のまとめを読む →</a>
       </div>
     </aside>

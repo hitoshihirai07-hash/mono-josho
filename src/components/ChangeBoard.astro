@@ -1,8 +1,11 @@
 ---
 import EmptyRanking from "./EmptyRanking.astro";
 import {
+  comparisonLabel,
   getChangeItems,
+  getComparisonValues,
   getItemUrl,
+  type RankingComparisonWindow,
   type RankingChangeKey,
   type RankingItem
 } from "../lib/ranking";
@@ -15,6 +18,8 @@ interface Props {
   moreHref?: string;
   title?: string;
   headingLevel?: 2 | 3;
+  comparisonWindow?: RankingComparisonWindow;
+  persistSource?: boolean;
 }
 
 const {
@@ -24,9 +29,13 @@ const {
   showSourceFilters = true,
   moreHref = "/games/",
   title = "今日の変化",
-  headingLevel = 2
+  headingLevel = 2,
+  comparisonWindow = "latest",
+  persistSource = false
 } = Astro.props;
 const Heading = headingLevel === 3 ? "h3" : "h2";
+const comparisonName = comparisonLabel(comparisonWindow);
+const comparisonReady = items.some((item) => getComparisonValues(item, comparisonWindow).ready);
 
 const changes: Array<{ key: RankingChangeKey; label: string; empty: string }> = [
   { key: "new", label: "新登場", empty: "前回更新から新しく入った商品はありません。" },
@@ -57,8 +66,9 @@ const formatPrice = (value: number | string | null | undefined) => {
 };
 
 const rankChange = (item: RankingItem) => {
-  if (item.isNew) return { label: "NEW", className: "new" };
-  const delta = Number(item.delta || 0);
+  const values = getComparisonValues(item, comparisonWindow);
+  if (values.isNew) return { label: "NEW", className: "new" };
+  const delta = values.delta;
   if (delta > 0) return { label: `↑ ${delta}`, className: "up" };
   if (delta < 0) return { label: `↓ ${Math.abs(delta)}`, className: "down" };
   return { label: "→ 0", className: "same" };
@@ -69,13 +79,21 @@ const rankChange = (item: RankingItem) => {
   id={id}
   data-change-board
   data-limit={limit}
+  data-persist-source={persistSource ? "true" : "false"}
   aria-labelledby={`${id}-title`}
 >
   <div class="change-board-heading">
     <Heading id={`${id}-title`}>{title}</Heading>
-    <p>前回のデータ取得時点と比べて変わった商品だけを表示します。</p>
+    <p>{comparisonName}と比べて変わった商品だけを表示します。</p>
   </div>
 
+  {!comparisonReady && items.length > 0 ? (
+    <div class="comparison-pending">
+      <strong>{comparisonName}との比較データを準備中です</strong>
+      <p>履歴がたまると、新登場・急上昇・値下がりをここへ表示します。</p>
+    </div>
+  ) : (
+  <>
   <div class="change-controls">
     <div class="change-tabs" role="tablist" aria-label="変化の種類">
       {changes.map((change, index) => (
@@ -108,7 +126,7 @@ const rankChange = (item: RankingItem) => {
   <p class="change-status" data-change-status aria-live="polite"></p>
 
   {changes.map((change, index) => {
-    const changeItems = getChangeItems(items, change.key, 50);
+    const changeItems = getChangeItems(items, change.key, 50, comparisonWindow);
     return (
       <div
         class="change-panel"
@@ -125,14 +143,29 @@ const rankChange = (item: RankingItem) => {
             </div>
             {changeItems.map((item) => {
               const changeState = rankChange(item);
-              const priceChange = Number(item.priceChange || 0);
+              const values = getComparisonValues(item, comparisonWindow);
+              const priceChange = values.priceChange;
               return (
                 <article class="change-row" data-change-row data-source={sourceKey(item)}>
                   <strong class="change-source">{sourceLabel(item)}</strong>
                   <span class:list={["change-delta", changeState.className]}>{changeState.label}</span>
-                  <a class="change-product" href={getItemUrl(item)} target="_blank" rel="nofollow sponsored noopener">
-                    {item.name}
-                  </a>
+                  <div class="change-product-cell">
+                    <a class="change-product" href={getItemUrl(item)} target="_blank" rel="nofollow sponsored noopener">
+                      {item.name}
+                    </a>
+                    <button
+                      class="watch-button"
+                      type="button"
+                      aria-label={`${item.name}を気になる商品に保存`}
+                      data-watch-button
+                      data-watch-key={`${item.sourceKey}:${item.code}`}
+                      data-watch-source={item.sourceKey}
+                      data-watch-code={item.code}
+                      data-watch-name={item.name}
+                      data-watch-rank={item.rank}
+                      data-watch-price={item.price}
+                    >☆ 保存</button>
+                  </div>
                   <div class="change-price">
                     <strong>{formatPrice(item.price)}</strong>
                     {priceChange < 0 && <small>{formatPrice(Math.abs(priceChange))}値下がり</small>}
@@ -152,6 +185,8 @@ const rankChange = (item: RankingItem) => {
       </div>
     );
   })}
+  </>
+  )}
   <a class="change-more" href={moreHref}>機種別ランキングをもっと見る →</a>
 </section>
 
@@ -166,7 +201,11 @@ const rankChange = (item: RankingItem) => {
     const limit = Number(board.dataset.limit || 5);
     const status = board.querySelector("[data-change-status]");
     let activeChange = tabs[0]?.dataset.changeTab || "new";
-    let activeSource = "all";
+    const persistSource = board.dataset.persistSource === "true";
+    const storedSource = persistSource ? localStorage.getItem("monoJoshoPlatform.v1") : null;
+    let activeSource = filters.some((filter) => filter.dataset.sourceFilter === storedSource)
+      ? storedSource
+      : "all";
 
     const render = () => {
       tabs.forEach((tab) => {
@@ -213,6 +252,7 @@ const rankChange = (item: RankingItem) => {
     filters.forEach((filter) => {
       filter.addEventListener("click", () => {
         activeSource = filter.dataset.sourceFilter;
+        if (persistSource) localStorage.setItem("monoJoshoPlatform.v1", activeSource);
         render();
       });
     });

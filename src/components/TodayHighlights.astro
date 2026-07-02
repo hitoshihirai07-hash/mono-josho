@@ -1,0 +1,77 @@
+---
+import {
+  getComparisonValues,
+  getItemUrl,
+  getNextUpdateLabel,
+  getTodayHighlights,
+  type RankingItem
+} from "../lib/ranking";
+
+interface Props {
+  items?: RankingItem[];
+  updatedAt?: string | null;
+}
+
+const { items = [], updatedAt } = Astro.props;
+const highlights = getTodayHighlights(items, 3);
+const comparisonReady = items.some((item) => item.dayComparisonReady);
+const sourceLabel = (item: RankingItem) => {
+  if (item.sourceKey === "switch") return "Switch";
+  if (item.sourceKey === "ps5") return "PS5";
+  return "PS4";
+};
+const formatPrice = (value: number | string | null | undefined) =>
+  `¥${Number(value || 0).toLocaleString("ja-JP")}`;
+const reason = (item: RankingItem) => {
+  const values = getComparisonValues(item, "day");
+  if (!values.ready) return `現在${item.rank}位。24時間比較を準備中です。`;
+  if (values.isNew) return `24時間前の上位30件にはなく、現在${item.rank}位に新登場。`;
+  if (values.priceChange < 0) {
+    return `${formatPrice(values.previousPrice)}から${formatPrice(item.price)}へ、${formatPrice(Math.abs(values.priceChange))}値下がり。`;
+  }
+  if (values.delta > 0) return `24時間で${values.previousRank}位から${item.rank}位へ、${values.delta}ランク上昇。`;
+  return `現在${item.rank}位、価格は${formatPrice(item.price)}です。`;
+};
+---
+<section class="today-highlights" aria-labelledby="today-highlights-title">
+  <header>
+    <div>
+      <span>{comparisonReady ? "24時間で確認" : "比較準備中"}</span>
+      <h2 id="today-highlights-title">{comparisonReady ? "今日動いた3商品" : "今日の上位3商品"}</h2>
+    </div>
+    <p>次回更新目安 <strong>{getNextUpdateLabel(updatedAt)}</strong></p>
+  </header>
+  {highlights.length > 0 ? (
+    <div class="today-highlight-grid">
+      {highlights.map((item, index) => (
+        <article>
+          <div class="today-highlight-meta">
+            <span>0{index + 1}</span>
+            <strong>{sourceLabel(item)}</strong>
+          </div>
+          <h3><a href={getItemUrl(item)} target="_blank" rel="nofollow sponsored noopener">{item.name}</a></h3>
+          <p>{reason(item)}</p>
+          <div>
+            <b>現在 {item.rank}位</b>
+            <strong>{formatPrice(item.price)}</strong>
+            <button
+              class="watch-button"
+              type="button"
+              aria-label={`${item.name}を気になる商品に保存`}
+              data-watch-button
+              data-watch-key={`${item.sourceKey}:${item.code}`}
+              data-watch-source={item.sourceKey}
+              data-watch-code={item.code}
+              data-watch-name={item.name}
+              data-watch-rank={item.rank}
+              data-watch-price={item.price}
+            >☆ 保存</button>
+          </div>
+        </article>
+      ))}
+    </div>
+  ) : (
+    <p class="today-highlight-empty">ランキングデータの取得後に、ここへ注目商品を表示します。</p>
+  )}
+  <p class="today-highlight-help">商品横の「☆ 保存」を押すと、次に来たときの順位・価格変化を確認できます。</p>
+</section>

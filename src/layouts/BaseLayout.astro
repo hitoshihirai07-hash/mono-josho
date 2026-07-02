@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import "../styles/overrides.css";
 import { siteConfig } from "../config";
+import WatchlistScript from "../components/WatchlistScript.astro";
 
 interface Props {
   title?: string;
@@ -100,5 +101,6 @@ const globalSchemas = [
       </div>
       <small>© 2026 モノ上昇便</small>
     </footer>
+    <WatchlistScript />
   </body>
 </html>

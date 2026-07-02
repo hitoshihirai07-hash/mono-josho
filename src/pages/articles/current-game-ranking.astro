@@ -7,15 +7,16 @@ import editorial from "../../data/editorial.json";
 import {
   createItemListSchema,
   formatPublishedDate,
-  getGameItems,
   getGameOverallItems,
+  getPlatformRankingItems,
   gameSourceDefinitions
 } from "../../lib/ranking";
 
-const gameItems = getGameItems(ranking);
+const platformItems = getPlatformRankingItems(ranking);
 const overallItems = getGameOverallItems(ranking);
 const weekly = editorial.gameWeekly;
 const dataPublished = formatPublishedDate(ranking.updatedAt, "データ更新準備中");
+const editorialPublished = formatPublishedDate(weekly.updatedAt, "比較準備中");
 const pageUrl = new URL("/articles/current-game-ranking/", Astro.site).toString();
 const structuredData = [
   {
@@ -48,28 +49,34 @@ const structuredData = [
   <article class="article-page weekly-article">
     <header>
       <p class="breadcrumbs"><a href="/">ホーム</a> › <a href="/articles/">記事一覧</a> › 今週のゲーム</p>
-      <h1>今週のゲームランキングで<br /><span>気になった3つの動き</span></h1>
+      <p class="weekly-period">{weekly.periodLabel}</p>
+      <h1>{weekly.headline}</h1>
       <p>{weekly.summary}</p>
       <div class="article-meta">
-        {weekly.updatedAt}更新　｜　執筆：<a href="/about/">{weekly.authorName}</a>　｜　ランキングデータ：{dataPublished}
+        {editorialPublished}更新　｜　執筆：<a href="/about/">{weekly.authorName}</a>　｜　ランキングデータ：{dataPublished}
       </div>
     </header>
 
     <section>
       <h2><span>01</span>今週の見方</h2>
-      <div class="editorial-points">
-        {weekly.points.map((point, index) => (
+      {weekly.points?.length > 0 ? <div class="editorial-points">
+        {weekly.points.slice(0, 3).map((point, index) => (
           <article>
             <span>0{index + 1}</span>
             <h3>{point.title}</h3>
             <p>{point.body}</p>
           </article>
         ))}
-      </div>
+      </div> : <div class="comparison-pending"><strong>7日間の比較データを準備中です</strong><p>履歴がそろい次第、実際の商品名・順位差・価格差を掲載します。</p></div>}
     </section>
 
     <section class="change-section">
-      <ChangeBoard items={gameItems} id="article-ranking-changes" title="02 前回更新からの変化" />
+      <ChangeBoard
+        items={platformItems}
+        id="article-ranking-changes"
+        title="02 7日間の変化"
+        comparisonWindow="week"
+      />
     </section>
 
     <section>
@@ -91,7 +98,7 @@ const structuredData = [
 
     <aside class="notice">
       <strong>記事の作り方</strong>
-      <p>楽天市場の各ジャンルランキングを自動取得し、機種別に整理したうえで、編集部が週1回ポイントを確認して追記します。価格や在庫は購入前に販売ページでご確認ください。</p>
+      <p>{weekly.dataDisclosure} 取得元は楽天市場のNintendo Switch、PlayStation 5、PlayStation 4各ジャンルです。価格や在庫は購入前に販売ページでご確認ください。</p>
     </aside>
   </article>
 </BaseLayout>

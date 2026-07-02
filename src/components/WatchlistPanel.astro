@@ -1,0 +1,120 @@
+---
+import { getItemUrl, type RankingItem } from "../lib/ranking";
+
+interface Props {
+  items?: RankingItem[];
+}
+
+const { items = [] } = Astro.props;
+const currentItems = items.map((item) => ({
+  key: `${item.sourceKey}:${item.code}`,
+  sourceKey: item.sourceKey,
+  name: item.name,
+  rank: Number(item.rank || 0),
+  price: Number(item.price || 0),
+  url: getItemUrl(item)
+}));
+const json = JSON.stringify(currentItems).replaceAll("<", "\\u003c");
+---
+<section class="watchlist-panel" data-watchlist-panel hidden aria-labelledby="watchlist-title">
+  <header>
+    <div>
+      <span>前回見た時から</span>
+      <h2 id="watchlist-title">気になる商品の変化</h2>
+    </div>
+    <strong data-watchlist-count></strong>
+  </header>
+  <div data-watchlist-items></div>
+  <p class="watchlist-note">保存情報はこのブラウザだけに保存されます。最大20件です。</p>
+</section>
+<script type="application/json" data-watchlist-current set:html={json}></script>
+<script is:inline>
+  (() => {
+    const panel = document.querySelector("[data-watchlist-panel]");
+    const data = document.querySelector("[data-watchlist-current]");
+    if (!panel || !data) return;
+
+    const storageKey = "monoJoshoWatchlist.v1";
+    const current = new Map(JSON.parse(data.textContent || "[]").map((item) => [item.key, item]));
+    const sourceLabels = { switch: "Switch", ps5: "PS5", ps4: "PS4" };
+    const formatPrice = (value) => `¥${Number(value || 0).toLocaleString()}`;
+    const read = () => {
+      try {
+        const value = JSON.parse(localStorage.getItem(storageKey) || "[]");
+        return Array.isArray(value) ? value.slice(0, 20) : [];
+      } catch {
+        return [];
+      }
+    };
+
+    const render = () => {
+      const saved = read();
+      panel.hidden = saved.length === 0;
+      if (!saved.length) return;
+
+      const container = panel.querySelector("[data-watchlist-items]");
+      const count = panel.querySelector("[data-watchlist-count]");
+      container.replaceChildren();
+      let changedCount = 0;
+
+      saved.forEach((record) => {
+        const latest = current.get(record.key);
+        const article = document.createElement("article");
+        const machine = document.createElement("span");
+        const title = latest?.url ? document.createElement("a") : document.createElement("strong");
+        const change = document.createElement("p");
+        const remove = document.createElement("button");
+
+        machine.textContent = sourceLabels[record.sourceKey] || "ゲーム";
+        machine.className = "watchlist-source";
+        title.textContent = latest?.name || record.name;
+        title.className = "watchlist-product";
+        if (latest?.url) {
+          title.href = latest.url;
+          title.target = "_blank";
+          title.rel = "nofollow sponsored noopener";
+        }
+
+        if (!latest) {
+          change.textContent = "現在は取得上位30件の範囲外です。";
+        } else {
+          const rankDelta = Number(record.lastRank || 0) - latest.rank;
+          const priceDelta = latest.price - Number(record.lastPrice || 0);
+          const messages = [];
+          if (rankDelta > 0) messages.push(`${rankDelta}ランク上昇`);
+          if (rankDelta < 0) messages.push(`${Math.abs(rankDelta)}ランク下降`);
+          if (priceDelta < 0) messages.push(`${formatPrice(Math.abs(priceDelta))}値下がり`);
+          change.textContent = messages.length
+            ? `${messages.join("・")}（現在${latest.rank}位 / ${formatPrice(latest.price)}）`
+            : `大きな変化なし（現在${latest.rank}位 / ${formatPrice(latest.price)}）`;
+          if (messages.length) changedCount += 1;
+        }
+
+        remove.type = "button";
+        remove.textContent = "保存解除";
+        remove.dataset.watchButton = "";
+        remove.dataset.watchKey = record.key;
+        remove.dataset.watchSource = record.sourceKey;
+        remove.dataset.watchCode = record.code;
+        remove.dataset.watchName = record.name;
+        remove.dataset.watchRank = latest?.rank || record.lastRank || "";
+        remove.dataset.watchPrice = latest?.price || record.lastPrice || "";
+
+        article.append(machine, title, change, remove);
+        container.append(article);
+      });
+
+      count.textContent = changedCount ? `${changedCount}件に変化` : `${saved.length}件を保存中`;
+      const refreshed = saved.map((record) => {
+        const latest = current.get(record.key);
+        return latest
+          ? { ...record, lastRank: latest.rank, lastPrice: latest.price, lastSeenAt: new Date().toISOString() }
+          : record;
+      });
+      localStorage.setItem(storageKey, JSON.stringify(refreshed));
+    };
+
+    document.addEventListener("mono-josho:watchlist", render);
+    render();
+  })();
+</script>

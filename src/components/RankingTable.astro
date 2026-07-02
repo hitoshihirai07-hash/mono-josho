@@ -23,6 +23,9 @@ const formatCategory = (item: any) => {
   return item.category || item.itemTypeLabel || categoryFallback;
 };
 const formatDelta = (item: any) => {
+  if (!item.previousComparisonReady && !item.previousRank && !item.isNew) {
+    return { label: "準備中", className: "same" };
+  }
   if (item.isNew) return { label: "NEW", className: "new" };
   const delta = Number(item.delta || 0);
   if (delta > 0) return { label: `↑ ${delta}`, className: "up" };
@@ -43,7 +46,21 @@ const formatDelta = (item: any) => {
           <span class:list={["delta", delta.className]}>{delta.label}</span>
           <div class="product-name">
             {item.image && <img src={item.image} alt="" loading="lazy" />}
-            <strong>{item.name}</strong>
+            <div>
+              <strong>{item.name}</strong>
+              <button
+                class="watch-button"
+                type="button"
+                aria-label={`${item.name}を気になる商品に保存`}
+                data-watch-button
+                data-watch-key={`${item.sourceKey}:${item.code}`}
+                data-watch-source={item.sourceKey}
+                data-watch-code={item.code}
+                data-watch-name={item.name}
+                data-watch-rank={item.rank}
+                data-watch-price={item.price}
+              >☆ 保存</button>
+            </div>
           </div>
           <span>{formatCategory(item)}</span>
           <div class="price-detail">
