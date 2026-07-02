@@ -4,9 +4,34 @@
     "periodLabel": "2026年6月29日〜7月5日",
     "headline": "2026年6月29日〜7月5日のゲームランキング比較を準備中",
     "summary": "7日前との比較データがそろい次第、実際の商品名・順位差・価格差を自動で掲載します。",
-    "points": [],
+    "points": [
+      {
+        "kind": "leader",
+        "sourceKey": "switch",
+        "itemCode": "yamada-denki:10683372",
+        "itemName": "リズム天国 ミラクルスターズ 【Switch】 HAC-P-BFLTA",
+        "title": "Switchの上位はリズム天国 ミラクルスターズ 【Switch】 HAC-P-BFLTA",
+        "body": "リズム天国 ミラクルスターズ 【Switch】 HAC-P-BFLTAは現在のSwitchランキングで1位、価格は¥5,589です。"
+      },
+      {
+        "kind": "leader",
+        "sourceKey": "ps5",
+        "itemCode": "auc-worldichi:10031624",
+        "itemName": "【新品】SIE PS5 プレイステーション5 デジタル・エディション 日本語専用 Console Language： Japanese only CFI-2200B01 825GB",
+        "title": "PS5の上位は【新品】SIE PS5 プレイステーション5 デジタル・エディション 日本語専用 Console Language： Japanese only CFI-2200B01 825GB",
+        "body": "【新品】SIE PS5 プレイステーション5 デジタル・エディション 日本語専用 Console Language： Japanese only CFI-2200B01 825GBは現在のPS5ランキングで1位、価格は¥53,280です。"
+      },
+      {
+        "kind": "leader",
+        "sourceKey": "ps4",
+        "itemCode": "geoonline1:12007189",
+        "itemName": "【中古・箱説なし・付属品なし・傷なし】PlayStation4 CUH－2000AB01 ジェット・ブラック 500GBプレイステーション4 ゲーム機本体",
+        "title": "PS4の上位は【中古・箱説なし・付属品なし・傷なし】PlayStation4 CUH－2000AB01 ジェット・ブラック 500GBプレイステーション4 ゲーム機本体",
+        "body": "【中古・箱説なし・付属品なし・傷なし】PlayStation4 CUH－2000AB01 ジェット・ブラック 500GBプレイステーション4 ゲーム機本体は現在のPS4ランキングで1位、価格は¥17,075です。"
+      }
+    ],
     "publishedAt": "2026-06-29T00:00:00+09:00",
-    "updatedAt": "2026-07-02T00:00:00+09:00",
+    "updatedAt": "2026-07-02T11:07:12.906Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": false,
