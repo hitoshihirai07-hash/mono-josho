@@ -1,0 +1,82 @@
+name: 週次コメントを上書き
+
+on:
+  workflow_dispatch:
+    inputs:
+      week_key:
+        description: "対象週（空欄なら今週。例: 2026-W27）"
+        required: false
+        type: string
+      headline:
+        description: "見出し（空欄なら自動生成を使用）"
+        required: false
+        type: string
+      summary:
+        description: "要約（空欄なら自動生成を使用）"
+        required: false
+        type: string
+      point1_title:
+        description: "注目1 見出し"
+        required: false
+        type: string
+      point1_body:
+        description: "注目1 本文"
+        required: false
+        type: string
+      point2_title:
+        description: "注目2 見出し"
+        required: false
+        type: string
+      point2_body:
+        description: "注目2 本文"
+        required: false
+        type: string
+      point3_title:
+        description: "注目3 見出し"
+        required: false
+        type: string
+      point3_body:
+        description: "注目3 本文"
+        required: false
+        type: string
+      clear_override:
+        description: "この週の手動上書きを解除する"
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Save editorial override
+        run: node scripts/set-editorial-override.mjs
+        env:
+          WEEK_KEY: ${{ inputs.week_key }}
+          HEADLINE: ${{ inputs.headline }}
+          SUMMARY: ${{ inputs.summary }}
+          POINT1_TITLE: ${{ inputs.point1_title }}
+          POINT1_BODY: ${{ inputs.point1_body }}
+          POINT2_TITLE: ${{ inputs.point2_title }}
+          POINT2_BODY: ${{ inputs.point2_body }}
+          POINT3_TITLE: ${{ inputs.point3_title }}
+          POINT3_BODY: ${{ inputs.point3_body }}
+          CLEAR_OVERRIDE: ${{ inputs.clear_override }}
+      - run: npm run generate:editorial
+      - run: npm run build
+      - name: Commit editorial update
+        run: |
+          git config user.name "mono-josho-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add src/data/editorial.json src/data/editorial-overrides.json src/data/editorial-archive.json
+          git diff --cached --quiet || git commit -m "content: update weekly editorial"
+          git push
