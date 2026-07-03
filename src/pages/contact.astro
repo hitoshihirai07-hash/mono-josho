@@ -5,7 +5,7 @@ import { siteConfig } from "../config";
 <BaseLayout title="お問い合わせ｜モノ上昇便">
   <article class="legal-page">
     <h1>お問い合わせ</h1>
-    <p>Xアカウント（@mono_josho）からお問い合わせください。</p>
-    <a class="contact-button inline" href={siteConfig.xUrl} target="_blank" rel="noopener">Xを開く</a>
+    {siteConfig.xUrl ? <p>Xアカウントからお問い合わせください。</p> : <p>お問い合わせ先は運営情報をご確認ください。</p>}
+    {siteConfig.xUrl && <a class="contact-button inline" href={siteConfig.xUrl} target="_blank" rel="noopener">Xを開く</a>}
   </article>
 </BaseLayout>

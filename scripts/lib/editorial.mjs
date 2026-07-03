@@ -86,52 +86,85 @@ export function selectWeeklyPoints(items = []) {
 
   const rising = [...candidates]
     .filter((item) => item.weekComparisonReady && !item.weekIsNew && Number(item.weekDelta) > 0)
-    .sort((a, b) => Number(b.weekDelta) - Number(a.weekDelta) || Number(a.rank) - Number(b.rank))[0];
-  if (rising) {
+    .sort((a, b) => Number(b.weekDelta) - Number(a.weekDelta) || Number(a.rank) - Number(b.rank));
+  if (rising[0]) {
+    const item = rising[0];
     addPoint(
-      rising,
+      item,
       "rank-rise",
-      `${PLATFORM_LABELS[rising.sourceKey]}で${rising.name}が上昇`,
-      `${rising.name}は${PLATFORM_LABELS[rising.sourceKey]}ランキングで前週${rising.weekPreviousRank}位から${rising.rank}位へ、${rising.weekDelta}ランク上昇しました。`
+      `${PLATFORM_LABELS[item.sourceKey]}で${item.name}が上昇`,
+      `${item.name}は${PLATFORM_LABELS[item.sourceKey]}ランキングで前週${item.weekPreviousRank}位から${item.rank}位へ、${item.weekDelta}ランク上昇しました。`
     );
   }
 
   const priceDrop = [...candidates]
     .filter((item) => item.weekComparisonReady && !item.weekIsNew && Number(item.weekPriceChange) < 0)
-    .sort((a, b) => Number(a.weekPriceChange) - Number(b.weekPriceChange))[0];
-  if (priceDrop) {
+    .sort((a, b) => Number(a.weekPriceChange) - Number(b.weekPriceChange));
+  if (priceDrop[0]) {
+    const item = priceDrop[0];
     addPoint(
-      priceDrop,
+      item,
       "price-drop",
-      `${PLATFORM_LABELS[priceDrop.sourceKey]}で${formatPrice(Math.abs(priceDrop.weekPriceChange))}値下がり`,
-      `${priceDrop.name}は前週${formatPrice(priceDrop.weekPreviousPrice)}から${formatPrice(priceDrop.price)}へ、${formatPrice(Math.abs(priceDrop.weekPriceChange))}値下がりしました。`
+      `${PLATFORM_LABELS[item.sourceKey]}で${formatPrice(Math.abs(item.weekPriceChange))}値下がり`,
+      `${item.name}は前週${formatPrice(item.weekPreviousPrice)}から${formatPrice(item.price)}へ、${formatPrice(Math.abs(item.weekPriceChange))}値下がりしました。`
     );
   }
 
   const newItem = [...candidates]
     .filter((item) => item.weekComparisonReady && item.weekIsNew)
-    .sort((a, b) => Number(a.rank) - Number(b.rank))[0];
-  if (newItem) {
+    .sort((a, b) => Number(a.rank) - Number(b.rank));
+  if (newItem[0]) {
+    const item = newItem[0];
     addPoint(
-      newItem,
+      item,
       "new",
-      `${PLATFORM_LABELS[newItem.sourceKey]}に${newItem.name}が新登場`,
-      `${newItem.name}が${PLATFORM_LABELS[newItem.sourceKey]}ランキング${newItem.rank}位に新しく入りました。`
+      `${PLATFORM_LABELS[item.sourceKey]}に${item.name}が新登場`,
+      `${item.name}が${PLATFORM_LABELS[item.sourceKey]}ランキング${item.rank}位に新しく入りました。`
     );
   }
 
-  const leaders = [...candidates].sort((a, b) => Number(a.rank) - Number(b.rank));
-  for (const leader of leaders) {
+  for (const item of rising.slice(1)) {
     if (points.length >= 3) break;
     addPoint(
-      leader,
-      "leader",
-      `${PLATFORM_LABELS[leader.sourceKey]}の上位は${leader.name}`,
-      `${leader.name}は現在の${PLATFORM_LABELS[leader.sourceKey]}ランキングで${leader.rank}位、価格は${formatPrice(leader.price)}です。`
+      item,
+      "rank-rise",
+      `${PLATFORM_LABELS[item.sourceKey]}で${item.name}が上昇`,
+      `${item.name}は${PLATFORM_LABELS[item.sourceKey]}ランキングで前週${item.weekPreviousRank}位から${item.rank}位へ、${item.weekDelta}ランク上昇しました。`
+    );
+  }
+  for (const item of priceDrop.slice(1)) {
+    if (points.length >= 3) break;
+    addPoint(
+      item,
+      "price-drop",
+      `${PLATFORM_LABELS[item.sourceKey]}で${formatPrice(Math.abs(item.weekPriceChange))}値下がり`,
+      `${item.name}は前週${formatPrice(item.weekPreviousPrice)}から${formatPrice(item.price)}へ、${formatPrice(Math.abs(item.weekPriceChange))}値下がりしました。`
+    );
+  }
+  for (const item of newItem.slice(1)) {
+    if (points.length >= 3) break;
+    addPoint(
+      item,
+      "new",
+      `${PLATFORM_LABELS[item.sourceKey]}に${item.name}が新登場`,
+      `${item.name}が${PLATFORM_LABELS[item.sourceKey]}ランキング${item.rank}位に新しく入りました。`
     );
   }
 
   return points.slice(0, 3);
+}
+
+export function isWeeklyEditorialPublishable(weekly, now = new Date()) {
+  if (!weekly || weekly.weekKey !== getJstWeekInfo(now).weekKey) return false;
+  if (!weekly.comparisonReady || !weekly.archiveEligible) return false;
+  const points = Array.isArray(weekly.points) ? weekly.points.slice(0, 3) : [];
+  if (points.length !== 3 || points.some((point) => !point?.title || !point?.body)) return false;
+  const signatures = points.map((point) => point.itemCode || `${point.title}:${point.body}`);
+  if (new Set(signatures).size !== 3) return false;
+  if (weekly.generationMode === "automatic") {
+    return points.every((point) => point.itemCode && point.kind && point.kind !== "leader");
+  }
+  return true;
 }
 
 export function generateWeeklyEditorial(ranking = {}, overrides = {}, now = new Date()) {
@@ -146,12 +179,12 @@ export function generateWeeklyEditorial(ranking = {}, overrides = {}, now = new 
     : [];
   const points = overridePoints.length ? overridePoints : automaticPoints;
   const firstNames = points.slice(0, 2).map((point) => point.itemName || point.title);
-  const automaticHeadline = ready
+  const automaticHeadline = ready && points.length === 3
     ? `${week.periodLabel}のゲームランキングで動いた3商品`
-    : `${week.periodLabel}のゲームランキング比較を準備中`;
+    : `${week.periodLabel}のゲームランキング比較`;
   const automaticSummary = ready && points.length
     ? `${firstNames.join("、")}など、Switch・PS5・PS4の7日間の順位・価格変化を確認します。`
-    : "7日前との比較データがそろい次第、実際の商品名・順位差・価格差を自動で掲載します。";
+    : "Switch・PS5・PS4のランキングページで、現在の順位と直近の変化を確認できます。";
   const updatedAt = ranking.updatedAt || new Date(now).toISOString();
 
   return {
@@ -165,7 +198,7 @@ export function generateWeeklyEditorial(ranking = {}, overrides = {}, now = new 
     authorName: override ? "モノ上昇便編集部" : "モノ上昇便データ編集部",
     generationMode: override ? "manual-override" : "automatic",
     comparisonReady: ready,
-    archiveEligible: Boolean(overridePoints.length === 3 || (ready && meaningfulCount >= 2 && points.length === 3)),
+    archiveEligible: Boolean(ready && (overridePoints.length === 3 || (meaningfulCount === 3 && points.length === 3))),
     dataDisclosure: override
       ? "ランキングデータから作成した自動下書きを編集部が確認・上書きしています。"
       : "楽天市場の機種別ランキングを7日前と比較し、順位・価格の変化から自動生成しています。"

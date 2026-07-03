@@ -1,0 +1,18 @@
+---
+import type { RankingItem } from "../lib/ranking";
+
+interface Props {
+  item: RankingItem;
+}
+
+const { item } = Astro.props;
+const badges = [
+  item.itemTypeLabel || "その他",
+  ...(Array.isArray(item.gameAttributeLabels) ? item.gameAttributeLabels : [])
+].filter((label, index, values) => label && values.indexOf(label) === index);
+---
+<span class="game-product-badges" aria-label="商品の種類と状態">
+  {badges.map((label, index) => (
+    <span class:list={{ "game-product-badge": true, "is-attribute": index > 0 }}>{label}</span>
+  ))}
+</span>

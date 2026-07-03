@@ -1,5 +1,5 @@
 ---
-import EmptyRanking from "./EmptyRanking.astro";
+import GameProductBadges from "./GameProductBadges.astro";
 import {
   comparisonLabel,
   getChangeItems,
@@ -20,6 +20,10 @@ interface Props {
   headingLevel?: 2 | 3;
   comparisonWindow?: RankingComparisonWindow;
   persistSource?: boolean;
+  showGameClassification?: boolean;
+  dimensionLabel?: string;
+  defaultSourceLabel?: string;
+  moreLabel?: string;
 }
 
 const {
@@ -31,7 +35,11 @@ const {
   title = "今日の変化",
   headingLevel = 2,
   comparisonWindow = "latest",
-  persistSource = false
+  persistSource = false,
+  showGameClassification = false,
+  dimensionLabel = "機種",
+  defaultSourceLabel = "総合",
+  moreLabel = "機種別ランキングをもっと見る →"
 } = Astro.props;
 const Heading = headingLevel === 3 ? "h3" : "h2";
 const comparisonName = comparisonLabel(comparisonWindow);
@@ -42,6 +50,9 @@ const changes: Array<{ key: RankingChangeKey; label: string; empty: string }> = 
   { key: "rising", label: "急上昇", empty: "前回更新から順位が上がった商品はありません。" },
   { key: "price-drop", label: "値下がり", empty: "前回更新から値下がりした商品はありません。" }
 ];
+const initialChangeKey = changes.find((change) =>
+  getChangeItems(items, change.key, 1, comparisonWindow).length > 0
+)?.key || changes[0].key;
 
 const sourceFilters = [
   { key: "all", label: "すべて" },
@@ -57,7 +68,7 @@ const sourceLabel = (item: RankingItem) => {
   if (item.sourceKey === "switch") return "Switch";
   if (item.sourceKey === "ps5") return "PS5";
   if (item.sourceKey === "ps4") return "PS4";
-  return "総合";
+  return item.category || defaultSourceLabel;
 };
 
 const formatPrice = (value: number | string | null | undefined) => {
@@ -74,6 +85,7 @@ const rankChange = (item: RankingItem) => {
   return { label: "→ 0", className: "same" };
 };
 ---
+{comparisonReady && (
 <section
   class="change-board"
   id={id}
@@ -87,22 +99,16 @@ const rankChange = (item: RankingItem) => {
     <p>{comparisonName}と比べて変わった商品だけを表示します。</p>
   </div>
 
-  {!comparisonReady && items.length > 0 ? (
-    <div class="comparison-pending">
-      <strong>{comparisonName}との比較データを準備中です</strong>
-      <p>履歴がたまると、新登場・急上昇・値下がりをここへ表示します。</p>
-    </div>
-  ) : (
   <>
   <div class="change-controls">
     <div class="change-tabs" role="tablist" aria-label="変化の種類">
-      {changes.map((change, index) => (
+      {changes.map((change) => (
         <button
           type="button"
           role="tab"
           id={`${id}-tab-${change.key}`}
           aria-controls={`${id}-panel-${change.key}`}
-          aria-selected={index === 0 ? "true" : "false"}
+          aria-selected={change.key === initialChangeKey ? "true" : "false"}
           data-change-tab={change.key}
         >
           {change.label}
@@ -125,7 +131,7 @@ const rankChange = (item: RankingItem) => {
   </div>
   <p class="change-status" data-change-status aria-live="polite"></p>
 
-  {changes.map((change, index) => {
+  {changes.map((change) => {
     const changeItems = getChangeItems(items, change.key, 50, comparisonWindow);
     return (
       <div
@@ -134,12 +140,12 @@ const rankChange = (item: RankingItem) => {
         role="tabpanel"
         aria-labelledby={`${id}-tab-${change.key}`}
         data-change-panel={change.key}
-        hidden={index !== 0}
+        hidden={change.key !== initialChangeKey}
       >
         {changeItems.length > 0 ? (
-          <div class="change-table">
+            <div class="change-table">
             <div class="change-table-head">
-              <span>機種</span><span>前回比</span><span>商品名</span><span>価格</span><span>レビュー</span>
+              <span>{dimensionLabel}</span><span>前回比</span><span>商品名</span><span>価格</span><span>レビュー</span>
             </div>
             {changeItems.map((item) => {
               const changeState = rankChange(item);
@@ -153,6 +159,7 @@ const rankChange = (item: RankingItem) => {
                     <a class="change-product" href={getItemUrl(item)} target="_blank" rel="nofollow sponsored noopener">
                       {item.name}
                     </a>
+                    {showGameClassification && <GameProductBadges item={item} />}
                     <button
                       class="watch-button"
                       type="button"
@@ -179,16 +186,16 @@ const rankChange = (item: RankingItem) => {
             })}
           </div>
         ) : (
-          <EmptyRanking />
+          <p class="change-empty">{change.empty}</p>
         )}
         <div class="change-filter-empty" data-filter-empty hidden>{change.empty}</div>
       </div>
     );
   })}
   </>
-  )}
-  <a class="change-more" href={moreHref}>機種別ランキングをもっと見る →</a>
+  <a class="change-more" href={moreHref}>{moreLabel}</a>
 </section>
+)}
 
 <script is:inline>
   document.querySelectorAll("[data-change-board]").forEach((board) => {
@@ -200,7 +207,7 @@ const rankChange = (item: RankingItem) => {
     const filters = [...board.querySelectorAll("[data-source-filter]")];
     const limit = Number(board.dataset.limit || 5);
     const status = board.querySelector("[data-change-status]");
-    let activeChange = tabs[0]?.dataset.changeTab || "new";
+    let activeChange = tabs.find((tab) => tab.getAttribute("aria-selected") === "true")?.dataset.changeTab || "new";
     const persistSource = board.dataset.persistSource === "true";
     const storedSource = persistSource ? localStorage.getItem("monoJoshoPlatform.v1") : null;
     let activeSource = filters.some((filter) => filter.dataset.sourceFilter === storedSource)

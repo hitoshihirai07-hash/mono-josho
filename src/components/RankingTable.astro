@@ -1,14 +1,20 @@
 ---
 import EmptyRanking from "./EmptyRanking.astro";
-import { getItemUrl, sortByRank } from "../lib/ranking";
+import GameProductBadges from "./GameProductBadges.astro";
+import { getItemUrl, sortByRank, typeDefinitions } from "../lib/ranking";
+import { getGameFilterKeys } from "../lib/game-classifier.mjs";
 
 const {
   items = [],
   limit = 5,
   categoryFallback = "文具・雑貨",
-  showPlatform = false
+  showPlatform = false,
+  showGameClassification = false,
+  enableGameFilters = false,
+  id = "ranking-table"
 } = Astro.props;
-const sortedItems = sortByRank(items).slice(0, limit);
+const sortedItems = sortByRank(items);
+const displayItems = enableGameFilters ? sortedItems : sortedItems.slice(0, limit);
 const formatPrice = (price: number | string | undefined) => {
   const numericPrice = Number(price);
   return Number.isFinite(numericPrice) && numericPrice > 0
@@ -17,14 +23,16 @@ const formatPrice = (price: number | string | undefined) => {
 };
 const formatCategory = (item: any) => {
   if (showPlatform && item.platformLabel) {
-    return [item.platformLabel, item.itemTypeLabel].filter(Boolean).join(" / ");
+    return showGameClassification
+      ? item.platformLabel
+      : [item.platformLabel, item.itemTypeLabel].filter(Boolean).join(" / ");
   }
 
   return item.category || item.itemTypeLabel || categoryFallback;
 };
 const formatDelta = (item: any) => {
   if (!item.previousComparisonReady && !item.previousRank && !item.isNew) {
-    return { label: "準備中", className: "same" };
+    return { label: "—", className: "same" };
   }
   if (item.isNew) return { label: "NEW", className: "new" };
   const delta = Number(item.delta || 0);
@@ -34,20 +42,43 @@ const formatDelta = (item: any) => {
 };
 ---
 {sortedItems.length === 0 ? <EmptyRanking /> : (
-  <div class="ranking-table">
+  <div
+    class:list={{ "ranking-browser": enableGameFilters }}
+    id={id}
+    data-ranking-browser={enableGameFilters ? "true" : undefined}
+    data-limit={limit}
+  >
+    {enableGameFilters && (
+      <div class="game-type-controls" aria-label="ゲーム商品の種類で絞り込む">
+        <button type="button" data-game-type-filter="all" aria-pressed="true">すべて</button>
+        {typeDefinitions.map((definition) => (
+          <button type="button" data-game-type-filter={definition.key} aria-pressed="false">
+            {definition.label}
+          </button>
+        ))}
+      </div>
+    )}
+    {enableGameFilters && <p class="game-type-status" data-game-type-status aria-live="polite"></p>}
+    <div class="ranking-table">
     <div class="ranking-head">
       <span>順位</span><span>前回比</span><span>商品名</span><span>カテゴリ</span><span>価格</span><span>レビュー</span><span></span>
     </div>
-    {sortedItems.map((item: any) => {
+    {displayItems.map((item: any, index: number) => {
       const delta = formatDelta(item);
       return (
-        <article class="ranking-row">
+        <article
+          class="ranking-row"
+          data-game-filter-row={enableGameFilters ? "true" : undefined}
+          data-game-filters={enableGameFilters ? getGameFilterKeys(item).join(" ") : undefined}
+          hidden={enableGameFilters && index >= limit}
+        >
           <strong class="rank">{item.rank}</strong>
           <span class:list={["delta", delta.className]}>{delta.label}</span>
           <div class="product-name">
             {item.image && <img src={item.image} alt="" loading="lazy" />}
             <div>
               <strong>{item.name}</strong>
+              {showGameClassification && <GameProductBadges item={item} />}
               <button
                 class="watch-button"
                 type="button"
@@ -74,5 +105,51 @@ const formatDelta = (item: any) => {
         </article>
       );
     })}
+    </div>
   </div>
+)}
+
+{enableGameFilters && (
+  <script is:inline>
+    document.querySelectorAll('[data-ranking-browser="true"]').forEach((browser) => {
+      if (browser.dataset.initialized === "true") return;
+      browser.dataset.initialized = "true";
+      const buttons = [...browser.querySelectorAll("[data-game-type-filter]")];
+      const rows = [...browser.querySelectorAll("[data-game-filter-row]")];
+      const status = browser.querySelector("[data-game-type-status]");
+      const limit = Number(browser.dataset.limit || 20);
+      const requested = new URLSearchParams(window.location.search).get("type");
+      let active = buttons.some((button) => button.dataset.gameTypeFilter === requested)
+        ? requested
+        : "all";
+
+      const render = () => {
+        let visible = 0;
+        rows.forEach((row) => {
+          const matches = active === "all" ||
+            (row.dataset.gameFilters || "").split(" ").includes(active);
+          const show = matches && visible < limit;
+          row.hidden = !show;
+          if (show) visible += 1;
+        });
+        buttons.forEach((button) => {
+          button.setAttribute("aria-pressed", String(button.dataset.gameTypeFilter === active));
+        });
+        const label = buttons.find((button) => button.dataset.gameTypeFilter === active)?.textContent?.trim() || "すべて";
+        if (status) status.textContent = `${label}：${visible}件を表示`;
+      };
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          active = button.dataset.gameTypeFilter || "all";
+          const url = new URL(window.location.href);
+          if (active === "all") url.searchParams.delete("type");
+          else url.searchParams.set("type", active);
+          history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
+          render();
+        });
+      });
+      render();
+    });
+  </script>
 )}

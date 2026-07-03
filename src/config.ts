@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "モノ上昇便",
-  description: "Switch・PS5・PS4を別ランキングで比較し、新登場・急上昇・値下がりを前回更新から追えるゲームランキング情報サイトです。",
+  description: "楽天市場のランキング順位変動をカテゴリ別に確認できるサイトです。ゲームを中心に、Switch・PS5・PS4と文具の新登場・順位上昇・値下がりを追えます。",
   xUrl: import.meta.env.PUBLIC_X_URL || "https://x.com/mono_josho",
   contactLabel: "お問い合わせはXへ"
 };

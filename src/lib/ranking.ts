@@ -1,3 +1,7 @@
+import { classifyGameProduct, getGameFilterKeys } from "./game-classifier.mjs";
+import { getCategory, getEnabledCategories } from "./categories";
+import { selectTodayHighlights } from "../../scripts/lib/highlights.mjs";
+
 export type RankingItem = {
   code?: string;
   rank?: number | string;
@@ -33,6 +37,9 @@ export type RankingItem = {
   platformLabel?: string;
   itemTypeKey?: string;
   itemTypeLabel?: string;
+  gameAttributeKeys?: string[];
+  gameAttributeLabels?: string[];
+  gameClassificationConfidence?: "high" | "medium" | "low";
   url?: string;
   affiliateUrl?: string;
   shopName?: string;
@@ -81,36 +88,21 @@ export const platformDefinitions = [
   }
 ] as const;
 
-export const gameSourceDefinitions = [
-  {
-    key: "games-overall",
-    label: "テレビゲーム総合ランキング",
-    shortLabel: "総合",
-    href: "/games/#overall-ranking",
-    description: "楽天のテレビゲーム総合ジャンルから取得します。"
-  },
-  {
-    key: "switch",
-    label: "Nintendo Switchランキング",
-    shortLabel: "Switch",
-    href: "/games/switch/",
-    description: "楽天のNintendo Switchジャンルから取得します。"
-  },
-  {
-    key: "ps5",
-    label: "PlayStation 5ランキング",
-    shortLabel: "PS5",
-    href: "/games/playstation/#ps5-ranking",
-    description: "楽天のプレイステーション5ジャンルから取得します。"
-  },
-  {
-    key: "ps4",
-    label: "PlayStation 4ランキング",
-    shortLabel: "PS4",
-    href: "/games/playstation/#ps4-ranking",
-    description: "楽天のプレイステーション4ジャンルから取得します。"
-  }
-] as const;
+const gameCategory = getCategory("games");
+const sourceRoute = (sourceKey: string) => {
+  if (sourceKey === "games-overall") return "/games/#overall-ranking";
+  return gameCategory?.children.find((child) => child.sourceKey === sourceKey)?.route || "/games/";
+};
+
+export const gameSourceDefinitions = (gameCategory?.sources || []).map((source) => ({
+  key: source.sourceKey,
+  label: source.sourceLabel,
+  shortLabel: source.sourceKey === "games-overall"
+    ? "総合"
+    : gameCategory?.children.find((child) => child.sourceKey === source.sourceKey)?.displayName || source.displayName,
+  href: sourceRoute(source.sourceKey),
+  description: `楽天の${source.displayName}ジャンルから取得します。`
+}));
 
 export const typeDefinitions = [
   {
@@ -129,6 +121,26 @@ export const typeDefinitions = [
     description: "コントローラー、ケース、保護用品、充電機器など。"
   },
   {
+    key: "download",
+    label: "ダウンロード版・コード",
+    description: "ダウンロード専用商品、オンラインコード、利用券など。"
+  },
+  {
+    key: "used",
+    label: "中古",
+    description: "商品名から中古品と明確に確認できる商品。"
+  },
+  {
+    key: "imported",
+    label: "輸入版・海外版",
+    description: "北米版、欧州版など、海外向け商品と明記された商品。"
+  },
+  {
+    key: "preorder",
+    label: "予約商品",
+    description: "予約受付中または発売予定と明記された商品。"
+  },
+  {
     key: "other",
     label: "その他",
     description: "分類しきれないゲーム関連商品。"
@@ -140,7 +152,7 @@ const toComparableText = (value = "") =>
     String.fromCharCode(char.charCodeAt(0) - 0xfee0)
   );
 
-export const formatUpdated = (updatedAt?: string | null, fallback = "更新準備中") => {
+export const formatUpdated = (updatedAt?: string | null, fallback = "未取得") => {
   if (!updatedAt) return fallback;
 
   return new Intl.DateTimeFormat("ja-JP", {
@@ -150,7 +162,7 @@ export const formatUpdated = (updatedAt?: string | null, fallback = "更新準�
   }).format(new Date(updatedAt)).replaceAll("/", ".");
 };
 
-export const formatPublishedDate = (updatedAt?: string | null, fallback = "データ更新待ち") => {
+export const formatPublishedDate = (updatedAt?: string | null, fallback = "未取得") => {
   if (!updatedAt) return fallback;
 
   return new Intl.DateTimeFormat("ja-JP", {
@@ -169,6 +181,16 @@ export const getStationeryItems = (ranking: RankingPayload) =>
   sortByRank(
     getAllItems(ranking).filter((item) => !item.categoryKey || item.categoryKey === "stationery")
   );
+
+export const getEnabledCategoryItems = (ranking: RankingPayload) => {
+  const enabledIds = new Set(getEnabledCategories().map((category) => category.id));
+  return getAllItems(ranking)
+    .filter((item) => enabledIds.has(item.categoryKey || "stationery"))
+    .map((item) => item.categoryKey === "games" ? enrichGameItem(item) : item);
+};
+
+export const getOtherEnabledCategoryItems = (ranking: RankingPayload) =>
+  getEnabledCategoryItems(ranking).filter((item) => item.categoryKey !== "games");
 
 export const getNewItems = (ranking: RankingPayload, limit = 3) =>
   sortByRank(getAllItems(ranking).filter((item) => item.isNew)).slice(0, limit);
@@ -274,30 +296,7 @@ export const dedupeByCode = (items: RankingItem[] = []) => {
 };
 
 export const getTodayHighlights = (items: RankingItem[] = [], limit = 3) => {
-  const candidates = dedupeByCode(
-    items.filter((item) => ["switch", "ps5", "ps4"].includes(item.sourceKey || ""))
-  );
-  const changed = candidates
-    .filter((item) => {
-      const values = getComparisonValues(item, "day");
-      return values.ready && (values.isNew || values.delta > 0 || values.priceChange < 0);
-    })
-    .sort((a, b) => {
-      const aValues = getComparisonValues(a, "day");
-      const bValues = getComparisonValues(b, "day");
-      const score = (values: ReturnType<typeof getComparisonValues>, item: RankingItem) =>
-        (values.isNew ? Math.max(0, 40 - Number(item.rank || 40)) : 0) +
-        Math.max(0, values.delta) * 10 +
-        Math.max(0, -values.priceChange) / 100;
-      return score(bValues, b) - score(aValues, a);
-    });
-
-  if (changed.length >= limit) return changed.slice(0, limit);
-  const used = new Set(changed.map((item) => item.code));
-  const leaders = candidates
-    .filter((item) => !used.has(item.code))
-    .sort((a, b) => Number(a.rank || 9999) - Number(b.rank || 9999));
-  return [...changed, ...leaders].slice(0, limit);
+  return selectTodayHighlights(items, limit) as RankingItem[];
 };
 
 export const getNextUpdateLabel = (updatedAt?: string | null) => {
@@ -331,38 +330,16 @@ export const detectGamePlatform = (name = "") => {
   return { platformKey: "overall", platformLabel: "テレビゲーム総合" };
 };
 
-export const detectGameType = (name = "") => {
-  const text = toComparableText(name);
-
-  if (/(本体|console|同梱版|ディスクドライブ|digital edition)/.test(text)) {
-    return { itemTypeKey: "hardware", itemTypeLabel: "本体・セット" };
-  }
-
-  if (
-    /(コントローラー|joy-con|joycon|dualsense|dualshock|プロコン|周辺機器|ケース|保護|フィルム|充電|スタンド|ケーブル|カバー|収納|ヘッドセット|micro.?sd|メモリーカード)/.test(text)
-  ) {
-    return { itemTypeKey: "accessory", itemTypeLabel: "周辺機器" };
-  }
-
-  if (/(ソフト|ゲーム|版|特典|予約|パッケージ|ダウンロード)/.test(text)) {
-    return { itemTypeKey: "software", itemTypeLabel: "ゲームソフト" };
-  }
-
-  return { itemTypeKey: "other", itemTypeLabel: "その他" };
-};
-
 export const enrichGameItem = (item: RankingItem): RankingItem => {
   const platform = item.platformKey && item.platformLabel
     ? { platformKey: item.platformKey, platformLabel: item.platformLabel }
     : detectGamePlatform(item.name);
-  const type = item.itemTypeKey && item.itemTypeLabel
-    ? { itemTypeKey: item.itemTypeKey, itemTypeLabel: item.itemTypeLabel }
-    : detectGameType(item.name);
+  const classification = classifyGameProduct(item.name, "", { sourceKey: item.sourceKey });
 
   return {
     ...item,
     ...platform,
-    ...type
+    ...classification
   };
 };
 
@@ -396,8 +373,16 @@ export const getPlatformGroups = (items: RankingItem[] = []): RankingGroup[] =>
 export const getTypeGroups = (items: RankingItem[] = []) =>
   typeDefinitions.map((definition) => ({
     ...definition,
-    items: sortByRank(items.filter((item) => (item.itemTypeKey || "other") === definition.key))
+    items: sortByRank(items.filter((item) => getGameFilterKeys(item).includes(definition.key)))
   }));
+
+export const hasMeaningfulChanges = (
+  items: RankingItem[] = [],
+  comparisonWindow: RankingComparisonWindow = "latest"
+) =>
+  (["new", "rising", "price-drop"] as RankingChangeKey[]).some(
+    (changeKey) => getChangeItems(items, changeKey, 1, comparisonWindow).length > 0
+  );
 
 export const getPlatformItems = (ranking: RankingPayload, platformKey: string) =>
   getGameItems(ranking).filter((item) => (item.platformKey || "overall") === platformKey);

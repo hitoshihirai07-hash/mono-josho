@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ChangeBoard from "../../components/ChangeBoard.astro";
+import GameRankingNotice from "../../components/GameRankingNotice.astro";
 import RankingTable from "../../components/RankingTable.astro";
 import ranking from "../../data/ranking.json";
 import editorial from "../../data/editorial.json";
@@ -11,14 +12,16 @@ import {
   getPlatformRankingItems,
   gameSourceDefinitions
 } from "../../lib/ranking";
+import { isWeeklyEditorialPublishable } from "../../../scripts/lib/editorial.mjs";
 
 const platformItems = getPlatformRankingItems(ranking);
 const overallItems = getGameOverallItems(ranking);
 const weekly = editorial.gameWeekly;
-const dataPublished = formatPublishedDate(ranking.updatedAt, "データ更新準備中");
-const editorialPublished = formatPublishedDate(weekly.updatedAt, "比較準備中");
+const publishable = isWeeklyEditorialPublishable(weekly);
+const dataPublished = formatPublishedDate(ranking.updatedAt, "未取得");
+const editorialPublished = formatPublishedDate(weekly.updatedAt, weekly.periodLabel);
 const pageUrl = new URL("/articles/current-game-ranking/", Astro.site).toString();
-const structuredData = [
+const structuredData = publishable ? [
   {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -36,69 +39,101 @@ const structuredData = [
     publisher: { "@id": new URL("/#organization", Astro.site).toString() }
   },
   overallItems.length > 0 ? createItemListSchema(overallItems, pageUrl) : null
-].filter(Boolean);
+].filter(Boolean) : [];
 ---
 <BaseLayout
-  title={`${weekly.headline}｜モノ上昇便`}
-  description={`${weekly.summary} Switch・PS5・PS4を別ランキングとして確認します。`}
+  title={publishable ? `${weekly.headline}｜モノ上昇便` : "ゲームランキングの順位変動を見る｜モノ上昇便"}
+  description={publishable
+    ? `${weekly.summary} Switch・PS5・PS4を別ランキングとして確認します。`
+    : "Switch・PS5・PS4の現在順位、新登場、順位上昇、値下がりを機種別に確認できます。"}
   structuredData={structuredData}
-  ogType="article"
-  publishedTime={weekly.publishedAt}
-  modifiedTime={weekly.updatedAt}
+  ogType={publishable ? "article" : "website"}
+  publishedTime={publishable ? weekly.publishedAt : undefined}
+  modifiedTime={publishable ? weekly.updatedAt : undefined}
+  robots="noindex,follow"
 >
-  <article class="article-page weekly-article">
-    <header>
-      <p class="breadcrumbs"><a href="/">ホーム</a> › <a href="/articles/">記事一覧</a> › 今週のゲーム</p>
-      <p class="weekly-period">{weekly.periodLabel}</p>
-      <h1>{weekly.headline}</h1>
-      <p>{weekly.summary}</p>
-      <div class="article-meta">
-        {editorialPublished}更新　｜　執筆：<a href="/about/">{weekly.authorName}</a>　｜　ランキングデータ：{dataPublished}
-      </div>
-    </header>
+  {publishable ? (
+    <article class="article-page weekly-article">
+      <header>
+        <p class="breadcrumbs"><a href="/">ホーム</a> › <a href="/articles/">記事一覧</a> › 今週のゲーム</p>
+        <p class="weekly-period">{weekly.periodLabel}</p>
+        <h1>{weekly.headline}</h1>
+        <p>{weekly.summary}</p>
+        <div class="article-meta">
+          {editorialPublished}更新　｜　執筆：<a href="/about/">{weekly.authorName}</a>　｜　ランキングデータ：{dataPublished}
+        </div>
+      </header>
 
-    <section>
-      <h2><span>01</span>今週の見方</h2>
-      {weekly.points?.length > 0 ? <div class="editorial-points">
-        {weekly.points.slice(0, 3).map((point, index) => (
-          <article>
-            <span>0{index + 1}</span>
-            <h3>{point.title}</h3>
-            <p>{point.body}</p>
-          </article>
-        ))}
-      </div> : <div class="comparison-pending"><strong>7日間の比較データを準備中です</strong><p>履歴がそろい次第、実際の商品名・順位差・価格差を掲載します。</p></div>}
-    </section>
+      <section>
+        <h2><span>01</span>この週に確認した3つの動き</h2>
+        <div class="editorial-points">
+          {weekly.points.slice(0, 3).map((point, index) => (
+            <article>
+              <span>0{index + 1}</span>
+              <h3>{point.title}</h3>
+              <p>{point.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
 
-    <section class="change-section">
-      <ChangeBoard
-        items={platformItems}
-        id="article-ranking-changes"
-        title="02 7日間の変化"
-        comparisonWindow="week"
-      />
-    </section>
+      <section class="change-section">
+        <ChangeBoard
+          items={platformItems}
+          id="article-ranking-changes"
+          title="02 7日間の変化"
+          comparisonWindow="week"
+          showGameClassification={true}
+        />
+        <GameRankingNotice />
+      </section>
 
-    <section>
-      <h2><span>03</span>テレビゲーム総合の上位商品</h2>
-      <RankingTable items={overallItems} limit={5} showPlatform={true} categoryFallback="ゲーム総合" />
-    </section>
+      <section>
+        <h2><span>03</span>テレビゲーム総合の上位商品</h2>
+        <RankingTable items={overallItems} limit={5} showPlatform={true} showGameClassification={true} categoryFallback="ゲーム総合" />
+      </section>
 
-    <section>
-      <h2><span>04</span>機種別に確認する</h2>
-      <div class="article-route-list">
-        {gameSourceDefinitions.filter((source) => source.key !== "games-overall").map((source) => (
-          <a href={source.href}>
-            <strong>{source.label}</strong>
-            <span>{source.description}</span>
-          </a>
-        ))}
-      </div>
-    </section>
+      <section>
+        <h2><span>04</span>機種別に確認する</h2>
+        <div class="article-route-list">
+          {gameSourceDefinitions.filter((source) => source.key !== "games-overall").map((source) => (
+            <a href={source.href}>
+              <strong>{source.label}</strong>
+              <span>{source.description}</span>
+            </a>
+          ))}
+        </div>
+      </section>
 
-    <aside class="notice">
-      <strong>記事の作り方</strong>
-      <p>{weekly.dataDisclosure} 取得元は楽天市場のNintendo Switch、PlayStation 5、PlayStation 4各ジャンルです。価格や在庫は購入前に販売ページでご確認ください。</p>
-    </aside>
-  </article>
+      <aside class="notice">
+        <strong>記事の作り方</strong>
+        <p>{weekly.dataDisclosure} 取得元は楽天市場のNintendo Switch、PlayStation 5、PlayStation 4各ジャンルです。</p>
+      </aside>
+    </article>
+  ) : (
+    <article class="article-page weekly-article">
+      <header>
+        <p class="breadcrumbs"><a href="/">ホーム</a> › ゲームランキング</p>
+        <h1>ゲームランキングの<br /><span>順位変動を見る</span></h1>
+        <p>週次まとめを掲載していない期間も、Switch・PS5・PS4の現在順位と直近の変化は各ランキングページで確認できます。</p>
+        <div class="article-meta">ランキングデータ：{dataPublished}</div>
+      </header>
+      <section>
+        <h2><span>01</span>機種別に確認する</h2>
+        <div class="article-route-list">
+          {gameSourceDefinitions.filter((source) => source.key !== "games-overall").map((source) => (
+            <a href={source.href}>
+              <strong>{source.label}</strong>
+              <span>{source.description}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+      <section>
+        <h2><span>02</span>現在のゲーム総合ランキング</h2>
+        <RankingTable items={overallItems} limit={5} showPlatform={true} showGameClassification={true} categoryFallback="ゲーム総合" />
+      </section>
+      <GameRankingNotice />
+    </article>
+  )}
 </BaseLayout>

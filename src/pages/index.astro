@@ -1,36 +1,44 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ChangeBoard from "../components/ChangeBoard.astro";
+import GameRankingNotice from "../components/GameRankingNotice.astro";
 import TodayHighlights from "../components/TodayHighlights.astro";
 import WatchlistPanel from "../components/WatchlistPanel.astro";
 import ranking from "../data/ranking.json";
 import editorial from "../data/editorial.json";
+import { getHomeCategories } from "../lib/categories";
 import {
   createItemListSchema,
-  formatPublishedDate,
   formatUpdated,
   gameSourceDefinitions,
-  getGameItems,
-  getPlatformRankingItems
+  getEnabledCategoryItems,
+  getOtherEnabledCategoryItems,
+  getPlatformRankingItems,
+  hasMeaningfulChanges,
+  typeDefinitions
 } from "../lib/ranking";
+import { isWeeklyEditorialPublishable } from "../../scripts/lib/editorial.mjs";
 
-const updated = formatUpdated(ranking.updatedAt, "更新準備中");
-const gameItems = getGameItems(ranking);
+const updated = formatUpdated(ranking.updatedAt, "未取得");
+const allEnabledItems = getEnabledCategoryItems(ranking);
 const platformItems = getPlatformRankingItems(ranking);
+const otherItems = getOtherEnabledCategoryItems(ranking);
 const weekly = editorial.gameWeekly;
-const weeklyUpdated = formatPublishedDate(weekly.updatedAt, "比較準備中");
+const showWeekly = isWeeklyEditorialPublishable(weekly);
+const showOtherChanges = hasMeaningfulChanges(otherItems, "day");
 const pageUrl = new URL("/", Astro.site).toString();
+const homeCategories = getHomeCategories();
 const structuredData = [
   {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "今日のゲームランキング｜Switch・PS5・PS4の変化",
-    description: "Nintendo Switch、PS5、PS4のランキングを分け、新登場・急上昇・値下がりを前回更新と比較します。",
+    name: "楽天ランキングの順位変動をカテゴリ別に確認",
+    description: "ゲームを中心に、楽天市場のランキングで新登場・順位上昇・値下がりした商品をカテゴリ別に確認できます。",
     url: pageUrl,
     inLanguage: "ja",
     isPartOf: { "@id": new URL("/#website", Astro.site).toString() }
   },
-  gameItems.length > 0 ? createItemListSchema(gameItems, pageUrl) : null
+  allEnabledItems.length > 0 ? createItemListSchema(allEnabledItems, pageUrl) : null
 ].filter(Boolean);
 
 const platformLinks = gameSourceDefinitions.filter((source) =>
@@ -38,70 +46,101 @@ const platformLinks = gameSourceDefinitions.filter((source) =>
 );
 ---
 <BaseLayout
-  title="今日のゲームランキング｜Switch・PS5・PS4の変化｜モノ上昇便"
-  description="Switch・PS5・PS4を別ランキングで比較。新登場・急上昇・値下がりを前回更新から追えるゲームランキング情報です。"
+  title="楽天ランキングの順位変動｜ゲーム・文具をカテゴリ別に確認｜モノ上昇便"
+  description="楽天市場のランキング順位変動をカテゴリ別に確認できます。ゲームを中心に、Switch・PS5・PS4と文具の新登場・順位上昇・値下がりを掲載します。"
   structuredData={structuredData}
 >
   <section class="hero game-first-hero">
     <div class="hero-content">
-      <h1>今日のゲームランキング、<span>変わったところだけ。</span></h1>
-      <p>Switch・PS5・PS4を別ランキングで比較。新登場・急上昇・値下がりを前回更新から追えます。</p>
+      <h1>楽天ランキングの<span>順位変動</span>を、カテゴリ別に。</h1>
+      <p>ゲームを中心に、新登場・順位上昇・値下がりした商品を24時間前と比較します。</p>
     </div>
     <p class="updated"><span>最終更新</span>{updated}</p>
   </section>
 
-  <WatchlistPanel items={platformItems} />
-  <TodayHighlights items={platformItems} updatedAt={ranking.updatedAt} />
+  <TodayHighlights items={allEnabledItems} updatedAt={ranking.updatedAt} />
 
-  <div class="change-editorial-layout">
+  <section class="home-game-changes" aria-labelledby="home-game-changes-title">
+    <header class="home-section-heading">
+      <span>GAME</span>
+      <h2 id="home-game-changes-title">ゲームの注目変動</h2>
+      <p>Switch・PS5・PS4のランキングを混ぜずに、24時間の変化を確認します。</p>
+    </header>
     <ChangeBoard
       items={platformItems}
       id="home-ranking-changes"
       title="24時間の変化"
       comparisonWindow="day"
       persistSource={true}
+      showGameClassification={true}
     />
-    <aside class="weekly-note" aria-labelledby="weekly-note-title">
-      <header><h2 id="weekly-note-title">今週の注目</h2></header>
-      <div>
-        <h3>{weekly.headline}</h3>
-        <p>{weekly.summary}</p>
-        {weekly.points?.length > 0 ? <ol>
-          {weekly.points.slice(0, 3).map((point) => (
-            <li>
-              <strong>{point.title}</strong>
-              <span>{point.body}</span>
-            </li>
-          ))}
-        </ol> : <p class="weekly-waiting">7日間の比較データを準備中です。</p>}
-        <p class="weekly-disclosure">{weekly.dataDisclosure}</p>
-        <p class="weekly-signature">{weeklyUpdated}更新　{weekly.authorName}</p>
-        <a href="/articles/current-game-ranking/">今週のまとめを読む →</a>
-      </div>
-    </aside>
-  </div>
+    <GameRankingNotice />
+    {showWeekly && (
+      <a class="weekly-inline-link" href="/articles/current-game-ranking/">
+        <span>{weekly.periodLabel}</span>
+        <strong>{weekly.headline}</strong>
+        <b>週次まとめを見る →</b>
+      </a>
+    )}
+  </section>
 
-  <section class="platform-entry" aria-labelledby="platform-entry-title">
+  <section class="platform-entry game-route-entry" aria-labelledby="game-route-entry-title">
     <header>
-      <h2 id="platform-entry-title">機種別ランキング</h2>
-      <p>総合順位から抜き出さず、機種ごとの取得元をそのまま表示します。</p>
+      <h2 id="game-route-entry-title">ゲームを機種・種類から見る</h2>
+      <p>機種別の取得元と、商品名から判定できた種類で絞り込めます。</p>
     </header>
     <div>
       {platformLinks.map((source) => (
         <a href={source.href}>
           <span>{source.shortLabel}</span>
-          <strong>{source.shortLabel}ランキングを見る</strong>
+          <strong>{source.shortLabel}ランキング</strong>
           <b aria-hidden="true">→</b>
+        </a>
+      ))}
+    </div>
+    <nav class="game-type-links" aria-label="ゲーム商品の種類">
+      {typeDefinitions.map((type) => (
+        <a href={`/games/?type=${type.key}#game-type-ranking`}>{type.label}</a>
+      ))}
+    </nav>
+  </section>
+
+  {showOtherChanges && (
+    <section class="other-category-changes" aria-labelledby="other-category-changes-title">
+      <header class="home-section-heading">
+        <span>OTHER</span>
+        <h2 id="other-category-changes-title">その他のカテゴリの注目変動</h2>
+      </header>
+      <ChangeBoard
+        items={otherItems}
+        id="other-ranking-changes"
+        title="24時間の変化"
+        comparisonWindow="day"
+        showSourceFilters={false}
+        dimensionLabel="カテゴリ"
+        defaultSourceLabel="文具"
+        moreHref="/categories/stationery/"
+        moreLabel="文具ランキングを見る →"
+      />
+    </section>
+  )}
+
+  <section class="category-directory" aria-labelledby="category-directory-title">
+    <header class="home-section-heading">
+      <span>CATEGORY</span>
+      <h2 id="category-directory-title">公開中のカテゴリ</h2>
+      <p>カテゴリごとに、現在順位と直近の変化を確認できます。</p>
+    </header>
+    <div>
+      {homeCategories.map((category) => (
+        <a href={category.route || "/"}>
+          <strong>{category.displayName}</strong>
+          <span>{category.description}</span>
+          <b>ランキングを見る →</b>
         </a>
       ))}
     </div>
   </section>
 
-  <section class="stationery-entry" aria-labelledby="stationery-entry-title">
-    <h2 id="stationery-entry-title">文具も見る</h2>
-    <a href="/categories/stationery/">
-      <span>文具・シールのランキング、新登場、順位変動を確認できます。</span>
-      <strong>文具ランキングを見る →</strong>
-    </a>
-  </section>
+  <WatchlistPanel items={platformItems} />
 </BaseLayout>

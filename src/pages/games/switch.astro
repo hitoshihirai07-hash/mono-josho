@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ChangeBoard from "../../components/ChangeBoard.astro";
+import GameRankingNotice from "../../components/GameRankingNotice.astro";
 import RankingTable from "../../components/RankingTable.astro";
 import ranking from "../../data/ranking.json";
 import { createItemListSchema, formatPublishedDate, getGameSourceItems, getTypeGroups } from "../../lib/ranking";
@@ -30,8 +31,8 @@ const structuredData = [
 ].filter(Boolean);
 ---
 <BaseLayout
-  title="Nintendo Switchランキング｜新登場・急上昇・値下がり｜モノ上昇便"
-  description="楽天市場のNintendo Switch専用ランキングを掲載。ソフト・本体・周辺機器の順位と、前回更新からの新登場・急上昇・値下がりを確認できます。"
+  title="Nintendo Switchランキングの順位変動｜種類・中古・予約も確認｜モノ上昇便"
+  description="楽天市場のNintendo Switchランキング順位変動を掲載。ソフト、本体、周辺機器、中古、輸入版、予約商品の区別と新登場・順位上昇・値下がりを確認できます。"
   structuredData={structuredData}
 >
   <article class="article-page game-page">
@@ -48,11 +49,13 @@ const structuredData = [
         showSourceFilters={false}
         moreHref="#switch-ranking"
         title="01 前回更新からの変化"
+        showGameClassification={true}
       />
+      <GameRankingNotice />
     </section>
     <section id="switch-ranking">
       <h2><span>02</span>Switchの上位商品</h2>
-      <RankingTable items={items} limit={10} showPlatform={true} categoryFallback="Nintendo Switch" />
+      <RankingTable items={items} limit={10} showPlatform={true} showGameClassification={true} categoryFallback="Nintendo Switch" />
     </section>
     <section class="seo-block">
       <h2><span>03</span>種類別の内訳</h2>
@@ -65,9 +68,9 @@ const structuredData = [
           </div>
         ))}
       </div>
-      <p>このページはSwitch専用ジャンルのランキングを表示します。通常版、有機ELモデル、Lite、ソフト単品、特典付き、周辺機器で価格差が出やすいため、商品名と販売ページのセット内容を必ず確認してください。</p>
+      <p>このページはSwitch専用ジャンルのランキングを表示します。種類や状態の表示は商品名などから明確に判定できる場合に限り、判断できない商品は「その他」としています。</p>
       <p>取得元や更新方法は<a href="/about/">運営情報</a>で公開しています。</p>
     </section>
-    <aside class="notice"><strong>続けて確認する</strong><p><a href="/articles/current-game-ranking/">今週のゲームランキング変化</a>、<a href="/games/playstation/">PlayStationランキング</a>、または<a href="/games/">ゲーム全体</a>を確認できます。</p></aside>
+    <aside class="notice"><strong>続けて確認する</strong><p><a href="/games/playstation/">PlayStationランキング</a>、または<a href="/games/">ゲーム全体の順位変動</a>を確認できます。</p></aside>
   </article>
 </BaseLayout>

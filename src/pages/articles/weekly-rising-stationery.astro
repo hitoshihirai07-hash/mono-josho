@@ -2,34 +2,21 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import RankingTable from "../../components/RankingTable.astro";
 import ranking from "../../data/ranking.json";
-import { createItemListSchema, formatPublishedDate, getStationeryItems } from "../../lib/ranking";
+import { formatPublishedDate, getStationeryItems } from "../../lib/ranking";
 
 const items = getStationeryItems(ranking);
 const published = formatPublishedDate(ranking.updatedAt);
-const pageUrl = new URL("/articles/weekly-rising-stationery/", Astro.site).toString();
-const structuredData = [
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: "楽天市場で現在注目の文具5選",
-    dateModified: ranking.updatedAt || undefined,
-    datePublished: ranking.updatedAt || undefined,
-    inLanguage: "ja",
-    mainEntityOfPage: pageUrl
-  },
-  items.length > 0 ? createItemListSchema(items, pageUrl) : null
-].filter(Boolean);
 ---
 <BaseLayout
-  title="楽天市場で現在注目の文具5選｜モノ上昇便"
-  description="楽天市場の文具ランキングから、現在注目の商品を価格・レビュー・確認ポイントとともに整理します。"
-  structuredData={structuredData}
+  title="文具・事務用品ランキングを見る｜モノ上昇便"
+  description="楽天市場の文具・事務用品ランキングの現在順位、価格、レビュー情報を確認できます。"
+  robots="noindex,follow"
 >
   <article class="article-page">
     <header>
       <p class="breadcrumbs"><a href="/">ホーム</a> › <a href="/articles/">記事一覧</a> › 文具</p>
-      <h1>楽天市場で現在<br /><span>注目</span>の文具5選</h1>
-      <p>楽天市場の文具ランキングから、現在掲載されている商品を価格・レビュー情報とともに整理します。</p>
+      <h1>文具・事務用品<br /><span>ランキング</span>を見る</h1>
+      <p>楽天市場の文具・事務用品ランキングに現在掲載されている商品を、価格・レビュー情報とともに整理します。</p>
       <div class="article-meta">{published}更新　｜　楽天市場ランキングを基に掲載</div>
     </header>
     <section>

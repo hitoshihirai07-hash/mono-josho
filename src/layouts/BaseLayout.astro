@@ -3,6 +3,10 @@ import "../styles/global.css";
 import "../styles/overrides.css";
 import { siteConfig } from "../config";
 import WatchlistScript from "../components/WatchlistScript.astro";
+import editorial from "../data/editorial.json";
+import archive from "../data/editorial-archive.json";
+import { getNavigationItems } from "../lib/categories";
+import { isWeeklyEditorialPublishable } from "../../scripts/lib/editorial.mjs";
 
 interface Props {
   title?: string;
@@ -11,6 +15,7 @@ interface Props {
   ogType?: "website" | "article";
   publishedTime?: string;
   modifiedTime?: string;
+  robots?: string;
 }
 
 const {
@@ -19,11 +24,15 @@ const {
   structuredData = [],
   ogType = "website",
   publishedTime,
-  modifiedTime
+  modifiedTime,
+  robots = "index,follow"
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const currentPath = Astro.url.pathname;
 const schemas = Array.isArray(structuredData) ? structuredData : [structuredData];
+const navigationItems = getNavigationItems();
+const showArticles = isWeeklyEditorialPublishable(editorial.gameWeekly) ||
+  (archive.weeks || []).some((week) => week.archiveEligible);
 const globalSchemas = [
   {
     "@context": "https://schema.org",
@@ -51,6 +60,7 @@ const globalSchemas = [
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
     <meta name="google-site-verification" content="18bkD956Gj3a_2GBjRWH7bKFoSrDXwbM0oE8xLWH1KE" />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/brand/icon.png" type="image/png" />
@@ -80,12 +90,14 @@ const globalSchemas = [
         <span>モノ<span class="accent">上昇</span>便</span>
       </a>
       <nav aria-label="メインナビゲーション">
-        <a class:list={{ active: currentPath === "/" || currentPath === "/games/" }} href="/games/">ゲーム総合</a>
-        <a class:list={{ active: currentPath === "/games/switch/" }} href="/games/switch/">Switch</a>
-        <a class:list={{ active: currentPath === "/games/playstation/" }} href="/games/playstation/#ps5-ranking">PS5</a>
-        <a class:list={{ active: currentPath === "/games/playstation/" }} href="/games/playstation/#ps4-ranking">PS4</a>
-        <a class:list={{ active: currentPath.startsWith("/categories/") }} href="/categories/stationery/">文具</a>
-        <a class:list={{ active: currentPath.startsWith("/articles/") }} href="/articles/">記事一覧</a>
+        {navigationItems.map((item) => {
+          const itemPath = new URL(item.href, Astro.site).pathname;
+          const active = item.categoryId === "games" && item.id === "games"
+            ? currentPath === "/games/"
+            : currentPath === itemPath;
+          return <a class:list={{ active }} href={item.href}>{item.label}</a>;
+        })}
+        {showArticles && <a class:list={{ active: currentPath.startsWith("/articles/") }} href="/articles/">記事</a>}
       </nav>
     </header>
     <main><slot /></main>

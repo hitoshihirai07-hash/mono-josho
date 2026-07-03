@@ -1,10 +1,13 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ChangeBoard from "../../components/ChangeBoard.astro";
 import RankingTable from "../../components/RankingTable.astro";
 import ranking from "../../data/ranking.json";
+import { getCategory } from "../../lib/categories";
 import { createItemListSchema, formatPublishedDate, getStationeryItems } from "../../lib/ranking";
 
 const items = getStationeryItems(ranking);
+const category = getCategory("stationery");
 const published = formatPublishedDate(ranking.updatedAt);
 const pageUrl = new URL("/categories/stationery/", Astro.site).toString();
 const structuredData = [
@@ -19,34 +22,46 @@ const structuredData = [
   {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "文具・シールランキング",
-    description: "楽天市場の文具・シール・小型玩具のランキング、新登場、価格情報を整理します。",
+    name: "文具・事務用品ランキングの順位変動",
+    description: category?.description,
     url: pageUrl
   },
   items.length > 0 ? createItemListSchema(items, pageUrl) : null
 ].filter(Boolean);
 ---
 <BaseLayout
-  title="文具・シールランキング｜新登場と価格情報｜モノ上昇便"
-  description="楽天市場の文具・シール・小型玩具ランキングを、新登場・順位変動・価格情報とあわせて整理します。"
+  title="文具・事務用品ランキングの順位変動｜新登場・値下がり｜モノ上昇便"
+  description="楽天市場の文具・事務用品ランキングを掲載し、新登場・順位上昇・値下がりを直近の取得データと比較します。"
   structuredData={structuredData}
 >
   <article class="article-page category-page">
     <header>
-      <p class="breadcrumbs"><a href="/">ホーム</a> › 文具・シール</p>
-      <h1>文具・シール<br /><span>ランキング</span></h1>
-      <p>ノート、ペン、シール、小型玩具など、毎日見返しやすい文具系ランキングをまとめます。</p>
+      <p class="breadcrumbs"><a href="/">ホーム</a> › 文具・事務用品</p>
+      <h1>文具・事務用品<br /><span>ランキング変動</span></h1>
+      <p>{category?.description}</p>
       <div class="article-meta">{published}更新　｜　楽天市場ランキングを基に掲載</div>
     </header>
     <section>
-      <h2><span>01</span>現在の文具ランキング</h2>
+      <ChangeBoard
+        items={items}
+        id="stationery-ranking-changes"
+        title="01 前回更新からの変化"
+        showSourceFilters={false}
+        dimensionLabel="カテゴリ"
+        defaultSourceLabel="文具"
+        moreHref="#stationery-ranking"
+        moreLabel="現在の文具ランキングを見る →"
+      />
+    </section>
+    <section id="stationery-ranking">
+      <h2><span>02</span>現在の文具ランキング</h2>
       <RankingTable items={items} limit={10} />
     </section>
     <section class="seo-block">
-      <h2><span>02</span>見るポイント</h2>
+      <h2><span>03</span>見るポイント</h2>
       <p>文具は同じジャンルでも、セット数、サイズ、色数、配送条件で実質価格が変わります。ランキング順位だけで判断せず、商品名・価格・レビュー件数を並べて確認できるようにしています。</p>
       <p>新登場や急上昇の商品は、季節需要やSNSでの話題化で一時的に上がることもあります。気になる商品は販売ページで在庫、発送日、仕様を確認してください。</p>
     </section>
-    <aside class="notice"><strong>次に見るなら</strong><p><a href="/games/">ゲームランキング</a>や<a href="/articles/">ランキング記事</a>もあわせて確認できます。</p></aside>
+    <aside class="notice"><strong>次に見るなら</strong><p><a href="/games/">ゲームランキングの順位変動</a>もあわせて確認できます。</p></aside>
   </article>
 </BaseLayout>

@@ -5,62 +5,17 @@ import {
   compactSnapshot,
   findComparisonSnapshot
 } from "./lib/ranking-history.mjs";
+import { getEnabledRankingSources } from "./lib/category-config.mjs";
+import { classifyGameProduct } from "../src/lib/game-classifier.mjs";
 
 const appId = process.env.RAKUTEN_APPLICATION_ID;
 const accessKey = process.env.RAKUTEN_ACCESS_KEY;
 const affiliateId = process.env.RAKUTEN_AFFILIATE_ID;
 const siteUrl = process.env.SITE_URL || "https://mono-josho.pages.dev/";
 
-const genres = [
-  {
-    id: process.env.RAKUTEN_GENRE_ID || "100901",
-    key: "stationery",
-    label: "文房具・事務用品",
-    sourceKey: "stationery",
-    sourceLabel: "文房具・事務用品ランキング"
-  },
-  {
-    id: process.env.RAKUTEN_GAME_GENRE_ID || "101205",
-    key: "games",
-    label: "テレビゲーム",
-    sourceKey: "games-overall",
-    sourceLabel: "テレビゲーム総合ランキング",
-    platformKey: "overall",
-    platformLabel: "テレビゲーム総合"
-  },
-  {
-    id: process.env.RAKUTEN_SWITCH_GENRE_ID || "565950",
-    key: "games",
-    label: "Nintendo Switch",
-    sourceKey: "switch",
-    sourceLabel: "Nintendo Switchランキング",
-    platformKey: "switch",
-    platformLabel: "Nintendo Switch"
-  },
-  {
-    id: process.env.RAKUTEN_PS5_GENRE_ID || "568375",
-    key: "games",
-    label: "プレイステーション5",
-    sourceKey: "ps5",
-    sourceLabel: "PlayStation 5ランキング",
-    platformKey: "playstation",
-    platformLabel: "PlayStation 5"
-  },
-  {
-    id: process.env.RAKUTEN_PS4_GENRE_ID || "563544",
-    key: "games",
-    label: "プレイステーション4",
-    sourceKey: "ps4",
-    sourceLabel: "PlayStation 4ランキング",
-    platformKey: "playstation",
-    platformLabel: "PlayStation 4"
-  }
-];
-
-const toComparableText = (value = "") =>
-  value.toString().toLowerCase().replace(/[Ａ-Ｚａ-ｚ０-９]/g, (char) =>
-    String.fromCharCode(char.charCodeAt(0) - 0xfee0)
-  );
+const categoryConfigPath = new URL("../src/data/categories.json", import.meta.url);
+const categoryConfig = JSON.parse(await fs.readFile(categoryConfigPath, "utf8"));
+const genres = getEnabledRankingSources(categoryConfig, process.env);
 
 const requestDelayMs = Number(process.env.RAKUTEN_REQUEST_DELAY_MS || 1200);
 const maxRetries = Number(process.env.RAKUTEN_MAX_RETRIES || 4);
@@ -78,40 +33,6 @@ function getRetryDelayMs(response, body = "") {
   }
 
   return requestDelayMs;
-}
-
-function detectGamePlatform(name = "") {
-  const text = toComparableText(name);
-
-  if (/(nintendo switch|switch|スイッチ|任天堂|joy-con|joycon|プロコン)/.test(text)) {
-    return { platformKey: "switch", platformLabel: "Nintendo Switch" };
-  }
-
-  if (/(playstation|プレイステーション|プレステ|ps5|ps 5|ps4|ps 4|dualshock|dualsense)/.test(text)) {
-    return { platformKey: "playstation", platformLabel: "PlayStation" };
-  }
-
-  return { platformKey: "overall", platformLabel: "テレビゲーム総合" };
-}
-
-function detectGameType(name = "") {
-  const text = toComparableText(name);
-
-  if (/(本体|console|同梱版|ディスクドライブ|digital edition)/.test(text)) {
-    return { itemTypeKey: "hardware", itemTypeLabel: "本体・セット" };
-  }
-
-  if (
-    /(コントローラー|joy-con|joycon|dualsense|dualshock|プロコン|周辺機器|ケース|保護|フィルム|充電|スタンド|ケーブル|カバー|収納|ヘッドセット|micro.?sd|メモリーカード)/.test(text)
-  ) {
-    return { itemTypeKey: "accessory", itemTypeLabel: "周辺機器" };
-  }
-
-  if (/(ソフト|ゲーム|版|特典|予約|パッケージ|ダウンロード)/.test(text)) {
-    return { itemTypeKey: "software", itemTypeLabel: "ゲームソフト" };
-  }
-
-  return { itemTypeKey: "other", itemTypeLabel: "その他" };
 }
 
 if (!appId || !accessKey) {
@@ -191,8 +112,10 @@ async function fetchGenre(genre) {
         ? {
             ...(genre.platformKey && genre.platformLabel
               ? { platformKey: genre.platformKey, platformLabel: genre.platformLabel }
-              : detectGamePlatform(item.itemName)),
-            ...detectGameType(item.itemName)
+              : {}),
+            ...classifyGameProduct(item.itemName, item.itemCaption || "", {
+              sourceKey: genre.sourceKey
+            })
           }
         : {};
 

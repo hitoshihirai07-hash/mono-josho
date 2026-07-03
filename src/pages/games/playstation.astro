@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ChangeBoard from "../../components/ChangeBoard.astro";
+import GameRankingNotice from "../../components/GameRankingNotice.astro";
 import RankingTable from "../../components/RankingTable.astro";
 import ranking from "../../data/ranking.json";
 import { createItemListSchema, formatPublishedDate, getGameSourceItems, getTypeGroups } from "../../lib/ranking";
@@ -32,8 +33,8 @@ const structuredData = [
 ].filter(Boolean);
 ---
 <BaseLayout
-  title="PS5・PS4ランキング｜機種別の新登場・急上昇｜モノ上昇便"
-  description="楽天市場のPS5ランキングとPS4ランキングを別々に掲載。各機種の順位、新登場、急上昇、値下がりを前回更新と比較できます。"
+  title="PS5・PS4ランキングの順位変動｜種類・中古・予約も確認｜モノ上昇便"
+  description="楽天市場のPS5ランキングとPS4ランキングの順位変動を別々に掲載。ソフト、本体、周辺機器、中古、輸入版、予約商品の区別も確認できます。"
   structuredData={structuredData}
 >
   <article class="article-page game-page">
@@ -55,10 +56,12 @@ const structuredData = [
         moreHref="#ps5-products"
         title="前回更新からの変化"
         headingLevel={3}
+        showGameClassification={true}
       />
       <div id="ps5-products">
-      <RankingTable items={ps5Items} limit={10} showPlatform={true} categoryFallback="PlayStation 5" />
+      <RankingTable items={ps5Items} limit={10} showPlatform={true} showGameClassification={true} categoryFallback="PlayStation 5" />
       </div>
+      <GameRankingNotice />
     </section>
     <section class="platform-section" id="ps4-ranking">
       <header>
@@ -72,10 +75,12 @@ const structuredData = [
         moreHref="#ps4-products"
         title="前回更新からの変化"
         headingLevel={3}
+        showGameClassification={true}
       />
       <div id="ps4-products">
-      <RankingTable items={ps4Items} limit={10} showPlatform={true} categoryFallback="PlayStation 4" />
+      <RankingTable items={ps4Items} limit={10} showPlatform={true} showGameClassification={true} categoryFallback="PlayStation 4" />
       </div>
+      <GameRankingNotice />
     </section>
     <section class="seo-block">
       <h2><span>03</span>種類別の内訳</h2>
@@ -88,9 +93,9 @@ const structuredData = [
           </div>
         ))}
       </div>
-      <p>PlayStation関連商品は、PS5版・PS4版、通常版・限定版、本体セット、コントローラーなどで条件が分かれます。対応機種と同梱内容を販売ページで確認してください。</p>
+      <p>種類や状態の表示は商品名などから明確に判定できる場合に限り、判断できない商品は「その他」としています。</p>
       <p>取得元や更新方法は<a href="/about/">運営情報</a>で公開しています。</p>
     </section>
-    <aside class="notice"><strong>続けて確認する</strong><p><a href="/articles/current-game-ranking/">今週のゲームランキング変化</a>、<a href="/games/switch/">Switchランキング</a>、または<a href="/games/">ゲーム全体</a>を確認できます。</p></aside>
+    <aside class="notice"><strong>続けて確認する</strong><p><a href="/games/switch/">Switchランキング</a>、または<a href="/games/">ゲーム全体の順位変動</a>を確認できます。</p></aside>
   </article>
 </BaseLayout>

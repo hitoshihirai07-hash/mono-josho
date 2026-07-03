@@ -1,0 +1,322 @@
+{
+  "version": 1,
+  "groups": [
+    {
+      "id": "primary",
+      "displayName": "主力カテゴリ",
+      "sortOrder": 10
+    },
+    {
+      "id": "secondary",
+      "displayName": "その他のカテゴリ",
+      "sortOrder": 20
+    },
+    {
+      "id": "future",
+      "displayName": "追加候補",
+      "sortOrder": 30
+    }
+  ],
+  "categories": [
+    {
+      "id": "games",
+      "displayName": "ゲーム",
+      "shortName": "ゲーム",
+      "route": "/games/",
+      "sortOrder": 10,
+      "enabled": true,
+      "parentId": null,
+      "groupId": "primary",
+      "showOnHome": true,
+      "showInNav": true,
+      "description": "Nintendo Switch、PS5、PS4など、ゲーム関連商品のランキング順位変動を確認できます。",
+      "children": [
+        {
+          "id": "switch",
+          "displayName": "Switch",
+          "route": "/games/switch/",
+          "sortOrder": 10,
+          "enabled": true,
+          "showInNav": true,
+          "sourceKey": "switch"
+        },
+        {
+          "id": "ps5",
+          "displayName": "PS5",
+          "route": "/games/playstation/#ps5-ranking",
+          "sortOrder": 20,
+          "enabled": true,
+          "showInNav": true,
+          "sourceKey": "ps5"
+        },
+        {
+          "id": "ps4",
+          "displayName": "PS4",
+          "route": "/games/playstation/#ps4-ranking",
+          "sortOrder": 30,
+          "enabled": true,
+          "showInNav": true,
+          "sourceKey": "ps4"
+        }
+      ],
+      "sources": [
+        {
+          "sourceKey": "games-overall",
+          "sourceLabel": "テレビゲーム総合ランキング",
+          "displayName": "テレビゲーム総合",
+          "genreId": "101205",
+          "envGenreId": "RAKUTEN_GAME_GENRE_ID",
+          "enabled": true,
+          "platformKey": "overall",
+          "platformLabel": "テレビゲーム総合"
+        },
+        {
+          "sourceKey": "switch",
+          "sourceLabel": "Nintendo Switchランキング",
+          "displayName": "Nintendo Switch",
+          "genreId": "565950",
+          "envGenreId": "RAKUTEN_SWITCH_GENRE_ID",
+          "enabled": true,
+          "platformKey": "switch",
+          "platformLabel": "Nintendo Switch"
+        },
+        {
+          "sourceKey": "ps5",
+          "sourceLabel": "PlayStation 5ランキング",
+          "displayName": "プレイステーション5",
+          "genreId": "568375",
+          "envGenreId": "RAKUTEN_PS5_GENRE_ID",
+          "enabled": true,
+          "platformKey": "playstation",
+          "platformLabel": "PlayStation 5"
+        },
+        {
+          "sourceKey": "ps4",
+          "sourceLabel": "PlayStation 4ランキング",
+          "displayName": "プレイステーション4",
+          "genreId": "563544",
+          "envGenreId": "RAKUTEN_PS4_GENRE_ID",
+          "enabled": true,
+          "platformKey": "playstation",
+          "platformLabel": "PlayStation 4"
+        }
+      ]
+    },
+    {
+      "id": "stationery",
+      "displayName": "文具・事務用品",
+      "shortName": "文具",
+      "route": "/categories/stationery/",
+      "sortOrder": 20,
+      "enabled": true,
+      "parentId": null,
+      "groupId": "secondary",
+      "showOnHome": true,
+      "showInNav": true,
+      "description": "文具・事務用品のランキング順位と変化を確認できます。",
+      "children": [],
+      "sources": [
+        {
+          "sourceKey": "stationery",
+          "sourceLabel": "文房具・事務用品ランキング",
+          "displayName": "文房具・事務用品",
+          "genreId": "100901",
+          "envGenreId": "RAKUTEN_GENRE_ID",
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "id": "hobby-toys",
+      "displayName": "ホビー・おもちゃ",
+      "shortName": "ホビー",
+      "route": null,
+      "sortOrder": 30,
+      "enabled": false,
+      "parentId": null,
+      "groupId": "future",
+      "showOnHome": false,
+      "showInNav": false,
+      "description": "ホビー・おもちゃのランキング変動を扱う追加候補です。",
+      "children": [],
+      "sources": [
+        {
+          "sourceKey": "hobby-toys",
+          "sourceLabel": "ホビー・おもちゃランキング",
+          "displayName": "ホビー・おもちゃ",
+          "genreId": null,
+          "envGenreId": "RAKUTEN_HOBBY_TOYS_GENRE_ID",
+          "enabled": false
+        }
+      ]
+    },
+    {
+      "id": "books",
+      "displayName": "本・雑誌・コミック",
+      "shortName": "本",
+      "route": null,
+      "sortOrder": 40,
+      "enabled": false,
+      "parentId": null,
+      "groupId": "future",
+      "showOnHome": false,
+      "showInNav": false,
+      "description": "本・雑誌・コミックのランキング変動を扱う追加候補です。",
+      "children": [],
+      "sources": [
+        {
+          "sourceKey": "books",
+          "sourceLabel": "本・雑誌・コミックランキング",
+          "displayName": "本・雑誌・コミック",
+          "genreId": null,
+          "envGenreId": "RAKUTEN_BOOKS_GENRE_ID",
+          "enabled": false
+        }
+      ]
+    },
+    {
+      "id": "appliances",
+      "displayName": "家電",
+      "shortName": "家電",
+      "route": null,
+      "sortOrder": 50,
+      "enabled": false,
+      "parentId": null,
+      "groupId": "future",
+      "showOnHome": false,
+      "showInNav": false,
+      "description": "家電のランキング変動を扱う追加候補です。",
+      "children": [],
+      "sources": [
+        {
+          "sourceKey": "appliances",
+          "sourceLabel": "家電ランキング",
+          "displayName": "家電",
+          "genreId": null,
+          "envGenreId": "RAKUTEN_APPLIANCES_GENRE_ID",
+          "enabled": false
+        }
+      ]
+    },
+    {
+      "id": "beauty",
+      "displayName": "美容・コスメ",
+      "shortName": "美容",
+      "route": null,
+      "sortOrder": 60,
+      "enabled": false,
+      "parentId": null,
+      "groupId": "future",
+      "showOnHome": false,
+      "showInNav": false,
+      "description": "美容・コスメのランキング変動を扱う追加候補です。",
+      "children": [],
+      "sources": [
+        {
+          "sourceKey": "beauty",
+          "sourceLabel": "美容・コスメランキング",
+          "displayName": "美容・コスメ",
+          "genreId": null,
+          "envGenreId": "RAKUTEN_BEAUTY_GENRE_ID",
+          "enabled": false
+        }
+      ]
+    },
+    {
+      "id": "daily-necessities",
+      "displayName": "日用品",
+      "shortName": "日用品",
+      "route": null,
+      "sortOrder": 70,
+      "enabled": false,
+      "parentId": null,
+      "groupId": "future",
+      "showOnHome": false,
+      "showInNav": false,
+      "description": "日用品のランキング変動を扱う追加候補です。",
+      "children": [],
+      "sources": [
+        {
+          "sourceKey": "daily-necessities",
+          "sourceLabel": "日用品ランキング",
+          "displayName": "日用品",
+          "genreId": null,
+          "envGenreId": "RAKUTEN_DAILY_NECESSITIES_GENRE_ID",
+          "enabled": false
+        }
+      ]
+    },
+    {
+      "id": "kitchen",
+      "displayName": "キッチン用品",
+      "shortName": "キッチン",
+      "route": null,
+      "sortOrder": 80,
+      "enabled": false,
+      "parentId": null,
+      "groupId": "future",
+      "showOnHome": false,
+      "showInNav": false,
+      "description": "キッチン用品のランキング変動を扱う追加候補です。",
+      "children": [],
+      "sources": [
+        {
+          "sourceKey": "kitchen",
+          "sourceLabel": "キッチン用品ランキング",
+          "displayName": "キッチン用品",
+          "genreId": null,
+          "envGenreId": "RAKUTEN_KITCHEN_GENRE_ID",
+          "enabled": false
+        }
+      ]
+    },
+    {
+      "id": "fashion-accessories",
+      "displayName": "ファッション小物",
+      "shortName": "小物",
+      "route": null,
+      "sortOrder": 90,
+      "enabled": false,
+      "parentId": null,
+      "groupId": "future",
+      "showOnHome": false,
+      "showInNav": false,
+      "description": "ファッション小物のランキング変動を扱う追加候補です。",
+      "children": [],
+      "sources": [
+        {
+          "sourceKey": "fashion-accessories",
+          "sourceLabel": "ファッション小物ランキング",
+          "displayName": "ファッション小物",
+          "genreId": null,
+          "envGenreId": "RAKUTEN_FASHION_ACCESSORIES_GENRE_ID",
+          "enabled": false
+        }
+      ]
+    },
+    {
+      "id": "mobile-pc-accessories",
+      "displayName": "スマホ・PC周辺機器",
+      "shortName": "スマホ・PC",
+      "route": null,
+      "sortOrder": 100,
+      "enabled": false,
+      "parentId": null,
+      "groupId": "future",
+      "showOnHome": false,
+      "showInNav": false,
+      "description": "スマホ・PC周辺機器のランキング変動を扱う追加候補です。",
+      "children": [],
+      "sources": [
+        {
+          "sourceKey": "mobile-pc-accessories",
+          "sourceLabel": "スマホ・PC周辺機器ランキング",
+          "displayName": "スマホ・PC周辺機器",
+          "genreId": null,
+          "envGenreId": "RAKUTEN_MOBILE_PC_ACCESSORIES_GENRE_ID",
+          "enabled": false
+        }
+      ]
+    }
+  ]
+}

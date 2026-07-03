@@ -2,27 +2,43 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import editorial from "../../data/editorial.json";
 import archive from "../../data/editorial-archive.json";
+import { isWeeklyEditorialPublishable } from "../../../scripts/lib/editorial.mjs";
+
 const weekly = editorial.gameWeekly;
+const showCurrent = isWeeklyEditorialPublishable(weekly);
+const publishedWeeks = (archive.weeks || []).filter((week) =>
+  week.archiveEligible && Array.isArray(week.points) && week.points.length === 3
+);
+const hasArticles = showCurrent || publishedWeeks.length > 0;
 ---
 <BaseLayout
-  title="記事一覧｜モノ上昇便"
-  description="Switch・PS5・PS4のランキング変化を編集部が確認する週次記事と、文具・機種別ページをまとめています。"
+  title="ゲームランキング変動の週次記録｜モノ上昇便"
+  description="Switch・PS5・PS4のランキングで、実際に確認できた順位上昇・値下がり・新登場を週別に記録します。"
+  robots={publishedWeeks.length > 0 ? "index,follow" : "noindex,follow"}
 >
   <section class="page-heading">
-    <h1>記事一覧</h1>
-    <p>ランキング表だけでは分かりにくい変化や、機種ごとの見方を編集部が整理します。</p>
+    <h1>ランキング変動の週次記録</h1>
+    <p>十分な比較データと具体的な変化が確認できた週だけ掲載します。</p>
   </section>
   <div class="article-index">
-    <a href="/articles/current-game-ranking/"><time>{weekly.periodLabel}</time><strong>{weekly.headline}</strong><span>{weekly.summary}</span></a>
-    {(archive.weeks || []).map((week) => (
+    {showCurrent && (
+      <a href="/articles/current-game-ranking/">
+        <time>{weekly.periodLabel}</time>
+        <strong>{weekly.headline}</strong>
+        <span>{weekly.summary}</span>
+      </a>
+    )}
+    {publishedWeeks.map((week) => (
       <a href={`/articles/game-ranking/${week.weekKey}/`}>
         <time>{week.periodLabel}</time>
         <strong>{week.headline}</strong>
         <span>{week.summary}</span>
       </a>
     ))}
-    <a href="/articles/weekly-rising-stationery/"><time>随時更新</time><strong>楽天市場で現在注目の文具5選</strong><span>現在の順位、価格、レビュー情報を整理します。</span></a>
-    <a href="/games/"><time>機種別</time><strong>ゲームランキングを Switch / PlayStation 別に探す</strong><span>機種、ソフト、本体、周辺機器の切り口で確認できます。</span></a>
-    <a href="/categories/stationery/"><time>カテゴリ別</time><strong>文具・シールランキングをまとめて見る</strong><span>文具系の商品を一覧で確認できます。</span></a>
+    {!hasArticles && (
+      <p class="article-index-empty">現在公開している週次記録はありません。ランキング変動は下記のカテゴリページで確認できます。</p>
+    )}
+    <a href="/games/"><time>ゲーム</time><strong>ゲームランキングの順位変動を見る</strong><span>Switch、PS5、PS4と商品種類から確認できます。</span></a>
+    <a href="/categories/stationery/"><time>文具</time><strong>文具・事務用品ランキングの順位変動を見る</strong><span>現在順位と直近の変化を確認できます。</span></a>
   </div>
 </BaseLayout>

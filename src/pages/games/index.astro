@@ -1,24 +1,28 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ChangeBoard from "../../components/ChangeBoard.astro";
+import GameRankingNotice from "../../components/GameRankingNotice.astro";
 import RankingTable from "../../components/RankingTable.astro";
 import ranking from "../../data/ranking.json";
+import editorial from "../../data/editorial.json";
 import {
   createItemListSchema,
+  dedupeByCode,
   formatPublishedDate,
   getGameOverallItems,
   getGameItems,
   getPlatformGroups,
-  getGameSourceGroups,
-  getTypeGroups
+  getGameSourceGroups
 } from "../../lib/ranking";
+import { isWeeklyEditorialPublishable } from "../../../scripts/lib/editorial.mjs";
 
 const gameItems = getGameItems(ranking);
 const overallItems = getGameOverallItems(ranking);
 const platformGroups = getPlatformGroups(gameItems);
 const sourceGroups = getGameSourceGroups(gameItems);
 const platformRankingGroups = sourceGroups.filter((group) => group.key !== "games-overall");
-const typeGroups = getTypeGroups(gameItems);
+const typeItems = dedupeByCode(gameItems);
+const showWeekly = isWeeklyEditorialPublishable(editorial.gameWeekly);
 const published = formatPublishedDate(ranking.updatedAt);
 const pageUrl = new URL("/games/", Astro.site).toString();
 const structuredData = [
@@ -41,15 +45,15 @@ const structuredData = [
 ].filter(Boolean);
 ---
 <BaseLayout
-  title="ゲームランキング｜Switch・PS5・PS4を機種別に比較｜モノ上昇便"
-  description="楽天市場のゲーム総合、Nintendo Switch、PS5、PS4ランキングを混ぜずに掲載。新登場・急上昇・値下がりも確認できます。"
+  title="ゲームランキングの順位変動｜Switch・PS5・PS4・種類別｜モノ上昇便"
+  description="楽天市場のゲームランキング順位変動を、Nintendo Switch・PS5・PS4と、ソフト・本体・周辺機器・中古・予約などの種類別に確認できます。"
   structuredData={structuredData}
 >
   <article class="article-page game-page">
     <header>
       <p class="breadcrumbs"><a href="/">ホーム</a> › ゲーム</p>
-      <h1>ゲームランキングを<br /><span>機種別</span>に確認</h1>
-      <p>テレビゲーム総合、Nintendo Switch、PS5、PS4を別の取得元として整理し、前回更新からの変化も表示します。</p>
+      <h1>ゲームランキングの<br /><span>順位変動</span>を確認</h1>
+      <p>テレビゲーム総合、Nintendo Switch、PS5、PS4を別の取得元として整理し、商品種類と状態もあわせて表示します。</p>
       <div class="article-meta">{published}更新　｜　楽天市場ランキングを基に掲載</div>
     </header>
 
@@ -68,41 +72,53 @@ const structuredData = [
     </section>
 
     <section class="change-section">
-      <ChangeBoard items={gameItems} id="game-ranking-changes" title="02 前回更新からの変化" />
+      <ChangeBoard
+        items={gameItems}
+        id="game-ranking-changes"
+        title="02 前回更新からの変化"
+        showGameClassification={true}
+      />
+      <GameRankingNotice />
+    </section>
+
+    <section id="game-type-ranking">
+      <h2><span>03</span>機種・種類で絞り込む</h2>
+      <p>中古、輸入版、予約商品は、ゲームソフトなどの主分類と重複して表示されます。</p>
+      <RankingTable
+        items={typeItems}
+        id="game-type-browser"
+        limit={20}
+        showPlatform={true}
+        showGameClassification={true}
+        enableGameFilters={true}
+        categoryFallback="ゲーム"
+      />
     </section>
 
     <section id="overall-ranking">
-      <h2><span>03</span>テレビゲーム総合ランキング</h2>
-      <RankingTable items={overallItems} limit={10} showPlatform={true} categoryFallback="ゲーム" />
+      <h2><span>04</span>テレビゲーム総合ランキング</h2>
+      <RankingTable items={overallItems} limit={10} showPlatform={true} showGameClassification={true} categoryFallback="ゲーム" />
+      <GameRankingNotice />
     </section>
 
     <section>
-      <h2><span>04</span>取得元ごとの機種別ランキング</h2>
+      <h2><span>05</span>取得元ごとの機種別ランキング</h2>
       {platformRankingGroups.map((group) => (
         <section class="platform-section" id={`${group.key}-ranking`}>
           <header>
             <h3>{group.label}</h3>
             <p>{group.description}</p>
           </header>
-          <RankingTable items={group.items} limit={5} showPlatform={true} categoryFallback="ゲーム" />
+          <RankingTable items={group.items} limit={5} showPlatform={true} showGameClassification={true} categoryFallback="ゲーム" />
         </section>
       ))}
     </section>
 
     <section class="seo-block">
-      <h2><span>05</span>種類別の見方</h2>
-      <div class="type-grid">
-        {typeGroups.map((group) => (
-          <div>
-            <strong>{group.label}</strong>
-            <span>{group.items.length}件</span>
-            <p>{group.description}</p>
-          </div>
-        ))}
-      </div>
-      <p>同じタイトルでも、対応機種、特典、発送時期、商品状態が異なる場合があります。購入前に販売ページで最新の価格、在庫、同梱物を確認してください。</p>
+      <h2><span>06</span>ランキングの確認方法</h2>
+      <p>機種別ランキングは、テレビゲーム総合から商品名で抜き出した一覧ではなく、楽天市場のSwitch、PS5、PS4各ジャンルから取得しています。</p>
       <p>ランキングの取得元、更新方法、広告については<a href="/about/">運営情報</a>で確認できます。</p>
-      <p><a href="/articles/current-game-ranking/">今週のSwitch・PS5・PS4ランキング変化</a>では、7日間の順位・価格差をまとめています。</p>
+      {showWeekly && <p><a href="/articles/current-game-ranking/">{editorial.gameWeekly.headline}</a>では、7日間の順位・価格差をまとめています。</p>}
     </section>
   </article>
 </BaseLayout>
