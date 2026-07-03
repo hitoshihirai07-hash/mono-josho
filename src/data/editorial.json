@@ -2,36 +2,11 @@
   "gameWeekly": {
     "weekKey": "2026-W27",
     "periodLabel": "2026年6月29日〜7月5日",
-    "headline": "2026年6月29日〜7月5日のゲームランキング比較を準備中",
-    "summary": "7日前との比較データがそろい次第、実際の商品名・順位差・価格差を自動で掲載します。",
-    "points": [
-      {
-        "kind": "leader",
-        "sourceKey": "switch",
-        "itemCode": "yamada-denki:10683372",
-        "itemName": "リズム天国 ミラクルスターズ 【Switch】 HAC-P-BFLTA",
-        "title": "Switchの上位はリズム天国 ミラクルスターズ 【Switch】 HAC-P-BFLTA",
-        "body": "リズム天国 ミラクルスターズ 【Switch】 HAC-P-BFLTAは現在のSwitchランキングで1位、価格は¥5,589です。"
-      },
-      {
-        "kind": "leader",
-        "sourceKey": "ps5",
-        "itemCode": "selectkoh:10000618",
-        "itemName": "PlayStation5 DualSense ワイヤレスコントローラー SONY 純正 デュアルセンス PS5 コントローラー ゲームパッド 【送料無料】",
-        "title": "PS5の上位はPlayStation5 DualSense ワイヤレスコントローラー SONY 純正 デュアルセンス PS5 コントローラー ゲームパッド 【送料無料】",
-        "body": "PlayStation5 DualSense ワイヤレスコントローラー SONY 純正 デュアルセンス PS5 コントローラー ゲームパッド 【送料無料】は現在のPS5ランキングで1位、価格は¥12,800です。"
-      },
-      {
-        "kind": "leader",
-        "sourceKey": "ps4",
-        "itemCode": "attasa:10000149",
-        "itemName": "【MadCatzセール】Mad Catz 脱着可能 USBプロケーブル・黒 （アーケード ファイトスティック TE2/TE2+ アケコン用オプションパーツ）",
-        "title": "PS4の上位は【MadCatzセール】Mad Catz 脱着可能 USBプロケーブル・黒 （アーケード ファイトスティック TE2/TE2+ アケコン用オプションパーツ）",
-        "body": "【MadCatzセール】Mad Catz 脱着可能 USBプロケーブル・黒 （アーケード ファイトスティック TE2/TE2+ アケコン用オプションパーツ）は現在のPS4ランキングで1位、価格は¥1,500です。"
-      }
-    ],
+    "headline": "2026年6月29日〜7月5日のゲームランキング比較",
+    "summary": "Switch・PS5・PS4のランキングページで、現在の順位と直近の変化を確認できます。",
+    "points": [],
     "publishedAt": "2026-06-29T00:00:00+09:00",
-    "updatedAt": "2026-07-03T07:21:36.029Z",
+    "updatedAt": "2026-07-03T12:51:41.594Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": false,
