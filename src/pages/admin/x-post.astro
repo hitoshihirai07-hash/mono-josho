@@ -1,0 +1,246 @@
+---
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import ranking from "../../data/ranking.json";
+import {
+  generateXPost,
+  X_POST_KINDS,
+  X_POST_SOURCES,
+  X_POST_WINDOWS
+} from "../../../scripts/lib/x-post-generator.mjs";
+
+const siteUrl = new URL("/", Astro.site).toString();
+const defaultOptions = {
+  window: "day",
+  source: "games",
+  kind: "auto",
+  limit: 3,
+  includeLink: false,
+  includeHashtag: false,
+  siteUrl
+};
+const initial = generateXPost(ranking, defaultOptions);
+const rankingJson = JSON.stringify(ranking).replaceAll("<", "\\u003c");
+const updatedLabel = ranking.updatedAt
+  ? new Intl.DateTimeFormat("ja-JP", {
+      dateStyle: "medium",
+      timeStyle: "short",
+      timeZone: "Asia/Tokyo"
+    }).format(new Date(ranking.updatedAt))
+  : "データ未取得";
+---
+<AdminLayout title="X投稿文作成｜モノ上昇便 管理ツール">
+  <div class="admin-page">
+    <header class="admin-page-heading">
+      <div>
+        <p class="admin-kicker">X POST GENERATOR</p>
+        <h1>X投稿文をランキングから作成</h1>
+        <p>実際の順位・価格変化だけを使って投稿候補を生成します。自動投稿は行いません。</p>
+      </div>
+      <dl>
+        <div><dt>ランキング更新</dt><dd>{updatedLabel}</dd></div>
+        <div><dt>取得商品</dt><dd>{ranking.items?.length || 0}件</dd></div>
+      </dl>
+    </header>
+
+    <div class="admin-workspace" data-x-post-generator data-site-url={siteUrl}>
+      <section class="admin-controls" aria-labelledby="generator-settings-title">
+        <h2 id="generator-settings-title">生成条件</h2>
+        <label>
+          <span>比較期間</span>
+          <select data-x-window>
+            {X_POST_WINDOWS.map((option) => (
+              <option value={option.key} selected={option.key === defaultOptions.window}>{option.label}</option>
+            ))}
+          </select>
+        </label>
+        <label>
+          <span>カテゴリ・機種</span>
+          <select data-x-source>
+            {X_POST_SOURCES.map((option) => (
+              <option value={option.key} selected={option.key === defaultOptions.source}>{option.label}</option>
+            ))}
+          </select>
+        </label>
+        <label>
+          <span>取り上げる変化</span>
+          <select data-x-kind>
+            {X_POST_KINDS.map((option) => (
+              <option value={option.key} selected={option.key === defaultOptions.kind}>{option.label}</option>
+            ))}
+          </select>
+        </label>
+        <label>
+          <span>掲載する商品数</span>
+          <select data-x-limit>
+            <option value="1">1件</option>
+            <option value="2">2件</option>
+            <option value="3" selected>3件まで</option>
+          </select>
+        </label>
+        <label class="admin-check">
+          <input type="checkbox" data-x-hashtag />
+          <span>関連ハッシュタグを付ける</span>
+        </label>
+        <label class="admin-check">
+          <input type="checkbox" data-x-link />
+          <span>サイトURLを付ける</span>
+        </label>
+        <button type="button" class="admin-regenerate" data-x-regenerate>この条件で再生成</button>
+        <p class="admin-control-note">同じ商品が複数ランキングにある場合は重複を除外します。280文字を超える場合は掲載件数を自動で減らします。</p>
+      </section>
+
+      <section class="admin-editor" aria-labelledby="post-editor-title">
+        <div class="admin-editor-heading">
+          <div>
+            <p class="admin-kicker">PREVIEW</p>
+            <h2 id="post-editor-title">投稿文</h2>
+          </div>
+          <p class:list={{ "admin-count": true, "is-over": initial.remaining < 0 }} data-x-count>
+            {initial.weightedLength} / 280
+          </p>
+        </div>
+
+        <div class="admin-empty" data-x-empty hidden={initial.status !== "empty"}>
+          <strong>選択条件に合う変化がありません</strong>
+          <p>比較期間またはカテゴリを変更してください。</p>
+        </div>
+
+        <textarea
+          data-x-text
+          aria-label="X投稿文"
+          spellcheck="true"
+          rows="12"
+          hidden={initial.status === "empty"}
+        >{initial.text}</textarea>
+
+        <div class="admin-editor-meta">
+          <p data-x-summary>
+            候補{initial.availableCount}件から{initial.selectedCount}件を使用
+          </p>
+          <p data-x-remaining>{initial.remaining}文字相当の余裕</p>
+        </div>
+
+        <div class="admin-actions">
+          <button type="button" class="admin-copy" data-x-copy disabled={initial.status === "empty"}>投稿文をコピー</button>
+          <a
+            class="admin-open-x"
+            data-x-open
+            href={initial.status === "ready" ? `https://x.com/intent/post?text=${encodeURIComponent(initial.text)}` : "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-disabled={initial.status === "empty" ? "true" : "false"}
+          >X投稿画面を開く</a>
+        </div>
+        <p class="admin-message" data-x-message aria-live="polite"></p>
+
+        <section class="admin-selected-items" aria-labelledby="selected-items-title">
+          <h3 id="selected-items-title">使用した商品</h3>
+          <ol data-x-items>
+            {initial.items.map((item) => (
+              <li><strong>{item.name}</strong><span>{item.sourceKey}・現在{item.rank}位</span></li>
+            ))}
+          </ol>
+        </section>
+      </section>
+    </div>
+  </div>
+
+  <script type="application/json" data-x-ranking set:html={rankingJson}></script>
+</AdminLayout>
+
+<script>
+  import { generateXPost, weightedXLength } from "../../../scripts/lib/x-post-generator.mjs";
+
+  const rankingElement = document.querySelector("[data-x-ranking]");
+  const rankingData = rankingElement ? JSON.parse(rankingElement.textContent || "{}") : { items: [] };
+
+  document.querySelectorAll("[data-x-post-generator]").forEach((root) => {
+    const windowSelect = root.querySelector("[data-x-window]");
+    const sourceSelect = root.querySelector("[data-x-source]");
+    const kindSelect = root.querySelector("[data-x-kind]");
+    const limitSelect = root.querySelector("[data-x-limit]");
+    const hashtagCheckbox = root.querySelector("[data-x-hashtag]");
+    const linkCheckbox = root.querySelector("[data-x-link]");
+    const regenerateButton = root.querySelector("[data-x-regenerate]");
+    const textarea = root.querySelector("[data-x-text]");
+    const count = root.querySelector("[data-x-count]");
+    const remaining = root.querySelector("[data-x-remaining]");
+    const summary = root.querySelector("[data-x-summary]");
+    const empty = root.querySelector("[data-x-empty]");
+    const copyButton = root.querySelector("[data-x-copy]");
+    const openLink = root.querySelector("[data-x-open]");
+    const message = root.querySelector("[data-x-message]");
+    const itemList = root.querySelector("[data-x-items]");
+
+    const updateLength = () => {
+      const length = weightedXLength(textarea.value);
+      const rest = 280 - length;
+      count.textContent = `${length} / 280`;
+      count.classList.toggle("is-over", rest < 0);
+      remaining.textContent = rest >= 0
+        ? `${rest}文字相当の余裕`
+        : `${Math.abs(rest)}文字相当オーバー`;
+      copyButton.disabled = !textarea.value || rest < 0;
+      openLink.setAttribute("aria-disabled", String(!textarea.value || rest < 0));
+      openLink.href = textarea.value && rest >= 0
+        ? `https://x.com/intent/post?text=${encodeURIComponent(textarea.value)}`
+        : "#";
+    };
+
+    const renderItems = (items) => {
+      itemList.replaceChildren(...items.map((item) => {
+        const li = document.createElement("li");
+        const strong = document.createElement("strong");
+        const span = document.createElement("span");
+        strong.textContent = item.name;
+        span.textContent = `${item.sourceKey}・現在${item.rank}位`;
+        li.append(strong, span);
+        return li;
+      }));
+    };
+
+    const regenerate = () => {
+      const result = generateXPost(rankingData, {
+        window: windowSelect.value,
+        source: sourceSelect.value,
+        kind: kindSelect.value,
+        limit: Number(limitSelect.value),
+        includeLink: linkCheckbox.checked,
+        includeHashtag: hashtagCheckbox.checked,
+        siteUrl: root.dataset.siteUrl
+      });
+      const ready = result.status === "ready";
+      textarea.hidden = !ready;
+      empty.hidden = ready;
+      textarea.value = result.text;
+      summary.textContent = ready
+        ? `候補${result.availableCount}件から${result.selectedCount}件を使用`
+        : "使用できる変化は0件";
+      renderItems(result.items);
+      message.textContent = ready ? "投稿候補を更新しました。" : "";
+      updateLength();
+    };
+
+    regenerateButton.addEventListener("click", regenerate);
+    [windowSelect, sourceSelect, kindSelect, limitSelect, hashtagCheckbox, linkCheckbox]
+      .forEach((control) => control.addEventListener("change", regenerate));
+    textarea.addEventListener("input", updateLength);
+
+    copyButton.addEventListener("click", async () => {
+      if (copyButton.disabled) return;
+      try {
+        await navigator.clipboard.writeText(textarea.value);
+      } catch {
+        textarea.focus();
+        textarea.select();
+        document.execCommand("copy");
+      }
+      message.textContent = "投稿文をコピーしました。";
+    });
+
+    openLink.addEventListener("click", (event) => {
+      if (openLink.getAttribute("aria-disabled") === "true") event.preventDefault();
+    });
+    updateLength();
+  });
+</script>

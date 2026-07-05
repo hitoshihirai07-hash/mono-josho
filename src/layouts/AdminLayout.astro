@@ -1,0 +1,27 @@
+---
+import "../styles/admin.css";
+
+interface Props {
+  title?: string;
+}
+
+const { title = "管理画面" } = Astro.props;
+---
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow,noarchive" />
+    <meta name="referrer" content="no-referrer" />
+    <link rel="icon" href="/brand/icon.png" type="image/png" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="admin-header">
+      <a href="/"><img src="/brand/icon.png" alt="" width="38" height="38" />モノ上昇便</a>
+      <span>管理ツール</span>
+    </header>
+    <main><slot /></main>
+  </body>
+</html>

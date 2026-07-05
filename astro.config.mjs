@@ -14,6 +14,7 @@ export default defineConfig({
   integrations: [sitemap({
     filter: (page) => {
       const pathname = new URL(page).pathname;
+      if (pathname.startsWith("/admin/")) return false;
       if (pathname === "/articles/current-game-ranking/") return false;
       if (pathname === "/articles/weekly-rising-stationery/") return false;
       if (pathname === "/articles/" && !hasPublishedArchive) return false;
