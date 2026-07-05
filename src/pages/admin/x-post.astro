@@ -34,7 +34,7 @@ const updatedLabel = ranking.updatedAt
     }).format(new Date(ranking.updatedAt))
   : "データ未取得";
 ---
-<AdminLayout title="X投稿改善｜モノ上昇便 管理ツール">
+<AdminLayout title="X投稿改善｜モノ上昇便 管理ツール" active="x-post">
   <div class="admin-page" data-x-post-generator data-site-url={siteUrl}>
     <header class="admin-page-heading">
       <div>
@@ -591,5 +591,8 @@ const updatedLabel = ranking.updatedAt
     regenerate(true);
     refreshCandidateBoard();
     renderLog();
+    // 最初に開いた時点で、本命候補をそのまま投稿文に反映する。
+    // 候補がない場合だけ、上のまとめ投稿を残す。
+    if (currentCandidates[0]) loadCandidate(currentCandidates[0]);
   });
 </script>

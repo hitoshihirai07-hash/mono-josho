@@ -1,0 +1,66 @@
+---
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import ranking from "../../data/ranking.json";
+
+const updatedLabel = ranking.updatedAt
+  ? new Intl.DateTimeFormat("ja-JP", {
+      dateStyle: "medium",
+      timeStyle: "short",
+      timeZone: "Asia/Tokyo"
+    }).format(new Date(ranking.updatedAt))
+  : "データ未取得";
+---
+<AdminLayout title="管理トップ｜モノ上昇便" active="home">
+  <div class="admin-page admin-dashboard">
+    <header class="admin-page-heading">
+      <div>
+        <p class="admin-kicker">MONO JOSHO ADMIN</p>
+        <h1>管理トップ</h1>
+        <p>投稿候補の確認と投稿後の記録を、公開サイトとは分けて扱うための画面です。</p>
+      </div>
+      <dl>
+        <div><dt>ランキング更新</dt><dd>{updatedLabel}</dd></div>
+        <div><dt>取得商品</dt><dd>{ranking.items?.length || 0}件</dd></div>
+      </dl>
+    </header>
+
+    <section class="admin-dashboard-primary" aria-labelledby="x-post-tool-title">
+      <div>
+        <p class="admin-kicker">X POST WORKSPACE</p>
+        <h2 id="x-post-tool-title">X投稿を改善する</h2>
+        <p>今日の候補を選び、短い投稿文に整え、投稿後に記録できます。ランキングの更新回数に合わせて投稿するのではなく、投稿価値の高い変化だけを選ぶための画面です。</p>
+      </div>
+      <div class="admin-dashboard-actions">
+        <a class="admin-primary-link" href="/admin/x-post/">X投稿を開く</a>
+        <p>本命候補は、開いた直後から投稿文に反映されます。</p>
+      </div>
+    </section>
+
+    <section class="admin-dashboard-grid" aria-label="管理画面でできること">
+      <article>
+        <span class="admin-dashboard-number">01</span>
+        <h2>候補を絞る</h2>
+        <p>順位上昇・新登場・値下がりをもとに、まず見る候補を3件までにします。</p>
+      </article>
+      <article>
+        <span class="admin-dashboard-number">02</span>
+        <h2>投稿文を整える</h2>
+        <p>商品名を短くし、1件投稿または少数のまとめ投稿としてコピーできます。</p>
+      </article>
+      <article>
+        <span class="admin-dashboard-number">03</span>
+        <h2>重複を避ける</h2>
+        <p>投稿後に記録すると、同じ商品を直近7日間の候補から外せます。</p>
+      </article>
+    </section>
+
+    <section class="admin-security-note" aria-labelledby="security-note-title">
+      <div>
+        <p class="admin-kicker">ADMIN ACCESS</p>
+        <h2 id="security-note-title">管理画面のパスワード</h2>
+        <p>管理画面は公開サイトとは別に、CloudflareのSecretで設定したパスワードで保護します。パスワードをサイトのコードや公開ページに保存しません。</p>
+      </div>
+      <p>設定手順は同梱の <code>docs/ADMIN_AUTH_SETUP.md</code> にまとめています。</p>
+    </section>
+  </div>
+</AdminLayout>
