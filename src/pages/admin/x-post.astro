@@ -3,6 +3,7 @@ import AdminLayout from "../../layouts/AdminLayout.astro";
 import ranking from "../../data/ranking.json";
 import {
   generateXPost,
+  generateXPostCandidates,
   X_POST_KINDS,
   X_POST_SOURCES,
   X_POST_WINDOWS
@@ -13,12 +14,17 @@ const defaultOptions = {
   window: "day",
   source: "games",
   kind: "auto",
-  limit: 3,
+  limit: 2,
   includeLink: false,
   includeHashtag: false,
   siteUrl
 };
 const initial = generateXPost(ranking, defaultOptions);
+const initialCandidates = generateXPostCandidates(ranking, {
+  window: "day",
+  source: "games",
+  limit: 3
+});
 const rankingJson = JSON.stringify(ranking).replaceAll("<", "\\u003c");
 const updatedLabel = ranking.updatedAt
   ? new Intl.DateTimeFormat("ja-JP", {
@@ -28,13 +34,13 @@ const updatedLabel = ranking.updatedAt
     }).format(new Date(ranking.updatedAt))
   : "データ未取得";
 ---
-<AdminLayout title="X投稿文作成｜モノ上昇便 管理ツール">
-  <div class="admin-page">
+<AdminLayout title="X投稿改善｜モノ上昇便 管理ツール">
+  <div class="admin-page" data-x-post-generator data-site-url={siteUrl}>
     <header class="admin-page-heading">
       <div>
-        <p class="admin-kicker">X POST GENERATOR</p>
-        <h1>X投稿文をランキングから作成</h1>
-        <p>実際の順位・価格変化だけを使って投稿候補を生成します。自動投稿は行いません。</p>
+        <p class="admin-kicker">X POST WORKSPACE</p>
+        <h1>X投稿を選んで、整えて、記録する</h1>
+        <p>順位・価格の変化から投稿候補を絞り、同じ商品を続けて出しにくくする管理画面です。自動投稿は行いません。</p>
       </div>
       <dl>
         <div><dt>ランキング更新</dt><dd>{updatedLabel}</dd></div>
@@ -42,9 +48,67 @@ const updatedLabel = ranking.updatedAt
       </dl>
     </header>
 
-    <div class="admin-workspace" data-x-post-generator data-site-url={siteUrl}>
+    <section class="admin-candidate-board" aria-labelledby="candidate-board-title">
+      <div class="admin-section-heading">
+        <div>
+          <p class="admin-kicker">TODAY'S PICKS</p>
+          <h2 id="candidate-board-title">今日の投稿候補</h2>
+          <p>まずは1件に絞った投稿を優先。上昇幅・現在順位・値下がりを合わせて並べます。</p>
+        </div>
+        <p class="admin-board-status" data-x-candidate-status>候補を確認中</p>
+      </div>
+
+      <div class="admin-candidate-controls">
+        <label>
+          <span>比較期間</span>
+          <select data-x-candidate-window>
+            {X_POST_WINDOWS.map((option) => (
+              <option value={option.key} selected={option.key === "day"}>{option.label}</option>
+            ))}
+          </select>
+        </label>
+        <label>
+          <span>カテゴリ・機種</span>
+          <select data-x-candidate-source>
+            {X_POST_SOURCES.map((option) => (
+              <option value={option.key} selected={option.key === "games"}>{option.label}</option>
+            ))}
+          </select>
+        </label>
+        <label class="admin-check admin-check-compact">
+          <input type="checkbox" data-x-hide-posted checked />
+          <span>直近7日で投稿した商品を隠す</span>
+        </label>
+        <button type="button" class="admin-secondary-button" data-x-candidate-refresh>候補を更新</button>
+      </div>
+      <p class="admin-board-note">投稿記録はこのブラウザに保存されます。別の端末で使う場合は、下のCSV保存を使って残してください。</p>
+
+      <div class="admin-candidate-grid" data-x-candidate-grid>
+        {initialCandidates.items.map((candidate, index) => (
+          <article class="admin-candidate-card">
+            <div class="admin-candidate-card-top">
+              <span class="admin-priority">{index === 0 ? "本命" : index === 1 ? "次点" : "予備"}</span>
+              <span>{candidate.sourceLabel}・現在{candidate.rank}位</span>
+            </div>
+            <h3>{candidate.displayName}</h3>
+            <ul>
+              {candidate.reasons.map((reason) => <li>{reason}</li>)}
+            </ul>
+            <button type="button" class="admin-candidate-use" data-x-candidate-code={candidate.code}>この1件で投稿文を作る</button>
+          </article>
+        ))}
+      </div>
+      <div class="admin-empty admin-candidate-empty" data-x-candidate-empty hidden>
+        <strong>投稿候補がありません</strong>
+        <p>比較期間・カテゴリを変えるか、投稿済みの除外を一度外してください。</p>
+      </div>
+    </section>
+
+    <div class="admin-workspace">
       <section class="admin-controls" aria-labelledby="generator-settings-title">
-        <h2 id="generator-settings-title">生成条件</h2>
+        <p class="admin-kicker">POST COMPOSER</p>
+        <h2 id="generator-settings-title">条件からまとめ投稿を作る</h2>
+        <p class="admin-controls-lead">上の1件投稿で足りないときだけ、複数の変化をまとめます。</p>
         <label>
           <span>比較期間</span>
           <select data-x-window>
@@ -73,8 +137,8 @@ const updatedLabel = ranking.updatedAt
           <span>掲載する商品数</span>
           <select data-x-limit>
             <option value="1">1件</option>
-            <option value="2">2件</option>
-            <option value="3" selected>3件まで</option>
+            <option value="2" selected>2件まで</option>
+            <option value="3">3件まで</option>
           </select>
         </label>
         <label class="admin-check">
@@ -85,14 +149,14 @@ const updatedLabel = ranking.updatedAt
           <input type="checkbox" data-x-link />
           <span>サイトURLを付ける</span>
         </label>
-        <button type="button" class="admin-regenerate" data-x-regenerate>この条件で再生成</button>
-        <p class="admin-control-note">同じ商品が複数ランキングにある場合は重複を除外します。280文字を超える場合は掲載件数を自動で減らします。</p>
+        <button type="button" class="admin-regenerate" data-x-regenerate>この条件でまとめ投稿を作る</button>
+        <p class="admin-control-note">同じ商品が複数ランキングにある場合は、投稿用の商品名に整えて1件だけにします。280文字を超える場合は掲載件数を自動で減らします。</p>
       </section>
 
       <section class="admin-editor" aria-labelledby="post-editor-title">
         <div class="admin-editor-heading">
           <div>
-            <p class="admin-kicker">PREVIEW</p>
+            <p class="admin-kicker" data-x-mode-label>POST PREVIEW</p>
             <h2 id="post-editor-title">投稿文</h2>
           </div>
           <p class:list={{ "admin-count": true, "is-over": initial.remaining < 0 }} data-x-count>
@@ -130,29 +194,90 @@ const updatedLabel = ranking.updatedAt
             rel="noopener noreferrer"
             aria-disabled={initial.status === "empty" ? "true" : "false"}
           >X投稿画面を開く</a>
+          <button type="button" class="admin-record" data-x-record disabled={initial.status === "empty"}>投稿後に記録</button>
         </div>
         <p class="admin-message" data-x-message aria-live="polite"></p>
 
         <section class="admin-selected-items" aria-labelledby="selected-items-title">
-          <h3 id="selected-items-title">使用した商品</h3>
+          <h3 id="selected-items-title">投稿に使う商品</h3>
           <ol data-x-items>
             {initial.items.map((item) => (
-              <li><strong>{item.name}</strong><span>{item.sourceKey}・現在{item.rank}位</span></li>
+              <li>
+                <strong>{item.displayName}</strong>
+                <span>{item.sourceLabel}・現在{item.rank}位</span>
+              </li>
             ))}
           </ol>
         </section>
       </section>
     </div>
+
+    <section class="admin-post-log" aria-labelledby="post-log-title">
+      <div class="admin-section-heading">
+        <div>
+          <p class="admin-kicker">LOCAL POST LOG</p>
+          <h2 id="post-log-title">投稿記録</h2>
+          <p>「投稿後に記録」を押した内容を保存します。直近7日の同一商品は、上の投稿候補から自動で外せます。</p>
+        </div>
+        <button type="button" class="admin-secondary-button" data-x-log-export>記録をCSV保存</button>
+      </div>
+      <div class="admin-log-empty" data-x-log-empty>
+        まだ投稿記録はありません。
+      </div>
+      <ol class="admin-log-list" data-x-log-list></ol>
+    </section>
   </div>
 
   <script type="application/json" data-x-ranking set:html={rankingJson}></script>
 </AdminLayout>
 
 <script>
-  import { generateXPost, weightedXLength } from "../../../scripts/lib/x-post-generator.mjs";
+  import {
+    generateSingleXPost,
+    generateXPost,
+    generateXPostCandidates,
+    weightedXLength
+  } from "../../../scripts/lib/x-post-generator.mjs";
 
   const rankingElement = document.querySelector("[data-x-ranking]");
   const rankingData = rankingElement ? JSON.parse(rankingElement.textContent || "{}") : { items: [] };
+  const STORAGE_KEY = "mono-josho:x-post-log:v1";
+  const POSTED_SUPPRESS_DAYS = 7;
+
+  const formatDateTime = (value) => new Intl.DateTimeFormat("ja-JP", {
+    dateStyle: "medium",
+    timeStyle: "short",
+    timeZone: "Asia/Tokyo"
+  }).format(new Date(value));
+
+  const csvEscape = (value) => `"${String(value ?? "").replaceAll('"', '""')}"`;
+
+  const readLog = () => {
+    try {
+      const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+      return Array.isArray(parsed) ? parsed.filter((entry) => entry && entry.createdAt) : [];
+    } catch {
+      return [];
+    }
+  };
+
+  const writeLog = (records) => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(records.slice(0, 80)));
+  };
+
+  const recentPostedCodes = () => {
+    const cutoff = Date.now() - POSTED_SUPPRESS_DAYS * 24 * 60 * 60 * 1000;
+    return new Set(readLog()
+      .filter((entry) => new Date(entry.createdAt).getTime() >= cutoff)
+      .flatMap((entry) => Array.isArray(entry.itemCodes) ? entry.itemCodes : []));
+  };
+
+  const recentPostedProductIdentities = () => {
+    const cutoff = Date.now() - POSTED_SUPPRESS_DAYS * 24 * 60 * 60 * 1000;
+    return new Set(readLog()
+      .filter((entry) => new Date(entry.createdAt).getTime() >= cutoff)
+      .flatMap((entry) => Array.isArray(entry.itemProductIdentities) ? entry.itemProductIdentities : []));
+  };
 
   document.querySelectorAll("[data-x-post-generator]").forEach((root) => {
     const windowSelect = root.querySelector("[data-x-window]");
@@ -169,8 +294,29 @@ const updatedLabel = ranking.updatedAt
     const empty = root.querySelector("[data-x-empty]");
     const copyButton = root.querySelector("[data-x-copy]");
     const openLink = root.querySelector("[data-x-open]");
+    const recordButton = root.querySelector("[data-x-record]");
     const message = root.querySelector("[data-x-message]");
     const itemList = root.querySelector("[data-x-items]");
+    const modeLabel = root.querySelector("[data-x-mode-label]");
+
+    const candidateWindow = root.querySelector("[data-x-candidate-window]");
+    const candidateSource = root.querySelector("[data-x-candidate-source]");
+    const hidePosted = root.querySelector("[data-x-hide-posted]");
+    const candidateRefresh = root.querySelector("[data-x-candidate-refresh]");
+    const candidateGrid = root.querySelector("[data-x-candidate-grid]");
+    const candidateEmpty = root.querySelector("[data-x-candidate-empty]");
+    const candidateStatus = root.querySelector("[data-x-candidate-status]");
+    const logList = root.querySelector("[data-x-log-list]");
+    const logEmpty = root.querySelector("[data-x-log-empty]");
+    const logExport = root.querySelector("[data-x-log-export]");
+
+    let currentCandidates = [];
+    let activePost = {
+      style: "まとめ投稿",
+      source: sourceSelect.value,
+      window: windowSelect.value,
+      items: []
+    };
 
     const updateLength = () => {
       const length = weightedXLength(textarea.value);
@@ -180,9 +326,11 @@ const updatedLabel = ranking.updatedAt
       remaining.textContent = rest >= 0
         ? `${rest}文字相当の余裕`
         : `${Math.abs(rest)}文字相当オーバー`;
-      copyButton.disabled = !textarea.value || rest < 0;
-      openLink.setAttribute("aria-disabled", String(!textarea.value || rest < 0));
-      openLink.href = textarea.value && rest >= 0
+      const disabled = !textarea.value || rest < 0;
+      copyButton.disabled = disabled;
+      recordButton.disabled = disabled || !activePost.items.length;
+      openLink.setAttribute("aria-disabled", String(disabled));
+      openLink.href = !disabled
         ? `https://x.com/intent/post?text=${encodeURIComponent(textarea.value)}`
         : "#";
     };
@@ -192,14 +340,84 @@ const updatedLabel = ranking.updatedAt
         const li = document.createElement("li");
         const strong = document.createElement("strong");
         const span = document.createElement("span");
-        strong.textContent = item.name;
-        span.textContent = `${item.sourceKey}・現在${item.rank}位`;
+        strong.textContent = item.displayName || item.name || "商品名未取得";
+        span.textContent = `${item.sourceLabel || item.sourceKey || "楽天市場"}・現在${item.rank}位`;
         li.append(strong, span);
         return li;
       }));
     };
 
-    const regenerate = () => {
+    const refreshCandidateBoard = () => {
+      const result = generateXPostCandidates(rankingData, {
+        window: candidateWindow.value,
+        source: candidateSource.value,
+        limit: 3,
+        excludeCodes: hidePosted.checked ? [...recentPostedCodes()] : [],
+        excludeProductIdentities: hidePosted.checked ? [...recentPostedProductIdentities()] : []
+      });
+      currentCandidates = result.items;
+      candidateGrid.replaceChildren(...result.items.map((candidate, index) => {
+        const card = document.createElement("article");
+        card.className = "admin-candidate-card";
+
+        const top = document.createElement("div");
+        top.className = "admin-candidate-card-top";
+        const priority = document.createElement("span");
+        priority.className = "admin-priority";
+        priority.textContent = index === 0 ? "本命" : index === 1 ? "次点" : "予備";
+        const detail = document.createElement("span");
+        detail.textContent = `${candidate.sourceLabel}・現在${candidate.rank}位`;
+        top.append(priority, detail);
+
+        const title = document.createElement("h3");
+        title.textContent = candidate.displayName;
+        const reasons = document.createElement("ul");
+        candidate.reasons.forEach((reason) => {
+          const reasonItem = document.createElement("li");
+          reasonItem.textContent = reason;
+          reasons.append(reasonItem);
+        });
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "admin-candidate-use";
+        button.dataset.xCandidateCode = candidate.code;
+        button.textContent = "この1件で投稿文を作る";
+        card.append(top, title, reasons, button);
+        return card;
+      }));
+      candidateEmpty.hidden = result.status === "ready";
+      candidateGrid.hidden = result.status !== "ready";
+      candidateStatus.textContent = result.status === "ready"
+        ? `投稿候補 ${result.items.length}件`
+        : "候補なし";
+    };
+
+    const loadCandidate = (candidate) => {
+      if (!candidate) return;
+      const result = generateSingleXPost(candidate, {
+        includeLink: false,
+        includeHashtag: false,
+        siteUrl: root.dataset.siteUrl
+      });
+      const ready = result.status === "ready";
+      textarea.hidden = !ready;
+      empty.hidden = ready;
+      textarea.value = result.text;
+      activePost = {
+        style: "注目1件",
+        source: candidate.sourceKey,
+        window: candidate.windowKey,
+        items: [candidate]
+      };
+      modeLabel.textContent = "TODAY'S PICK";
+      summary.textContent = `${candidate.sourceLabel}の注目候補を1件で使用`;
+      renderItems(activePost.items);
+      message.textContent = "注目候補を投稿文に反映しました。投稿後は「投稿後に記録」を押してください。";
+      updateLength();
+      textarea.focus();
+    };
+
+    const regenerate = (silent = false) => {
       const result = generateXPost(rankingData, {
         window: windowSelect.value,
         source: sourceSelect.value,
@@ -213,18 +431,127 @@ const updatedLabel = ranking.updatedAt
       textarea.hidden = !ready;
       empty.hidden = ready;
       textarea.value = result.text;
+      activePost = {
+        style: "まとめ投稿",
+        source: sourceSelect.value,
+        window: windowSelect.value,
+        items: result.items
+      };
+      modeLabel.textContent = "POST COMPOSER";
       summary.textContent = ready
         ? `候補${result.availableCount}件から${result.selectedCount}件を使用`
         : "使用できる変化は0件";
       renderItems(result.items);
-      message.textContent = ready ? "投稿候補を更新しました。" : "";
+      if (!silent) message.textContent = ready ? "まとめ投稿の候補を更新しました。" : "";
       updateLength();
     };
 
-    regenerateButton.addEventListener("click", regenerate);
+    const renderLog = () => {
+      const records = readLog();
+      logList.replaceChildren(...records.map((record) => {
+        const li = document.createElement("li");
+        li.className = "admin-log-item";
+        const body = document.createElement("div");
+        const title = document.createElement("strong");
+        title.textContent = `${formatDateTime(record.createdAt)}・${record.style || "投稿"}`;
+        const detail = document.createElement("p");
+        detail.textContent = Array.isArray(record.itemNames) && record.itemNames.length
+          ? record.itemNames.join("／")
+          : "商品情報なし";
+        const text = document.createElement("p");
+        text.className = "admin-log-text";
+        text.textContent = record.text || "";
+        body.append(title, detail, text);
+
+        const remove = document.createElement("button");
+        remove.type = "button";
+        remove.className = "admin-log-delete";
+        remove.dataset.xLogDelete = record.id;
+        remove.textContent = "削除";
+        li.append(body, remove);
+        return li;
+      }));
+      logEmpty.hidden = records.length > 0;
+    };
+
+    const addRecord = () => {
+      if (recordButton.disabled || !activePost.items.length) return;
+      const records = readLog();
+      const itemCodes = activePost.items.map((item) => item.code).filter(Boolean);
+      const itemProductIdentities = activePost.items
+        .map((item) => item.productIdentity)
+        .filter(Boolean);
+      const isDuplicate = records.some((record) =>
+        record.text === textarea.value &&
+        Date.now() - new Date(record.createdAt).getTime() < 5 * 60 * 1000
+      );
+      if (isDuplicate) {
+        message.textContent = "同じ内容はすでに記録されています。";
+        return;
+      }
+      const id = globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+      records.unshift({
+        id,
+        createdAt: new Date().toISOString(),
+        style: activePost.style,
+        source: activePost.source,
+        window: activePost.window,
+        itemCodes,
+        itemProductIdentities,
+        itemNames: activePost.items.map((item) => item.displayName || item.name || "商品名未取得"),
+        text: textarea.value
+      });
+      try {
+        writeLog(records);
+        renderLog();
+        refreshCandidateBoard();
+        message.textContent = "投稿記録を保存しました。直近7日の同一商品は候補から外れます。";
+      } catch {
+        message.textContent = "投稿記録を保存できませんでした。ブラウザの保存設定を確認してください。";
+      }
+    };
+
+    const exportLog = () => {
+      const records = readLog();
+      if (!records.length) {
+        message.textContent = "保存できる投稿記録がありません。";
+        return;
+      }
+      const header = ["記録日時", "投稿形式", "カテゴリ", "比較期間", "商品", "商品コード", "投稿文"];
+      const rows = records.map((record) => [
+        formatDateTime(record.createdAt),
+        record.style || "",
+        record.source || "",
+        record.window || "",
+        (record.itemNames || []).join(" / "),
+        (record.itemCodes || []).join(" / "),
+        record.text || ""
+      ]);
+      const csv = [header, ...rows].map((row) => row.map(csvEscape).join(",")).join("\r\n");
+      const url = URL.createObjectURL(new Blob([`\uFEFF${csv}`], { type: "text/csv;charset=utf-8" }));
+      const anchor = document.createElement("a");
+      anchor.href = url;
+      anchor.download = `mono-josho-x-post-log-${new Date().toISOString().slice(0, 10)}.csv`;
+      document.body.append(anchor);
+      anchor.click();
+      anchor.remove();
+      URL.revokeObjectURL(url);
+      message.textContent = "投稿記録をCSVで保存しました。";
+    };
+
+    regenerateButton.addEventListener("click", () => regenerate());
     [windowSelect, sourceSelect, kindSelect, limitSelect, hashtagCheckbox, linkCheckbox]
-      .forEach((control) => control.addEventListener("change", regenerate));
+      .forEach((control) => control.addEventListener("change", () => regenerate()));
     textarea.addEventListener("input", updateLength);
+
+    candidateRefresh.addEventListener("click", refreshCandidateBoard);
+    [candidateWindow, candidateSource, hidePosted]
+      .forEach((control) => control.addEventListener("change", refreshCandidateBoard));
+    candidateGrid.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-x-candidate-code]");
+      if (!button) return;
+      loadCandidate(currentCandidates.find((candidate) => candidate.code === button.dataset.xCandidateCode));
+    });
 
     copyButton.addEventListener("click", async () => {
       if (copyButton.disabled) return;
@@ -239,8 +566,30 @@ const updatedLabel = ranking.updatedAt
     });
 
     openLink.addEventListener("click", (event) => {
-      if (openLink.getAttribute("aria-disabled") === "true") event.preventDefault();
+      if (openLink.getAttribute("aria-disabled") === "true") {
+        event.preventDefault();
+        return;
+      }
+      message.textContent = "X投稿画面を開きました。投稿後は戻って「投稿後に記録」を押してください。";
     });
-    updateLength();
+    recordButton.addEventListener("click", addRecord);
+    logExport.addEventListener("click", exportLog);
+    logList.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-x-log-delete]");
+      if (!button) return;
+      const records = readLog().filter((record) => record.id !== button.dataset.xLogDelete);
+      try {
+        writeLog(records);
+        renderLog();
+        refreshCandidateBoard();
+        message.textContent = "投稿記録を削除しました。";
+      } catch {
+        message.textContent = "投稿記録を削除できませんでした。";
+      }
+    });
+
+    regenerate(true);
+    refreshCandidateBoard();
+    renderLog();
   });
 </script>

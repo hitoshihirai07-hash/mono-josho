@@ -86,3 +86,78 @@ test("generator returns an empty state when comparison data is unavailable", () 
   assert.equal(result.text, "");
   assert.equal(result.selectedCount, 0);
 });
+
+test("game source includes the television-game overall ranking and can target it directly", () => {
+  const allGames = generateXPost(ranking, {
+    window: "day",
+    source: "games",
+    kind: "auto",
+    limit: 3
+  });
+  const overallOnly = generateXPost(ranking, {
+    window: "day",
+    source: "games-overall",
+    kind: "auto",
+    limit: 3
+  });
+  assert.equal(overallOnly.status, "ready");
+  assert.ok(overallOnly.items.every((item) => item.sourceKey === "games-overall"));
+  assert.ok(allGames.availableCount >= overallOnly.availableCount);
+});
+
+test("candidate board avoids duplicate product names from different stores", async () => {
+  const { generateXPostCandidates, generateSingleXPost } = await import("../scripts/lib/x-post-generator.mjs");
+  const candidateRanking = {
+    items: [
+      {
+        code: "store-a:1",
+        sourceKey: "switch",
+        categoryKey: "games",
+        itemTypeKey: "software",
+        name: "【特典付き】テストゲーム Switch HAC-P-TEST",
+        rank: 3,
+        price: 6500,
+        dayComparisonReady: true,
+        dayPreviousRank: 20,
+        dayDelta: 17,
+        dayIsNew: false,
+        dayPriceChange: 0
+      },
+      {
+        code: "store-b:1",
+        sourceKey: "games-overall",
+        categoryKey: "games",
+        itemTypeKey: "software",
+        name: "テストゲーム Switch HAC-P-TEST",
+        rank: 2,
+        price: 6400,
+        dayComparisonReady: true,
+        dayPreviousRank: 12,
+        dayDelta: 10,
+        dayIsNew: false,
+        dayPriceChange: -100
+      },
+      {
+        code: "store-c:1",
+        sourceKey: "ps5",
+        categoryKey: "games",
+        itemTypeKey: "software",
+        name: "別のテストゲーム",
+        rank: 4,
+        price: 7200,
+        dayComparisonReady: true,
+        dayPreviousRank: 14,
+        dayDelta: 10,
+        dayIsNew: false,
+        dayPriceChange: 0
+      }
+    ]
+  };
+  const result = generateXPostCandidates(candidateRanking, {
+    window: "day",
+    source: "games",
+    limit: 3
+  });
+  assert.equal(result.items.length, 2);
+  assert.match(generateSingleXPost(result.items[0]).text, /今日のランキングの動き/);
+});
