@@ -3,15 +3,15 @@
     "weekKey": "2026-W28",
     "periodLabel": "2026年7月6日〜7月12日",
     "headline": "2026年7月6日〜7月12日のゲームランキングで動いた3商品",
-    "summary": "トモダチコレクション わくわく生活、新品 Nintendo Switch 2 日本語 国内専用 日本国内版 BEE-S-KB6CA ニンテンドー スイッチ2 本体 任天堂 新型 送料無料 任天堂switch2 プレゼント クリスマスなど、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
+    "summary": "【特典】ACE COMBAT 8: WINGS OF THEVE(【早期購入封入特典】DLC)、新品 Nintendo Switch 2 日本語 国内専用 日本国内版 BEE-S-KB6CA ニンテンドー スイッチ2 本体 任天堂 新型 送料無料 任天堂switch2 プレゼント クリスマスなど、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
     "points": [
       {
         "kind": "rank-rise",
-        "sourceKey": "switch",
-        "itemCode": "book:21864503",
-        "itemName": "トモダチコレクション わくわく生活",
-        "title": "Switchでトモダチコレクション わくわく生活が上昇",
-        "body": "トモダチコレクション わくわく生活はSwitchランキングで前週13位から3位へ、10ランク上昇しました。"
+        "sourceKey": "ps5",
+        "itemCode": "book:21983962",
+        "itemName": "【特典】ACE COMBAT 8: WINGS OF THEVE(【早期購入封入特典】DLC)",
+        "title": "PS5で【特典】ACE COMBAT 8: WINGS OF THEVE(【早期購入封入特典】DLC)が上昇",
+        "body": "【特典】ACE COMBAT 8: WINGS OF THEVE(【早期購入封入特典】DLC)はPS5ランキングで前週13位から5位へ、8ランク上昇しました。"
       },
       {
         "kind": "price-drop",
@@ -23,15 +23,15 @@
       },
       {
         "kind": "new",
-        "sourceKey": "ps4",
-        "itemCode": "book:20354779",
-        "itemName": "LOST JUDGMENT：裁かれざる記憶 PS4版",
-        "title": "PS4にLOST JUDGMENT：裁かれざる記憶 PS4版が新登場",
-        "body": "LOST JUDGMENT：裁かれざる記憶 PS4版がPS4ランキング1位に新しく入りました。"
+        "sourceKey": "ps5",
+        "itemCode": "otakarakan:10158041",
+        "itemName": "【中古】SONY PlayStation 5 Pro CFI-7000B01 PS5 \"プレイステーション5 本体\"【加納店】",
+        "title": "PS5に【中古】SONY PlayStation 5 Pro CFI-7000B01 PS5 \"プレイステーション5 本体\"【加納店】が新登場",
+        "body": "【中古】SONY PlayStation 5 Pro CFI-7000B01 PS5 \"プレイステーション5 本体\"【加納店】がPS5ランキング1位に新しく入りました。"
       }
     ],
     "publishedAt": "2026-07-06T00:00:00+09:00",
-    "updatedAt": "2026-07-08T00:05:54.300Z",
+    "updatedAt": "2026-07-08T06:28:54.548Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
