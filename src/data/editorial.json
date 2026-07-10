@@ -3,35 +3,35 @@
     "weekKey": "2026-W28",
     "periodLabel": "2026年7月6日〜7月12日",
     "headline": "2026年7月6日〜7月12日のゲームランキングで動いた3商品",
-    "summary": "Nintendo【Switch】 リズム天国 ミラクルスターズ パッケージ版 アクション パーティー リズムに合わせて 遊びが盛だくさん ともだちや家族と集まって 1台の本体で一緒にあそべる、【新品】SIE PS5 プレイステーション5 デジタル・エディション 日本語専用 Console Language： Japanese only CFI-2200B01 825GBなど、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
+    "summary": "【特典】ACE COMBAT 8: WINGS OF THEVE(【早期購入封入特典】DLC)、【楽天ブックス限定特典】リズム天国 ミラクルスターズ(デコレーションアイテムセット)など、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
     "points": [
       {
         "kind": "rank-rise",
+        "sourceKey": "ps5",
+        "itemCode": "book:21983962",
+        "itemName": "【特典】ACE COMBAT 8: WINGS OF THEVE(【早期購入封入特典】DLC)",
+        "title": "PS5で【特典】ACE COMBAT 8: WINGS OF THEVE(【早期購入封入特典】DLC)が上昇",
+        "body": "【特典】ACE COMBAT 8: WINGS OF THEVE(【早期購入封入特典】DLC)はPS5ランキングで前週12位から4位へ、8ランク上昇しました。"
+      },
+      {
+        "kind": "price-drop",
         "sourceKey": "switch",
-        "itemCode": "emedama:11291390",
-        "itemName": "Nintendo【Switch】 リズム天国 ミラクルスターズ パッケージ版 アクション パーティー リズムに合わせて 遊びが盛だくさん ともだちや家族と集まって 1台の本体で一緒にあそべる",
-        "title": "SwitchでNintendo【Switch】 リズム天国 ミラクルスターズ パッケージ版 アクション パーティー リズムに合わせて 遊びが盛だくさん ともだちや家族と集まって 1台の本体で一緒にあそべるが上昇",
-        "body": "Nintendo【Switch】 リズム天国 ミラクルスターズ パッケージ版 アクション パーティー リズムに合わせて 遊びが盛だくさん ともだちや家族と集まって 1台の本体で一緒にあそべるはSwitchランキングで前週19位から5位へ、14ランク上昇しました。"
+        "itemCode": "book:21931807",
+        "itemName": "【楽天ブックス限定特典】リズム天国 ミラクルスターズ(デコレーションアイテムセット)",
+        "title": "Switchで¥65値下がり",
+        "body": "【楽天ブックス限定特典】リズム天国 ミラクルスターズ(デコレーションアイテムセット)は前週¥6,239から¥6,174へ、¥65値下がりしました。"
       },
       {
         "kind": "new",
         "sourceKey": "ps5",
-        "itemCode": "auc-worldichi:10031624",
-        "itemName": "【新品】SIE PS5 プレイステーション5 デジタル・エディション 日本語専用 Console Language： Japanese only CFI-2200B01 825GB",
-        "title": "PS5に【新品】SIE PS5 プレイステーション5 デジタル・エディション 日本語専用 Console Language： Japanese only CFI-2200B01 825GBが新登場",
-        "body": "【新品】SIE PS5 プレイステーション5 デジタル・エディション 日本語専用 Console Language： Japanese only CFI-2200B01 825GBがPS5ランキング1位に新しく入りました。"
-      },
-      {
-        "kind": "rank-rise",
-        "sourceKey": "ps5",
-        "itemCode": "book:21984777",
-        "itemName": "【特典】鬼武者 Way of the Sword(【初回購入封入特典】プロダクトコード)",
-        "title": "PS5で【特典】鬼武者 Way of the Sword(【初回購入封入特典】プロダクトコード)が上昇",
-        "body": "【特典】鬼武者 Way of the Sword(【初回購入封入特典】プロダクトコード)はPS5ランキングで前週11位から4位へ、7ランク上昇しました。"
+        "itemCode": "yamada-denki:10674982",
+        "itemName": "PlayStation(R)5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01",
+        "title": "PS5にPlayStation(R)5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01が新登場",
+        "body": "PlayStation(R)5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01がPS5ランキング1位に新しく入りました。"
       }
     ],
     "publishedAt": "2026-07-06T00:00:00+09:00",
-    "updatedAt": "2026-07-10T07:36:44.559Z",
+    "updatedAt": "2026-07-10T13:03:24.377Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
