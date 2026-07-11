@@ -3,15 +3,15 @@
     "weekKey": "2026-W28",
     "periodLabel": "2026年7月6日〜7月12日",
     "headline": "2026年7月6日〜7月12日のゲームランキングで動いた3商品",
-    "summary": "ディスクドライブ、【楽天ブックス限定特典】リズム天国 ミラクルスターズ(デコレーションアイテムセット)など、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
+    "summary": "【特典】プロ野球スピリッツ2026(【早期購入封入特典】DLCチラシ)、【楽天ブックス限定特典】リズム天国 ミラクルスターズ(デコレーションアイテムセット)など、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
     "points": [
       {
         "kind": "rank-rise",
         "sourceKey": "ps5",
-        "itemCode": "book:21101679",
-        "itemName": "ディスクドライブ",
-        "title": "PS5でディスクドライブが上昇",
-        "body": "ディスクドライブはPS5ランキングで前週5位から1位へ、4ランク上昇しました。"
+        "itemCode": "book:21936645",
+        "itemName": "【特典】プロ野球スピリッツ2026(【早期購入封入特典】DLCチラシ)",
+        "title": "PS5で【特典】プロ野球スピリッツ2026(【早期購入封入特典】DLCチラシ)が上昇",
+        "body": "【特典】プロ野球スピリッツ2026(【早期購入封入特典】DLCチラシ)はPS5ランキングで前週10位から5位へ、5ランク上昇しました。"
       },
       {
         "kind": "price-drop",
@@ -23,15 +23,15 @@
       },
       {
         "kind": "new",
-        "sourceKey": "ps4",
-        "itemCode": "bookoffonline:13690702",
-        "itemName": "【中古】 信長の野望　創造　with　パワーアップキット／PS4",
-        "title": "PS4に【中古】 信長の野望　創造　with　パワーアップキット／PS4が新登場",
-        "body": "【中古】 信長の野望　創造　with　パワーアップキット／PS4がPS4ランキング1位に新しく入りました。"
+        "sourceKey": "ps5",
+        "itemCode": "yamada-denki:10674982",
+        "itemName": "PlayStation(R)5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01",
+        "title": "PS5にPlayStation(R)5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01が新登場",
+        "body": "PlayStation(R)5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01がPS5ランキング1位に新しく入りました。"
       }
     ],
     "publishedAt": "2026-07-06T00:00:00+09:00",
-    "updatedAt": "2026-07-11T00:05:17.288Z",
+    "updatedAt": "2026-07-11T06:13:41.716Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
