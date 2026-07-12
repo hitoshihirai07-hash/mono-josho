@@ -3,15 +3,15 @@
     "weekKey": "2026-W28",
     "periodLabel": "2026年7月6日〜7月12日",
     "headline": "2026年7月6日〜7月12日のゲームランキングで動いた3商品",
-    "summary": "【新品・即納】Nintendo Switch2 本体（日本語・国内専用）BEE-S-KB6CA、PlayStation(R)5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01など、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
+    "summary": "【特典】アサシン クリード ブラック フラッグ RE:シンクロ(【先着購入封入特典】黒髭のクリムゾンパック)、PlayStation(R)5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01など、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
     "points": [
       {
         "kind": "rank-rise",
-        "sourceKey": "switch",
-        "itemCode": "lcs-live:10018404",
-        "itemName": "【新品・即納】Nintendo Switch2 本体（日本語・国内専用）BEE-S-KB6CA",
-        "title": "Switchで【新品・即納】Nintendo Switch2 本体（日本語・国内専用）BEE-S-KB6CAが上昇",
-        "body": "【新品・即納】Nintendo Switch2 本体（日本語・国内専用）BEE-S-KB6CAはSwitchランキングで前週21位から3位へ、18ランク上昇しました。"
+        "sourceKey": "ps5",
+        "itemCode": "book:21947298",
+        "itemName": "【特典】アサシン クリード ブラック フラッグ RE:シンクロ(【先着購入封入特典】黒髭のクリムゾンパック)",
+        "title": "PS5で【特典】アサシン クリード ブラック フラッグ RE:シンクロ(【先着購入封入特典】黒髭のクリムゾンパック)が上昇",
+        "body": "【特典】アサシン クリード ブラック フラッグ RE:シンクロ(【先着購入封入特典】黒髭のクリムゾンパック)はPS5ランキングで前週28位から5位へ、23ランク上昇しました。"
       },
       {
         "kind": "new",
@@ -23,15 +23,15 @@
       },
       {
         "kind": "rank-rise",
-        "sourceKey": "switch",
-        "itemCode": "book:21894172",
-        "itemName": "【特典】パワフルプロ野球2026-2027(【早期購入封入特典】DLCチラシ)",
-        "title": "Switchで【特典】パワフルプロ野球2026-2027(【早期購入封入特典】DLCチラシ)が上昇",
-        "body": "【特典】パワフルプロ野球2026-2027(【早期購入封入特典】DLCチラシ)はSwitchランキングで前週19位から10位へ、9ランク上昇しました。"
+        "sourceKey": "ps5",
+        "itemCode": "book:21897628",
+        "itemName": "【特典】Echoes of Aincrad(【早期購入封入特典】追加武器セット：《プロト・エリュシデータ》シリーズ)",
+        "title": "PS5で【特典】Echoes of Aincrad(【早期購入封入特典】追加武器セット：《プロト・エリュシデータ》シリーズ)が上昇",
+        "body": "【特典】Echoes of Aincrad(【早期購入封入特典】追加武器セット：《プロト・エリュシデータ》シリーズ)はPS5ランキングで前週24位から14位へ、10ランク上昇しました。"
       }
     ],
     "publishedAt": "2026-07-06T00:00:00+09:00",
-    "updatedAt": "2026-07-12T00:02:22.732Z",
+    "updatedAt": "2026-07-12T06:33:20.051Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
