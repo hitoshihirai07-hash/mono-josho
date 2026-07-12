@@ -3,35 +3,35 @@
     "weekKey": "2026-W28",
     "periodLabel": "2026年7月6日〜7月12日",
     "headline": "2026年7月6日〜7月12日のゲームランキングで動いた3商品",
-    "summary": "トモダチコレクション わくわく生活、【楽天ブックス限定特典】リズム天国 ミラクルスターズ(デコレーションアイテムセット)など、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
+    "summary": "【新品・即納】Nintendo Switch2 本体（日本語・国内専用）BEE-S-KB6CA、PlayStation(R)5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01など、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
     "points": [
       {
         "kind": "rank-rise",
         "sourceKey": "switch",
-        "itemCode": "book:21864503",
-        "itemName": "トモダチコレクション わくわく生活",
-        "title": "Switchでトモダチコレクション わくわく生活が上昇",
-        "body": "トモダチコレクション わくわく生活はSwitchランキングで前週30位から2位へ、28ランク上昇しました。"
-      },
-      {
-        "kind": "price-drop",
-        "sourceKey": "switch",
-        "itemCode": "book:21931807",
-        "itemName": "【楽天ブックス限定特典】リズム天国 ミラクルスターズ(デコレーションアイテムセット)",
-        "title": "Switchで¥65値下がり",
-        "body": "【楽天ブックス限定特典】リズム天国 ミラクルスターズ(デコレーションアイテムセット)は前週¥6,239から¥6,174へ、¥65値下がりしました。"
+        "itemCode": "lcs-live:10018404",
+        "itemName": "【新品・即納】Nintendo Switch2 本体（日本語・国内専用）BEE-S-KB6CA",
+        "title": "Switchで【新品・即納】Nintendo Switch2 本体（日本語・国内専用）BEE-S-KB6CAが上昇",
+        "body": "【新品・即納】Nintendo Switch2 本体（日本語・国内専用）BEE-S-KB6CAはSwitchランキングで前週21位から3位へ、18ランク上昇しました。"
       },
       {
         "kind": "new",
-        "sourceKey": "ps4",
-        "itemCode": "iimoreuse:10009448",
-        "itemName": "PS4 コントローラー DUALSHOCK4 デュアルショック ワイヤレス 選べる 型番 カラー USBケーブル プレステ4【中古】【純正】【USBケーブル付き】",
-        "title": "PS4にPS4 コントローラー DUALSHOCK4 デュアルショック ワイヤレス 選べる 型番 カラー USBケーブル プレステ4【中古】【純正】【USBケーブル付き】が新登場",
-        "body": "PS4 コントローラー DUALSHOCK4 デュアルショック ワイヤレス 選べる 型番 カラー USBケーブル プレステ4【中古】【純正】【USBケーブル付き】がPS4ランキング1位に新しく入りました。"
+        "sourceKey": "ps5",
+        "itemCode": "yamada-denki:10674982",
+        "itemName": "PlayStation(R)5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01",
+        "title": "PS5にPlayStation(R)5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01が新登場",
+        "body": "PlayStation(R)5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01がPS5ランキング1位に新しく入りました。"
+      },
+      {
+        "kind": "rank-rise",
+        "sourceKey": "switch",
+        "itemCode": "book:21894172",
+        "itemName": "【特典】パワフルプロ野球2026-2027(【早期購入封入特典】DLCチラシ)",
+        "title": "Switchで【特典】パワフルプロ野球2026-2027(【早期購入封入特典】DLCチラシ)が上昇",
+        "body": "【特典】パワフルプロ野球2026-2027(【早期購入封入特典】DLCチラシ)はSwitchランキングで前週19位から10位へ、9ランク上昇しました。"
       }
     ],
     "publishedAt": "2026-07-06T00:00:00+09:00",
-    "updatedAt": "2026-07-11T11:43:09.951Z",
+    "updatedAt": "2026-07-12T00:02:22.732Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,

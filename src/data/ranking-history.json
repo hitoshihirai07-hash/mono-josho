@@ -19942,6 +19942,623 @@
           "price": 450
         }
       ]
+    },
+    {
+      "fetchedAt": "2026-07-12T00:02:22.732Z",
+      "items": [
+        {
+          "sourceKey": "games-overall",
+          "code": "yamada-denki:10674982",
+          "rank": 1,
+          "price": 55000
+        },
+        {
+          "sourceKey": "games-overall",
+          "code": "book:21931441",
+          "rank": 2,
+          "price": 5830
+        },
+        {
+          "sourceKey": "games-overall",
+          "code": "book:21864503",
+          "rank": 3,
+          "price": 6557
+        },
+        {
+          "sourceKey": "games-overall",
+          "code": "hoshigulf:10003847",
+          "rank": 4,
+          "price": 63600
+        },
+        {
+          "sourceKey": "games-overall",
+          "code": "uriurishop:10008046",
+          "rank": 5,
+          "price": 56290
+        },
+        {
+          "sourceKey": "games-overall",
+          "code": "lcs-live:10018404",
+          "rank": 6,
+          "price": 55698
+        },
+        {
+          "sourceKey": "games-overall",
+          "code": "alljapan-online-shop:10021278",
+          "rank": 7,
+          "price": 54950
+        },
+        {
+          "sourceKey": "games-overall",
+          "code": "book:21940602",
+          "rank": 8,
+          "price": 7480
+        },
+        {
+          "sourceKey": "games-overall",
+          "code": "book:21947298",
+          "rank": 9,
+          "price": 7422
+        },
+        {
+          "sourceKey": "games-overall",
+          "code": "book:21940603",
+          "rank": 10,
+          "price": 6507
+        },
+        {
+          "sourceKey": "games-overall",
+          "code": "yamada-denki:10683807",
+          "rank": 11,
+          "price": 6497
+        },
+        {
+          "sourceKey": "games-overall",
+          "code": "daichugame:10005059",
+          "rank": 12,
+          "price": 15900
+        },
+        {
+          "sourceKey": "games-overall",
+          "code": "book:21894173",
+          "rank": 13,
+          "price": 4180
+        },
+        {
+          "sourceKey": "games-overall",
+          "code": "outletplaza:11423489",
+          "rank": 14,
+          "price": 12480
+        },
+        {
+          "sourceKey": "games-overall",
+          "code": "d3p-webshop:10003425",
+          "rank": 15,
+          "price": 10978
+        },
+        {
+          "sourceKey": "games-overall",
+          "code": "centerwave:10000008",
+          "rank": 16,
+          "price": 10480
+        },
+        {
+          "sourceKey": "games-overall",
+          "code": "book:21599805",
+          "rank": 17,
+          "price": 9980
+        },
+        {
+          "sourceKey": "games-overall",
+          "code": "book:21845582",
+          "rank": 18,
+          "price": 9980
+        },
+        {
+          "sourceKey": "games-overall",
+          "code": "lcs-live:10013059",
+          "rank": 19,
+          "price": 9443
+        },
+        {
+          "sourceKey": "games-overall",
+          "code": "attasa:10000492",
+          "rank": 20,
+          "price": 8800
+        },
+        {
+          "sourceKey": "games-overall",
+          "code": "auc-worldichi:10004613",
+          "rank": 21,
+          "price": 8550
+        },
+        {
+          "sourceKey": "games-overall",
+          "code": "es-toys:12186561",
+          "rank": 22,
+          "price": 8530
+        },
+        {
+          "sourceKey": "games-overall",
+          "code": "centerwave:10000045",
+          "rank": 23,
+          "price": 7480
+        },
+        {
+          "sourceKey": "games-overall",
+          "code": "yamada-denki:10654043",
+          "rank": 24,
+          "price": 7900
+        },
+        {
+          "sourceKey": "games-overall",
+          "code": "book:21916219",
+          "rank": 25,
+          "price": 7722
+        },
+        {
+          "sourceKey": "games-overall",
+          "code": "book:21894172",
+          "rank": 26,
+          "price": 7623
+        },
+        {
+          "sourceKey": "games-overall",
+          "code": "book:21794999",
+          "rank": 27,
+          "price": 7573
+        },
+        {
+          "sourceKey": "games-overall",
+          "code": "book:21954318",
+          "rank": 28,
+          "price": 7480
+        },
+        {
+          "sourceKey": "games-overall",
+          "code": "renet3:12819281",
+          "rank": 29,
+          "price": 7343
+        },
+        {
+          "sourceKey": "games-overall",
+          "code": "mandai:10507941",
+          "rank": 30,
+          "price": 6980
+        },
+        {
+          "sourceKey": "switch",
+          "code": "book:21931441",
+          "rank": 1,
+          "price": 5830
+        },
+        {
+          "sourceKey": "switch",
+          "code": "book:21864503",
+          "rank": 2,
+          "price": 6557
+        },
+        {
+          "sourceKey": "switch",
+          "code": "lcs-live:10018404",
+          "rank": 3,
+          "price": 55698
+        },
+        {
+          "sourceKey": "switch",
+          "code": "alljapan-online-shop:10021278",
+          "rank": 4,
+          "price": 54950
+        },
+        {
+          "sourceKey": "switch",
+          "code": "book:21894173",
+          "rank": 5,
+          "price": 4180
+        },
+        {
+          "sourceKey": "switch",
+          "code": "d3p-webshop:10003425",
+          "rank": 6,
+          "price": 10978
+        },
+        {
+          "sourceKey": "switch",
+          "code": "lcs-live:10013059",
+          "rank": 7,
+          "price": 9443
+        },
+        {
+          "sourceKey": "switch",
+          "code": "auc-worldichi:10004613",
+          "rank": 8,
+          "price": 8550
+        },
+        {
+          "sourceKey": "switch",
+          "code": "book:21916219",
+          "rank": 9,
+          "price": 7722
+        },
+        {
+          "sourceKey": "switch",
+          "code": "book:21894172",
+          "rank": 10,
+          "price": 7623
+        },
+        {
+          "sourceKey": "switch",
+          "code": "book:21954318",
+          "rank": 11,
+          "price": 7480
+        },
+        {
+          "sourceKey": "switch",
+          "code": "renet3:12819281",
+          "rank": 12,
+          "price": 7343
+        },
+        {
+          "sourceKey": "switch",
+          "code": "book:21936642",
+          "rank": 13,
+          "price": 6930
+        },
+        {
+          "sourceKey": "switch",
+          "code": "book:21936644",
+          "rank": 14,
+          "price": 6930
+        },
+        {
+          "sourceKey": "switch",
+          "code": "outletplaza:11413544",
+          "rank": 15,
+          "price": 6780
+        },
+        {
+          "sourceKey": "switch",
+          "code": "es-toys:12199974",
+          "rank": 16,
+          "price": 6770
+        },
+        {
+          "sourceKey": "switch",
+          "code": "book:21903444",
+          "rank": 17,
+          "price": 6969
+        },
+        {
+          "sourceKey": "switch",
+          "code": "yamada-denki:10662044",
+          "rank": 18,
+          "price": 6590
+        },
+        {
+          "sourceKey": "switch",
+          "code": "rdownload:18493140",
+          "rank": 19,
+          "price": 6499
+        },
+        {
+          "sourceKey": "switch",
+          "code": "champ758:10005298",
+          "rank": 20,
+          "price": 6350
+        },
+        {
+          "sourceKey": "switch",
+          "code": "geoonline1:11807061",
+          "rank": 21,
+          "price": 6240
+        },
+        {
+          "sourceKey": "switch",
+          "code": "akaikumasan:10056888",
+          "rank": 22,
+          "price": 5880
+        },
+        {
+          "sourceKey": "switch",
+          "code": "yamada-denki:10683372",
+          "rank": 23,
+          "price": 5841
+        },
+        {
+          "sourceKey": "switch",
+          "code": "jism:14788711",
+          "rank": 24,
+          "price": 5840
+        },
+        {
+          "sourceKey": "switch",
+          "code": "book:21553198",
+          "rank": 25,
+          "price": 5788
+        },
+        {
+          "sourceKey": "switch",
+          "code": "qisi:10000005",
+          "rank": 26,
+          "price": 2680
+        },
+        {
+          "sourceKey": "switch",
+          "code": "llhat:10020498",
+          "rank": 27,
+          "price": 5335
+        },
+        {
+          "sourceKey": "switch",
+          "code": "machida:10519116",
+          "rank": 28,
+          "price": 5320
+        },
+        {
+          "sourceKey": "switch",
+          "code": "elecom:10070283",
+          "rank": 29,
+          "price": 4980
+        },
+        {
+          "sourceKey": "switch",
+          "code": "newcentury2018:10001300",
+          "rank": 30,
+          "price": 4780
+        },
+        {
+          "sourceKey": "ps5",
+          "code": "yamada-denki:10674982",
+          "rank": 1,
+          "price": 55000
+        },
+        {
+          "sourceKey": "ps5",
+          "code": "book:21947298",
+          "rank": 2,
+          "price": 7422
+        },
+        {
+          "sourceKey": "ps5",
+          "code": "outletplaza:11423489",
+          "rank": 3,
+          "price": 12480
+        },
+        {
+          "sourceKey": "ps5",
+          "code": "book:21794999",
+          "rank": 4,
+          "price": 7573
+        },
+        {
+          "sourceKey": "ps5",
+          "code": "book:20774310",
+          "rank": 5,
+          "price": 2229
+        },
+        {
+          "sourceKey": "ps5",
+          "code": "book:21599878",
+          "rank": 6,
+          "price": 4375
+        },
+        {
+          "sourceKey": "ps5",
+          "code": "book:21159133",
+          "rank": 7,
+          "price": 1188
+        },
+        {
+          "sourceKey": "ps4",
+          "code": "bookoffonline:15580471",
+          "rank": 1,
+          "price": 7623
+        },
+        {
+          "sourceKey": "ps4",
+          "code": "yms--online:10000666",
+          "rank": 2,
+          "price": 3980
+        },
+        {
+          "sourceKey": "ps4",
+          "code": "geoonline1:11764724",
+          "rank": 3,
+          "price": 2944
+        },
+        {
+          "sourceKey": "ps4",
+          "code": "geoonline1:11773620",
+          "rank": 4,
+          "price": 2877
+        },
+        {
+          "sourceKey": "ps4",
+          "code": "home-carpentry:10618895",
+          "rank": 5,
+          "price": 2195
+        },
+        {
+          "sourceKey": "stationery",
+          "code": "ideazakkaten:10000288",
+          "rank": 1,
+          "price": 1100
+        },
+        {
+          "sourceKey": "stationery",
+          "code": "satotop:10000425",
+          "rank": 2,
+          "price": 24530
+        },
+        {
+          "sourceKey": "stationery",
+          "code": "smartzakka:10036443",
+          "rank": 3,
+          "price": 2640
+        },
+        {
+          "sourceKey": "stationery",
+          "code": "bunbougu-shibuya:10103526",
+          "rank": 4,
+          "price": 18999
+        },
+        {
+          "sourceKey": "stationery",
+          "code": "parkerofficial:10000504",
+          "rank": 5,
+          "price": 5500
+        },
+        {
+          "sourceKey": "stationery",
+          "code": "zakkamaui:10005424",
+          "rank": 6,
+          "price": 13000
+        },
+        {
+          "sourceKey": "stationery",
+          "code": "unroof:10000001",
+          "rank": 7,
+          "price": 8999
+        },
+        {
+          "sourceKey": "stationery",
+          "code": "saibashop01:10211997",
+          "rank": 8,
+          "price": 4515
+        },
+        {
+          "sourceKey": "stationery",
+          "code": "bababa:10012771",
+          "rank": 9,
+          "price": 110
+        },
+        {
+          "sourceKey": "stationery",
+          "code": "marcoblanco:10001628",
+          "rank": 10,
+          "price": 10450
+        },
+        {
+          "sourceKey": "stationery",
+          "code": "auc-risecreation:10005343",
+          "rank": 11,
+          "price": 2980
+        },
+        {
+          "sourceKey": "stationery",
+          "code": "shimiz-bm:10952780",
+          "rank": 12,
+          "price": 10312
+        },
+        {
+          "sourceKey": "stationery",
+          "code": "officeyu:10756272",
+          "rank": 13,
+          "price": 147
+        },
+        {
+          "sourceKey": "stationery",
+          "code": "toysprime:10004013",
+          "rank": 14,
+          "price": 1000
+        },
+        {
+          "sourceKey": "stationery",
+          "code": "office31:10027352",
+          "rank": 15,
+          "price": 4980
+        },
+        {
+          "sourceKey": "stationery",
+          "code": "yamazenyamaya:10000002",
+          "rank": 16,
+          "price": 1220
+        },
+        {
+          "sourceKey": "stationery",
+          "code": "smartzakka:10036437",
+          "rank": 17,
+          "price": 2640
+        },
+        {
+          "sourceKey": "stationery",
+          "code": "hanko-otobe:10007619",
+          "rank": 18,
+          "price": 8780
+        },
+        {
+          "sourceKey": "stationery",
+          "code": "officeland:10165786",
+          "rank": 19,
+          "price": 8600
+        },
+        {
+          "sourceKey": "stationery",
+          "code": "t-crown:10002404",
+          "rank": 20,
+          "price": 7990
+        },
+        {
+          "sourceKey": "stationery",
+          "code": "auc-youstyle:10062485",
+          "rank": 21,
+          "price": 7700
+        },
+        {
+          "sourceKey": "stationery",
+          "code": "pennotatujin:10082177",
+          "rank": 22,
+          "price": 7480
+        },
+        {
+          "sourceKey": "stationery",
+          "code": "pilothouse:10000126",
+          "rank": 23,
+          "price": 7190
+        },
+        {
+          "sourceKey": "stationery",
+          "code": "livingut:10025809",
+          "rank": 24,
+          "price": 2330
+        },
+        {
+          "sourceKey": "stationery",
+          "code": "gakkensf:10009706",
+          "rank": 25,
+          "price": 990
+        },
+        {
+          "sourceKey": "stationery",
+          "code": "shimiz-bm:10952782",
+          "rank": 26,
+          "price": 6875
+        },
+        {
+          "sourceKey": "stationery",
+          "code": "asahiprocureace:11758763",
+          "rank": 27,
+          "price": 664
+        },
+        {
+          "sourceKey": "stationery",
+          "code": "franklinplanner:10007799",
+          "rank": 28,
+          "price": 6050
+        },
+        {
+          "sourceKey": "stationery",
+          "code": "hankoya-shop:10029711",
+          "rank": 29,
+          "price": 2900
+        },
+        {
+          "sourceKey": "stationery",
+          "code": "art-and-craft-lab:10005633",
+          "rank": 30,
+          "price": 6316
+        }
+      ]
     }
   ]
 }
