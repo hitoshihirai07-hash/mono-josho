@@ -1,37 +1,37 @@
 {
   "gameWeekly": {
-    "weekKey": "2026-W28",
-    "periodLabel": "2026年7月6日〜7月12日",
-    "headline": "2026年7月6日〜7月12日のゲームランキングで動いた3商品",
-    "summary": "新品 Nintendo Switch 2 日本語 国内専用 日本国内版 BEE-S-KB6CA ニンテンドー スイッチ2 本体 任天堂 新型 送料無料 任天堂switch2 プレゼント クリスマス、PlayStation(R)5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01など、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
+    "weekKey": "2026-W29",
+    "periodLabel": "2026年7月13日〜7月19日",
+    "headline": "2026年7月13日〜7月19日のゲームランキングで動いた3商品",
+    "summary": "【特典】アサシン クリード ブラック フラッグ RE:シンクロ(【先着購入封入特典】黒髭のクリムゾンパック)、新品 Nintendo Switch 2 日本語 国内専用 日本国内版 BEE-S-KB6CA ニンテンドー スイッチ2 本体 任天堂 新型 送料無料 任天堂switch2 プレゼント クリスマスなど、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
     "points": [
       {
         "kind": "rank-rise",
+        "sourceKey": "ps5",
+        "itemCode": "book:21947298",
+        "itemName": "【特典】アサシン クリード ブラック フラッグ RE:シンクロ(【先着購入封入特典】黒髭のクリムゾンパック)",
+        "title": "PS5で【特典】アサシン クリード ブラック フラッグ RE:シンクロ(【先着購入封入特典】黒髭のクリムゾンパック)が上昇",
+        "body": "【特典】アサシン クリード ブラック フラッグ RE:シンクロ(【先着購入封入特典】黒髭のクリムゾンパック)はPS5ランキングで前週19位から13位へ、6ランク上昇しました。"
+      },
+      {
+        "kind": "new",
         "sourceKey": "switch",
         "itemCode": "alljapan-online-shop:10021278",
         "itemName": "新品 Nintendo Switch 2 日本語 国内専用 日本国内版 BEE-S-KB6CA ニンテンドー スイッチ2 本体 任天堂 新型 送料無料 任天堂switch2 プレゼント クリスマス",
-        "title": "Switchで新品 Nintendo Switch 2 日本語 国内専用 日本国内版 BEE-S-KB6CA ニンテンドー スイッチ2 本体 任天堂 新型 送料無料 任天堂switch2 プレゼント クリスマスが上昇",
-        "body": "新品 Nintendo Switch 2 日本語 国内専用 日本国内版 BEE-S-KB6CA ニンテンドー スイッチ2 本体 任天堂 新型 送料無料 任天堂switch2 プレゼント クリスマスはSwitchランキングで前週23位から1位へ、22ランク上昇しました。"
+        "title": "Switchに新品 Nintendo Switch 2 日本語 国内専用 日本国内版 BEE-S-KB6CA ニンテンドー スイッチ2 本体 任天堂 新型 送料無料 任天堂switch2 プレゼント クリスマスが新登場",
+        "body": "新品 Nintendo Switch 2 日本語 国内専用 日本国内版 BEE-S-KB6CA ニンテンドー スイッチ2 本体 任天堂 新型 送料無料 任天堂switch2 プレゼント クリスマスがSwitchランキング1位に新しく入りました。"
       },
       {
         "kind": "new",
         "sourceKey": "ps5",
-        "itemCode": "yamada-denki:10674982",
-        "itemName": "PlayStation(R)5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01",
-        "title": "PS5にPlayStation(R)5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01が新登場",
-        "body": "PlayStation(R)5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01がPS5ランキング1位に新しく入りました。"
-      },
-      {
-        "kind": "rank-rise",
-        "sourceKey": "switch",
-        "itemCode": "book:21931807",
-        "itemName": "【楽天ブックス限定特典】リズム天国 ミラクルスターズ(デコレーションアイテムセット)",
-        "title": "Switchで【楽天ブックス限定特典】リズム天国 ミラクルスターズ(デコレーションアイテムセット)が上昇",
-        "body": "【楽天ブックス限定特典】リズム天国 ミラクルスターズ(デコレーションアイテムセット)はSwitchランキングで前週21位から3位へ、18ランク上昇しました。"
+        "itemCode": "yamada-denki:10691372",
+        "itemName": "【発売日翌日以降お届け】プロ野球スピリッツ2026 【PS5】 VH013-J1",
+        "title": "PS5に【発売日翌日以降お届け】プロ野球スピリッツ2026 【PS5】 VH013-J1が新登場",
+        "body": "【発売日翌日以降お届け】プロ野球スピリッツ2026 【PS5】 VH013-J1がPS5ランキング1位に新しく入りました。"
       }
     ],
-    "publishedAt": "2026-07-06T00:00:00+09:00",
-    "updatedAt": "2026-07-12T11:50:04.270Z",
+    "publishedAt": "2026-07-13T00:00:00+09:00",
+    "updatedAt": "2026-07-13T06:53:42.020Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
