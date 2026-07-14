@@ -3,35 +3,35 @@
     "weekKey": "2026-W29",
     "periodLabel": "2026年7月13日〜7月19日",
     "headline": "2026年7月13日〜7月19日のゲームランキングで動いた3商品",
-    "summary": "【楽天ブックス限定特典】リズム天国 ミラクルスターズ(デコレーションアイテムセット)、STRASSE RCZ01+T300RS GT Edition 2点セット ハンコン スラストマスター Thrustmaster ハンドルコントローラーとレーシングコックピットのセット [国内正規品]など、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
+    "summary": "龍が如く8外伝 Pirates in Hawaii　PS5版、新品 Nintendo Switch 2 日本語 国内専用 日本国内版 BEE-S-KB6CA ニンテンドー スイッチ2 本体 任天堂 新型 送料無料 任天堂switch2 プレゼント クリスマスなど、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
     "points": [
       {
         "kind": "rank-rise",
+        "sourceKey": "ps5",
+        "itemCode": "book:21396927",
+        "itemName": "龍が如く8外伝 Pirates in Hawaii　PS5版",
+        "title": "PS5で龍が如く8外伝 Pirates in Hawaii　PS5版が上昇",
+        "body": "龍が如く8外伝 Pirates in Hawaii　PS5版はPS5ランキングで前週21位から15位へ、6ランク上昇しました。"
+      },
+      {
+        "kind": "price-drop",
         "sourceKey": "switch",
-        "itemCode": "book:21931807",
-        "itemName": "【楽天ブックス限定特典】リズム天国 ミラクルスターズ(デコレーションアイテムセット)",
-        "title": "Switchで【楽天ブックス限定特典】リズム天国 ミラクルスターズ(デコレーションアイテムセット)が上昇",
-        "body": "【楽天ブックス限定特典】リズム天国 ミラクルスターズ(デコレーションアイテムセット)はSwitchランキングで前週21位から9位へ、12ランク上昇しました。"
+        "itemCode": "alljapan-online-shop:10021278",
+        "itemName": "新品 Nintendo Switch 2 日本語 国内専用 日本国内版 BEE-S-KB6CA ニンテンドー スイッチ2 本体 任天堂 新型 送料無料 任天堂switch2 プレゼント クリスマス",
+        "title": "Switchで¥20値下がり",
+        "body": "新品 Nintendo Switch 2 日本語 国内専用 日本国内版 BEE-S-KB6CA ニンテンドー スイッチ2 本体 任天堂 新型 送料無料 任天堂switch2 プレゼント クリスマスは前週¥55,000から¥54,980へ、¥20値下がりしました。"
       },
       {
         "kind": "new",
         "sourceKey": "ps5",
-        "itemCode": "shunte:10001753",
-        "itemName": "STRASSE RCZ01+T300RS GT Edition 2点セット ハンコン スラストマスター Thrustmaster ハンドルコントローラーとレーシングコックピットのセット [国内正規品]",
-        "title": "PS5にSTRASSE RCZ01+T300RS GT Edition 2点セット ハンコン スラストマスター Thrustmaster ハンドルコントローラーとレーシングコックピットのセット [国内正規品]が新登場",
-        "body": "STRASSE RCZ01+T300RS GT Edition 2点セット ハンコン スラストマスター Thrustmaster ハンドルコントローラーとレーシングコックピットのセット [国内正規品]がPS5ランキング1位に新しく入りました。"
-      },
-      {
-        "kind": "rank-rise",
-        "sourceKey": "ps5",
-        "itemCode": "book:21903446",
-        "itemName": "【楽天ブックス限定特典+特典】亰都ザナドゥ -桜花幻舞ー　PS5版(【早期購入外付特典】DLCチラシ+【早期購入外付特典】DLCチラシ)",
-        "title": "PS5で【楽天ブックス限定特典+特典】亰都ザナドゥ -桜花幻舞ー　PS5版(【早期購入外付特典】DLCチラシ+【早期購入外付特典】DLCチラシ)が上昇",
-        "body": "【楽天ブックス限定特典+特典】亰都ザナドゥ -桜花幻舞ー　PS5版(【早期購入外付特典】DLCチラシ+【早期購入外付特典】DLCチラシ)はPS5ランキングで前週11位から10位へ、1ランク上昇しました。"
+        "itemCode": "outletplaza:11401339",
+        "itemName": "[PS5周辺機器] ソニー純正 ディスクドライブ [CFI-ZDD1J]",
+        "title": "PS5に[PS5周辺機器] ソニー純正 ディスクドライブ [CFI-ZDD1J]が新登場",
+        "body": "[PS5周辺機器] ソニー純正 ディスクドライブ [CFI-ZDD1J]がPS5ランキング1位に新しく入りました。"
       }
     ],
     "publishedAt": "2026-07-13T00:00:00+09:00",
-    "updatedAt": "2026-07-13T23:59:16.700Z",
+    "updatedAt": "2026-07-14T06:12:06.529Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
