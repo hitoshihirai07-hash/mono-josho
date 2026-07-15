@@ -3,35 +3,35 @@
     "weekKey": "2026-W29",
     "periodLabel": "2026年7月13日〜7月19日",
     "headline": "2026年7月13日〜7月19日のゲームランキングで動いた3商品",
-    "summary": "Nintendo【Switch】トモダチコレクション わくわく生活 パッケージ版、PlayStation5 デジタル・エディション 日本語専用 Console Language: Japanese onlyなど、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
+    "summary": "トモダチコレクション わくわく生活、新品 Nintendo Switch 2 日本語 国内専用 日本国内版 BEE-S-KB6CA ニンテンドー スイッチ2 本体 任天堂 新型 送料無料 任天堂switch2 プレゼント クリスマスなど、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
     "points": [
       {
         "kind": "rank-rise",
         "sourceKey": "switch",
-        "itemCode": "emedama:11260964",
-        "itemName": "Nintendo【Switch】トモダチコレクション わくわく生活 パッケージ版",
-        "title": "SwitchでNintendo【Switch】トモダチコレクション わくわく生活 パッケージ版が上昇",
-        "body": "Nintendo【Switch】トモダチコレクション わくわく生活 パッケージ版はSwitchランキングで前週22位から4位へ、18ランク上昇しました。"
+        "itemCode": "book:21864503",
+        "itemName": "トモダチコレクション わくわく生活",
+        "title": "Switchでトモダチコレクション わくわく生活が上昇",
+        "body": "トモダチコレクション わくわく生活はSwitchランキングで前週22位から5位へ、17ランク上昇しました。"
       },
       {
-        "kind": "new",
-        "sourceKey": "ps5",
-        "itemCode": "book:21800394",
-        "itemName": "PlayStation5 デジタル・エディション 日本語専用 Console Language: Japanese only",
-        "title": "PS5にPlayStation5 デジタル・エディション 日本語専用 Console Language: Japanese onlyが新登場",
-        "body": "PlayStation5 デジタル・エディション 日本語専用 Console Language: Japanese onlyがPS5ランキング1位に新しく入りました。"
-      },
-      {
-        "kind": "rank-rise",
+        "kind": "price-drop",
         "sourceKey": "switch",
         "itemCode": "alljapan-online-shop:10021278",
         "itemName": "新品 Nintendo Switch 2 日本語 国内専用 日本国内版 BEE-S-KB6CA ニンテンドー スイッチ2 本体 任天堂 新型 送料無料 任天堂switch2 プレゼント クリスマス",
-        "title": "Switchで新品 Nintendo Switch 2 日本語 国内専用 日本国内版 BEE-S-KB6CA ニンテンドー スイッチ2 本体 任天堂 新型 送料無料 任天堂switch2 プレゼント クリスマスが上昇",
-        "body": "新品 Nintendo Switch 2 日本語 国内専用 日本国内版 BEE-S-KB6CA ニンテンドー スイッチ2 本体 任天堂 新型 送料無料 任天堂switch2 プレゼント クリスマスはSwitchランキングで前週5位から1位へ、4ランク上昇しました。"
+        "title": "Switchで¥20値下がり",
+        "body": "新品 Nintendo Switch 2 日本語 国内専用 日本国内版 BEE-S-KB6CA ニンテンドー スイッチ2 本体 任天堂 新型 送料無料 任天堂switch2 プレゼント クリスマスは前週¥55,000から¥54,980へ、¥20値下がりしました。"
+      },
+      {
+        "kind": "new",
+        "sourceKey": "ps4",
+        "itemCode": "kaitoriheroes:10024174",
+        "itemName": "【送料無料】【中古】PS4 PlayStation 4 ジェット・ブラック 1TB(CUH-2000BB01)（箱説付き）",
+        "title": "PS4に【送料無料】【中古】PS4 PlayStation 4 ジェット・ブラック 1TB(CUH-2000BB01)（箱説付き）が新登場",
+        "body": "【送料無料】【中古】PS4 PlayStation 4 ジェット・ブラック 1TB(CUH-2000BB01)（箱説付き）がPS4ランキング1位に新しく入りました。"
       }
     ],
     "publishedAt": "2026-07-13T00:00:00+09:00",
-    "updatedAt": "2026-07-14T23:59:01.899Z",
+    "updatedAt": "2026-07-15T06:15:25.105Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
