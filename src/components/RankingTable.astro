@@ -1,8 +1,10 @@
 ---
 import EmptyRanking from "./EmptyRanking.astro";
 import GameProductBadges from "./GameProductBadges.astro";
+import CardGameBadges from "./CardGameBadges.astro";
 import { getItemUrl, sortByRank, typeDefinitions } from "../lib/ranking";
 import { getGameFilterKeys } from "../lib/game-classifier.mjs";
+import { cardGameFranchiseDefinitions, getCardGameFilterKeys } from "../lib/card-game-classifier.mjs";
 
 const {
   items = [],
@@ -10,11 +12,17 @@ const {
   categoryFallback = "文具・雑貨",
   showPlatform = false,
   showGameClassification = false,
+  showCardClassification = false,
   enableGameFilters = false,
+  enableCardFilters = false,
   id = "ranking-table"
 } = Astro.props;
 const sortedItems = sortByRank(items);
-const displayItems = enableGameFilters ? sortedItems : sortedItems.slice(0, limit);
+const filterMode = enableGameFilters ? "game" : enableCardFilters ? "card" : "";
+const filterDefinitions = enableGameFilters ? typeDefinitions : cardGameFranchiseDefinitions;
+const filterQueryParam = enableGameFilters ? "type" : "card";
+const filterDimensionLabel = enableGameFilters ? "ゲーム商品の種類" : "カードゲーム作品";
+const displayItems = filterMode ? sortedItems : sortedItems.slice(0, limit);
 const formatPrice = (price: number | string | undefined) => {
   const numericPrice = Number(price);
   return Number.isFinite(numericPrice) && numericPrice > 0
@@ -43,22 +51,23 @@ const formatDelta = (item: any) => {
 ---
 {sortedItems.length === 0 ? <EmptyRanking /> : (
   <div
-    class:list={{ "ranking-browser": enableGameFilters }}
+    class:list={{ "ranking-browser": Boolean(filterMode) }}
     id={id}
-    data-ranking-browser={enableGameFilters ? "true" : undefined}
+    data-ranking-browser={filterMode || undefined}
+    data-filter-query-param={filterQueryParam}
     data-limit={limit}
   >
-    {enableGameFilters && (
-      <div class="game-type-controls" aria-label="ゲーム商品の種類で絞り込む">
-        <button type="button" data-game-type-filter="all" aria-pressed="true">すべて</button>
-        {typeDefinitions.map((definition) => (
-          <button type="button" data-game-type-filter={definition.key} aria-pressed="false">
+    {filterMode && (
+      <div class="game-type-controls" aria-label={`${filterDimensionLabel}で絞り込む`}>
+        <button type="button" data-ranking-filter="all" aria-pressed="true">すべて</button>
+        {filterDefinitions.map((definition) => (
+          <button type="button" data-ranking-filter={definition.key} aria-pressed="false">
             {definition.label}
           </button>
         ))}
       </div>
     )}
-    {enableGameFilters && <p class="game-type-status" data-game-type-status aria-live="polite"></p>}
+    {filterMode && <p class="game-type-status" data-ranking-filter-status aria-live="polite"></p>}
     <div class="ranking-table">
     <div class="ranking-head">
       <span>順位</span><span>前回比</span><span>商品名</span><span>カテゴリ</span><span>価格</span><span>レビュー</span><span></span>
@@ -68,9 +77,13 @@ const formatDelta = (item: any) => {
       return (
         <article
           class="ranking-row"
-          data-game-filter-row={enableGameFilters ? "true" : undefined}
-          data-game-filters={enableGameFilters ? getGameFilterKeys(item).join(" ") : undefined}
-          hidden={enableGameFilters && index >= limit}
+          data-ranking-filter-row={filterMode ? "true" : undefined}
+          data-ranking-filters={filterMode === "game"
+            ? getGameFilterKeys(item).join(" ")
+            : filterMode === "card"
+              ? getCardGameFilterKeys(item).join(" ")
+              : undefined}
+          hidden={Boolean(filterMode) && index >= limit}
         >
           <strong class="rank">{item.rank}</strong>
           <span class:list={["delta", delta.className]}>{delta.label}</span>
@@ -79,6 +92,7 @@ const formatDelta = (item: any) => {
             <div>
               <strong>{item.name}</strong>
               {showGameClassification && <GameProductBadges item={item} />}
+              {showCardClassification && <CardGameBadges item={item} />}
               <button
                 class="watch-button"
                 type="button"
@@ -109,17 +123,18 @@ const formatDelta = (item: any) => {
   </div>
 )}
 
-{enableGameFilters && (
+{filterMode && (
   <script is:inline>
-    document.querySelectorAll('[data-ranking-browser="true"]').forEach((browser) => {
+    document.querySelectorAll('[data-ranking-browser]').forEach((browser) => {
       if (browser.dataset.initialized === "true") return;
       browser.dataset.initialized = "true";
-      const buttons = [...browser.querySelectorAll("[data-game-type-filter]")];
-      const rows = [...browser.querySelectorAll("[data-game-filter-row]")];
-      const status = browser.querySelector("[data-game-type-status]");
+      const buttons = [...browser.querySelectorAll("[data-ranking-filter]")];
+      const rows = [...browser.querySelectorAll("[data-ranking-filter-row]")];
+      const status = browser.querySelector("[data-ranking-filter-status]");
       const limit = Number(browser.dataset.limit || 20);
-      const requested = new URLSearchParams(window.location.search).get("type");
-      let active = buttons.some((button) => button.dataset.gameTypeFilter === requested)
+      const queryParam = browser.dataset.filterQueryParam || "type";
+      const requested = new URLSearchParams(window.location.search).get(queryParam);
+      let active = buttons.some((button) => button.dataset.rankingFilter === requested)
         ? requested
         : "all";
 
@@ -127,24 +142,24 @@ const formatDelta = (item: any) => {
         let visible = 0;
         rows.forEach((row) => {
           const matches = active === "all" ||
-            (row.dataset.gameFilters || "").split(" ").includes(active);
+            (row.dataset.rankingFilters || "").split(" ").includes(active);
           const show = matches && visible < limit;
           row.hidden = !show;
           if (show) visible += 1;
         });
         buttons.forEach((button) => {
-          button.setAttribute("aria-pressed", String(button.dataset.gameTypeFilter === active));
+          button.setAttribute("aria-pressed", String(button.dataset.rankingFilter === active));
         });
-        const label = buttons.find((button) => button.dataset.gameTypeFilter === active)?.textContent?.trim() || "すべて";
+        const label = buttons.find((button) => button.dataset.rankingFilter === active)?.textContent?.trim() || "すべて";
         if (status) status.textContent = `${label}：${visible}件を表示`;
       };
 
       buttons.forEach((button) => {
         button.addEventListener("click", () => {
-          active = button.dataset.gameTypeFilter || "all";
+          active = button.dataset.rankingFilter || "all";
           const url = new URL(window.location.href);
-          if (active === "all") url.searchParams.delete("type");
-          else url.searchParams.set("type", active);
+          if (active === "all") url.searchParams.delete(queryParam);
+          else url.searchParams.set(queryParam, active);
           history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
           render();
         });

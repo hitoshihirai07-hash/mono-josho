@@ -7,6 +7,7 @@ import {
   type RankingItem
 } from "../lib/ranking";
 import GameProductBadges from "./GameProductBadges.astro";
+import CardGameBadges from "./CardGameBadges.astro";
 import { getCategoryForSource } from "../lib/categories";
 
 interface Props {
@@ -54,6 +55,7 @@ const reason = (item: RankingItem) => {
           </div>
           <h3><a href={getItemUrl(item)} target="_blank" rel="nofollow sponsored noopener">{item.name}</a></h3>
           {item.categoryKey === "games" && <GameProductBadges item={item} />}
+          {item.categoryKey === "card-games" && <CardGameBadges item={item} />}
           <p>{reason(item)}</p>
           <div>
             <b>現在 {item.rank}位</b>

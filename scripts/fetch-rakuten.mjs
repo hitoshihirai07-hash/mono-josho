@@ -7,6 +7,7 @@ import {
 } from "./lib/ranking-history.mjs";
 import { getEnabledRankingSources } from "./lib/category-config.mjs";
 import { classifyGameProduct } from "../src/lib/game-classifier.mjs";
+import { classifyCardGameProduct } from "../src/lib/card-game-classifier.mjs";
 
 const appId = process.env.RAKUTEN_APPLICATION_ID;
 const accessKey = process.env.RAKUTEN_ACCESS_KEY;
@@ -108,7 +109,7 @@ async function fetchGenre(genre) {
       const currentPrice = Number(item.itemPrice);
       const hasPreviousPrice = Number.isFinite(oldPrice) && oldPrice > 0;
       const previousComparisonReady = previousSourceKeys.has(genre.sourceKey);
-      const gameMeta = genre.key === "games"
+      const productMeta = genre.key === "games"
         ? {
             ...(genre.platformKey && genre.platformLabel
               ? { platformKey: genre.platformKey, platformLabel: genre.platformLabel }
@@ -117,7 +118,9 @@ async function fetchGenre(genre) {
               sourceKey: genre.sourceKey
             })
           }
-        : {};
+        : genre.key === "card-games"
+          ? classifyCardGameProduct(item.itemName, item.itemCaption || "")
+          : {};
 
       return {
         code: item.itemCode,
@@ -154,7 +157,7 @@ async function fetchGenre(genre) {
         sourceKey: genre.sourceKey,
         sourceLabel: genre.sourceLabel,
         genreId: genre.id,
-        ...gameMeta,
+        ...productMeta,
         url: item.itemUrl,
         affiliateUrl: item.affiliateUrl || item.itemUrl,
         shopName: item.shopName || "楽天市場",

@@ -10,10 +10,11 @@ import { getHomeCategories } from "../lib/categories";
 import {
   createItemListSchema,
   formatUpdated,
+  getCardGameItems,
   gameSourceDefinitions,
   getEnabledCategoryItems,
-  getOtherEnabledCategoryItems,
   getPlatformRankingItems,
+  getStationeryItems,
   hasMeaningfulChanges,
   typeDefinitions
 } from "../lib/ranking";
@@ -22,10 +23,12 @@ import { isWeeklyEditorialPublishable } from "../../scripts/lib/editorial.mjs";
 const updated = formatUpdated(ranking.updatedAt, "未取得");
 const allEnabledItems = getEnabledCategoryItems(ranking);
 const platformItems = getPlatformRankingItems(ranking);
-const otherItems = getOtherEnabledCategoryItems(ranking);
+const cardGameItems = getCardGameItems(ranking);
+const stationeryItems = getStationeryItems(ranking);
 const weekly = editorial.gameWeekly;
 const showWeekly = isWeeklyEditorialPublishable(weekly);
-const showOtherChanges = hasMeaningfulChanges(otherItems, "day");
+const showCardGameChanges = hasMeaningfulChanges(cardGameItems, "day");
+const showStationeryChanges = hasMeaningfulChanges(stationeryItems, "day");
 const pageUrl = new URL("/", Astro.site).toString();
 const homeCategories = getHomeCategories();
 const structuredData = [
@@ -33,7 +36,7 @@ const structuredData = [
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: "楽天ランキングの順位変動をカテゴリ別に確認",
-    description: "ゲームを中心に、楽天市場のランキングで新登場・順位上昇・値下がりした商品をカテゴリ別に確認できます。",
+    description: "ゲームを中心に、カードゲームと文具を含む楽天市場ランキングの新登場・順位上昇・値下がりをカテゴリ別に確認できます。",
     url: pageUrl,
     inLanguage: "ja",
     isPartOf: { "@id": new URL("/#website", Astro.site).toString() }
@@ -46,14 +49,14 @@ const platformLinks = gameSourceDefinitions.filter((source) =>
 );
 ---
 <BaseLayout
-  title="楽天ランキングの順位変動｜ゲーム・文具をカテゴリ別に確認｜モノ上昇便"
-  description="楽天市場のランキング順位変動をカテゴリ別に確認できます。ゲームを中心に、Switch・PS5・PS4と文具の新登場・順位上昇・値下がりを掲載します。"
+  title="楽天ランキングの順位変動｜ゲーム・カードゲーム・文具｜モノ上昇便"
+  description="楽天市場のランキング順位変動をカテゴリ別に確認できます。ゲームを中心に、カードゲームと文具の新登場・順位上昇・値下がりを掲載します。"
   structuredData={structuredData}
 >
   <section class="hero game-first-hero">
     <div class="hero-content">
       <h1>楽天ランキングの<span>順位変動</span>を、カテゴリ別に。</h1>
-      <p>ゲームを中心に、新登場・順位上昇・値下がりした商品を24時間前と比較します。</p>
+      <p>ゲームを中心に、カードゲームと文具の新登場・順位上昇・値下がりを24時間前と比較します。</p>
     </div>
     <p class="updated"><span>最終更新</span>{updated}</p>
   </section>
@@ -105,14 +108,42 @@ const platformLinks = gameSourceDefinitions.filter((source) =>
     </nav>
   </section>
 
-  {showOtherChanges && (
+  <section class="other-category-changes card-game-category-changes" aria-labelledby="card-game-category-changes-title">
+    <header class="home-section-heading">
+      <span>CARD GAME</span>
+      <h2 id="card-game-category-changes-title">カードゲームの注目変動</h2>
+      <p>ポケモンカード、遊戯王などを含むカードゲーム総合ランキングを確認できます。</p>
+    </header>
+    {showCardGameChanges ? (
+      <ChangeBoard
+        items={cardGameItems}
+        id="card-game-ranking-changes-home"
+        title="24時間の変化"
+        comparisonWindow="day"
+        showSourceFilters={false}
+        showCardClassification={true}
+        dimensionLabel="作品"
+        defaultSourceLabel="カードゲーム"
+        moreHref="/categories/card-games/"
+        moreLabel="カードゲームランキングを見る →"
+      />
+    ) : (
+      <a class="category-focus-link" href="/categories/card-games/">
+        <strong>カードゲームランキングを見る</strong>
+        <span>現在順位と、取得後の新登場・順位上昇・値下がりを確認できます。</span>
+        <b>ポケモンカードなどを作品別に見る →</b>
+      </a>
+    )}
+  </section>
+
+  {showStationeryChanges && (
     <section class="other-category-changes" aria-labelledby="other-category-changes-title">
       <header class="home-section-heading">
         <span>OTHER</span>
         <h2 id="other-category-changes-title">その他のカテゴリの注目変動</h2>
       </header>
       <ChangeBoard
-        items={otherItems}
+        items={stationeryItems}
         id="other-ranking-changes"
         title="24時間の変化"
         comparisonWindow="day"
@@ -142,5 +173,5 @@ const platformLinks = gameSourceDefinitions.filter((source) =>
     </div>
   </section>
 
-  <WatchlistPanel items={platformItems} />
+  <WatchlistPanel items={allEnabledItems} />
 </BaseLayout>

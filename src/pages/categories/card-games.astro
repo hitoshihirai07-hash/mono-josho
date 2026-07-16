@@ -1,0 +1,87 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ChangeBoard from "../../components/ChangeBoard.astro";
+import RankingTable from "../../components/RankingTable.astro";
+import WatchlistPanel from "../../components/WatchlistPanel.astro";
+import ranking from "../../data/ranking.json";
+import { getCategory } from "../../lib/categories";
+import { createItemListSchema, formatPublishedDate, getCardGameItems } from "../../lib/ranking";
+
+const items = getCardGameItems(ranking);
+const category = getCategory("card-games");
+const published = formatPublishedDate(ranking.updatedAt);
+const pageUrl = new URL("/categories/card-games/", Astro.site).toString();
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "ホーム", item: new URL("/", Astro.site).toString() },
+      { "@type": "ListItem", position: 2, name: "カードゲームランキング", item: pageUrl }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "カードゲームランキングの順位変動",
+    description: category?.description,
+    url: pageUrl
+  },
+  items.length > 0 ? createItemListSchema(items, pageUrl) : null
+].filter(Boolean);
+---
+<BaseLayout
+  title="カードゲームランキングの順位変動｜ポケモンカード・遊戯王など｜モノ上昇便"
+  description="楽天市場のカードゲームランキングを掲載し、ポケモンカード・遊戯王・ONE PIECEカードなどの新登場、順位上昇、値下がりを確認できます。"
+  structuredData={structuredData}
+>
+  <article class="article-page card-game-page">
+    <header>
+      <p class="breadcrumbs"><a href="/">ホーム</a> › カードゲーム</p>
+      <h1>カードゲーム<br /><span>ランキング変動</span></h1>
+      <p>{category?.description}</p>
+      <div class="article-meta">{published}更新　｜　楽天市場「カードゲーム」ランキングを基に掲載</div>
+    </header>
+
+    <section>
+      <ChangeBoard
+        items={items}
+        id="card-game-ranking-changes"
+        title="01 前回更新からの変化"
+        showSourceFilters={false}
+        showCardClassification={true}
+        dimensionLabel="作品"
+        defaultSourceLabel="カードゲーム"
+        moreHref="#card-game-ranking"
+        moreLabel="現在のカードゲームランキングを見る →"
+      />
+    </section>
+
+    <section id="card-game-ranking">
+      <h2><span>02</span>作品から絞り込む</h2>
+      <p>ポケモンカード、遊戯王、ONE PIECE、デュエル・マスターズなどを商品名から分類します。</p>
+      <RankingTable
+        items={items}
+        id="card-game-ranking-browser"
+        limit={20}
+        showCardClassification={true}
+        enableCardFilters={true}
+        categoryFallback="カードゲーム"
+      />
+    </section>
+
+    <section class="seo-block">
+      <h2><span>03</span>ランキングの見方</h2>
+      <p>表示順位は、楽天市場のカードゲーム総合ランキングでの順位です。作品別ボタンは総合ランキング上位商品の商品名を整理するためのもので、ポケモンカードなどの作品別に順位を付け直したものではありません。</p>
+      <p>同じ作品でも、BOX、パック、構築済みデッキ、シングルカード、保護ケースなどが含まれます。予約、未開封、セット数、発送日、販売価格を商品ページで確認してから購入してください。</p>
+    </section>
+
+    <aside class="notice">
+      <strong>価格と販売条件について</strong>
+      <p>ランキング上位や「未開封」表示は、公式販売や定価販売を保証するものではありません。商品名と価格だけで判断せず、販売店、内容、送料、発送予定日をご確認ください。</p>
+    </aside>
+
+    <aside class="notice"><strong>続けて確認する</strong><p><a href="/games/">ゲームランキング</a>、または<a href="/categories/stationery/">文具ランキング</a>も確認できます。</p></aside>
+  </article>
+  <WatchlistPanel items={items} />
+</BaseLayout>

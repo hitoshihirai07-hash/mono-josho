@@ -22,6 +22,7 @@ import {
 } from "../scripts/lib/category-config.mjs";
 import { selectTodayHighlights } from "../scripts/lib/highlights.mjs";
 import { classifyGameProduct } from "../src/lib/game-classifier.mjs";
+import { classifyCardGameProduct } from "../src/lib/card-game-classifier.mjs";
 
 const categoryConfig = JSON.parse(
   await fs.readFile(new URL("../src/data/categories.json", import.meta.url), "utf8")
@@ -223,12 +224,36 @@ test("category config exposes only enabled categories and verified sources", () 
   assert.deepEqual(validateCategoryConfig(categoryConfig), []);
   assert.deepEqual(getEnabledCategories(categoryConfig).map((category) => category.id), [
     "games",
+    "card-games",
     "stationery"
   ]);
-  assert.equal(getEnabledRankingSources(categoryConfig, {}).length, 5);
+  const rankingSources = getEnabledRankingSources(categoryConfig, {});
+  assert.equal(rankingSources.length, 6);
+  assert.equal(
+    rankingSources.find((source) => source.sourceKey === "card-games")?.id,
+    "207659"
+  );
   assert.ok(getNavigationItems(categoryConfig).every((item) =>
-    ["games", "switch", "ps5", "ps4", "stationery"].includes(item.id)
+    ["games", "switch", "ps5", "ps4", "card-games", "stationery"].includes(item.id)
   ));
+});
+
+test("card-game products are classified by work, product type and condition", () => {
+  const pokemon = classifyCardGameProduct(
+    "ポケモンカードゲーム 拡張パック 新品未開封 シュリンク付き 予約",
+    ""
+  );
+  assert.equal(pokemon.cardFranchiseKey, "pokemon");
+  assert.equal(pokemon.cardProductTypeKey, "box");
+  assert.ok(pokemon.cardAttributeKeys.includes("preorder"));
+  assert.ok(pokemon.cardAttributeKeys.includes("unopened"));
+
+  const supply = classifyCardGameProduct("ポケモンカード BOX 保護ケース 10個セット", "");
+  assert.equal(supply.cardProductTypeKey, "supply");
+
+  const onePiece = classifyCardGameProduct("ONE PIECE カードゲーム スタートデッキ", "");
+  assert.equal(onePiece.cardFranchiseKey, "one-piece");
+  assert.equal(onePiece.cardProductTypeKey, "deck");
 });
 
 test("enabled category without a ranking source is rejected", () => {

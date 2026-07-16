@@ -1,5 +1,6 @@
 ---
 import GameProductBadges from "./GameProductBadges.astro";
+import CardGameBadges from "./CardGameBadges.astro";
 import {
   comparisonLabel,
   getChangeItems,
@@ -21,6 +22,7 @@ interface Props {
   comparisonWindow?: RankingComparisonWindow;
   persistSource?: boolean;
   showGameClassification?: boolean;
+  showCardClassification?: boolean;
   dimensionLabel?: string;
   defaultSourceLabel?: string;
   moreLabel?: string;
@@ -37,6 +39,7 @@ const {
   comparisonWindow = "latest",
   persistSource = false,
   showGameClassification = false,
+  showCardClassification = false,
   dimensionLabel = "機種",
   defaultSourceLabel = "総合",
   moreLabel = "機種別ランキングをもっと見る →"
@@ -68,6 +71,7 @@ const sourceLabel = (item: RankingItem) => {
   if (item.sourceKey === "switch") return "Switch";
   if (item.sourceKey === "ps5") return "PS5";
   if (item.sourceKey === "ps4") return "PS4";
+  if (item.categoryKey === "card-games" && item.cardFranchiseLabel) return item.cardFranchiseLabel;
   return item.category || defaultSourceLabel;
 };
 
@@ -160,6 +164,7 @@ const rankChange = (item: RankingItem) => {
                       {item.name}
                     </a>
                     {showGameClassification && <GameProductBadges item={item} />}
+                    {showCardClassification && <CardGameBadges item={item} />}
                     <button
                       class="watch-button"
                       type="button"

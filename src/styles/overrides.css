@@ -1645,14 +1645,16 @@ body {
   font-size: 14px;
 }
 
-.game-product-badges {
+.game-product-badges,
+.card-product-badges {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
   margin-top: 7px;
 }
 
-.game-product-badge {
+.game-product-badge,
+.card-product-badge {
   display: inline-flex;
   align-items: center;
   min-height: 22px;
@@ -1666,13 +1668,15 @@ body {
   line-height: 1.2;
 }
 
-.game-product-badge.is-attribute {
+.game-product-badge.is-attribute,
+.card-product-badge.is-attribute {
   border-color: #d53e18;
   background: #fff2ec;
   color: #a42d11;
 }
 
-.change-product-cell .game-product-badges {
+.change-product-cell .game-product-badges,
+.change-product-cell .card-product-badges {
   margin: 6px 0 2px;
 }
 
@@ -1772,6 +1776,36 @@ body {
   font-size: 13px;
 }
 
+.category-focus-link {
+  display: grid;
+  gap: 8px;
+  border: 1px solid var(--line);
+  background: #fffdf7;
+  padding: 20px;
+}
+
+.category-focus-link:hover {
+  border-color: var(--orange);
+}
+
+.category-focus-link strong {
+  font-size: 21px;
+}
+
+.category-focus-link span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.category-focus-link b {
+  color: var(--orange);
+  font-size: 13px;
+}
+
+.card-game-page .notice + .notice {
+  margin-top: 16px;
+}
+
 .game-type-controls {
   display: flex;
   flex-wrap: wrap;
@@ -1834,11 +1868,13 @@ body {
     flex: 0 0 auto;
   }
 
-  .game-product-badges {
+  .game-product-badges,
+  .card-product-badges {
     gap: 4px;
   }
 
-  .game-product-badge {
+  .game-product-badge,
+  .card-product-badge {
     font-size: 9px;
   }
 }

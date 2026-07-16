@@ -1,4 +1,5 @@
 import { classifyGameProduct, getGameFilterKeys } from "./game-classifier.mjs";
+import { classifyCardGameProduct } from "./card-game-classifier.mjs";
 import { getCategory, getEnabledCategories } from "./categories";
 import { selectTodayHighlights } from "../../scripts/lib/highlights.mjs";
 
@@ -40,6 +41,12 @@ export type RankingItem = {
   gameAttributeKeys?: string[];
   gameAttributeLabels?: string[];
   gameClassificationConfidence?: "high" | "medium" | "low";
+  cardFranchiseKey?: string;
+  cardFranchiseLabel?: string;
+  cardProductTypeKey?: string;
+  cardProductTypeLabel?: string;
+  cardAttributeKeys?: string[];
+  cardAttributeLabels?: string[];
   url?: string;
   affiliateUrl?: string;
   shopName?: string;
@@ -182,11 +189,27 @@ export const getStationeryItems = (ranking: RankingPayload) =>
     getAllItems(ranking).filter((item) => !item.categoryKey || item.categoryKey === "stationery")
   );
 
+export const enrichCardGameItem = (item: RankingItem): RankingItem => ({
+  ...item,
+  ...classifyCardGameProduct(item.name || "", "")
+});
+
+export const getCardGameItems = (ranking: RankingPayload) =>
+  sortByRank(
+    getAllItems(ranking)
+      .filter((item) => item.categoryKey === "card-games")
+      .map(enrichCardGameItem)
+  );
+
 export const getEnabledCategoryItems = (ranking: RankingPayload) => {
   const enabledIds = new Set(getEnabledCategories().map((category) => category.id));
   return getAllItems(ranking)
     .filter((item) => enabledIds.has(item.categoryKey || "stationery"))
-    .map((item) => item.categoryKey === "games" ? enrichGameItem(item) : item);
+    .map((item) => {
+      if (item.categoryKey === "games") return enrichGameItem(item);
+      if (item.categoryKey === "card-games") return enrichCardGameItem(item);
+      return item;
+    });
 };
 
 export const getOtherEnabledCategoryItems = (ranking: RankingPayload) =>

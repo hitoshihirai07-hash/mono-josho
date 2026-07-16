@@ -103,6 +103,30 @@
       ]
     },
     {
+      "id": "card-games",
+      "displayName": "カードゲーム",
+      "shortName": "カード",
+      "route": "/categories/card-games/",
+      "sortOrder": 15,
+      "enabled": true,
+      "parentId": null,
+      "groupId": "primary",
+      "showOnHome": true,
+      "showInNav": true,
+      "description": "ポケモンカード、遊戯王などを含むカードゲーム商品のランキング順位と変化を確認できます。",
+      "children": [],
+      "sources": [
+        {
+          "sourceKey": "card-games",
+          "sourceLabel": "カードゲームランキング",
+          "displayName": "カードゲーム",
+          "genreId": "207659",
+          "envGenreId": "RAKUTEN_CARD_GAME_GENRE_ID",
+          "enabled": true
+        }
+      ]
+    },
+    {
       "id": "stationery",
       "displayName": "文具・事務用品",
       "shortName": "文具",

@@ -36,7 +36,14 @@ const json = JSON.stringify(currentItems).replaceAll("<", "\\u003c");
 
     const storageKey = "monoJoshoWatchlist.v1";
     const current = new Map(JSON.parse(data.textContent || "[]").map((item) => [item.key, item]));
-    const sourceLabels = { switch: "Switch", ps5: "PS5", ps4: "PS4" };
+    const sourceLabels = {
+      "games-overall": "ゲーム総合",
+      switch: "Switch",
+      ps5: "PS5",
+      ps4: "PS4",
+      "card-games": "カード",
+      stationery: "文具"
+    };
     const formatPrice = (value) => `¥${Number(value || 0).toLocaleString()}`;
     const read = () => {
       try {
@@ -65,7 +72,7 @@ const json = JSON.stringify(currentItems).replaceAll("<", "\\u003c");
         const change = document.createElement("p");
         const remove = document.createElement("button");
 
-        machine.textContent = sourceLabels[record.sourceKey] || "ゲーム";
+        machine.textContent = sourceLabels[record.sourceKey] || "カテゴリ";
         machine.className = "watchlist-source";
         title.textContent = latest?.name || record.name;
         title.className = "watchlist-product";

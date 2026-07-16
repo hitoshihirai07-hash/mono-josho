@@ -12,6 +12,7 @@ export const X_POST_SOURCES = [
   { key: "switch", label: "Switch" },
   { key: "ps5", label: "PS5" },
   { key: "ps4", label: "PS4" },
+  { key: "card-games", label: "カードゲーム" },
   { key: "stationery", label: "文具" },
   { key: "all", label: "全カテゴリ" }
 ];
@@ -29,6 +30,7 @@ const SOURCE_LABELS = {
   switch: "Switch",
   ps5: "PS5",
   ps4: "PS4",
+  "card-games": "カードゲーム",
   stationery: "文具",
   all: "楽天"
 };
@@ -39,6 +41,7 @@ const SOURCE_PATHS = {
   switch: "/games/switch/",
   ps5: "/games/playstation/#ps5-ranking",
   ps4: "/games/playstation/#ps4-ranking",
+  "card-games": "/categories/card-games/",
   stationery: "/categories/stationery/",
   all: "/"
 };
@@ -49,6 +52,7 @@ const SOURCE_HASHTAGS = {
   switch: "#NintendoSwitch",
   ps5: "#PS5",
   ps4: "#PS4",
+  "card-games": "#カードゲーム",
   stationery: "#文具",
   all: "#楽天ランキング"
 };
@@ -152,9 +156,10 @@ const productIdentity = (item) =>
 
 const filterBySource = (item, sourceKey) => {
   if (sourceKey === "all") {
-    return GAME_SOURCES.has(item.sourceKey) || item.categoryKey === "stationery";
+    return GAME_SOURCES.has(item.sourceKey) || ["card-games", "stationery"].includes(item.categoryKey);
   }
   if (sourceKey === "games") return GAME_SOURCES.has(item.sourceKey) || item.categoryKey === "games";
+  if (sourceKey === "card-games") return item.categoryKey === "card-games";
   if (sourceKey === "stationery") return item.categoryKey === "stationery";
   return item.sourceKey === sourceKey;
 };
@@ -200,6 +205,7 @@ const sourcePrefix = (item, sourceKey) => {
   if (item.sourceKey === "switch") return "Switch ";
   if (item.sourceKey === "ps5") return "PS5 ";
   if (item.sourceKey === "ps4") return "PS4 ";
+  if (item.categoryKey === "card-games") return "カード ";
   if (item.categoryKey === "stationery") return "文具 ";
   return "";
 };
@@ -209,6 +215,7 @@ const sourceLabelForItem = (item) => {
   if (item.sourceKey === "switch") return "Switch";
   if (item.sourceKey === "ps5") return "PS5";
   if (item.sourceKey === "ps4") return "PS4";
+  if (item.categoryKey === "card-games") return "カードゲーム";
   if (item.categoryKey === "stationery") return "文具";
   return item.sourceLabel || "楽天市場";
 };

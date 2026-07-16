@@ -3,6 +3,7 @@ import fs from "node:fs/promises";
 import test from "node:test";
 import {
   generateXPost,
+  X_POST_SOURCES,
   weightedXLength
 } from "../scripts/lib/x-post-generator.mjs";
 
@@ -35,6 +36,35 @@ test("X post generator filters source and change type", () => {
   assert.equal(result.items.length, 1);
   assert.equal(result.items[0].sourceKey, "stationery");
   assert.match(result.text, /300円値下がり/);
+});
+
+test("card-game ranking can be selected as an X post source", () => {
+  assert.ok(X_POST_SOURCES.some((source) => source.key === "card-games"));
+  const result = generateXPost({
+    items: [{
+      code: "card:1",
+      name: "ポケモンカードゲーム 拡張パック BOX",
+      categoryKey: "card-games",
+      sourceKey: "card-games",
+      rank: 2,
+      price: 5980,
+      dayComparisonReady: true,
+      dayPreviousRank: 14,
+      dayDelta: 12,
+      dayIsNew: false,
+      dayPriceChange: 0
+    }]
+  }, {
+    window: "day",
+    source: "card-games",
+    kind: "auto",
+    limit: 1,
+    includeLink: true,
+    siteUrl: "https://mono-josho.pages.dev/"
+  });
+  assert.equal(result.status, "ready");
+  assert.match(result.text, /カードゲームランキング/);
+  assert.match(result.text, /\/categories\/card-games\//);
 });
 
 test("all-category post prioritizes at least two game items when available", () => {
