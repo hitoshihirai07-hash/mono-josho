@@ -99,6 +99,16 @@
           "enabled": true,
           "platformKey": "playstation",
           "platformLabel": "PlayStation 4"
+        },
+        {
+          "sourceKey": "game-accessories",
+          "sourceLabel": "ゲーム用機器ランキング",
+          "displayName": "ゲーム周辺機器",
+          "genreId": "567167",
+          "envGenreId": "RAKUTEN_GAME_ACCESSORIES_GENRE_ID",
+          "enabled": true,
+          "platformKey": "overall",
+          "platformLabel": "ゲーム周辺機器"
         }
       ]
     },

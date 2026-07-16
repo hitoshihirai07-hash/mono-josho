@@ -3,7 +3,7 @@ import "../styles/admin.css";
 
 interface Props {
   title?: string;
-  active?: "home" | "x-post";
+  active?: "home" | "x-post" | "room";
 }
 
 const { title = "管理画面", active = "home" } = Astro.props;
@@ -14,7 +14,7 @@ const { title = "管理画面", active = "home" } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex,nofollow,noarchive" />
-    <meta name="referrer" content="no-referrer" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <link rel="icon" href="/brand/icon.png" type="image/png" />
     <title>{title}</title>
   </head>
@@ -27,6 +27,7 @@ const { title = "管理画面", active = "home" } = Astro.props;
       <nav class="admin-nav" aria-label="管理メニュー">
         <a href="/admin/" class:list={{ "is-active": active === "home" }}>管理トップ</a>
         <a href="/admin/x-post/" class:list={{ "is-active": active === "x-post" }}>X投稿</a>
+        <a href="/admin/room/" class:list={{ "is-active": active === "room" }}>ROOM運用</a>
       </nav>
     </header>
     <main><slot /></main>

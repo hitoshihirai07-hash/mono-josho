@@ -1,0 +1,40 @@
+---
+import { selectWeeklyAccessoryPicks } from "../../scripts/lib/game-accessory-candidates.mjs";
+import { getItemUrl } from "../lib/ranking";
+
+const { ranking } = Astro.props;
+const picks = selectWeeklyAccessoryPicks(ranking);
+const labels = { rising: "7日で順位上昇", "price-drop": "価格低下", evergreen: "レビュー定番" };
+const formatPrice = (price) => `¥${Number(price || 0).toLocaleString("ja-JP")}`;
+---
+{picks.length > 0 && (
+  <section class="accessory-picks" aria-labelledby="accessory-picks-title">
+    <header class="home-section-heading">
+      <span>GAME ACCESSORIES</span>
+      <h2 id="accessory-picks-title">今週動いたゲーム周辺品</h2>
+      <p>楽天市場の順位・価格・レビューを観測し、3つの切り口から1商品ずつ選んでいます。</p>
+    </header>
+    <div class="accessory-pick-list">
+      {picks.map((item) => (
+        <article>
+          <img src={item.image} alt="" width="128" height="128" loading="lazy" />
+          <div>
+            <span>{labels[item.series]}</span>
+            <h3>{item.name}</h3>
+            <p>{item.selectionReason}</p>
+            <dl>
+              <div><dt>対応機種</dt><dd>{item.platform}</dd></div>
+              <div><dt>現在価格</dt><dd>{formatPrice(item.price)}</dd></div>
+              <div><dt>レビュー</dt><dd>{item.reviewAverage || "-"}（{Number(item.reviewCount || 0).toLocaleString("ja-JP")}件）</dd></div>
+            </dl>
+          </div>
+          <a href={getItemUrl(item)} target="_blank" rel="nofollow sponsored noopener">楽天市場で確認</a>
+        </article>
+      ))}
+    </div>
+    <footer>
+      <p>価格・在庫・対応条件は変わる場合があります。購入前に楽天市場の商品ページでご確認ください。</p>
+      <a href="https://room.rakuten.co.jp/room_23fc7aa21f/items" target="_blank" rel="noopener">楽天ROOMでも見る</a>
+    </footer>
+  </section>
+)}

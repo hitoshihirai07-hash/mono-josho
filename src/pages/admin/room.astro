@@ -1,0 +1,121 @@
+---
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import ranking from "../../data/ranking.json";
+import { selectAccessoryCandidates, roomComment, xPost } from "../../../scripts/lib/game-accessory-candidates.mjs";
+
+const candidates = selectAccessoryCandidates(ranking, 6);
+const siteUrl = new URL("/", Astro.site).toString();
+const labels = { rising: "7日で順位上昇", "price-drop": "価格低下", evergreen: "レビュー定番" };
+const serialized = candidates.map((item) => ({ ...item, roomText: roomComment(item), xText: xPost(item, siteUrl) }));
+---
+<AdminLayout title="ROOM運用｜モノ上昇" active="room">
+  <div class="admin-page room-workspace" data-room-workspace data-candidates={JSON.stringify(serialized)}>
+    <header class="admin-page-heading">
+      <div><h1>楽天ROOM運用</h1><p>候補抽出まで自動化し、掲載判断と実際の投稿は人が行います。</p></div>
+      <dl><div><dt>候補</dt><dd>{candidates.length}件</dd></div><div><dt>今週の上限</dt><dd>3件</dd></div></dl>
+    </header>
+
+    <section class="room-flow" aria-label="運用の流れ">
+      <span>候補を確認</span><b>→</b><span>3商品を選定</span><b>→</b><span>ROOMへ手動投稿</span><b>→</b><span>結果を記録</span>
+    </section>
+
+    <div class="room-series-tabs" role="tablist" aria-label="候補の切り口">
+      <button type="button" data-room-filter="all" class="is-active">すべて</button>
+      {Object.entries(labels).map(([key, label]) => <button type="button" data-room-filter={key}>{label}</button>)}
+    </div>
+
+    <section class="room-candidates" aria-label="ROOM投稿候補">
+      {serialized.length ? serialized.map((item) => (
+        <article data-room-card data-series={item.series} data-code={item.code}>
+          <img src={item.image} alt="" width="96" height="96" />
+          <div class="room-candidate-copy">
+            <span>{labels[item.series]} ／ {item.kind.label}</span>
+            <h2>{item.name}</h2>
+            <p>{item.selectionReason}</p>
+            <small>対応機種：{item.platform}｜¥{Number(item.price).toLocaleString("ja-JP")}｜レビュー{item.reviewCount || 0}件</small>
+          </div>
+          <div class="room-candidate-actions">
+            <button type="button" data-room-status="selected">掲載候補</button>
+            <button type="button" data-room-status="skipped">見送り</button>
+            <button type="button" data-room-status="posted">投稿済み</button>
+            <button type="button" data-room-status="reviewed">結果確認済み</button>
+          </div>
+          <details>
+            <summary>投稿文案</summary>
+            <label>ROOMコメント<textarea rows="4" data-room-text>{item.roomText}</textarea></label>
+            <button type="button" data-copy="room">ROOM文案をコピー</button>
+            <label>X投稿<textarea rows="6" data-x-text>{item.xText}</textarea></label>
+            <button type="button" data-copy="x">X文案をコピー</button>
+            <a href={item.affiliateUrl || item.url} target="_blank" rel="nofollow sponsored noopener">楽天市場の商品ページ</a>
+          </details>
+        </article>
+      )) : <p class="room-empty">7日比較データがそろうと候補が表示されます。</p>}
+    </section>
+
+    <section class="room-operations">
+      <div><h2>選定データ</h2><p>投稿状態をJSONで保存し、運用記録の控えにできます。</p><button type="button" data-export-selection>選定JSONを書き出す</button></div>
+      <form data-metrics-form>
+        <h2>週次KPIを記録</h2>
+        <label>週<input type="week" name="week" required /></label>
+        <label>ROOM投稿数<input type="number" name="roomPosts" min="0" value="0" /></label>
+        <label>楽天クリック<input type="number" name="rakutenClicks" min="0" value="0" /></label>
+        <label>売上件数<input type="number" name="sales" min="0" value="0" /></label>
+        <label>成果報酬（円）<input type="number" name="reward" min="0" value="0" /></label>
+        <label>X表示数<input type="number" name="xImpressions" min="0" value="0" /></label>
+        <label>Xリンククリック<input type="number" name="xClicks" min="0" value="0" /></label>
+        <label>最も反応が良かった系列<select name="bestSeries"><option value="">未判定</option>{Object.entries(labels).map(([key, label]) => <option value={key}>{label}</option>)}</select></label>
+        <button type="submit">この週を保存</button><button type="button" data-export-metrics>KPIをCSV書き出し</button>
+        <p data-room-message aria-live="polite"></p>
+      </form>
+    </section>
+  </div>
+</AdminLayout>
+
+<script>
+  const root = document.querySelector("[data-room-workspace]");
+  if (root) {
+    const STATUS_KEY = "monoJoshoRoomStatus.v1";
+    const METRICS_KEY = "monoJoshoRoomMetrics.v1";
+    const candidates = JSON.parse(root.dataset.candidates || "[]");
+    const read = (key, fallback) => { try { return JSON.parse(localStorage.getItem(key) || JSON.stringify(fallback)); } catch { return fallback; } };
+    const write = (key, value) => localStorage.setItem(key, JSON.stringify(value));
+    const status = read(STATUS_KEY, {});
+    const cards = [...root.querySelectorAll("[data-room-card]")];
+    const paint = (card) => {
+      const current = status[card.dataset.code]?.status || "unselected";
+      card.dataset.currentStatus = current;
+      card.querySelectorAll("[data-room-status]").forEach((button) => button.classList.toggle("is-active", button.dataset.roomStatus === current));
+    };
+    cards.forEach(paint);
+    root.addEventListener("click", async (event) => {
+      const filter = event.target.closest("[data-room-filter]");
+      if (filter) {
+        root.querySelectorAll("[data-room-filter]").forEach((button) => button.classList.toggle("is-active", button === filter));
+        cards.forEach((card) => card.hidden = filter.dataset.roomFilter !== "all" && card.dataset.series !== filter.dataset.roomFilter);
+      }
+      const statusButton = event.target.closest("[data-room-status]");
+      if (statusButton) {
+        const card = statusButton.closest("[data-room-card]");
+        if (statusButton.dataset.roomStatus === "selected") {
+          const selected = Object.values(status).filter((record) => record.status === "selected").length;
+          if (selected >= 3 && status[card.dataset.code]?.status !== "selected") { root.querySelector("[data-room-message]").textContent = "掲載候補は週3件までです。"; return; }
+        }
+        status[card.dataset.code] = { status: statusButton.dataset.roomStatus, updatedAt: new Date().toISOString() };
+        write(STATUS_KEY, status); paint(card);
+      }
+      const copy = event.target.closest("[data-copy]");
+      if (copy) {
+        const textarea = copy.closest("details").querySelector(copy.dataset.copy === "room" ? "[data-room-text]" : "[data-x-text]");
+        await navigator.clipboard.writeText(textarea.value); copy.textContent = "コピーしました";
+      }
+      if (event.target.closest("[data-export-selection]")) {
+        download("mono-josho-room-selection.json", JSON.stringify({ exportedAt: new Date().toISOString(), selections: candidates.map((item) => ({ code: item.code, name: item.name, series: item.series, ...(status[item.code] || { status: "unselected" }) })) }, null, 2), "application/json");
+      }
+      if (event.target.closest("[data-export-metrics]")) exportMetrics();
+    });
+    const download = (name, content, type) => { const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([content], { type })); a.download = name; a.click(); URL.revokeObjectURL(a.href); };
+    const form = root.querySelector("[data-metrics-form]");
+    form.addEventListener("submit", (event) => { event.preventDefault(); const data = Object.fromEntries(new FormData(form)); const rows = read(METRICS_KEY, []).filter((row) => row.week !== data.week); rows.push({ ...data, savedAt: new Date().toISOString() }); write(METRICS_KEY, rows); root.querySelector("[data-room-message]").textContent = `${data.week}を保存しました。`; });
+    function exportMetrics() { const rows = read(METRICS_KEY, []); const keys = ["week","roomPosts","rakutenClicks","sales","reward","xImpressions","xClicks","bestSeries","savedAt"]; const csv = [keys, ...rows.map((row) => keys.map((key) => row[key] || ""))].map((row) => row.map((cell) => `"${String(cell).replaceAll('"','""')}"`).join(",")).join("\r\n"); download("mono-josho-room-kpi.csv", `\uFEFF${csv}`, "text/csv;charset=utf-8"); }
+  }
+</script>

@@ -4,6 +4,7 @@ import ChangeBoard from "../components/ChangeBoard.astro";
 import GameRankingNotice from "../components/GameRankingNotice.astro";
 import TodayHighlights from "../components/TodayHighlights.astro";
 import WatchlistPanel from "../components/WatchlistPanel.astro";
+import WeeklyAccessoryPicks from "../components/WeeklyAccessoryPicks.astro";
 import ranking from "../data/ranking.json";
 import editorial from "../data/editorial.json";
 import { getHomeCategories } from "../lib/categories";
@@ -62,6 +63,8 @@ const platformLinks = gameSourceDefinitions.filter((source) =>
   </section>
 
   <TodayHighlights items={allEnabledItems} updatedAt={ranking.updatedAt} />
+
+  <WeeklyAccessoryPicks ranking={ranking} />
 
   <section class="home-game-changes" aria-labelledby="home-game-changes-title">
     <header class="home-section-heading">

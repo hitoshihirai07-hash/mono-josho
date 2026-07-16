@@ -1087,3 +1087,38 @@ input {
     width: 100%;
   }
 }
+.room-workspace { max-width: 1180px; }
+.room-flow { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 12px; padding: 18px; margin-bottom: 22px; background: #eef3f9; border-radius: 14px; font-weight: 700; }
+.room-flow b { color: #8190a5; }
+.room-series-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+.room-series-tabs button, .room-candidate-actions button, .room-operations button, details button { border: 1px solid #c9d2df; background: #fff; border-radius: 8px; padding: 9px 12px; font: inherit; font-weight: 700; cursor: pointer; }
+.room-series-tabs button.is-active, .room-candidate-actions button.is-active { color: #fff; background: #173b70; border-color: #173b70; }
+.room-candidates { display: grid; gap: 14px; }
+.room-candidates article { display: grid; grid-template-columns: 96px minmax(0, 1fr) 160px; gap: 18px; padding: 18px; background: #fff; border: 1px solid #dfe4ec; border-radius: 14px; }
+.room-candidates article[data-current-status="skipped"] { opacity: .55; }
+.room-candidates img { width: 96px; height: 96px; object-fit: contain; }
+.room-candidate-copy span { color: #315b96; font-size: .8rem; font-weight: 800; }
+.room-candidate-copy h2 { margin: 5px 0; font-size: 1rem; line-height: 1.45; }
+.room-candidate-copy p { margin: 0 0 8px; }
+.room-candidate-copy small { color: #617086; }
+.room-candidate-actions { display: grid; gap: 7px; align-content: start; }
+.room-candidates details { grid-column: 2 / -1; border-top: 1px solid #e4e8ef; padding-top: 12px; }
+.room-candidates summary { cursor: pointer; font-weight: 800; }
+.room-candidates details label { display: block; margin: 12px 0 6px; font-weight: 700; }
+.room-candidates textarea { display: block; width: 100%; margin-top: 6px; resize: vertical; font: inherit; line-height: 1.55; }
+.room-candidates details a { margin-left: 12px; }
+.room-operations { display: grid; grid-template-columns: .8fr 1.2fr; gap: 18px; margin-top: 28px; }
+.room-operations > div, .room-operations form { padding: 22px; background: #fff; border: 1px solid #dfe4ec; border-radius: 14px; }
+.room-operations form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.room-operations form h2, .room-operations form p { grid-column: 1 / -1; }
+.room-operations label { display: grid; gap: 5px; font-weight: 700; }
+.room-operations input, .room-operations select { min-width: 0; padding: 9px; border: 1px solid #c9d2df; border-radius: 7px; font: inherit; }
+@media (max-width: 760px) {
+  .room-candidates article { grid-template-columns: 72px minmax(0, 1fr); }
+  .room-candidates img { width: 72px; height: 72px; }
+  .room-candidate-actions, .room-candidates details { grid-column: 1 / -1; }
+  .room-candidate-actions { grid-template-columns: repeat(2, 1fr); }
+  .room-operations { grid-template-columns: 1fr; }
+  .room-operations form { grid-template-columns: 1fr; }
+  .room-operations form h2, .room-operations form p { grid-column: auto; }
+}
