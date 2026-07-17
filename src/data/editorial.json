@@ -3,35 +3,35 @@
     "weekKey": "2026-W29",
     "periodLabel": "2026年7月13日〜7月19日",
     "headline": "2026年7月13日〜7月19日のゲームランキングで動いた3商品",
-    "summary": "【楽天ブックス限定特典】スーパーマリオ オデッセイ(「スーパーマリオ」ステッカー2種)、【特典】テニスの王子様 ぎゅ～っと！ ドキドキサバイバル Tie break ♡ game(【早期購入封入特典】DLCチラシ（ミニドラマ用ボイスセット、ミニドラマ用エフェクト1種）)など、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
+    "summary": "トモダチコレクション わくわく生活、【楽天ブックス限定特典】リズム天国 ミラクルスターズ(デコレーションアイテムセット)など、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
     "points": [
       {
         "kind": "rank-rise",
         "sourceKey": "switch",
-        "itemCode": "book:18792224",
-        "itemName": "【楽天ブックス限定特典】スーパーマリオ オデッセイ(「スーパーマリオ」ステッカー2種)",
-        "title": "Switchで【楽天ブックス限定特典】スーパーマリオ オデッセイ(「スーパーマリオ」ステッカー2種)が上昇",
-        "body": "【楽天ブックス限定特典】スーパーマリオ オデッセイ(「スーパーマリオ」ステッカー2種)はSwitchランキングで前週25位から14位へ、11ランク上昇しました。"
+        "itemCode": "book:21864503",
+        "itemName": "トモダチコレクション わくわく生活",
+        "title": "Switchでトモダチコレクション わくわく生活が上昇",
+        "body": "トモダチコレクション わくわく生活はSwitchランキングで前週14位から3位へ、11ランク上昇しました。"
       },
       {
         "kind": "price-drop",
         "sourceKey": "switch",
-        "itemCode": "book:21936642",
-        "itemName": "【特典】テニスの王子様 ぎゅ～っと！ ドキドキサバイバル Tie break ♡ game(【早期購入封入特典】DLCチラシ（ミニドラマ用ボイスセット、ミニドラマ用エフェクト1種）)",
-        "title": "Switchで¥231値下がり",
-        "body": "【特典】テニスの王子様 ぎゅ～っと！ ドキドキサバイバル Tie break ♡ game(【早期購入封入特典】DLCチラシ（ミニドラマ用ボイスセット、ミニドラマ用エフェクト1種）)は前週¥6,930から¥6,699へ、¥231値下がりしました。"
+        "itemCode": "book:21931807",
+        "itemName": "【楽天ブックス限定特典】リズム天国 ミラクルスターズ(デコレーションアイテムセット)",
+        "title": "Switchで¥175値下がり",
+        "body": "【楽天ブックス限定特典】リズム天国 ミラクルスターズ(デコレーションアイテムセット)は前週¥6,174から¥5,999へ、¥175値下がりしました。"
       },
       {
         "kind": "new",
         "sourceKey": "ps5",
-        "itemCode": "auc-worldichi:10024362",
-        "itemName": "【新品】SONY ソニー PS5 ディスクドライブ CFI-ZDD1J",
-        "title": "PS5に【新品】SONY ソニー PS5 ディスクドライブ CFI-ZDD1Jが新登場",
-        "body": "【新品】SONY ソニー PS5 ディスクドライブ CFI-ZDD1JがPS5ランキング1位に新しく入りました。"
+        "itemCode": "auc-worldichi:10031624",
+        "itemName": "【新品】SIE PS5 プレイステーション5 デジタル・エディション 日本語専用 Console Language： Japanese only CFI-2200B01 825GB",
+        "title": "PS5に【新品】SIE PS5 プレイステーション5 デジタル・エディション 日本語専用 Console Language： Japanese only CFI-2200B01 825GBが新登場",
+        "body": "【新品】SIE PS5 プレイステーション5 デジタル・エディション 日本語専用 Console Language： Japanese only CFI-2200B01 825GBがPS5ランキング1位に新しく入りました。"
       }
     ],
     "publishedAt": "2026-07-13T00:00:00+09:00",
-    "updatedAt": "2026-07-17T12:02:36.793Z",
+    "updatedAt": "2026-07-17T23:57:56.078Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
