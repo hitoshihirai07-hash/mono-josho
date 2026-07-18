@@ -32,7 +32,9 @@ const currentPath = Astro.url.pathname;
 const schemas = Array.isArray(structuredData) ? structuredData : [structuredData];
 const navigationItems = getNavigationItems();
 const showArticles = isWeeklyEditorialPublishable(editorial.gameWeekly) ||
-  (archive.weeks || []).some((week) => week.archiveEligible);
+  isWeeklyEditorialPublishable(editorial.cardWeekly) ||
+  (archive.weeks || []).some((week) => week.archiveEligible) ||
+  (archive.cardWeeks || []).some((week) => week.archiveEligible);
 const globalSchemas = [
   {
     "@context": "https://schema.org",

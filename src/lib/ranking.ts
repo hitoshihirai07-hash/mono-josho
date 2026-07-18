@@ -201,6 +201,9 @@ export const getCardGameItems = (ranking: RankingPayload) =>
       .map(enrichCardGameItem)
   );
 
+export const getCardGameFranchiseItems = (ranking: RankingPayload, franchiseKey: string) =>
+  getCardGameItems(ranking).filter((item) => item.cardFranchiseKey === franchiseKey);
+
 export const getEnabledCategoryItems = (ranking: RankingPayload) => {
   const enabledIds = new Set(getEnabledCategories().map((category) => category.id));
   return getAllItems(ranking)

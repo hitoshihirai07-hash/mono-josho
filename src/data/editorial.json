@@ -37,5 +37,19 @@
     "comparisonReady": true,
     "archiveEligible": true,
     "dataDisclosure": "楽天市場の機種別ランキングを7日前と比較し、順位・価格の変化から自動生成しています。"
+  },
+  "cardWeekly": {
+    "weekKey": "2026-W29",
+    "periodLabel": "2026年7月13日〜7月19日",
+    "headline": "2026年7月13日〜7月19日のカードゲームランキング比較",
+    "summary": "ポケモンカード、遊戯王、ONE PIECE、デュエル・マスターズなど、カードゲーム総合ランキングの現在順位を確認できます。",
+    "points": [],
+    "publishedAt": "2026-07-13T00:00:00+09:00",
+    "updatedAt": "2026-07-18T06:05:57.211Z",
+    "authorName": "モノ上昇便データ編集部",
+    "generationMode": "automatic",
+    "comparisonReady": false,
+    "archiveEligible": false,
+    "dataDisclosure": "楽天市場のカードゲーム総合ランキングを7日前と比較し、順位・価格の変化から自動生成しています。"
   }
 }

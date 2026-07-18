@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "weeks": [
     {
       "weekKey": "2026-W28",
@@ -40,5 +40,6 @@
       "archiveEligible": true,
       "dataDisclosure": "楽天市場の機種別ランキングを7日前と比較し、順位・価格の変化から自動生成しています。"
     }
-  ]
+  ],
+  "cardWeeks": []
 }

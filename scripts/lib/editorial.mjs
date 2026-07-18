@@ -1,3 +1,5 @@
+import { classifyCardGameProduct } from "../../src/lib/card-game-classifier.mjs";
+
 const JST_OFFSET_MS = 9 * 60 * 60 * 1000;
 const PLATFORM_LABELS = {
   switch: "Switch",
@@ -154,6 +156,89 @@ export function selectWeeklyPoints(items = []) {
   return points.slice(0, 3);
 }
 
+const cardSourceItems = (items = []) =>
+  uniqueByCode(items.filter((item) =>
+    item?.sourceKey === "card-games" || item?.categoryKey === "card-games"
+  ));
+
+const cardFranchiseLabel = (item) =>
+  item?.cardFranchiseLabel || classifyCardGameProduct(item?.name || "", "").cardFranchiseLabel;
+
+const compactItemName = (value = "", maxLength = 46) => {
+  const name = String(value).replace(/\s+/g, " ").trim();
+  return name.length > maxLength ? `${name.slice(0, maxLength)}…` : name;
+};
+
+export function selectCardWeeklyPoints(items = []) {
+  const candidates = cardSourceItems(items);
+  const used = new Set();
+  const points = [];
+
+  const addPoint = (item, kind, title, body) => {
+    if (!item || used.has(item.code)) return false;
+    used.add(item.code);
+    points.push({
+      kind,
+      sourceKey: "card-games",
+      franchiseKey: item.cardFranchiseKey || classifyCardGameProduct(item.name || "", "").cardFranchiseKey,
+      franchiseLabel: cardFranchiseLabel(item),
+      itemCode: item.code,
+      itemName: item.name,
+      title,
+      body
+    });
+    return true;
+  };
+
+  const rising = [...candidates]
+    .filter((item) => item.weekComparisonReady && !item.weekIsNew && Number(item.weekDelta) > 0)
+    .sort((a, b) => Number(b.weekDelta) - Number(a.weekDelta) || Number(a.rank) - Number(b.rank));
+  const priceDrop = [...candidates]
+    .filter((item) => item.weekComparisonReady && !item.weekIsNew && Number(item.weekPriceChange) < 0)
+    .sort((a, b) => Number(a.weekPriceChange) - Number(b.weekPriceChange));
+  const newItems = [...candidates]
+    .filter((item) => item.weekComparisonReady && item.weekIsNew)
+    .sort((a, b) => Number(a.rank) - Number(b.rank));
+
+  const addRising = (item) => addPoint(
+    item,
+    "rank-rise",
+    `${cardFranchiseLabel(item)}関連で${compactItemName(item.name)}が上昇`,
+    `${item.name}はカードゲーム総合ランキングで前週${item.weekPreviousRank}位から${item.rank}位へ、${item.weekDelta}ランク上昇しました。`
+  );
+  const addPriceDrop = (item) => addPoint(
+    item,
+    "price-drop",
+    `${cardFranchiseLabel(item)}関連で${formatPrice(Math.abs(item.weekPriceChange))}値下がり`,
+    `${item.name}は前週${formatPrice(item.weekPreviousPrice)}から${formatPrice(item.price)}へ、${formatPrice(Math.abs(item.weekPriceChange))}値下がりしました。`
+  );
+  const addNew = (item) => addPoint(
+    item,
+    "new",
+    `${cardFranchiseLabel(item)}関連に${compactItemName(item.name)}が新登場`,
+    `${item.name}がカードゲーム総合ランキング${item.rank}位に新しく入りました。`
+  );
+
+  if (rising[0]) addRising(rising[0]);
+  if (priceDrop[0]) addPriceDrop(priceDrop[0]);
+  if (newItems[0]) addNew(newItems[0]);
+
+  for (const item of rising.slice(1)) {
+    if (points.length >= 3) break;
+    addRising(item);
+  }
+  for (const item of priceDrop.slice(1)) {
+    if (points.length >= 3) break;
+    addPriceDrop(item);
+  }
+  for (const item of newItems.slice(1)) {
+    if (points.length >= 3) break;
+    addNew(item);
+  }
+
+  return points.slice(0, 3);
+}
+
 export function isWeeklyEditorialPublishable(weekly, now = new Date()) {
   if (!weekly || weekly.weekKey !== getJstWeekInfo(now).weekKey) return false;
   if (!weekly.comparisonReady || !weekly.archiveEligible) return false;
@@ -202,6 +287,35 @@ export function generateWeeklyEditorial(ranking = {}, overrides = {}, now = new 
     dataDisclosure: override
       ? "ランキングデータから作成した自動下書きを編集部が確認・上書きしています。"
       : "楽天市場の機種別ランキングを7日前と比較し、順位・価格の変化から自動生成しています。"
+  };
+}
+
+export function generateCardWeeklyEditorial(ranking = {}, now = new Date()) {
+  const week = getJstWeekInfo(now);
+  const items = Array.isArray(ranking.items) ? ranking.items : [];
+  const points = selectCardWeeklyPoints(items);
+  const ready = cardSourceItems(items).some((item) => item.weekComparisonReady);
+  const firstNames = points.slice(0, 2).map((point) => compactItemName(point.itemName, 32));
+  const headline = ready && points.length === 3
+    ? `${week.periodLabel}のカードゲームランキングで動いた3商品`
+    : `${week.periodLabel}のカードゲームランキング比較`;
+  const summary = ready && points.length
+    ? `${firstNames.join("、")}など、カードゲーム総合ランキングの7日間の順位・価格変化を確認します。`
+    : "ポケモンカード、遊戯王、ONE PIECE、デュエル・マスターズなど、カードゲーム総合ランキングの現在順位を確認できます。";
+
+  return {
+    weekKey: week.weekKey,
+    periodLabel: week.periodLabel,
+    headline,
+    summary,
+    points,
+    publishedAt: `${week.startDate}T00:00:00+09:00`,
+    updatedAt: ranking.updatedAt || new Date(now).toISOString(),
+    authorName: "モノ上昇便データ編集部",
+    generationMode: "automatic",
+    comparisonReady: ready,
+    archiveEligible: Boolean(ready && points.length === 3),
+    dataDisclosure: "楽天市場のカードゲーム総合ランキングを7日前と比較し、順位・価格の変化から自動生成しています。"
   };
 }
 

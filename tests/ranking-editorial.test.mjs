@@ -8,10 +8,12 @@ import {
   findComparisonSnapshot
 } from "../scripts/lib/ranking-history.mjs";
 import {
+  generateCardWeeklyEditorial,
   generateWeeklyEditorial,
   getJstWeekInfo,
   isWeeklyEditorialPublishable,
   rotateArchive,
+  selectCardWeeklyPoints,
   selectWeeklyPoints
 } from "../scripts/lib/editorial.mjs";
 import {
@@ -22,7 +24,10 @@ import {
 } from "../scripts/lib/category-config.mjs";
 import { selectTodayHighlights } from "../scripts/lib/highlights.mjs";
 import { classifyGameProduct } from "../src/lib/game-classifier.mjs";
-import { classifyCardGameProduct } from "../src/lib/card-game-classifier.mjs";
+import {
+  cardGameFranchiseDefinitions,
+  classifyCardGameProduct
+} from "../src/lib/card-game-classifier.mjs";
 
 const categoryConfig = JSON.parse(
   await fs.readFile(new URL("../src/data/categories.json", import.meta.url), "utf8")
@@ -61,6 +66,57 @@ const sampleItems = [
     name: "PS4新登場ソフト",
     rank: 7,
     price: 3980,
+    weekComparisonReady: true,
+    weekPreviousRank: null,
+    weekDelta: 0,
+    weekIsNew: true,
+    weekPreviousPrice: null,
+    weekPriceChange: 0
+  }
+];
+
+const sampleCardItems = [
+  {
+    categoryKey: "card-games",
+    sourceKey: "card-games",
+    code: "pokemon-rise",
+    name: "ポケモンカード 拡張パック テストBOX",
+    cardFranchiseKey: "pokemon",
+    cardFranchiseLabel: "ポケモンカード",
+    rank: 2,
+    price: 5980,
+    weekComparisonReady: true,
+    weekPreviousRank: 17,
+    weekDelta: 15,
+    weekIsNew: false,
+    weekPreviousPrice: 5980,
+    weekPriceChange: 0
+  },
+  {
+    categoryKey: "card-games",
+    sourceKey: "card-games",
+    code: "one-piece-drop",
+    name: "ONE PIECE カードゲーム スタートデッキ",
+    cardFranchiseKey: "one-piece",
+    cardFranchiseLabel: "ONE PIECE",
+    rank: 6,
+    price: 2200,
+    weekComparisonReady: true,
+    weekPreviousRank: 8,
+    weekDelta: 2,
+    weekIsNew: false,
+    weekPreviousPrice: 3200,
+    weekPriceChange: -1000
+  },
+  {
+    categoryKey: "card-games",
+    sourceKey: "card-games",
+    code: "duel-masters-new",
+    name: "デュエル・マスターズ 新作パック",
+    cardFranchiseKey: "duel-masters",
+    cardFranchiseLabel: "デュエル・マスターズ",
+    rank: 9,
+    price: 4800,
     weekComparisonReady: true,
     weekPreviousRank: null,
     weekDelta: 0,
@@ -129,6 +185,26 @@ test("weekly editorial selects three concrete and non-duplicated movements", () 
   assert.equal(new Set(points.map((point) => point.itemCode)).size, 3);
   assert.match(points[0].body, /18位から3位/);
   assert.ok(points.some((point) => /¥1,500値下がり/.test(point.title)));
+});
+
+test("card weekly editorial selects three real movements with franchise labels", () => {
+  const points = selectCardWeeklyPoints(sampleCardItems);
+  assert.equal(points.length, 3);
+  assert.equal(new Set(points.map((point) => point.itemCode)).size, 3);
+  assert.match(points[0].title, /ポケモンカード/);
+  assert.ok(points.some((point) => /¥1,000値下がり/.test(point.title)));
+  assert.ok(points.some((point) => point.kind === "new"));
+});
+
+test("card weekly article becomes publishable after seven-day comparison", () => {
+  const now = new Date("2026-07-16T03:00:00.000Z");
+  const generated = generateCardWeeklyEditorial(
+    { updatedAt: now.toISOString(), items: sampleCardItems },
+    now
+  );
+  assert.equal(generated.archiveEligible, true);
+  assert.equal(isWeeklyEditorialPublishable(generated, now), true);
+  assert.match(generated.headline, /カードゲームランキングで動いた3商品/);
 });
 
 test("weekly override replaces automatic copy and qualifies for archiving", () => {
@@ -228,7 +304,7 @@ test("category config exposes only enabled categories and verified sources", () 
     "stationery"
   ]);
   const rankingSources = getEnabledRankingSources(categoryConfig, {});
-  assert.equal(rankingSources.length, 6);
+  assert.equal(rankingSources.length, 7);
   assert.equal(
     rankingSources.find((source) => source.sourceKey === "card-games")?.id,
     "207659"
@@ -254,6 +330,11 @@ test("card-game products are classified by work, product type and condition", ()
   const onePiece = classifyCardGameProduct("ONE PIECE カードゲーム スタートデッキ", "");
   assert.equal(onePiece.cardFranchiseKey, "one-piece");
   assert.equal(onePiece.cardProductTypeKey, "deck");
+
+  assert.deepEqual(
+    cardGameFranchiseDefinitions.filter((definition) => definition.slug).map((definition) => definition.slug),
+    ["pokemon-card", "yu-gi-oh", "one-piece", "duel-masters"]
+  );
 });
 
 test("enabled category without a ranking source is rejected", () => {

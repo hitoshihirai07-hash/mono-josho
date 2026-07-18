@@ -1,0 +1,100 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import ChangeBoard from "../../../components/ChangeBoard.astro";
+import RankingTable from "../../../components/RankingTable.astro";
+import WatchlistPanel from "../../../components/WatchlistPanel.astro";
+import ranking from "../../../data/ranking.json";
+import { cardGameFranchiseDefinitions } from "../../../lib/card-game-classifier.mjs";
+import {
+  createItemListSchema,
+  formatPublishedDate,
+  getCardGameFranchiseItems
+} from "../../../lib/ranking";
+
+export function getStaticPaths() {
+  return cardGameFranchiseDefinitions
+    .filter((definition) => definition.slug)
+    .map((definition) => ({
+      params: { franchise: definition.slug },
+      props: { franchise: definition }
+    }));
+}
+
+const { franchise } = Astro.props;
+const items = getCardGameFranchiseItems(ranking, franchise.key);
+const pageLabel = franchise.pageLabel || franchise.label;
+const published = formatPublishedDate(ranking.updatedAt);
+const pagePath = `/categories/card-games/${franchise.slug}/`;
+const pageUrl = new URL(pagePath, Astro.site).toString();
+const description = `楽天市場のカードゲーム総合ランキングに掲載された${pageLabel}関連商品を整理し、現在順位、新登場、順位上昇、値下がりを確認できます。`;
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "ホーム", item: new URL("/", Astro.site).toString() },
+      { "@type": "ListItem", position: 2, name: "カードゲーム", item: new URL("/categories/card-games/", Astro.site).toString() },
+      { "@type": "ListItem", position: 3, name: pageLabel, item: pageUrl }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: `${pageLabel}のランキング順位変動`,
+    description,
+    url: pageUrl
+  },
+  items.length > 0 ? createItemListSchema(items, pageUrl) : null
+].filter(Boolean);
+---
+<BaseLayout
+  title={`${pageLabel}楽天ランキングの順位変動｜モノ上昇便`}
+  description={description}
+  structuredData={structuredData}
+  robots={items.length > 0 ? "index,follow" : "noindex,follow"}
+>
+  <article class="article-page card-game-page card-franchise-page">
+    <header>
+      <p class="breadcrumbs"><a href="/">ホーム</a> › <a href="/categories/card-games/">カードゲーム</a> › {pageLabel}</p>
+      <h1>{pageLabel}<br /><span>ランキング変動</span></h1>
+      <p>{description}</p>
+      <div class="article-meta">{published}更新　｜　楽天市場「カードゲーム」総合ランキング内から掲載</div>
+    </header>
+
+    <section>
+      <ChangeBoard
+        items={items}
+        id={`${franchise.key}-ranking-changes`}
+        title="01 前回更新からの変化"
+        showSourceFilters={false}
+        showCardClassification={true}
+        dimensionLabel="作品"
+        defaultSourceLabel={pageLabel}
+        moreHref="#franchise-ranking"
+        moreLabel={`現在の${pageLabel}関連商品を見る →`}
+      />
+    </section>
+
+    <section id="franchise-ranking">
+      <h2><span>02</span>現在掲載されている商品</h2>
+      <RankingTable
+        items={items}
+        limit={30}
+        showCardClassification={true}
+        categoryFallback={pageLabel}
+      />
+    </section>
+
+    <section class="seo-block">
+      <h2><span>03</span>掲載順位について</h2>
+      <p>このページは、楽天市場のカードゲーム総合ランキング上位商品から、商品名に基づいて{pageLabel}関連商品を抽出したものです。{pageLabel}の商品だけで順位を付け直したランキングではありません。</p>
+      <p>BOX、パック、構築済みデッキ、シングルカード、カードサプライが含まれる場合があります。価格、内容、販売店、送料、発送予定日を商品ページでご確認ください。</p>
+    </section>
+
+    <aside class="notice">
+      <strong>カードゲーム全体も確認できます</strong>
+      <p><a href="/categories/card-games/">カードゲームランキングに戻る</a>と、ほかの作品や総合順位を確認できます。</p>
+    </aside>
+  </article>
+  <WatchlistPanel items={items} />
+</BaseLayout>

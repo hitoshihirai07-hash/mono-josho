@@ -4,11 +4,17 @@ import ChangeBoard from "../../components/ChangeBoard.astro";
 import RankingTable from "../../components/RankingTable.astro";
 import WatchlistPanel from "../../components/WatchlistPanel.astro";
 import ranking from "../../data/ranking.json";
+import editorial from "../../data/editorial.json";
 import { getCategory } from "../../lib/categories";
 import { createItemListSchema, formatPublishedDate, getCardGameItems } from "../../lib/ranking";
+import { cardGameFranchiseDefinitions } from "../../lib/card-game-classifier.mjs";
+import { isWeeklyEditorialPublishable } from "../../../scripts/lib/editorial.mjs";
 
 const items = getCardGameItems(ranking);
 const category = getCategory("card-games");
+const franchisePages = cardGameFranchiseDefinitions.filter((definition) => definition.slug);
+const cardWeekly = editorial.cardWeekly;
+const showWeekly = isWeeklyEditorialPublishable(cardWeekly);
 const published = formatPublishedDate(ranking.updatedAt);
 const pageUrl = new URL("/categories/card-games/", Astro.site).toString();
 const structuredData = [
@@ -57,8 +63,27 @@ const structuredData = [
       />
     </section>
 
+    <section>
+      <h2><span>02</span>作品別ページ</h2>
+      <p>カードゲーム総合ランキングに掲載された商品を、商品名から作品別に整理しています。</p>
+      <div class="article-route-list">
+        {franchisePages.map((definition) => (
+          <a href={`/categories/card-games/${definition.slug}/`}>
+            <strong>{definition.pageLabel || definition.label}</strong>
+            <span>現在順位、新登場、順位上昇、値下がりを確認する</span>
+          </a>
+        ))}
+        {showWeekly && (
+          <a href={`/articles/card-game-ranking/${cardWeekly.weekKey}/`}>
+            <strong>今週のカードゲームランキング変動</strong>
+            <span>{cardWeekly.headline}</span>
+          </a>
+        )}
+      </div>
+    </section>
+
     <section id="card-game-ranking">
-      <h2><span>02</span>作品から絞り込む</h2>
+      <h2><span>03</span>作品から絞り込む</h2>
       <p>ポケモンカード、遊戯王、ONE PIECE、デュエル・マスターズなどを商品名から分類します。</p>
       <RankingTable
         items={items}
@@ -71,7 +96,7 @@ const structuredData = [
     </section>
 
     <section class="seo-block">
-      <h2><span>03</span>ランキングの見方</h2>
+      <h2><span>04</span>ランキングの見方</h2>
       <p>表示順位は、楽天市場のカードゲーム総合ランキングでの順位です。作品別ボタンは総合ランキング上位商品の商品名を整理するためのもので、ポケモンカードなどの作品別に順位を付け直したものではありません。</p>
       <p>同じ作品でも、BOX、パック、構築済みデッキ、シングルカード、保護ケースなどが含まれます。予約、未開封、セット数、発送日、販売価格を商品ページで確認してから購入してください。</p>
     </section>

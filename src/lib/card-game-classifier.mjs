@@ -1,8 +1,8 @@
 export const cardGameFranchiseDefinitions = [
-  { key: "pokemon", label: "ポケモンカード" },
-  { key: "yu-gi-oh", label: "遊戯王" },
-  { key: "one-piece", label: "ONE PIECE" },
-  { key: "duel-masters", label: "デュエル・マスターズ" },
+  { key: "pokemon", label: "ポケモンカード", pageLabel: "ポケモンカード", slug: "pokemon-card" },
+  { key: "yu-gi-oh", label: "遊戯王", pageLabel: "遊戯王カード", slug: "yu-gi-oh" },
+  { key: "one-piece", label: "ONE PIECE", pageLabel: "ONE PIECEカードゲーム", slug: "one-piece" },
+  { key: "duel-masters", label: "デュエル・マスターズ", pageLabel: "デュエル・マスターズ", slug: "duel-masters" },
   { key: "dragon-ball", label: "ドラゴンボール" },
   { key: "other", label: "その他" }
 ];

@@ -10,6 +10,8 @@ export type CardGameClassification = {
 export const cardGameFranchiseDefinitions: ReadonlyArray<{
   key: string;
   label: string;
+  pageLabel?: string;
+  slug?: string;
 }>;
 
 export function classifyCardGameProduct(
