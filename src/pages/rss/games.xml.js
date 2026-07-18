@@ -6,6 +6,7 @@ import { createRssXml, rssResponse, uniqueWeeks } from "../../lib/rss-feed.mjs";
 export const prerender = true;
 
 export function GET({ site }) {
+  const imageUrl = new URL("/brand/pinterest-games-weekly.png", site).toString();
   const current = isWeeklyEditorialPublishable(editorial.gameWeekly)
     ? [editorial.gameWeekly]
     : [];
@@ -15,7 +16,8 @@ export function GET({ site }) {
     summary: week.summary,
     href: `/articles/game-ranking/${week.weekKey}/`,
     publishedAt: week.publishedAt,
-    updatedAt: week.updatedAt
+    updatedAt: week.updatedAt,
+    imageUrl
   }));
   const xml = createRssXml({
     title: "モノ上昇便｜ゲームランキングの週次変動",

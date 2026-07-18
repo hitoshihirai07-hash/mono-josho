@@ -6,6 +6,8 @@ import { createRssXml, rssResponse, uniqueWeeks } from "../lib/rss-feed.mjs";
 export const prerender = true;
 
 export function GET({ site }) {
+  const gameImageUrl = new URL("/brand/pinterest-games-weekly.png", site).toString();
+  const cardImageUrl = new URL("/brand/pinterest-card-games-weekly.png", site).toString();
   const currentGame = isWeeklyEditorialPublishable(editorial.gameWeekly)
     ? [editorial.gameWeekly]
     : [];
@@ -17,14 +19,16 @@ export function GET({ site }) {
     summary: week.summary,
     href: `/articles/game-ranking/${week.weekKey}/`,
     publishedAt: week.publishedAt,
-    updatedAt: week.updatedAt
+    updatedAt: week.updatedAt,
+    imageUrl: gameImageUrl
   }));
   const cardWeeklyItems = uniqueWeeks([...currentCard, ...(archive.cardWeeks || [])]).map((week) => ({
     title: `【PR・カードゲーム】${week.headline}`,
     summary: week.summary,
     href: `/articles/card-game-ranking/${week.weekKey}/`,
     publishedAt: week.publishedAt,
-    updatedAt: week.updatedAt
+    updatedAt: week.updatedAt,
+    imageUrl: cardImageUrl
   }));
   const cardItems = [
     ...cardWeeklyItems,
@@ -33,7 +37,8 @@ export function GET({ site }) {
       summary: editorial.cardWeekly.summary,
       href: "/categories/card-games/",
       publishedAt: editorial.cardWeekly.publishedAt,
-      updatedAt: editorial.cardWeekly.updatedAt
+      updatedAt: editorial.cardWeekly.updatedAt,
+      imageUrl: cardImageUrl
     }
   ];
   const items = [...gameItems, ...cardItems]

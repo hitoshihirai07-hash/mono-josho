@@ -6,6 +6,7 @@ import { createRssXml, rssResponse, uniqueWeeks } from "../../lib/rss-feed.mjs";
 export const prerender = true;
 
 export function GET({ site }) {
+  const imageUrl = new URL("/brand/pinterest-card-games-weekly.png", site).toString();
   const current = isWeeklyEditorialPublishable(editorial.cardWeekly)
     ? [editorial.cardWeekly]
     : [];
@@ -15,7 +16,8 @@ export function GET({ site }) {
     summary: week.summary,
     href: `/articles/card-game-ranking/${week.weekKey}/`,
     publishedAt: week.publishedAt,
-    updatedAt: week.updatedAt
+    updatedAt: week.updatedAt,
+    imageUrl
   }));
   const items = [
     ...weeklyItems,
@@ -24,7 +26,8 @@ export function GET({ site }) {
       summary: editorial.cardWeekly.summary,
       href: "/categories/card-games/",
       publishedAt: editorial.cardWeekly.publishedAt,
-      updatedAt: editorial.cardWeekly.updatedAt
+      updatedAt: editorial.cardWeekly.updatedAt,
+      imageUrl
     }
   ];
   const xml = createRssXml({
