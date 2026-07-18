@@ -43,7 +43,7 @@ const globalSchemas = [
     name: siteConfig.name,
     url: new URL("/", Astro.site).toString(),
     logo: new URL("/brand/icon.png", Astro.site).toString(),
-    sameAs: siteConfig.xUrl ? [siteConfig.xUrl] : undefined
+    sameAs: [siteConfig.xUrl, siteConfig.pinterestUrl].filter(Boolean)
   },
   {
     "@context": "https://schema.org",
@@ -64,8 +64,10 @@ const globalSchemas = [
     <meta name="description" content={description} />
     <meta name="robots" content={robots} />
     <meta name="google-site-verification" content="18bkD956Gj3a_2GBjRWH7bKFoSrDXwbM0oE8xLWH1KE" />
+    <meta name="p:domain_verify" content="7f58e4477f68ff625cba7365f5ac6d1d" />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/brand/icon.png" type="image/png" />
+    <link rel="alternate" type="application/rss+xml" title="モノ上昇便 RSS" href={new URL("/rss.xml", Astro.site)} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content={ogType} />
@@ -112,6 +114,7 @@ const globalSchemas = [
         <a href="/about/">運営情報</a>
         <a href="/privacy/">プライバシーポリシー</a>
         <a href="/contact/">お問い合わせ</a>
+        <a href={siteConfig.pinterestUrl} target="_blank" rel="me noopener">Pinterest</a>
       </div>
       <small>© 2026 モノ上昇便</small>
     </footer>

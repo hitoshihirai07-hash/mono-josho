@@ -11,7 +11,9 @@ const editorial = JSON.parse(
 );
 const hasPublishedArchive = [...(archive.weeks || []), ...(archive.cardWeeks || [])]
   .some((week) => week.archiveEligible && Array.isArray(week.points) && week.points.length === 3);
-const hasPublishedArticles = hasPublishedArchive || isWeeklyEditorialPublishable(editorial.cardWeekly);
+const hasPublishedArticles = hasPublishedArchive ||
+  isWeeklyEditorialPublishable(editorial.gameWeekly) ||
+  isWeeklyEditorialPublishable(editorial.cardWeekly);
 
 export default defineConfig({
   site: process.env.SITE_URL || "https://mono-josho.pages.dev",
@@ -19,6 +21,7 @@ export default defineConfig({
     filter: (page) => {
       const pathname = new URL(page).pathname;
       if (pathname.startsWith("/admin/")) return false;
+      if (pathname === "/rss.xml" || pathname.startsWith("/rss/")) return false;
       if (pathname === "/articles/current-game-ranking/") return false;
       if (pathname === "/articles/weekly-rising-stationery/") return false;
       if (pathname === "/articles/" && !hasPublishedArticles) return false;

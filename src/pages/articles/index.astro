@@ -15,7 +15,7 @@ const publishedCardWeeks = (archive.cardWeeks || []).filter((week) =>
   week.archiveEligible && Array.isArray(week.points) && week.points.length === 3
 );
 const articles = [
-  ...(showCurrentGame ? [{ ...weekly, sectionLabel: "ゲーム", href: "/articles/current-game-ranking/" }] : []),
+  ...(showCurrentGame ? [{ ...weekly, sectionLabel: "ゲーム", href: `/articles/game-ranking/${weekly.weekKey}/` }] : []),
   ...(showCurrentCard ? [{ ...cardWeekly, sectionLabel: "カードゲーム", href: `/articles/card-game-ranking/${cardWeekly.weekKey}/` }] : []),
   ...publishedGameWeeks.map((week) => ({
     ...week,

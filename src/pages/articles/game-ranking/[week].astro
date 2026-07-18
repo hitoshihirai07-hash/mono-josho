@@ -1,12 +1,23 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
+import editorial from "../../../data/editorial.json";
 import archive from "../../../data/editorial-archive.json";
 import { formatPublishedDate } from "../../../lib/ranking";
+import { isWeeklyEditorialPublishable } from "../../../../scripts/lib/editorial.mjs";
 
 export function getStaticPaths() {
-  return (archive.weeks || [])
-    .filter((week) => week.archiveEligible && Array.isArray(week.points) && week.points.length === 3)
-    .map((week) => ({
+  const archivedWeeks = (archive.weeks || []).filter((week) =>
+    week.archiveEligible && Array.isArray(week.points) && week.points.length === 3
+  );
+  const currentWeeks = isWeeklyEditorialPublishable(editorial.gameWeekly)
+    ? [editorial.gameWeekly]
+    : [];
+  const weeks = [...currentWeeks, ...archivedWeeks]
+    .filter((week, index, source) =>
+      source.findIndex((candidate) => candidate.weekKey === week.weekKey) === index
+    );
+
+  return weeks.map((week) => ({
     params: { week: week.weekKey },
     props: { week }
   }));
