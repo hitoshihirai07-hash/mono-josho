@@ -3,24 +3,8 @@
     "weekKey": "2026-W30",
     "periodLabel": "2026年7月20日〜7月26日",
     "headline": "2026年7月20日〜7月26日のゲームランキングで動いた3商品",
-    "summary": "リズム天国 ミラクルスターズ、【7/20.7/25限定！お買い物マラソン×5のつく日｜ポイント最大49.5倍】【新品】PlayStation 5 Pro CFI-7100B01 2TB 2025版【日曜日以外即日発送】【送料無料】など、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
+    "summary": "リズム天国 ミラクルスターズ 【Switch】 HAC-P-BFLTA、PlayStation5 デジタル・エディション 日本語専用 Console Language: Japanese onlyなど、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
     "points": [
-      {
-        "kind": "rank-rise",
-        "sourceKey": "switch",
-        "itemCode": "book:21931441",
-        "itemName": "リズム天国 ミラクルスターズ",
-        "title": "Switchでリズム天国 ミラクルスターズが上昇",
-        "body": "リズム天国 ミラクルスターズはSwitchランキングで前週4位から3位へ、1ランク上昇しました。"
-      },
-      {
-        "kind": "price-drop",
-        "sourceKey": "ps5",
-        "itemCode": "keitai-god2a:10004940",
-        "itemName": "【7/20.7/25限定！お買い物マラソン×5のつく日｜ポイント最大49.5倍】【新品】PlayStation 5 Pro CFI-7100B01 2TB 2025版【日曜日以外即日発送】【送料無料】",
-        "title": "PS5で¥1,146値下がり",
-        "body": "【7/20.7/25限定！お買い物マラソン×5のつく日｜ポイント最大49.5倍】【新品】PlayStation 5 Pro CFI-7100B01 2TB 2025版【日曜日以外即日発送】【送料無料】は前週¥182,800から¥181,654へ、¥1,146値下がりしました。"
-      },
       {
         "kind": "new",
         "sourceKey": "switch",
@@ -28,10 +12,26 @@
         "itemName": "リズム天国 ミラクルスターズ 【Switch】 HAC-P-BFLTA",
         "title": "Switchにリズム天国 ミラクルスターズ 【Switch】 HAC-P-BFLTAが新登場",
         "body": "リズム天国 ミラクルスターズ 【Switch】 HAC-P-BFLTAがSwitchランキング1位に新しく入りました。"
+      },
+      {
+        "kind": "new",
+        "sourceKey": "ps5",
+        "itemCode": "book:21800394",
+        "itemName": "PlayStation5 デジタル・エディション 日本語専用 Console Language: Japanese only",
+        "title": "PS5にPlayStation5 デジタル・エディション 日本語専用 Console Language: Japanese onlyが新登場",
+        "body": "PlayStation5 デジタル・エディション 日本語専用 Console Language: Japanese onlyがPS5ランキング1位に新しく入りました。"
+      },
+      {
+        "kind": "new",
+        "sourceKey": "ps4",
+        "itemCode": "kadekaden:10473833",
+        "itemName": "SONY ワイヤレスコントローラー DUALSHOCK 4 ローズ・ゴールド CUH-ZCT2J27",
+        "title": "PS4にSONY ワイヤレスコントローラー DUALSHOCK 4 ローズ・ゴールド CUH-ZCT2J27が新登場",
+        "body": "SONY ワイヤレスコントローラー DUALSHOCK 4 ローズ・ゴールド CUH-ZCT2J27がPS4ランキング1位に新しく入りました。"
       }
     ],
     "publishedAt": "2026-07-20T00:00:00+09:00",
-    "updatedAt": "2026-07-20T00:04:02.608Z",
+    "updatedAt": "2026-07-20T06:47:02.632Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
@@ -45,7 +45,7 @@
     "summary": "ポケモンカード、遊戯王、ONE PIECE、デュエル・マスターズなど、カードゲーム総合ランキングの現在順位を確認できます。",
     "points": [],
     "publishedAt": "2026-07-20T00:00:00+09:00",
-    "updatedAt": "2026-07-20T00:04:02.608Z",
+    "updatedAt": "2026-07-20T06:47:02.632Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": false,
