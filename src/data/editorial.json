@@ -1,37 +1,37 @@
 {
   "gameWeekly": {
-    "weekKey": "2026-W29",
-    "periodLabel": "2026年7月13日〜7月19日",
-    "headline": "2026年7月13日〜7月19日のゲームランキングで動いた3商品",
-    "summary": "【新品】Joy−Con(L) ブルー／(R) ネオンイエロー周辺機器(メーカー純正)ソフト／コントローラ・ゲーム、新品 Nintendo Switch 2 日本語 国内専用 日本国内版 BEE-S-KB6CA ニンテンドー スイッチ2 本体 任天堂 新型 送料無料 任天堂switch2 プレゼント クリスマスなど、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
+    "weekKey": "2026-W30",
+    "periodLabel": "2026年7月20日〜7月26日",
+    "headline": "2026年7月20日〜7月26日のゲームランキングで動いた3商品",
+    "summary": "リズム天国 ミラクルスターズ、【7/20.7/25限定！お買い物マラソン×5のつく日｜ポイント最大49.5倍】【新品】PlayStation 5 Pro CFI-7100B01 2TB 2025版【日曜日以外即日発送】【送料無料】など、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
     "points": [
       {
         "kind": "rank-rise",
         "sourceKey": "switch",
-        "itemCode": "geoonline1:11776153",
-        "itemName": "【新品】Joy−Con(L) ブルー／(R) ネオンイエロー周辺機器(メーカー純正)ソフト／コントローラ・ゲーム",
-        "title": "Switchで【新品】Joy−Con(L) ブルー／(R) ネオンイエロー周辺機器(メーカー純正)ソフト／コントローラ・ゲームが上昇",
-        "body": "【新品】Joy−Con(L) ブルー／(R) ネオンイエロー周辺機器(メーカー純正)ソフト／コントローラ・ゲームはSwitchランキングで前週23位から16位へ、7ランク上昇しました。"
+        "itemCode": "book:21931441",
+        "itemName": "リズム天国 ミラクルスターズ",
+        "title": "Switchでリズム天国 ミラクルスターズが上昇",
+        "body": "リズム天国 ミラクルスターズはSwitchランキングで前週4位から3位へ、1ランク上昇しました。"
       },
       {
         "kind": "price-drop",
-        "sourceKey": "switch",
-        "itemCode": "alljapan-online-shop:10021278",
-        "itemName": "新品 Nintendo Switch 2 日本語 国内専用 日本国内版 BEE-S-KB6CA ニンテンドー スイッチ2 本体 任天堂 新型 送料無料 任天堂switch2 プレゼント クリスマス",
-        "title": "Switchで¥351値下がり",
-        "body": "新品 Nintendo Switch 2 日本語 国内専用 日本国内版 BEE-S-KB6CA ニンテンドー スイッチ2 本体 任天堂 新型 送料無料 任天堂switch2 プレゼント クリスマスは前週¥54,950から¥54,599へ、¥351値下がりしました。"
+        "sourceKey": "ps5",
+        "itemCode": "keitai-god2a:10004940",
+        "itemName": "【7/20.7/25限定！お買い物マラソン×5のつく日｜ポイント最大49.5倍】【新品】PlayStation 5 Pro CFI-7100B01 2TB 2025版【日曜日以外即日発送】【送料無料】",
+        "title": "PS5で¥1,146値下がり",
+        "body": "【7/20.7/25限定！お買い物マラソン×5のつく日｜ポイント最大49.5倍】【新品】PlayStation 5 Pro CFI-7100B01 2TB 2025版【日曜日以外即日発送】【送料無料】は前週¥182,800から¥181,654へ、¥1,146値下がりしました。"
       },
       {
         "kind": "new",
-        "sourceKey": "ps4",
-        "itemCode": "yms--online:10000953",
-        "itemName": "【お買い物マラソン期間中P2倍】PS4 ファイナルファンタジー ピクセルリマスター コレクション Final Fantasy I-VI Pixel Remaster Collection 日本語対応 (EU輸入版) - プレステ プレイステーション ソフト",
-        "title": "PS4に【お買い物マラソン期間中P2倍】PS4 ファイナルファンタジー ピクセルリマスター コレクション Final Fantasy I-VI Pixel Remaster Collection 日本語対応 (EU輸入版) - プレステ プレイステーション ソフトが新登場",
-        "body": "【お買い物マラソン期間中P2倍】PS4 ファイナルファンタジー ピクセルリマスター コレクション Final Fantasy I-VI Pixel Remaster Collection 日本語対応 (EU輸入版) - プレステ プレイステーション ソフトがPS4ランキング1位に新しく入りました。"
+        "sourceKey": "switch",
+        "itemCode": "yamada-denki:10683372",
+        "itemName": "リズム天国 ミラクルスターズ 【Switch】 HAC-P-BFLTA",
+        "title": "Switchにリズム天国 ミラクルスターズ 【Switch】 HAC-P-BFLTAが新登場",
+        "body": "リズム天国 ミラクルスターズ 【Switch】 HAC-P-BFLTAがSwitchランキング1位に新しく入りました。"
       }
     ],
-    "publishedAt": "2026-07-13T00:00:00+09:00",
-    "updatedAt": "2026-07-19T11:48:07.773Z",
+    "publishedAt": "2026-07-20T00:00:00+09:00",
+    "updatedAt": "2026-07-20T00:04:02.608Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
@@ -39,13 +39,13 @@
     "dataDisclosure": "楽天市場の機種別ランキングを7日前と比較し、順位・価格の変化から自動生成しています。"
   },
   "cardWeekly": {
-    "weekKey": "2026-W29",
-    "periodLabel": "2026年7月13日〜7月19日",
-    "headline": "2026年7月13日〜7月19日のカードゲームランキング比較",
+    "weekKey": "2026-W30",
+    "periodLabel": "2026年7月20日〜7月26日",
+    "headline": "2026年7月20日〜7月26日のカードゲームランキング比較",
     "summary": "ポケモンカード、遊戯王、ONE PIECE、デュエル・マスターズなど、カードゲーム総合ランキングの現在順位を確認できます。",
     "points": [],
-    "publishedAt": "2026-07-13T00:00:00+09:00",
-    "updatedAt": "2026-07-19T11:48:07.773Z",
+    "publishedAt": "2026-07-20T00:00:00+09:00",
+    "updatedAt": "2026-07-20T00:04:02.608Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": false,
