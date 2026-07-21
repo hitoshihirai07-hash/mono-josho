@@ -3,7 +3,7 @@
     "weekKey": "2026-W30",
     "periodLabel": "2026年7月20日〜7月26日",
     "headline": "2026年7月20日〜7月26日のゲームランキングで動いた3商品",
-    "summary": "リズム天国 ミラクルスターズ 【Switch】 HAC-P-BFLTA、【特典】テニスの王子様 ぎゅ～っと！ ドキドキサバイバル Tie break ♡ game(【早期購入封入特典】DLCチラシ（ミニドラマ用ボイスセット、ミニドラマ用エフェクト1種）)など、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
+    "summary": "リズム天国 ミラクルスターズ 【Switch】 HAC-P-BFLTA、【楽天ブックス限定特典】リズム天国 ミラクルスターズ(デコレーションアイテムセット)など、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
     "points": [
       {
         "kind": "rank-rise",
@@ -11,27 +11,27 @@
         "itemCode": "yamada-denki:10683372",
         "itemName": "リズム天国 ミラクルスターズ 【Switch】 HAC-P-BFLTA",
         "title": "Switchでリズム天国 ミラクルスターズ 【Switch】 HAC-P-BFLTAが上昇",
-        "body": "リズム天国 ミラクルスターズ 【Switch】 HAC-P-BFLTAはSwitchランキングで前週14位から2位へ、12ランク上昇しました。"
+        "body": "リズム天国 ミラクルスターズ 【Switch】 HAC-P-BFLTAはSwitchランキングで前週22位から1位へ、21ランク上昇しました。"
       },
       {
         "kind": "price-drop",
         "sourceKey": "switch",
-        "itemCode": "book:21936642",
-        "itemName": "【特典】テニスの王子様 ぎゅ～っと！ ドキドキサバイバル Tie break ♡ game(【早期購入封入特典】DLCチラシ（ミニドラマ用ボイスセット、ミニドラマ用エフェクト1種）)",
-        "title": "Switchで¥231値下がり",
-        "body": "【特典】テニスの王子様 ぎゅ～っと！ ドキドキサバイバル Tie break ♡ game(【早期購入封入特典】DLCチラシ（ミニドラマ用ボイスセット、ミニドラマ用エフェクト1種）)は前週¥6,930から¥6,699へ、¥231値下がりしました。"
+        "itemCode": "book:21931807",
+        "itemName": "【楽天ブックス限定特典】リズム天国 ミラクルスターズ(デコレーションアイテムセット)",
+        "title": "Switchで¥175値下がり",
+        "body": "【楽天ブックス限定特典】リズム天国 ミラクルスターズ(デコレーションアイテムセット)は前週¥6,174から¥5,999へ、¥175値下がりしました。"
       },
       {
         "kind": "new",
-        "sourceKey": "switch",
-        "itemCode": "book:19757436",
-        "itemName": "Nintendo Switch Lite ターコイズ",
-        "title": "SwitchにNintendo Switch Lite ターコイズが新登場",
-        "body": "Nintendo Switch Lite ターコイズがSwitchランキング1位に新しく入りました。"
+        "sourceKey": "ps5",
+        "itemCode": "lcs-live:10014108",
+        "itemName": "PlayStation 5 デジタル・エディション DualSense ワイヤレスコントローラー ダブルパック CFIJ-10019",
+        "title": "PS5にPlayStation 5 デジタル・エディション DualSense ワイヤレスコントローラー ダブルパック CFIJ-10019が新登場",
+        "body": "PlayStation 5 デジタル・エディション DualSense ワイヤレスコントローラー ダブルパック CFIJ-10019がPS5ランキング1位に新しく入りました。"
       }
     ],
     "publishedAt": "2026-07-20T00:00:00+09:00",
-    "updatedAt": "2026-07-20T12:59:51.188Z",
+    "updatedAt": "2026-07-21T00:03:47.966Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
@@ -45,7 +45,7 @@
     "summary": "ポケモンカード、遊戯王、ONE PIECE、デュエル・マスターズなど、カードゲーム総合ランキングの現在順位を確認できます。",
     "points": [],
     "publishedAt": "2026-07-20T00:00:00+09:00",
-    "updatedAt": "2026-07-20T12:59:51.188Z",
+    "updatedAt": "2026-07-21T00:03:47.966Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": false,
