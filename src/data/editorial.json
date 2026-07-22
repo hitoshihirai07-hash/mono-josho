@@ -3,35 +3,35 @@
     "weekKey": "2026-W30",
     "periodLabel": "2026年7月20日〜7月26日",
     "headline": "2026年7月20日〜7月26日のゲームランキングで動いた3商品",
-    "summary": "【楽天ブックス限定特典】リズム天国 ミラクルスターズ(デコレーションアイテムセット)、リズム天国 ミラクルスターズ 【Switch】 HAC-P-BFLTAなど、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
+    "summary": "DualSense ワイヤレスコントローラー、【新品】PS5 プレイステーション5 デジタル・エディション フォートナイト Cobalt Starパック CFIJ-10028 1TBなど、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
     "points": [
       {
         "kind": "rank-rise",
-        "sourceKey": "switch",
-        "itemCode": "book:21931807",
-        "itemName": "【楽天ブックス限定特典】リズム天国 ミラクルスターズ(デコレーションアイテムセット)",
-        "title": "Switchで【楽天ブックス限定特典】リズム天国 ミラクルスターズ(デコレーションアイテムセット)が上昇",
-        "body": "【楽天ブックス限定特典】リズム天国 ミラクルスターズ(デコレーションアイテムセット)はSwitchランキングで前週30位から12位へ、18ランク上昇しました。"
+        "sourceKey": "ps5",
+        "itemCode": "book:21807582",
+        "itemName": "DualSense ワイヤレスコントローラー",
+        "title": "PS5でDualSense ワイヤレスコントローラーが上昇",
+        "body": "DualSense ワイヤレスコントローラーはPS5ランキングで前週18位から4位へ、14ランク上昇しました。"
       },
       {
         "kind": "new",
-        "sourceKey": "switch",
-        "itemCode": "yamada-denki:10683372",
-        "itemName": "リズム天国 ミラクルスターズ 【Switch】 HAC-P-BFLTA",
-        "title": "Switchにリズム天国 ミラクルスターズ 【Switch】 HAC-P-BFLTAが新登場",
-        "body": "リズム天国 ミラクルスターズ 【Switch】 HAC-P-BFLTAがSwitchランキング1位に新しく入りました。"
+        "sourceKey": "ps5",
+        "itemCode": "uriurishop:10006543",
+        "itemName": "【新品】PS5 プレイステーション5 デジタル・エディション フォートナイト Cobalt Starパック CFIJ-10028 1TB",
+        "title": "PS5に【新品】PS5 プレイステーション5 デジタル・エディション フォートナイト Cobalt Starパック CFIJ-10028 1TBが新登場",
+        "body": "【新品】PS5 プレイステーション5 デジタル・エディション フォートナイト Cobalt Starパック CFIJ-10028 1TBがPS5ランキング1位に新しく入りました。"
       },
       {
         "kind": "rank-rise",
         "sourceKey": "switch",
-        "itemCode": "yamada-denki:10677676",
-        "itemName": "トモダチコレクション わくわく生活 【Switch】 HAC-P-BLFGA",
-        "title": "Switchでトモダチコレクション わくわく生活 【Switch】 HAC-P-BLFGAが上昇",
-        "body": "トモダチコレクション わくわく生活 【Switch】 HAC-P-BLFGAはSwitchランキングで前週23位から8位へ、15ランク上昇しました。"
+        "itemCode": "book:21931441",
+        "itemName": "リズム天国 ミラクルスターズ",
+        "title": "Switchでリズム天国 ミラクルスターズが上昇",
+        "body": "リズム天国 ミラクルスターズはSwitchランキングで前週2位から1位へ、1ランク上昇しました。"
       }
     ],
     "publishedAt": "2026-07-20T00:00:00+09:00",
-    "updatedAt": "2026-07-21T12:18:24.335Z",
+    "updatedAt": "2026-07-21T23:59:56.889Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
@@ -45,7 +45,7 @@
     "summary": "ポケモンカード、遊戯王、ONE PIECE、デュエル・マスターズなど、カードゲーム総合ランキングの現在順位を確認できます。",
     "points": [],
     "publishedAt": "2026-07-20T00:00:00+09:00",
-    "updatedAt": "2026-07-21T12:18:24.335Z",
+    "updatedAt": "2026-07-21T23:59:56.889Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": false,
