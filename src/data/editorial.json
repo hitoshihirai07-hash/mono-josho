@@ -3,35 +3,35 @@
     "weekKey": "2026-W30",
     "periodLabel": "2026年7月20日〜7月26日",
     "headline": "2026年7月20日〜7月26日のゲームランキングで動いた3商品",
-    "summary": "トモダチコレクション わくわく生活 【Switch】 HAC-P-BLFGA、新品 Nintendo Switch 2 日本語 国内専用 日本国内版 BEE-S-KB6CA ニンテンドー スイッチ2 本体 任天堂 新型 送料無料 任天堂switch2 プレゼント クリスマスなど、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
+    "summary": "【特典】Beast of Reincarnation(【永久封入特典】プロダクトコード)、任天堂｜Nintendo スプラトゥーン レイダース【Switch 2】など、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
     "points": [
       {
         "kind": "rank-rise",
-        "sourceKey": "switch",
-        "itemCode": "yamada-denki:10677676",
-        "itemName": "トモダチコレクション わくわく生活 【Switch】 HAC-P-BLFGA",
-        "title": "Switchでトモダチコレクション わくわく生活 【Switch】 HAC-P-BLFGAが上昇",
-        "body": "トモダチコレクション わくわく生活 【Switch】 HAC-P-BLFGAはSwitchランキングで前週26位から8位へ、18ランク上昇しました。"
-      },
-      {
-        "kind": "price-drop",
-        "sourceKey": "switch",
-        "itemCode": "alljapan-online-shop:10021278",
-        "itemName": "新品 Nintendo Switch 2 日本語 国内専用 日本国内版 BEE-S-KB6CA ニンテンドー スイッチ2 本体 任天堂 新型 送料無料 任天堂switch2 プレゼント クリスマス",
-        "title": "Switchで¥350値下がり",
-        "body": "新品 Nintendo Switch 2 日本語 国内専用 日本国内版 BEE-S-KB6CA ニンテンドー スイッチ2 本体 任天堂 新型 送料無料 任天堂switch2 プレゼント クリスマスは前週¥56,300から¥55,950へ、¥350値下がりしました。"
+        "sourceKey": "ps5",
+        "itemCode": "book:21938542",
+        "itemName": "【特典】Beast of Reincarnation(【永久封入特典】プロダクトコード)",
+        "title": "PS5で【特典】Beast of Reincarnation(【永久封入特典】プロダクトコード)が上昇",
+        "body": "【特典】Beast of Reincarnation(【永久封入特典】プロダクトコード)はPS5ランキングで前週19位から1位へ、18ランク上昇しました。"
       },
       {
         "kind": "new",
         "sourceKey": "switch",
-        "itemCode": "akaikumasan:10075443",
-        "itemName": "【新品】 スプラトゥーン レイダース Nintendo Switch 2 佐賀",
-        "title": "Switchに【新品】 スプラトゥーン レイダース Nintendo Switch 2 佐賀が新登場",
-        "body": "【新品】 スプラトゥーン レイダース Nintendo Switch 2 佐賀がSwitchランキング1位に新しく入りました。"
+        "itemCode": "biccamera:15415379",
+        "itemName": "任天堂｜Nintendo スプラトゥーン レイダース【Switch 2】",
+        "title": "Switchに任天堂｜Nintendo スプラトゥーン レイダース【Switch 2】が新登場",
+        "body": "任天堂｜Nintendo スプラトゥーン レイダース【Switch 2】がSwitchランキング1位に新しく入りました。"
+      },
+      {
+        "kind": "rank-rise",
+        "sourceKey": "ps5",
+        "itemCode": "book:21989030",
+        "itemName": "【特典】ペルソナ4 リバイバル(【先着購入封入特典】DLC)",
+        "title": "PS5で【特典】ペルソナ4 リバイバル(【先着購入封入特典】DLC)が上昇",
+        "body": "【特典】ペルソナ4 リバイバル(【先着購入封入特典】DLC)はPS5ランキングで前週16位から12位へ、4ランク上昇しました。"
       }
     ],
     "publishedAt": "2026-07-20T00:00:00+09:00",
-    "updatedAt": "2026-07-23T06:30:37.047Z",
+    "updatedAt": "2026-07-23T12:18:08.072Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
@@ -41,15 +41,46 @@
   "cardWeekly": {
     "weekKey": "2026-W30",
     "periodLabel": "2026年7月20日〜7月26日",
-    "headline": "2026年7月20日〜7月26日のカードゲームランキング比較",
-    "summary": "ポケモンカード、遊戯王、ONE PIECE、デュエル・マスターズなど、カードゲーム総合ランキングの現在順位を確認できます。",
-    "points": [],
+    "headline": "2026年7月20日〜7月26日のカードゲームランキングで動いた3商品",
+    "summary": "【レビューで1パックGETキャンペーン！】 ポケモンカード 30…、【予約商品 9月中旬発売】 ポケモンカードゲーム MEGA 30…など、カードゲーム総合ランキングの7日間の順位・価格変化を確認します。",
+    "points": [
+      {
+        "kind": "rank-rise",
+        "sourceKey": "card-games",
+        "franchiseKey": "pokemon",
+        "franchiseLabel": "ポケモンカード",
+        "itemCode": "syochikudo12:10000202",
+        "itemName": "【レビューで1パックGETキャンペーン！】 ポケモンカード 30th CELEBRATION 1~5パック Pokemon 30周年 カードゲーム セレブレーション",
+        "title": "ポケモンカード関連で【レビューで1パックGETキャンペーン！】 ポケモンカード 30th CELEBRATION…が上昇",
+        "body": "【レビューで1パックGETキャンペーン！】 ポケモンカード 30th CELEBRATION 1~5パック Pokemon 30周年 カードゲーム セレブレーションはカードゲーム総合ランキングで前週11位から8位へ、3ランク上昇しました。"
+      },
+      {
+        "kind": "new",
+        "sourceKey": "card-games",
+        "franchiseKey": "pokemon",
+        "franchiseLabel": "ポケモンカード",
+        "itemCode": "syochikudo12:10000204",
+        "itemName": "【予約商品 9月中旬発売】 ポケモンカードゲーム MEGA 30th CELEBRATION プレミアムデッキセット エーフィ・ブラッキー 30周年 カードゲーム セレブレーション 新品 未開封",
+        "title": "ポケモンカード関連に【予約商品 9月中旬発売】 ポケモンカードゲーム MEGA 30th CELEBRATION…が新登場",
+        "body": "【予約商品 9月中旬発売】 ポケモンカードゲーム MEGA 30th CELEBRATION プレミアムデッキセット エーフィ・ブラッキー 30周年 カードゲーム セレブレーション 新品 未開封がカードゲーム総合ランキング1位に新しく入りました。"
+      },
+      {
+        "kind": "new",
+        "sourceKey": "card-games",
+        "franchiseKey": "pokemon",
+        "franchiseLabel": "ポケモンカード",
+        "itemCode": "toysbox2nd:10016715",
+        "itemName": "7月31日発売 予約 BOX レビュー特典付き ポケモンカードゲーム MEGA 拡張パック ストームエメラルダ ボックス",
+        "title": "ポケモンカード関連に7月31日発売 予約 BOX レビュー特典付き ポケモンカードゲーム MEGA 拡張パック …が新登場",
+        "body": "7月31日発売 予約 BOX レビュー特典付き ポケモンカードゲーム MEGA 拡張パック ストームエメラルダ ボックスがカードゲーム総合ランキング2位に新しく入りました。"
+      }
+    ],
     "publishedAt": "2026-07-20T00:00:00+09:00",
-    "updatedAt": "2026-07-23T06:30:37.047Z",
+    "updatedAt": "2026-07-23T12:18:08.072Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
-    "comparisonReady": false,
-    "archiveEligible": false,
+    "comparisonReady": true,
+    "archiveEligible": true,
     "dataDisclosure": "楽天市場のカードゲーム総合ランキングを7日前と比較し、順位・価格の変化から自動生成しています。"
   }
 }
