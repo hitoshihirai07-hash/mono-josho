@@ -3,35 +3,35 @@
     "weekKey": "2026-W31",
     "periodLabel": "2026年7月27日〜8月2日",
     "headline": "2026年7月27日〜8月2日のゲームランキングで動いた3商品",
-    "summary": "【特典】テニスの王子様 ぎゅ～っと！ ドキドキサバイバル Tie break ♡ game(【早期購入封入特典】DLCチラシ（ミニドラマ用ボイスセット、ミニドラマ用エフェクト1種）)、新品 Nintendo Switch 2 日本語 国内専用 日本国内版 BEE-S-KB6CA ニンテンドー スイッチ2 本体 任天堂 新型 送料無料 任天堂switch2 プレゼント クリスマスなど、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
+    "summary": "トモダチコレクション わくわく生活、【新品】SONY ソニー PS5 ディスクドライブ CFI-ZDD1Jなど、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
     "points": [
-      {
-        "kind": "rank-rise",
-        "sourceKey": "switch",
-        "itemCode": "book:21936642",
-        "itemName": "【特典】テニスの王子様 ぎゅ～っと！ ドキドキサバイバル Tie break ♡ game(【早期購入封入特典】DLCチラシ（ミニドラマ用ボイスセット、ミニドラマ用エフェクト1種）)",
-        "title": "Switchで【特典】テニスの王子様 ぎゅ～っと！ ドキドキサバイバル Tie break ♡ game(【早期購入封入特典】DLCチラシ（ミニドラマ用ボイスセット、ミニドラマ用エフェクト1種）)が上昇",
-        "body": "【特典】テニスの王子様 ぎゅ～っと！ ドキドキサバイバル Tie break ♡ game(【早期購入封入特典】DLCチラシ（ミニドラマ用ボイスセット、ミニドラマ用エフェクト1種）)はSwitchランキングで前週25位から2位へ、23ランク上昇しました。"
-      },
-      {
-        "kind": "new",
-        "sourceKey": "switch",
-        "itemCode": "alljapan-online-shop:10021278",
-        "itemName": "新品 Nintendo Switch 2 日本語 国内専用 日本国内版 BEE-S-KB6CA ニンテンドー スイッチ2 本体 任天堂 新型 送料無料 任天堂switch2 プレゼント クリスマス",
-        "title": "Switchに新品 Nintendo Switch 2 日本語 国内専用 日本国内版 BEE-S-KB6CA ニンテンドー スイッチ2 本体 任天堂 新型 送料無料 任天堂switch2 プレゼント クリスマスが新登場",
-        "body": "新品 Nintendo Switch 2 日本語 国内専用 日本国内版 BEE-S-KB6CA ニンテンドー スイッチ2 本体 任天堂 新型 送料無料 任天堂switch2 プレゼント クリスマスがSwitchランキング1位に新しく入りました。"
-      },
       {
         "kind": "rank-rise",
         "sourceKey": "switch",
         "itemCode": "book:21864503",
         "itemName": "トモダチコレクション わくわく生活",
         "title": "Switchでトモダチコレクション わくわく生活が上昇",
-        "body": "トモダチコレクション わくわく生活はSwitchランキングで前週26位から5位へ、21ランク上昇しました。"
+        "body": "トモダチコレクション わくわく生活はSwitchランキングで前週11位から3位へ、8ランク上昇しました。"
+      },
+      {
+        "kind": "price-drop",
+        "sourceKey": "ps5",
+        "itemCode": "auc-worldichi:10024362",
+        "itemName": "【新品】SONY ソニー PS5 ディスクドライブ CFI-ZDD1J",
+        "title": "PS5で¥1,273値下がり",
+        "body": "【新品】SONY ソニー PS5 ディスクドライブ CFI-ZDD1Jは前週¥15,073から¥13,800へ、¥1,273値下がりしました。"
+      },
+      {
+        "kind": "new",
+        "sourceKey": "ps5",
+        "itemCode": "book:21101679",
+        "itemName": "ディスクドライブ",
+        "title": "PS5にディスクドライブが新登場",
+        "body": "ディスクドライブがPS5ランキング1位に新しく入りました。"
       }
     ],
     "publishedAt": "2026-07-27T00:00:00+09:00",
-    "updatedAt": "2026-07-28T06:27:42.074Z",
+    "updatedAt": "2026-07-28T12:30:02.463Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
@@ -42,41 +42,41 @@
     "weekKey": "2026-W31",
     "periodLabel": "2026年7月27日〜8月2日",
     "headline": "2026年7月27日〜8月2日のカードゲームランキングで動いた3商品",
-    "summary": "マテルゲーム(Mattel Game) ウノ UNO カードゲー…、ポケモンカードゲーム アビスアイ BOX MEGA 拡張パック …など、カードゲーム総合ランキングの7日間の順位・価格変化を確認します。",
+    "summary": "【レビューキャンペーン実施中】 ポケモンカードゲーム MEGA …、ポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張…など、カードゲーム総合ランキングの7日間の順位・価格変化を確認します。",
     "points": [
       {
-        "kind": "rank-rise",
+        "kind": "price-drop",
+        "sourceKey": "card-games",
+        "franchiseKey": "pokemon",
+        "franchiseLabel": "ポケモンカード",
+        "itemCode": "bansyuselect:10001278",
+        "itemName": "【レビューキャンペーン実施中】 ポケモンカードゲーム MEGA 拡張パック ストームエメラルダ ポケカ ばら売り 10パック 7月31日発売 予約 全国送料無料",
+        "title": "ポケモンカード関連で¥620値下がり",
+        "body": "【レビューキャンペーン実施中】 ポケモンカードゲーム MEGA 拡張パック ストームエメラルダ ポケカ ばら売り 10パック 7月31日発売 予約 全国送料無料は前週¥5,900から¥5,280へ、¥620値下がりしました。"
+      },
+      {
+        "kind": "new",
+        "sourceKey": "card-games",
+        "franchiseKey": "pokemon",
+        "franchiseLabel": "ポケモンカード",
+        "itemCode": "yum-yum:10002096",
+        "itemName": "ポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張パック 新品未開封 シュリンク付き 予約",
+        "title": "ポケモンカード関連にポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張パック 新品未開封 シュリン…が新登場",
+        "body": "ポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張パック 新品未開封 シュリンク付き 予約がカードゲーム総合ランキング1位に新しく入りました。"
+      },
+      {
+        "kind": "price-drop",
         "sourceKey": "card-games",
         "franchiseKey": "other",
         "franchiseLabel": "その他",
         "itemCode": "book:16799546",
         "itemName": "マテルゲーム(Mattel Game) ウノ UNO カードゲーム【知育ゲーム】【カードゲーム】【7歳～】 B7696",
-        "title": "その他関連でマテルゲーム(Mattel Game) ウノ UNO カードゲーム【知育ゲーム】【カードゲー…が上昇",
-        "body": "マテルゲーム(Mattel Game) ウノ UNO カードゲーム【知育ゲーム】【カードゲーム】【7歳～】 B7696はカードゲーム総合ランキングで前週6位から5位へ、1ランク上昇しました。"
-      },
-      {
-        "kind": "new",
-        "sourceKey": "card-games",
-        "franchiseKey": "pokemon",
-        "franchiseLabel": "ポケモンカード",
-        "itemCode": "yum-yum:10002064",
-        "itemName": "ポケモンカードゲーム アビスアイ BOX MEGA 拡張パック 新品未開封 シュリンク付き",
-        "title": "ポケモンカード関連にポケモンカードゲーム アビスアイ BOX MEGA 拡張パック 新品未開封 シュリンク付きが新登場",
-        "body": "ポケモンカードゲーム アビスアイ BOX MEGA 拡張パック 新品未開封 シュリンク付きがカードゲーム総合ランキング1位に新しく入りました。"
-      },
-      {
-        "kind": "new",
-        "sourceKey": "card-games",
-        "franchiseKey": "pokemon",
-        "franchiseLabel": "ポケモンカード",
-        "itemCode": "yum-yum:10001445",
-        "itemName": "ポケモンカードゲーム exスタートデッキ Generations 選べる ピカチュウ カビゴン ルギア バンギラス カイオーガ バシャーモ ディアルガ ルカリオ レシラム モロバレル ゼルネアス オンバーン カプ・コケコ ザシアン コライドン 草 炎 水 雷 超 闘 悪 鋼 テラスタル",
-        "title": "ポケモンカード関連にポケモンカードゲーム exスタートデッキ Generations 選べる ピカチュウ カビゴ…が新登場",
-        "body": "ポケモンカードゲーム exスタートデッキ Generations 選べる ピカチュウ カビゴン ルギア バンギラス カイオーガ バシャーモ ディアルガ ルカリオ レシラム モロバレル ゼルネアス オンバーン カプ・コケコ ザシアン コライドン 草 炎 水 雷 超 闘 悪 鋼 テラスタルがカードゲーム総合ランキング2位に新しく入りました。"
+        "title": "その他関連で¥1値下がり",
+        "body": "マテルゲーム(Mattel Game) ウノ UNO カードゲーム【知育ゲーム】【カードゲーム】【7歳～】 B7696は前週¥943から¥942へ、¥1値下がりしました。"
       }
     ],
     "publishedAt": "2026-07-27T00:00:00+09:00",
-    "updatedAt": "2026-07-28T06:27:42.074Z",
+    "updatedAt": "2026-07-28T12:30:02.463Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
