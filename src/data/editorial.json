@@ -3,35 +3,35 @@
     "weekKey": "2026-W31",
     "periodLabel": "2026年7月27日〜8月2日",
     "headline": "2026年7月27日〜8月2日のゲームランキングで動いた3商品",
-    "summary": "トモダチコレクション わくわく生活、【新品】SONY ソニー PS5 ディスクドライブ CFI-ZDD1Jなど、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
+    "summary": "【特典】テニスの王子様 ぎゅ～っと！ ドキドキサバイバル Tie break ♡ game(【早期購入封入特典】DLCチラシ（ミニドラマ用ボイスセット、ミニドラマ用エフェクト1種）)、【特典】Beast of Reincarnation(【永久封入特典】プロダクトコード)など、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
     "points": [
       {
-        "kind": "rank-rise",
+        "kind": "new",
         "sourceKey": "switch",
-        "itemCode": "book:21864503",
-        "itemName": "トモダチコレクション わくわく生活",
-        "title": "Switchでトモダチコレクション わくわく生活が上昇",
-        "body": "トモダチコレクション わくわく生活はSwitchランキングで前週11位から3位へ、8ランク上昇しました。"
-      },
-      {
-        "kind": "price-drop",
-        "sourceKey": "ps5",
-        "itemCode": "auc-worldichi:10024362",
-        "itemName": "【新品】SONY ソニー PS5 ディスクドライブ CFI-ZDD1J",
-        "title": "PS5で¥1,273値下がり",
-        "body": "【新品】SONY ソニー PS5 ディスクドライブ CFI-ZDD1Jは前週¥15,073から¥13,800へ、¥1,273値下がりしました。"
+        "itemCode": "book:21936642",
+        "itemName": "【特典】テニスの王子様 ぎゅ～っと！ ドキドキサバイバル Tie break ♡ game(【早期購入封入特典】DLCチラシ（ミニドラマ用ボイスセット、ミニドラマ用エフェクト1種）)",
+        "title": "Switchに【特典】テニスの王子様 ぎゅ～っと！ ドキドキサバイバル Tie break ♡ game(【早期購入封入特典】DLCチラシ（ミニドラマ用ボイスセット、ミニドラマ用エフェクト1種）)が新登場",
+        "body": "【特典】テニスの王子様 ぎゅ～っと！ ドキドキサバイバル Tie break ♡ game(【早期購入封入特典】DLCチラシ（ミニドラマ用ボイスセット、ミニドラマ用エフェクト1種）)がSwitchランキング1位に新しく入りました。"
       },
       {
         "kind": "new",
         "sourceKey": "ps5",
-        "itemCode": "book:21101679",
-        "itemName": "ディスクドライブ",
-        "title": "PS5にディスクドライブが新登場",
-        "body": "ディスクドライブがPS5ランキング1位に新しく入りました。"
+        "itemCode": "book:21938542",
+        "itemName": "【特典】Beast of Reincarnation(【永久封入特典】プロダクトコード)",
+        "title": "PS5に【特典】Beast of Reincarnation(【永久封入特典】プロダクトコード)が新登場",
+        "body": "【特典】Beast of Reincarnation(【永久封入特典】プロダクトコード)がPS5ランキング1位に新しく入りました。"
+      },
+      {
+        "kind": "new",
+        "sourceKey": "ps4",
+        "itemCode": "centerwave:10000586",
+        "itemName": "【レビューキャンペーン実施中!】PS4 本体 純正コントローラー付属 選べるカラー すぐに遊べるセット 500GB CUH-2000AB01 プレステ4 デュアルショック4 DUALSHOCK4【中古】【ソフトプレゼントの詳細は商品説明の画像をクリック！】",
+        "title": "PS4に【レビューキャンペーン実施中!】PS4 本体 純正コントローラー付属 選べるカラー すぐに遊べるセット 500GB CUH-2000AB01 プレステ4 デュアルショック4 DUALSHOCK4【中古】【ソフトプレゼントの詳細は商品説明の画像をクリック！】が新登場",
+        "body": "【レビューキャンペーン実施中!】PS4 本体 純正コントローラー付属 選べるカラー すぐに遊べるセット 500GB CUH-2000AB01 プレステ4 デュアルショック4 DUALSHOCK4【中古】【ソフトプレゼントの詳細は商品説明の画像をクリック！】がPS4ランキング1位に新しく入りました。"
       }
     ],
     "publishedAt": "2026-07-27T00:00:00+09:00",
-    "updatedAt": "2026-07-28T12:30:02.463Z",
+    "updatedAt": "2026-07-29T00:03:50.952Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
@@ -42,18 +42,8 @@
     "weekKey": "2026-W31",
     "periodLabel": "2026年7月27日〜8月2日",
     "headline": "2026年7月27日〜8月2日のカードゲームランキングで動いた3商品",
-    "summary": "【レビューキャンペーン実施中】 ポケモンカードゲーム MEGA …、ポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張…など、カードゲーム総合ランキングの7日間の順位・価格変化を確認します。",
+    "summary": "ポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張…、クーポンあり！豪華BOX終結！ 第5弾 ポケモンカード 絶版BO…など、カードゲーム総合ランキングの7日間の順位・価格変化を確認します。",
     "points": [
-      {
-        "kind": "price-drop",
-        "sourceKey": "card-games",
-        "franchiseKey": "pokemon",
-        "franchiseLabel": "ポケモンカード",
-        "itemCode": "bansyuselect:10001278",
-        "itemName": "【レビューキャンペーン実施中】 ポケモンカードゲーム MEGA 拡張パック ストームエメラルダ ポケカ ばら売り 10パック 7月31日発売 予約 全国送料無料",
-        "title": "ポケモンカード関連で¥620値下がり",
-        "body": "【レビューキャンペーン実施中】 ポケモンカードゲーム MEGA 拡張パック ストームエメラルダ ポケカ ばら売り 10パック 7月31日発売 予約 全国送料無料は前週¥5,900から¥5,280へ、¥620値下がりしました。"
-      },
       {
         "kind": "new",
         "sourceKey": "card-games",
@@ -65,18 +55,28 @@
         "body": "ポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張パック 新品未開封 シュリンク付き 予約がカードゲーム総合ランキング1位に新しく入りました。"
       },
       {
-        "kind": "price-drop",
+        "kind": "new",
         "sourceKey": "card-games",
-        "franchiseKey": "other",
-        "franchiseLabel": "その他",
-        "itemCode": "book:16799546",
-        "itemName": "マテルゲーム(Mattel Game) ウノ UNO カードゲーム【知育ゲーム】【カードゲーム】【7歳～】 B7696",
-        "title": "その他関連で¥1値下がり",
-        "body": "マテルゲーム(Mattel Game) ウノ UNO カードゲーム【知育ゲーム】【カードゲーム】【7歳～】 B7696は前週¥943から¥942へ、¥1値下がりしました。"
+        "franchiseKey": "pokemon",
+        "franchiseLabel": "ポケモンカード",
+        "itemCode": "toysbox2nd:10013379",
+        "itemName": "クーポンあり！豪華BOX終結！ 第5弾 ポケモンカード 絶版BOXくじ 全100口 未開封シュリンク付き BOX ポケカ ポケモンカードゲーム オリパ 福袋 抽選 オリジナルパック",
+        "title": "ポケモンカード関連にクーポンあり！豪華BOX終結！ 第5弾 ポケモンカード 絶版BOXくじ 全100口 未開封シ…が新登場",
+        "body": "クーポンあり！豪華BOX終結！ 第5弾 ポケモンカード 絶版BOXくじ 全100口 未開封シュリンク付き BOX ポケカ ポケモンカードゲーム オリパ 福袋 抽選 オリジナルパックがカードゲーム総合ランキング2位に新しく入りました。"
+      },
+      {
+        "kind": "new",
+        "sourceKey": "card-games",
+        "franchiseKey": "pokemon",
+        "franchiseLabel": "ポケモンカード",
+        "itemCode": "yum-yum:10001773",
+        "itemName": "ポケモンカードゲーム メガブレイブ メガシンフォニア BOX MEGA 拡張パック 新品未開封 シュリンク付き",
+        "title": "ポケモンカード関連にポケモンカードゲーム メガブレイブ メガシンフォニア BOX MEGA 拡張パック 新品未開…が新登場",
+        "body": "ポケモンカードゲーム メガブレイブ メガシンフォニア BOX MEGA 拡張パック 新品未開封 シュリンク付きがカードゲーム総合ランキング3位に新しく入りました。"
       }
     ],
     "publishedAt": "2026-07-27T00:00:00+09:00",
-    "updatedAt": "2026-07-28T12:30:02.463Z",
+    "updatedAt": "2026-07-29T00:03:50.952Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
