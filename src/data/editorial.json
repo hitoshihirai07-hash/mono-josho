@@ -3,35 +3,35 @@
     "weekKey": "2026-W32",
     "periodLabel": "2026年8月3日〜8月9日",
     "headline": "2026年8月3日〜8月9日のゲームランキングで動いた3商品",
-    "summary": "トモダチコレクション わくわく生活、アストロボットなど、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
+    "summary": "任天堂 【Switch】リズム天国 ミラクルスターズ [HAC-P-BFLTA NSW リズムテンゴク ミラクルスタ-ズ]、【新品 箱傷アリ】ニンテンドー Nintendo 任天堂 スイッチ switch 有機EL ホワイト 本体 ゲーム機 HEG-S-KAAAA 4902370548495など、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
     "points": [
       {
         "kind": "rank-rise",
         "sourceKey": "switch",
-        "itemCode": "book:21864503",
-        "itemName": "トモダチコレクション わくわく生活",
-        "title": "Switchでトモダチコレクション わくわく生活が上昇",
-        "body": "トモダチコレクション わくわく生活はSwitchランキングで前週23位から6位へ、17ランク上昇しました。"
+        "itemCode": "jism:14788711",
+        "itemName": "任天堂 【Switch】リズム天国 ミラクルスターズ [HAC-P-BFLTA NSW リズムテンゴク ミラクルスタ-ズ]",
+        "title": "Switchで任天堂 【Switch】リズム天国 ミラクルスターズ [HAC-P-BFLTA NSW リズムテンゴク ミラクルスタ-ズ]が上昇",
+        "body": "任天堂 【Switch】リズム天国 ミラクルスターズ [HAC-P-BFLTA NSW リズムテンゴク ミラクルスタ-ズ]はSwitchランキングで前週7位から3位へ、4ランク上昇しました。"
+      },
+      {
+        "kind": "price-drop",
+        "sourceKey": "switch",
+        "itemCode": "gizmo:10001507",
+        "itemName": "【新品 箱傷アリ】ニンテンドー Nintendo 任天堂 スイッチ switch 有機EL ホワイト 本体 ゲーム機 HEG-S-KAAAA 4902370548495",
+        "title": "Switchで¥700値下がり",
+        "body": "【新品 箱傷アリ】ニンテンドー Nintendo 任天堂 スイッチ switch 有機EL ホワイト 本体 ゲーム機 HEG-S-KAAAA 4902370548495は前週¥49,000から¥48,300へ、¥700値下がりしました。"
       },
       {
         "kind": "new",
         "sourceKey": "ps5",
-        "itemCode": "book:21296418",
-        "itemName": "アストロボット",
-        "title": "PS5にアストロボットが新登場",
-        "body": "アストロボットがPS5ランキング1位に新しく入りました。"
-      },
-      {
-        "kind": "rank-rise",
-        "sourceKey": "ps5",
-        "itemCode": "superdeal:10008728",
-        "itemName": "【初回特典】グランド・セフト・オートVI [PS5ソフト] (コードインボックス版、配送日：2026年11月12日～、プレイ開始日：2026年11月19日) 【初回購入封入特典】：ヴィンテージ・バイスシティパック",
-        "title": "PS5で【初回特典】グランド・セフト・オートVI [PS5ソフト] (コードインボックス版、配送日：2026年11月12日～、プレイ開始日：2026年11月19日) 【初回購入封入特典】：ヴィンテージ・バイスシティパックが上昇",
-        "body": "【初回特典】グランド・セフト・オートVI [PS5ソフト] (コードインボックス版、配送日：2026年11月12日～、プレイ開始日：2026年11月19日) 【初回購入封入特典】：ヴィンテージ・バイスシティパックはPS5ランキングで前週10位から6位へ、4ランク上昇しました。"
+        "itemCode": "book:21830620",
+        "itemName": "PlayStation5 Pro",
+        "title": "PS5にPlayStation5 Proが新登場",
+        "body": "PlayStation5 ProがPS5ランキング1位に新しく入りました。"
       }
     ],
     "publishedAt": "2026-08-03T00:00:00+09:00",
-    "updatedAt": "2026-08-05T12:46:41.842Z",
+    "updatedAt": "2026-08-06T06:31:34.161Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
@@ -42,41 +42,41 @@
     "weekKey": "2026-W32",
     "periodLabel": "2026年8月3日〜8月9日",
     "headline": "2026年8月3日〜8月9日のカードゲームランキングで動いた3商品",
-    "summary": "マテルゲーム(Mattel Game) ウノ UNO カードゲー…、Xross Stars ブースターパック第4弾 『Grand R…など、カードゲーム総合ランキングの7日間の順位・価格変化を確認します。",
+    "summary": "【有在庫/1個】ポケモンババ抜き＆ポケモンタルカセット、【8/8発売 発売日前日発送】 デュエル・マスターズ DXカード…など、カードゲーム総合ランキングの7日間の順位・価格変化を確認します。",
     "points": [
       {
         "kind": "rank-rise",
         "sourceKey": "card-games",
-        "franchiseKey": "other",
-        "franchiseLabel": "その他",
-        "itemCode": "book:16799546",
-        "itemName": "マテルゲーム(Mattel Game) ウノ UNO カードゲーム【知育ゲーム】【カードゲーム】【7歳～】 B7696",
-        "title": "その他関連でマテルゲーム(Mattel Game) ウノ UNO カードゲーム【知育ゲーム】【カードゲー…が上昇",
-        "body": "マテルゲーム(Mattel Game) ウノ UNO カードゲーム【知育ゲーム】【カードゲーム】【7歳～】 B7696はカードゲーム総合ランキングで前週22位から21位へ、1ランク上昇しました。"
+        "franchiseKey": "pokemon",
+        "franchiseLabel": "ポケモンカード",
+        "itemCode": "dra-shop:10001014",
+        "itemName": "【有在庫/1個】ポケモンババ抜き＆ポケモンタルカセット",
+        "title": "ポケモンカード関連で【有在庫/1個】ポケモンババ抜き＆ポケモンタルカセットが上昇",
+        "body": "【有在庫/1個】ポケモンババ抜き＆ポケモンタルカセットはカードゲーム総合ランキングで前週2位から1位へ、1ランク上昇しました。"
       },
       {
-        "kind": "price-drop",
+        "kind": "new",
         "sourceKey": "card-games",
-        "franchiseKey": "other",
-        "franchiseLabel": "その他",
-        "itemCode": "yum-yum:10002107",
-        "itemName": "Xross Stars ブースターパック第4弾 『Grand Resonance』 BOX 新品未開封",
-        "title": "その他関連で¥200値下がり",
-        "body": "Xross Stars ブースターパック第4弾 『Grand Resonance』 BOX 新品未開封は前週¥4,680から¥4,480へ、¥200値下がりしました。"
+        "franchiseKey": "duel-masters",
+        "franchiseLabel": "デュエル・マスターズ",
+        "itemCode": "valhallastore:10000084",
+        "itemName": "【8/8発売 発売日前日発送】 デュエル・マスターズ DXカードスリーブ ドラゴン娘になりたくないっ！ デュエマ カードプロテクト タカラトミー",
+        "title": "デュエル・マスターズ関連に【8/8発売 発売日前日発送】 デュエル・マスターズ DXカードスリーブ ドラゴン娘になりた…が新登場",
+        "body": "【8/8発売 発売日前日発送】 デュエル・マスターズ DXカードスリーブ ドラゴン娘になりたくないっ！ デュエマ カードプロテクト タカラトミーがカードゲーム総合ランキング2位に新しく入りました。"
       },
       {
         "kind": "new",
         "sourceKey": "card-games",
         "franchiseKey": "pokemon",
         "franchiseLabel": "ポケモンカード",
-        "itemCode": "yum-yum:10002096",
-        "itemName": "ポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張パック 新品未開封 シュリンク付き",
-        "title": "ポケモンカード関連にポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張パック 新品未開封 シュリン…が新登場",
-        "body": "ポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張パック 新品未開封 シュリンク付きがカードゲーム総合ランキング1位に新しく入りました。"
+        "itemCode": "hankuroom:10015548",
+        "itemName": "9月16日発売 予約 ばら売り 5パック/10パック/15パック レビュー特典付き ポケモンカードゲーム MEGA 拡張パック 30th CELEBRATION BOX 30周年 セレブレーション BOX ボックス",
+        "title": "ポケモンカード関連に9月16日発売 予約 ばら売り 5パック/10パック/15パック レビュー特典付き ポケモン…が新登場",
+        "body": "9月16日発売 予約 ばら売り 5パック/10パック/15パック レビュー特典付き ポケモンカードゲーム MEGA 拡張パック 30th CELEBRATION BOX 30周年 セレブレーション BOX ボックスがカードゲーム総合ランキング3位に新しく入りました。"
       }
     ],
     "publishedAt": "2026-08-03T00:00:00+09:00",
-    "updatedAt": "2026-08-05T12:46:41.842Z",
+    "updatedAt": "2026-08-06T06:31:34.161Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
