@@ -3,35 +3,35 @@
     "weekKey": "2026-W32",
     "periodLabel": "2026年8月3日〜8月9日",
     "headline": "2026年8月3日〜8月9日のゲームランキングで動いた3商品",
-    "summary": "任天堂 【Switch】リズム天国 ミラクルスターズ [HAC-P-BFLTA NSW リズムテンゴク ミラクルスタ-ズ]、【新品 箱傷アリ】ニンテンドー Nintendo 任天堂 スイッチ switch 有機EL ホワイト 本体 ゲーム機 HEG-S-KAAAA 4902370548495など、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
+    "summary": "任天堂　Nintendo　Switchゲームソフト トモダチコレクション わくわく生活　HACPBLFGA、新品 Nintendo Switch 2 日本語 国内専用 日本国内版 BEE-S-KB6CA ニンテンドー スイッチ2 本体 任天堂 新型 送料無料 任天堂switch2 プレゼント クリスマスなど、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
     "points": [
       {
         "kind": "rank-rise",
         "sourceKey": "switch",
-        "itemCode": "jism:14788711",
-        "itemName": "任天堂 【Switch】リズム天国 ミラクルスターズ [HAC-P-BFLTA NSW リズムテンゴク ミラクルスタ-ズ]",
-        "title": "Switchで任天堂 【Switch】リズム天国 ミラクルスターズ [HAC-P-BFLTA NSW リズムテンゴク ミラクルスタ-ズ]が上昇",
-        "body": "任天堂 【Switch】リズム天国 ミラクルスターズ [HAC-P-BFLTA NSW リズムテンゴク ミラクルスタ-ズ]はSwitchランキングで前週7位から3位へ、4ランク上昇しました。"
+        "itemCode": "r-kojima:11739905",
+        "itemName": "任天堂　Nintendo　Switchゲームソフト トモダチコレクション わくわく生活　HACPBLFGA",
+        "title": "Switchで任天堂　Nintendo　Switchゲームソフト トモダチコレクション わくわく生活　HACPBLFGAが上昇",
+        "body": "任天堂　Nintendo　Switchゲームソフト トモダチコレクション わくわく生活　HACPBLFGAはSwitchランキングで前週25位から10位へ、15ランク上昇しました。"
       },
       {
         "kind": "price-drop",
         "sourceKey": "switch",
-        "itemCode": "gizmo:10001507",
-        "itemName": "【新品 箱傷アリ】ニンテンドー Nintendo 任天堂 スイッチ switch 有機EL ホワイト 本体 ゲーム機 HEG-S-KAAAA 4902370548495",
-        "title": "Switchで¥700値下がり",
-        "body": "【新品 箱傷アリ】ニンテンドー Nintendo 任天堂 スイッチ switch 有機EL ホワイト 本体 ゲーム機 HEG-S-KAAAA 4902370548495は前週¥49,000から¥48,300へ、¥700値下がりしました。"
+        "itemCode": "alljapan-online-shop:10021278",
+        "itemName": "新品 Nintendo Switch 2 日本語 国内専用 日本国内版 BEE-S-KB6CA ニンテンドー スイッチ2 本体 任天堂 新型 送料無料 任天堂switch2 プレゼント クリスマス",
+        "title": "Switchで¥270値下がり",
+        "body": "新品 Nintendo Switch 2 日本語 国内専用 日本国内版 BEE-S-KB6CA ニンテンドー スイッチ2 本体 任天堂 新型 送料無料 任天堂switch2 プレゼント クリスマスは前週¥56,470から¥56,200へ、¥270値下がりしました。"
       },
       {
         "kind": "new",
-        "sourceKey": "ps5",
-        "itemCode": "book:21830620",
-        "itemName": "PlayStation5 Pro",
-        "title": "PS5にPlayStation5 Proが新登場",
-        "body": "PlayStation5 ProがPS5ランキング1位に新しく入りました。"
+        "sourceKey": "switch",
+        "itemCode": "yamada-denki:10683372",
+        "itemName": "リズム天国 ミラクルスターズ 【Switch】 HAC-P-BFLTA",
+        "title": "Switchにリズム天国 ミラクルスターズ 【Switch】 HAC-P-BFLTAが新登場",
+        "body": "リズム天国 ミラクルスターズ 【Switch】 HAC-P-BFLTAがSwitchランキング1位に新しく入りました。"
       }
     ],
     "publishedAt": "2026-08-03T00:00:00+09:00",
-    "updatedAt": "2026-08-06T06:31:34.161Z",
+    "updatedAt": "2026-08-06T12:49:47.412Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
@@ -42,41 +42,41 @@
     "weekKey": "2026-W32",
     "periodLabel": "2026年8月3日〜8月9日",
     "headline": "2026年8月3日〜8月9日のカードゲームランキングで動いた3商品",
-    "summary": "【有在庫/1個】ポケモンババ抜き＆ポケモンタルカセット、【8/8発売 発売日前日発送】 デュエル・マスターズ DXカード…など、カードゲーム総合ランキングの7日間の順位・価格変化を確認します。",
+    "summary": "2026年8月22日発売 予約 6パック/12パック/18パック…、ポケモンカードゲーム アビスアイ BOX MEGA 拡張パック …など、カードゲーム総合ランキングの7日間の順位・価格変化を確認します。",
     "points": [
       {
         "kind": "rank-rise",
         "sourceKey": "card-games",
+        "franchiseKey": "one-piece",
+        "franchiseLabel": "ONE PIECE",
+        "itemCode": "toysbox2nd:10016689",
+        "itemName": "2026年8月22日発売 予約 6パック/12パック/18パック ばら売り レビュー特典あり ONE PIECEカードゲーム 世界最強の戦士 OP-17 BOX 24パック入り　ワンピース バンダイ BANDAI",
+        "title": "ONE PIECE関連で2026年8月22日発売 予約 6パック/12パック/18パック ばら売り レビュー特典あり…が上昇",
+        "body": "2026年8月22日発売 予約 6パック/12パック/18パック ばら売り レビュー特典あり ONE PIECEカードゲーム 世界最強の戦士 OP-17 BOX 24パック入り　ワンピース バンダイ BANDAIはカードゲーム総合ランキングで前週15位から9位へ、6ランク上昇しました。"
+      },
+      {
+        "kind": "price-drop",
+        "sourceKey": "card-games",
         "franchiseKey": "pokemon",
         "franchiseLabel": "ポケモンカード",
-        "itemCode": "dra-shop:10001014",
-        "itemName": "【有在庫/1個】ポケモンババ抜き＆ポケモンタルカセット",
-        "title": "ポケモンカード関連で【有在庫/1個】ポケモンババ抜き＆ポケモンタルカセットが上昇",
-        "body": "【有在庫/1個】ポケモンババ抜き＆ポケモンタルカセットはカードゲーム総合ランキングで前週2位から1位へ、1ランク上昇しました。"
+        "itemCode": "yum-yum:10002064",
+        "itemName": "ポケモンカードゲーム アビスアイ BOX MEGA 拡張パック 新品未開封 シュリンク付き",
+        "title": "ポケモンカード関連で¥600値下がり",
+        "body": "ポケモンカードゲーム アビスアイ BOX MEGA 拡張パック 新品未開封 シュリンク付きは前週¥11,860から¥11,260へ、¥600値下がりしました。"
       },
       {
         "kind": "new",
         "sourceKey": "card-games",
-        "franchiseKey": "duel-masters",
-        "franchiseLabel": "デュエル・マスターズ",
-        "itemCode": "valhallastore:10000084",
-        "itemName": "【8/8発売 発売日前日発送】 デュエル・マスターズ DXカードスリーブ ドラゴン娘になりたくないっ！ デュエマ カードプロテクト タカラトミー",
-        "title": "デュエル・マスターズ関連に【8/8発売 発売日前日発送】 デュエル・マスターズ DXカードスリーブ ドラゴン娘になりた…が新登場",
-        "body": "【8/8発売 発売日前日発送】 デュエル・マスターズ DXカードスリーブ ドラゴン娘になりたくないっ！ デュエマ カードプロテクト タカラトミーがカードゲーム総合ランキング2位に新しく入りました。"
-      },
-      {
-        "kind": "new",
-        "sourceKey": "card-games",
-        "franchiseKey": "pokemon",
-        "franchiseLabel": "ポケモンカード",
-        "itemCode": "hankuroom:10015548",
-        "itemName": "9月16日発売 予約 ばら売り 5パック/10パック/15パック レビュー特典付き ポケモンカードゲーム MEGA 拡張パック 30th CELEBRATION BOX 30周年 セレブレーション BOX ボックス",
-        "title": "ポケモンカード関連に9月16日発売 予約 ばら売り 5パック/10パック/15パック レビュー特典付き ポケモン…が新登場",
-        "body": "9月16日発売 予約 ばら売り 5パック/10パック/15パック レビュー特典付き ポケモンカードゲーム MEGA 拡張パック 30th CELEBRATION BOX 30周年 セレブレーション BOX ボックスがカードゲーム総合ランキング3位に新しく入りました。"
+        "franchiseKey": "other",
+        "franchiseLabel": "その他",
+        "itemCode": "laffeystore:10003145",
+        "itemName": "2027年1月発売予定 予約 ガンダムカードゲーム 1st Anniversary Set アニバーサリーセット",
+        "title": "その他関連に2027年1月発売予定 予約 ガンダムカードゲーム 1st Anniversary Set …が新登場",
+        "body": "2027年1月発売予定 予約 ガンダムカードゲーム 1st Anniversary Set アニバーサリーセットがカードゲーム総合ランキング1位に新しく入りました。"
       }
     ],
     "publishedAt": "2026-08-03T00:00:00+09:00",
-    "updatedAt": "2026-08-06T06:31:34.161Z",
+    "updatedAt": "2026-08-06T12:49:47.412Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
