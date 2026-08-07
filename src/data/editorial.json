@@ -11,7 +11,7 @@
         "itemCode": "r-kojima:11739905",
         "itemName": "任天堂　Nintendo　Switchゲームソフト トモダチコレクション わくわく生活　HACPBLFGA",
         "title": "Switchで任天堂　Nintendo　Switchゲームソフト トモダチコレクション わくわく生活　HACPBLFGAが上昇",
-        "body": "任天堂　Nintendo　Switchゲームソフト トモダチコレクション わくわく生活　HACPBLFGAはSwitchランキングで前週25位から10位へ、15ランク上昇しました。"
+        "body": "任天堂　Nintendo　Switchゲームソフト トモダチコレクション わくわく生活　HACPBLFGAはSwitchランキングで前週8位から4位へ、4ランク上昇しました。"
       },
       {
         "kind": "price-drop",
@@ -24,14 +24,14 @@
       {
         "kind": "new",
         "sourceKey": "switch",
-        "itemCode": "yamada-denki:10683372",
-        "itemName": "リズム天国 ミラクルスターズ 【Switch】 HAC-P-BFLTA",
-        "title": "Switchにリズム天国 ミラクルスターズ 【Switch】 HAC-P-BFLTAが新登場",
-        "body": "リズム天国 ミラクルスターズ 【Switch】 HAC-P-BFLTAがSwitchランキング1位に新しく入りました。"
+        "itemCode": "dtc:13150401",
+        "itemName": "Nintendo(任天堂) Nintendo Switch 2 Proコントローラー [振込不可] [代引不可]",
+        "title": "SwitchにNintendo(任天堂) Nintendo Switch 2 Proコントローラー [振込不可] [代引不可]が新登場",
+        "body": "Nintendo(任天堂) Nintendo Switch 2 Proコントローラー [振込不可] [代引不可]がSwitchランキング1位に新しく入りました。"
       }
     ],
     "publishedAt": "2026-08-03T00:00:00+09:00",
-    "updatedAt": "2026-08-06T12:49:47.412Z",
+    "updatedAt": "2026-08-07T01:42:54.473Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
@@ -42,41 +42,41 @@
     "weekKey": "2026-W32",
     "periodLabel": "2026年8月3日〜8月9日",
     "headline": "2026年8月3日〜8月9日のカードゲームランキングで動いた3商品",
-    "summary": "2026年8月22日発売 予約 6パック/12パック/18パック…、ポケモンカードゲーム アビスアイ BOX MEGA 拡張パック …など、カードゲーム総合ランキングの7日間の順位・価格変化を確認します。",
+    "summary": "ポケモンカードゲーム MEGA スタートデッキ100 バトルコレ…、ラッピングOP レビューくじ特典あり BOX ハイクラスパック …など、カードゲーム総合ランキングの7日間の順位・価格変化を確認します。",
     "points": [
-      {
-        "kind": "rank-rise",
-        "sourceKey": "card-games",
-        "franchiseKey": "one-piece",
-        "franchiseLabel": "ONE PIECE",
-        "itemCode": "toysbox2nd:10016689",
-        "itemName": "2026年8月22日発売 予約 6パック/12パック/18パック ばら売り レビュー特典あり ONE PIECEカードゲーム 世界最強の戦士 OP-17 BOX 24パック入り　ワンピース バンダイ BANDAI",
-        "title": "ONE PIECE関連で2026年8月22日発売 予約 6パック/12パック/18パック ばら売り レビュー特典あり…が上昇",
-        "body": "2026年8月22日発売 予約 6パック/12パック/18パック ばら売り レビュー特典あり ONE PIECEカードゲーム 世界最強の戦士 OP-17 BOX 24パック入り　ワンピース バンダイ BANDAIはカードゲーム総合ランキングで前週15位から9位へ、6ランク上昇しました。"
-      },
       {
         "kind": "price-drop",
         "sourceKey": "card-games",
         "franchiseKey": "pokemon",
         "franchiseLabel": "ポケモンカード",
-        "itemCode": "yum-yum:10002064",
-        "itemName": "ポケモンカードゲーム アビスアイ BOX MEGA 拡張パック 新品未開封 シュリンク付き",
-        "title": "ポケモンカード関連で¥600値下がり",
-        "body": "ポケモンカードゲーム アビスアイ BOX MEGA 拡張パック 新品未開封 シュリンク付きは前週¥11,860から¥11,260へ、¥600値下がりしました。"
+        "itemCode": "yum-yum:10001914",
+        "itemName": "ポケモンカードゲーム MEGA スタートデッキ100 バトルコレクション 新品未開封",
+        "title": "ポケモンカード関連で¥330値下がり",
+        "body": "ポケモンカードゲーム MEGA スタートデッキ100 バトルコレクション 新品未開封は前週¥3,080から¥2,750へ、¥330値下がりしました。"
       },
       {
         "kind": "new",
         "sourceKey": "card-games",
-        "franchiseKey": "other",
-        "franchiseLabel": "その他",
-        "itemCode": "laffeystore:10003145",
-        "itemName": "2027年1月発売予定 予約 ガンダムカードゲーム 1st Anniversary Set アニバーサリーセット",
-        "title": "その他関連に2027年1月発売予定 予約 ガンダムカードゲーム 1st Anniversary Set …が新登場",
-        "body": "2027年1月発売予定 予約 ガンダムカードゲーム 1st Anniversary Set アニバーサリーセットがカードゲーム総合ランキング1位に新しく入りました。"
+        "franchiseKey": "pokemon",
+        "franchiseLabel": "ポケモンカード",
+        "itemCode": "toysbox2nd:10016095",
+        "itemName": "ラッピングOP レビューくじ特典あり BOX ハイクラスパック MEGAドリームex ポケモンカードゲーム ポケカ メガドリーム シュリンク付き",
+        "title": "ポケモンカード関連にラッピングOP レビューくじ特典あり BOX ハイクラスパック MEGAドリームex ポケモ…が新登場",
+        "body": "ラッピングOP レビューくじ特典あり BOX ハイクラスパック MEGAドリームex ポケモンカードゲーム ポケカ メガドリーム シュリンク付きがカードゲーム総合ランキング1位に新しく入りました。"
+      },
+      {
+        "kind": "new",
+        "sourceKey": "card-games",
+        "franchiseKey": "one-piece",
+        "franchiseLabel": "ONE PIECE",
+        "itemCode": "yum-yum:10002070",
+        "itemName": "ワンピース カードゲーム 決戦の刻 BOX ONE PIECE OP-16 バンダイ BANDAI 新品未開封",
+        "title": "ONE PIECE関連にワンピース カードゲーム 決戦の刻 BOX ONE PIECE OP-16 バンダイ BAN…が新登場",
+        "body": "ワンピース カードゲーム 決戦の刻 BOX ONE PIECE OP-16 バンダイ BANDAI 新品未開封がカードゲーム総合ランキング2位に新しく入りました。"
       }
     ],
     "publishedAt": "2026-08-03T00:00:00+09:00",
-    "updatedAt": "2026-08-06T12:49:47.412Z",
+    "updatedAt": "2026-08-07T01:42:54.473Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
