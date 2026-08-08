@@ -3,23 +3,15 @@
     "weekKey": "2026-W32",
     "periodLabel": "2026年8月3日〜8月9日",
     "headline": "2026年8月3日〜8月9日のゲームランキングで動いた3商品",
-    "summary": "Nintendo(任天堂) Nintendo Switch 2 Proコントローラー [振込不可] [代引不可]、【特典】プロ野球スピリッツ2026(【早期購入封入特典】DLCチラシ)など、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
+    "summary": "【特典】グランド・セフト・オートVI (コードインボックス版、配送日：2026年11月12日、プレイ開始日：2026年11月19日)(【初回購入封入特典】ヴィンテージ・バイスシティパック)、リズム天国 ミラクルスターズ 【Switch】 HAC-P-BFLTAなど、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
     "points": [
       {
         "kind": "rank-rise",
-        "sourceKey": "switch",
-        "itemCode": "dtc:13150401",
-        "itemName": "Nintendo(任天堂) Nintendo Switch 2 Proコントローラー [振込不可] [代引不可]",
-        "title": "SwitchでNintendo(任天堂) Nintendo Switch 2 Proコントローラー [振込不可] [代引不可]が上昇",
-        "body": "Nintendo(任天堂) Nintendo Switch 2 Proコントローラー [振込不可] [代引不可]はSwitchランキングで前週22位から6位へ、16ランク上昇しました。"
-      },
-      {
-        "kind": "price-drop",
         "sourceKey": "ps5",
-        "itemCode": "book:21936645",
-        "itemName": "【特典】プロ野球スピリッツ2026(【早期購入封入特典】DLCチラシ)",
-        "title": "PS5で¥4値下がり",
-        "body": "【特典】プロ野球スピリッツ2026(【早期購入封入特典】DLCチラシ)は前週¥7,629から¥7,625へ、¥4値下がりしました。"
+        "itemCode": "book:22041887",
+        "itemName": "【特典】グランド・セフト・オートVI (コードインボックス版、配送日：2026年11月12日、プレイ開始日：2026年11月19日)(【初回購入封入特典】ヴィンテージ・バイスシティパック)",
+        "title": "PS5で【特典】グランド・セフト・オートVI (コードインボックス版、配送日：2026年11月12日、プレイ開始日：2026年11月19日)(【初回購入封入特典】ヴィンテージ・バイスシティパック)が上昇",
+        "body": "【特典】グランド・セフト・オートVI (コードインボックス版、配送日：2026年11月12日、プレイ開始日：2026年11月19日)(【初回購入封入特典】ヴィンテージ・バイスシティパック)はPS5ランキングで前週4位から3位へ、1ランク上昇しました。"
       },
       {
         "kind": "new",
@@ -28,10 +20,18 @@
         "itemName": "リズム天国 ミラクルスターズ 【Switch】 HAC-P-BFLTA",
         "title": "Switchにリズム天国 ミラクルスターズ 【Switch】 HAC-P-BFLTAが新登場",
         "body": "リズム天国 ミラクルスターズ 【Switch】 HAC-P-BFLTAがSwitchランキング1位に新しく入りました。"
+      },
+      {
+        "kind": "new",
+        "sourceKey": "ps5",
+        "itemCode": "book:21996916",
+        "itemName": "【楽天ブックス限定特典+特典】PERSONA 4 REVIVAL: LIMITED BOX(アクリルキーホルダー5cm（主人公）+【先着購入封入特典】DLC)",
+        "title": "PS5に【楽天ブックス限定特典+特典】PERSONA 4 REVIVAL: LIMITED BOX(アクリルキーホルダー5cm（主人公）+【先着購入封入特典】DLC)が新登場",
+        "body": "【楽天ブックス限定特典+特典】PERSONA 4 REVIVAL: LIMITED BOX(アクリルキーホルダー5cm（主人公）+【先着購入封入特典】DLC)がPS5ランキング1位に新しく入りました。"
       }
     ],
     "publishedAt": "2026-08-03T00:00:00+09:00",
-    "updatedAt": "2026-08-08T04:57:27.207Z",
+    "updatedAt": "2026-08-08T11:19:13.619Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
@@ -42,41 +42,41 @@
     "weekKey": "2026-W32",
     "periodLabel": "2026年8月3日〜8月9日",
     "headline": "2026年8月3日〜8月9日のカードゲームランキングで動いた3商品",
-    "summary": "【新品未開封】ONE PIECE ワンピースカードゲーム ブース…、ワンピース カード ONE PIECE カードゲーム 受け継がれ…など、カードゲーム総合ランキングの7日間の順位・価格変化を確認します。",
+    "summary": "ポケモンカードゲーム exスタートデッキ Generations…、ポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張…など、カードゲーム総合ランキングの7日間の順位・価格変化を確認します。",
     "points": [
       {
-        "kind": "new",
+        "kind": "rank-rise",
         "sourceKey": "card-games",
-        "franchiseKey": "one-piece",
-        "franchiseLabel": "ONE PIECE",
-        "itemCode": "goldhobby:10079077",
-        "itemName": "【新品未開封】ONE PIECE　ワンピースカードゲーム ブースターパック 世界最強の戦士【OP-17】1カートン(12BOX入り)",
-        "title": "ONE PIECE関連に【新品未開封】ONE PIECE ワンピースカードゲーム ブースターパック 世界最強の戦士【…が新登場",
-        "body": "【新品未開封】ONE PIECE　ワンピースカードゲーム ブースターパック 世界最強の戦士【OP-17】1カートン(12BOX入り)がカードゲーム総合ランキング1位に新しく入りました。"
+        "franchiseKey": "pokemon",
+        "franchiseLabel": "ポケモンカード",
+        "itemCode": "yum-yum:10001445",
+        "itemName": "ポケモンカードゲーム exスタートデッキ Generations 選べる ピカチュウ カビゴン ルギア バンギラス カイオーガ バシャーモ ディアルガ ルカリオ レシラム モロバレル ゼルネアス オンバーン カプ・コケコ ザシアン コライドン 草 炎 水 雷 超 闘 悪 鋼 テラスタル",
+        "title": "ポケモンカード関連でポケモンカードゲーム exスタートデッキ Generations 選べる ピカチュウ カビゴ…が上昇",
+        "body": "ポケモンカードゲーム exスタートデッキ Generations 選べる ピカチュウ カビゴン ルギア バンギラス カイオーガ バシャーモ ディアルガ ルカリオ レシラム モロバレル ゼルネアス オンバーン カプ・コケコ ザシアン コライドン 草 炎 水 雷 超 闘 悪 鋼 テラスタルはカードゲーム総合ランキングで前週30位から12位へ、18ランク上昇しました。"
       },
       {
-        "kind": "new",
+        "kind": "price-drop",
         "sourceKey": "card-games",
-        "franchiseKey": "one-piece",
-        "franchiseLabel": "ONE PIECE",
-        "itemCode": "kamonegi:10000953",
-        "itemName": "ワンピース カード ONE PIECE カードゲーム 受け継がれる意志 バンダイ(BANDAI) 【OP-13】新品 未開封",
-        "title": "ONE PIECE関連にワンピース カード ONE PIECE カードゲーム 受け継がれる意志 バンダイ(BANDA…が新登場",
-        "body": "ワンピース カード ONE PIECE カードゲーム 受け継がれる意志 バンダイ(BANDAI) 【OP-13】新品 未開封がカードゲーム総合ランキング2位に新しく入りました。"
+        "franchiseKey": "pokemon",
+        "franchiseLabel": "ポケモンカード",
+        "itemCode": "yum-yum:10002096",
+        "itemName": "ポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張パック 新品未開封 シュリンク付き",
+        "title": "ポケモンカード関連で¥5,080値下がり",
+        "body": "ポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張パック 新品未開封 シュリンク付きは前週¥26,960から¥21,880へ、¥5,080値下がりしました。"
       },
       {
         "kind": "new",
         "sourceKey": "card-games",
         "franchiseKey": "pokemon",
         "franchiseLabel": "ポケモンカード",
-        "itemCode": "yum-yum:10002096",
-        "itemName": "ポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張パック 新品未開封 シュリンク付き",
-        "title": "ポケモンカード関連にポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張パック 新品未開封 シュリン…が新登場",
-        "body": "ポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張パック 新品未開封 シュリンク付きがカードゲーム総合ランキング3位に新しく入りました。"
+        "itemCode": "toysbox2nd:10016784",
+        "itemName": "10月16日発売 予約 ポケモンカードゲーム MEGA 30th CELEBRATION カードセット フシギダネ・ヒトカゲ・ゼニガメ",
+        "title": "ポケモンカード関連に10月16日発売 予約 ポケモンカードゲーム MEGA 30th CELEBRATION カ…が新登場",
+        "body": "10月16日発売 予約 ポケモンカードゲーム MEGA 30th CELEBRATION カードセット フシギダネ・ヒトカゲ・ゼニガメがカードゲーム総合ランキング2位に新しく入りました。"
       }
     ],
     "publishedAt": "2026-08-03T00:00:00+09:00",
-    "updatedAt": "2026-08-08T04:57:27.207Z",
+    "updatedAt": "2026-08-08T11:19:13.619Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
