@@ -3,15 +3,15 @@
     "weekKey": "2026-W33",
     "periodLabel": "2026年8月10日〜8月16日",
     "headline": "2026年8月10日〜8月16日のゲームランキングで動いた3商品",
-    "summary": "【特典】ACE COMBAT 8: WINGS OF THEVE(【早期購入封入特典】DLC)、新品 Nintendo Switch 2 日本語 国内専用 日本国内版 BEE-S-KB6CA ニンテンドー スイッチ2 本体 任天堂 新型 送料無料 任天堂switch2 プレゼント クリスマスなど、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
+    "summary": "【特典】鬼武者 Way of the Sword(【初回購入封入特典】プロダクトコード)、新品 Nintendo Switch 2 日本語 国内専用 日本国内版 BEE-S-KB6CA ニンテンドー スイッチ2 本体 任天堂 新型 送料無料 任天堂switch2 プレゼント クリスマスなど、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
     "points": [
       {
         "kind": "rank-rise",
         "sourceKey": "ps5",
-        "itemCode": "book:21983962",
-        "itemName": "【特典】ACE COMBAT 8: WINGS OF THEVE(【早期購入封入特典】DLC)",
-        "title": "PS5で【特典】ACE COMBAT 8: WINGS OF THEVE(【早期購入封入特典】DLC)が上昇",
-        "body": "【特典】ACE COMBAT 8: WINGS OF THEVE(【早期購入封入特典】DLC)はPS5ランキングで前週30位から2位へ、28ランク上昇しました。"
+        "itemCode": "book:21984777",
+        "itemName": "【特典】鬼武者 Way of the Sword(【初回購入封入特典】プロダクトコード)",
+        "title": "PS5で【特典】鬼武者 Way of the Sword(【初回購入封入特典】プロダクトコード)が上昇",
+        "body": "【特典】鬼武者 Way of the Sword(【初回購入封入特典】プロダクトコード)はPS5ランキングで前週19位から2位へ、17ランク上昇しました。"
       },
       {
         "kind": "price-drop",
@@ -23,15 +23,15 @@
       },
       {
         "kind": "new",
-        "sourceKey": "ps5",
-        "itemCode": "book:21987648",
-        "itemName": "27“ ゲーミングモニター DualSense 充電フック付き",
-        "title": "PS5に27“ ゲーミングモニター DualSense 充電フック付きが新登場",
-        "body": "27“ ゲーミングモニター DualSense 充電フック付きがPS5ランキング1位に新しく入りました。"
+        "sourceKey": "ps4",
+        "itemCode": "geoonline1:11950064",
+        "itemName": "【中古】【18歳以上対象】BIOHAZARD RE：4ソフト:プレイステーション4ソフト／アクション・ゲーム",
+        "title": "PS4に【中古】【18歳以上対象】BIOHAZARD RE：4ソフト:プレイステーション4ソフト／アクション・ゲームが新登場",
+        "body": "【中古】【18歳以上対象】BIOHAZARD RE：4ソフト:プレイステーション4ソフト／アクション・ゲームがPS4ランキング1位に新しく入りました。"
       }
     ],
     "publishedAt": "2026-08-10T00:00:00+09:00",
-    "updatedAt": "2026-08-11T11:36:04.079Z",
+    "updatedAt": "2026-08-12T05:37:48.626Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
@@ -42,41 +42,41 @@
     "weekKey": "2026-W33",
     "periodLabel": "2026年8月10日〜8月16日",
     "headline": "2026年8月10日〜8月16日のカードゲームランキングで動いた3商品",
-    "summary": "セキララカード for couples (カップル・夫婦用)、ポケモンカードゲーム アビスアイ BOX MEGA 拡張パック …など、カードゲーム総合ランキングの7日間の順位・価格変化を確認します。",
+    "summary": "5パック/10パック/15パック ドラゴンボールスーパーカードゲ…、9月16日発売 予約 BOX レビュー特典付き ポケモンカードゲ…など、カードゲーム総合ランキングの7日間の順位・価格変化を確認します。",
     "points": [
       {
-        "kind": "rank-rise",
+        "kind": "new",
         "sourceKey": "card-games",
-        "franchiseKey": "other",
-        "franchiseLabel": "その他",
-        "itemCode": "sekiraracard:10000001",
-        "itemName": "セキララカード for couples (カップル・夫婦用)",
-        "title": "その他関連でセキララカード for couples (カップル・夫婦用)が上昇",
-        "body": "セキララカード for couples (カップル・夫婦用)はカードゲーム総合ランキングで前週29位から11位へ、18ランク上昇しました。"
-      },
-      {
-        "kind": "price-drop",
-        "sourceKey": "card-games",
-        "franchiseKey": "pokemon",
-        "franchiseLabel": "ポケモンカード",
-        "itemCode": "yum-yum:10002064",
-        "itemName": "ポケモンカードゲーム アビスアイ BOX MEGA 拡張パック 新品未開封 シュリンク付き",
-        "title": "ポケモンカード関連で¥680値下がり",
-        "body": "ポケモンカードゲーム アビスアイ BOX MEGA 拡張パック 新品未開封 シュリンク付きは前週¥11,860から¥11,180へ、¥680値下がりしました。"
+        "franchiseKey": "dragon-ball",
+        "franchiseLabel": "ドラゴンボール",
+        "itemCode": "hankuroom:10014954",
+        "itemName": "5パック/10パック/15パック ドラゴンボールスーパーカードゲーム フュージョンワールド MANGA BOOSTER 02 SB02 BOX ボックス",
+        "title": "ドラゴンボール関連に5パック/10パック/15パック ドラゴンボールスーパーカードゲーム フュージョンワールド …が新登場",
+        "body": "5パック/10パック/15パック ドラゴンボールスーパーカードゲーム フュージョンワールド MANGA BOOSTER 02 SB02 BOX ボックスがカードゲーム総合ランキング1位に新しく入りました。"
       },
       {
         "kind": "new",
         "sourceKey": "card-games",
         "franchiseKey": "pokemon",
         "franchiseLabel": "ポケモンカード",
-        "itemCode": "premiumgarage:10000023",
-        "itemName": "ポケモン カード 30周年 30th CELEBRATION 1 BOX 　セレブレーション【シュリンク付き】 MEGA 拡張パック 【9月16日発売予定】ポケモンカード 30周年",
-        "title": "ポケモンカード関連にポケモン カード 30周年 30th CELEBRATION 1 BOX セレブレーション【…が新登場",
-        "body": "ポケモン カード 30周年 30th CELEBRATION 1 BOX 　セレブレーション【シュリンク付き】 MEGA 拡張パック 【9月16日発売予定】ポケモンカード 30周年がカードゲーム総合ランキング1位に新しく入りました。"
+        "itemCode": "andmoa:10000483",
+        "itemName": "9月16日発売 予約 BOX レビュー特典付き ポケモンカードゲーム MEGA 拡張パック 30th CELEBRATION BOX 30周年 セレブレーション ボックス",
+        "title": "ポケモンカード関連に9月16日発売 予約 BOX レビュー特典付き ポケモンカードゲーム MEGA 拡張パック …が新登場",
+        "body": "9月16日発売 予約 BOX レビュー特典付き ポケモンカードゲーム MEGA 拡張パック 30th CELEBRATION BOX 30周年 セレブレーション ボックスがカードゲーム総合ランキング2位に新しく入りました。"
+      },
+      {
+        "kind": "new",
+        "sourceKey": "card-games",
+        "franchiseKey": "pokemon",
+        "franchiseLabel": "ポケモンカード",
+        "itemCode": "hankuroom:10015670",
+        "itemName": "9月16日発売 予約 BOX レビュー特典付き ポケモンカードゲーム MEGA 拡張パック 30th CELEBRATION BOX 30周年 セレブレーション ボックス",
+        "title": "ポケモンカード関連に9月16日発売 予約 BOX レビュー特典付き ポケモンカードゲーム MEGA 拡張パック …が新登場",
+        "body": "9月16日発売 予約 BOX レビュー特典付き ポケモンカードゲーム MEGA 拡張パック 30th CELEBRATION BOX 30周年 セレブレーション ボックスがカードゲーム総合ランキング3位に新しく入りました。"
       }
     ],
     "publishedAt": "2026-08-10T00:00:00+09:00",
-    "updatedAt": "2026-08-11T11:36:04.079Z",
+    "updatedAt": "2026-08-12T05:37:48.626Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
