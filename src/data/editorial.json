@@ -3,35 +3,35 @@
     "weekKey": "2026-W33",
     "periodLabel": "2026年8月10日〜8月16日",
     "headline": "2026年8月10日〜8月16日のゲームランキングで動いた3商品",
-    "summary": "リズム天国 ミラクルスターズ、【新品】SIE PS5 プレイステーション5 デジタル・エディション 日本語専用 Console Language： Japanese only CFI-2200B01 825GBなど、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
+    "summary": "トモダチコレクション わくわく生活 【Switch】 HAC-P-BLFGA、PlayStation(R)5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01など、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
     "points": [
       {
         "kind": "rank-rise",
         "sourceKey": "switch",
-        "itemCode": "book:21931441",
-        "itemName": "リズム天国 ミラクルスターズ",
-        "title": "Switchでリズム天国 ミラクルスターズが上昇",
-        "body": "リズム天国 ミラクルスターズはSwitchランキングで前週30位から2位へ、28ランク上昇しました。"
-      },
-      {
-        "kind": "price-drop",
-        "sourceKey": "ps5",
-        "itemCode": "auc-worldichi:10031624",
-        "itemName": "【新品】SIE PS5 プレイステーション5 デジタル・エディション 日本語専用 Console Language： Japanese only CFI-2200B01 825GB",
-        "title": "PS5で¥1,175値下がり",
-        "body": "【新品】SIE PS5 プレイステーション5 デジタル・エディション 日本語専用 Console Language： Japanese only CFI-2200B01 825GBは前週¥55,150から¥53,975へ、¥1,175値下がりしました。"
+        "itemCode": "yamada-denki:10677676",
+        "itemName": "トモダチコレクション わくわく生活 【Switch】 HAC-P-BLFGA",
+        "title": "Switchでトモダチコレクション わくわく生活 【Switch】 HAC-P-BLFGAが上昇",
+        "body": "トモダチコレクション わくわく生活 【Switch】 HAC-P-BLFGAはSwitchランキングで前週11位から5位へ、6ランク上昇しました。"
       },
       {
         "kind": "new",
+        "sourceKey": "ps5",
+        "itemCode": "yamada-denki:10674982",
+        "itemName": "PlayStation(R)5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01",
+        "title": "PS5にPlayStation(R)5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01が新登場",
+        "body": "PlayStation(R)5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01がPS5ランキング1位に新しく入りました。"
+      },
+      {
+        "kind": "rank-rise",
         "sourceKey": "switch",
-        "itemCode": "emedama:11139108",
-        "itemName": "Nintendo 【Switch 2】 (日本語・国内専用)",
-        "title": "SwitchにNintendo 【Switch 2】 (日本語・国内専用)が新登場",
-        "body": "Nintendo 【Switch 2】 (日本語・国内専用)がSwitchランキング1位に新しく入りました。"
+        "itemCode": "r-kojima:11739905",
+        "itemName": "任天堂　Nintendo　Switchゲームソフト トモダチコレクション わくわく生活　HACPBLFGA",
+        "title": "Switchで任天堂　Nintendo　Switchゲームソフト トモダチコレクション わくわく生活　HACPBLFGAが上昇",
+        "body": "任天堂　Nintendo　Switchゲームソフト トモダチコレクション わくわく生活　HACPBLFGAはSwitchランキングで前週5位から4位へ、1ランク上昇しました。"
       }
     ],
     "publishedAt": "2026-08-10T00:00:00+09:00",
-    "updatedAt": "2026-08-14T23:28:31.512Z",
+    "updatedAt": "2026-08-15T04:31:24.945Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
@@ -42,41 +42,41 @@
     "weekKey": "2026-W33",
     "periodLabel": "2026年8月10日〜8月16日",
     "headline": "2026年8月10日〜8月16日のカードゲームランキングで動いた3商品",
-    "summary": "2026年8月22日発売 予約 レビュー特典あり ONE PIE…、ラッピングOP 12月発売 予約 1箱/2箱/3箱セット ポケモ…など、カードゲーム総合ランキングの7日間の順位・価格変化を確認します。",
+    "summary": "7月31日発売 予約 レビュー特典付き ばら売り 5パック/10…、ポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張…など、カードゲーム総合ランキングの7日間の順位・価格変化を確認します。",
     "points": [
       {
-        "kind": "new",
+        "kind": "rank-rise",
         "sourceKey": "card-games",
-        "franchiseKey": "one-piece",
-        "franchiseLabel": "ONE PIECE",
-        "itemCode": "toysbox2nd:10016690",
-        "itemName": "2026年8月22日発売 予約 レビュー特典あり ONE PIECEカードゲーム 世界最強の戦士 OP-17 BOX 24パック入り　ワンピース バンダイ BANDAI",
-        "title": "ONE PIECE関連に2026年8月22日発売 予約 レビュー特典あり ONE PIECEカードゲーム 世界最強の…が新登場",
-        "body": "2026年8月22日発売 予約 レビュー特典あり ONE PIECEカードゲーム 世界最強の戦士 OP-17 BOX 24パック入り　ワンピース バンダイ BANDAIがカードゲーム総合ランキング1位に新しく入りました。"
+        "franchiseKey": "pokemon",
+        "franchiseLabel": "ポケモンカード",
+        "itemCode": "andmoa:10000500",
+        "itemName": "7月31日発売 予約 レビュー特典付き ばら売り 5パック/10パック/15パック ポケモンカードゲーム MEGA 拡張パック ストームエメラルダ BOX ボックス",
+        "title": "ポケモンカード関連で7月31日発売 予約 レビュー特典付き ばら売り 5パック/10パック/15パック ポケモン…が上昇",
+        "body": "7月31日発売 予約 レビュー特典付き ばら売り 5パック/10パック/15パック ポケモンカードゲーム MEGA 拡張パック ストームエメラルダ BOX ボックスはカードゲーム総合ランキングで前週17位から9位へ、8ランク上昇しました。"
+      },
+      {
+        "kind": "price-drop",
+        "sourceKey": "card-games",
+        "franchiseKey": "pokemon",
+        "franchiseLabel": "ポケモンカード",
+        "itemCode": "yum-yum:10002096",
+        "itemName": "ポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張パック 新品未開封 シュリンク付き",
+        "title": "ポケモンカード関連で¥3,220値下がり",
+        "body": "ポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張パック 新品未開封 シュリンク付きは前週¥22,680から¥19,460へ、¥3,220値下がりしました。"
       },
       {
         "kind": "new",
         "sourceKey": "card-games",
         "franchiseKey": "pokemon",
         "franchiseLabel": "ポケモンカード",
-        "itemCode": "hankuroom:10015075",
-        "itemName": "ラッピングOP 12月発売 予約 1箱/2箱/3箱セット ポケモンカードゲーム MEGA スタートデッキ100 バトルコレクション ポケットモンスター",
-        "title": "ポケモンカード関連にラッピングOP 12月発売 予約 1箱/2箱/3箱セット ポケモンカードゲーム MEGA ス…が新登場",
-        "body": "ラッピングOP 12月発売 予約 1箱/2箱/3箱セット ポケモンカードゲーム MEGA スタートデッキ100 バトルコレクション ポケットモンスターがカードゲーム総合ランキング2位に新しく入りました。"
-      },
-      {
-        "kind": "new",
-        "sourceKey": "card-games",
-        "franchiseKey": "pokemon",
-        "franchiseLabel": "ポケモンカード",
-        "itemCode": "hankuroom:10015241",
-        "itemName": "5パック 10パック 15パック セット 新品未開封 レイジングサーフ BOX ポケモンカードゲーム スカーレット＆バイオレット 強化拡張パック ポケカ バラ売り 1パック5枚入り",
-        "title": "ポケモンカード関連に5パック 10パック 15パック セット 新品未開封 レイジングサーフ BOX ポケモンカー…が新登場",
-        "body": "5パック 10パック 15パック セット 新品未開封 レイジングサーフ BOX ポケモンカードゲーム スカーレット＆バイオレット 強化拡張パック ポケカ バラ売り 1パック5枚入りがカードゲーム総合ランキング3位に新しく入りました。"
+        "itemCode": "syochikudo12:10000201",
+        "itemName": "【レビューで1パックプレゼントキャンペーン！】 ポケモンカード 30th CELEBRATION 1BOX Pokemon 30周年 拡張パック カードゲーム セレブレーション 新品未開封 シュリンク付き ポケモン",
+        "title": "ポケモンカード関連に【レビューで1パックプレゼントキャンペーン！】 ポケモンカード 30th CELEBRATI…が新登場",
+        "body": "【レビューで1パックプレゼントキャンペーン！】 ポケモンカード 30th CELEBRATION 1BOX Pokemon 30周年 拡張パック カードゲーム セレブレーション 新品未開封 シュリンク付き ポケモンがカードゲーム総合ランキング1位に新しく入りました。"
       }
     ],
     "publishedAt": "2026-08-10T00:00:00+09:00",
-    "updatedAt": "2026-08-14T23:28:31.512Z",
+    "updatedAt": "2026-08-15T04:31:24.945Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
