@@ -3,15 +3,23 @@
     "weekKey": "2026-W33",
     "periodLabel": "2026年8月10日〜8月16日",
     "headline": "2026年8月10日〜8月16日のゲームランキングで動いた3商品",
-    "summary": "トモダチコレクション わくわく生活 【Switch】 HAC-P-BLFGA、PlayStation(R)5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01など、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
+    "summary": "任天堂　Nintendo　Switchゲームソフト トモダチコレクション わくわく生活　HACPBLFGA、Nintendo Switch 有機EL版 すぐに遊べるセット 純正アダプタ・ドック付き 【おまけソフトキャンペーン実施中！】スイッチ SWICHなど、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
     "points": [
       {
         "kind": "rank-rise",
         "sourceKey": "switch",
-        "itemCode": "yamada-denki:10677676",
-        "itemName": "トモダチコレクション わくわく生活 【Switch】 HAC-P-BLFGA",
-        "title": "Switchでトモダチコレクション わくわく生活 【Switch】 HAC-P-BLFGAが上昇",
-        "body": "トモダチコレクション わくわく生活 【Switch】 HAC-P-BLFGAはSwitchランキングで前週11位から5位へ、6ランク上昇しました。"
+        "itemCode": "r-kojima:11739905",
+        "itemName": "任天堂　Nintendo　Switchゲームソフト トモダチコレクション わくわく生活　HACPBLFGA",
+        "title": "Switchで任天堂　Nintendo　Switchゲームソフト トモダチコレクション わくわく生活　HACPBLFGAが上昇",
+        "body": "任天堂　Nintendo　Switchゲームソフト トモダチコレクション わくわく生活　HACPBLFGAはSwitchランキングで前週30位から9位へ、21ランク上昇しました。"
+      },
+      {
+        "kind": "price-drop",
+        "sourceKey": "switch",
+        "itemCode": "daichugame:10015078",
+        "itemName": "Nintendo Switch 有機EL版 すぐに遊べるセット 純正アダプタ・ドック付き 【おまけソフトキャンペーン実施中！】スイッチ SWICH",
+        "title": "Switchで¥2,000値下がり",
+        "body": "Nintendo Switch 有機EL版 すぐに遊べるセット 純正アダプタ・ドック付き 【おまけソフトキャンペーン実施中！】スイッチ SWICHは前週¥38,800から¥36,800へ、¥2,000値下がりしました。"
       },
       {
         "kind": "new",
@@ -20,18 +28,10 @@
         "itemName": "PlayStation(R)5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01",
         "title": "PS5にPlayStation(R)5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01が新登場",
         "body": "PlayStation(R)5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01がPS5ランキング1位に新しく入りました。"
-      },
-      {
-        "kind": "rank-rise",
-        "sourceKey": "switch",
-        "itemCode": "r-kojima:11739905",
-        "itemName": "任天堂　Nintendo　Switchゲームソフト トモダチコレクション わくわく生活　HACPBLFGA",
-        "title": "Switchで任天堂　Nintendo　Switchゲームソフト トモダチコレクション わくわく生活　HACPBLFGAが上昇",
-        "body": "任天堂　Nintendo　Switchゲームソフト トモダチコレクション わくわく生活　HACPBLFGAはSwitchランキングで前週5位から4位へ、1ランク上昇しました。"
       }
     ],
     "publishedAt": "2026-08-10T00:00:00+09:00",
-    "updatedAt": "2026-08-15T04:31:24.945Z",
+    "updatedAt": "2026-08-15T11:09:51.184Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
@@ -42,18 +42,8 @@
     "weekKey": "2026-W33",
     "periodLabel": "2026年8月10日〜8月16日",
     "headline": "2026年8月10日〜8月16日のカードゲームランキングで動いた3商品",
-    "summary": "7月31日発売 予約 レビュー特典付き ばら売り 5パック/10…、ポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張…など、カードゲーム総合ランキングの7日間の順位・価格変化を確認します。",
+    "summary": "ポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張…、クーポンあり！ 1口5パック入り アソートポケモンカードパック …など、カードゲーム総合ランキングの7日間の順位・価格変化を確認します。",
     "points": [
-      {
-        "kind": "rank-rise",
-        "sourceKey": "card-games",
-        "franchiseKey": "pokemon",
-        "franchiseLabel": "ポケモンカード",
-        "itemCode": "andmoa:10000500",
-        "itemName": "7月31日発売 予約 レビュー特典付き ばら売り 5パック/10パック/15パック ポケモンカードゲーム MEGA 拡張パック ストームエメラルダ BOX ボックス",
-        "title": "ポケモンカード関連で7月31日発売 予約 レビュー特典付き ばら売り 5パック/10パック/15パック ポケモン…が上昇",
-        "body": "7月31日発売 予約 レビュー特典付き ばら売り 5パック/10パック/15パック ポケモンカードゲーム MEGA 拡張パック ストームエメラルダ BOX ボックスはカードゲーム総合ランキングで前週17位から9位へ、8ランク上昇しました。"
-      },
       {
         "kind": "price-drop",
         "sourceKey": "card-games",
@@ -61,22 +51,32 @@
         "franchiseLabel": "ポケモンカード",
         "itemCode": "yum-yum:10002096",
         "itemName": "ポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張パック 新品未開封 シュリンク付き",
-        "title": "ポケモンカード関連で¥3,220値下がり",
-        "body": "ポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張パック 新品未開封 シュリンク付きは前週¥22,680から¥19,460へ、¥3,220値下がりしました。"
+        "title": "ポケモンカード関連で¥2,420値下がり",
+        "body": "ポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張パック 新品未開封 シュリンク付きは前週¥21,880から¥19,460へ、¥2,420値下がりしました。"
       },
       {
         "kind": "new",
         "sourceKey": "card-games",
         "franchiseKey": "pokemon",
         "franchiseLabel": "ポケモンカード",
-        "itemCode": "syochikudo12:10000201",
-        "itemName": "【レビューで1パックプレゼントキャンペーン！】 ポケモンカード 30th CELEBRATION 1BOX Pokemon 30周年 拡張パック カードゲーム セレブレーション 新品未開封 シュリンク付き ポケモン",
-        "title": "ポケモンカード関連に【レビューで1パックプレゼントキャンペーン！】 ポケモンカード 30th CELEBRATI…が新登場",
-        "body": "【レビューで1パックプレゼントキャンペーン！】 ポケモンカード 30th CELEBRATION 1BOX Pokemon 30周年 拡張パック カードゲーム セレブレーション 新品未開封 シュリンク付き ポケモンがカードゲーム総合ランキング1位に新しく入りました。"
+        "itemCode": "toysbox2nd:10013476",
+        "itemName": "クーポンあり！ 1口5パック入り アソートポケモンカードパック くじ 新品未開封 福袋 オリパ オリジナルパック ガチャ",
+        "title": "ポケモンカード関連にクーポンあり！ 1口5パック入り アソートポケモンカードパック くじ 新品未開封 福袋 オリ…が新登場",
+        "body": "クーポンあり！ 1口5パック入り アソートポケモンカードパック くじ 新品未開封 福袋 オリパ オリジナルパック ガチャがカードゲーム総合ランキング2位に新しく入りました。"
+      },
+      {
+        "kind": "new",
+        "sourceKey": "card-games",
+        "franchiseKey": "one-piece",
+        "franchiseLabel": "ONE PIECE",
+        "itemCode": "toysbox2nd:10016690",
+        "itemName": "2026年8月22日発売 予約 レビュー特典あり ONE PIECEカードゲーム 世界最強の戦士 OP-17 BOX 24パック入り　ワンピース バンダイ BANDAI",
+        "title": "ONE PIECE関連に2026年8月22日発売 予約 レビュー特典あり ONE PIECEカードゲーム 世界最強の…が新登場",
+        "body": "2026年8月22日発売 予約 レビュー特典あり ONE PIECEカードゲーム 世界最強の戦士 OP-17 BOX 24パック入り　ワンピース バンダイ BANDAIがカードゲーム総合ランキング3位に新しく入りました。"
       }
     ],
     "publishedAt": "2026-08-10T00:00:00+09:00",
-    "updatedAt": "2026-08-15T04:31:24.945Z",
+    "updatedAt": "2026-08-15T11:09:51.184Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
