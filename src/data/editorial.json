@@ -1,37 +1,37 @@
 {
   "gameWeekly": {
-    "weekKey": "2026-W33",
-    "periodLabel": "2026年8月10日〜8月16日",
-    "headline": "2026年8月10日〜8月16日のゲームランキングで動いた3商品",
-    "summary": "【特典】グランド・セフト・オートVI (コードインボックス版、配送日：2026年11月12日、プレイ開始日：2026年11月19日)(【初回購入封入特典】ヴィンテージ・バイスシティパック)、PlayStation(R)5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01など、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
+    "weekKey": "2026-W34",
+    "periodLabel": "2026年8月17日〜8月23日",
+    "headline": "2026年8月17日〜8月23日のゲームランキングで動いた3商品",
+    "summary": "Nintendo【Switch】 リズム天国 ミラクルスターズ パッケージ版 アクション パーティー リズムに合わせて 遊びが盛だくさん ともだちや家族と集まって 1台の本体で一緒にあそべる、【新品】SIE PS5 プレイステーション5 デジタル・エディション 日本語専用 Console Language： Japanese only CFI-2200B01 825GBなど、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
     "points": [
       {
         "kind": "rank-rise",
+        "sourceKey": "switch",
+        "itemCode": "emedama:11291390",
+        "itemName": "Nintendo【Switch】 リズム天国 ミラクルスターズ パッケージ版 アクション パーティー リズムに合わせて 遊びが盛だくさん ともだちや家族と集まって 1台の本体で一緒にあそべる",
+        "title": "SwitchでNintendo【Switch】 リズム天国 ミラクルスターズ パッケージ版 アクション パーティー リズムに合わせて 遊びが盛だくさん ともだちや家族と集まって 1台の本体で一緒にあそべるが上昇",
+        "body": "Nintendo【Switch】 リズム天国 ミラクルスターズ パッケージ版 アクション パーティー リズムに合わせて 遊びが盛だくさん ともだちや家族と集まって 1台の本体で一緒にあそべるはSwitchランキングで前週18位から5位へ、13ランク上昇しました。"
+      },
+      {
+        "kind": "price-drop",
         "sourceKey": "ps5",
-        "itemCode": "book:22041887",
-        "itemName": "【特典】グランド・セフト・オートVI (コードインボックス版、配送日：2026年11月12日、プレイ開始日：2026年11月19日)(【初回購入封入特典】ヴィンテージ・バイスシティパック)",
-        "title": "PS5で【特典】グランド・セフト・オートVI (コードインボックス版、配送日：2026年11月12日、プレイ開始日：2026年11月19日)(【初回購入封入特典】ヴィンテージ・バイスシティパック)が上昇",
-        "body": "【特典】グランド・セフト・オートVI (コードインボックス版、配送日：2026年11月12日、プレイ開始日：2026年11月19日)(【初回購入封入特典】ヴィンテージ・バイスシティパック)はPS5ランキングで前週16位から2位へ、14ランク上昇しました。"
+        "itemCode": "auc-worldichi:10031624",
+        "itemName": "【新品】SIE PS5 プレイステーション5 デジタル・エディション 日本語専用 Console Language： Japanese only CFI-2200B01 825GB",
+        "title": "PS5で¥545値下がり",
+        "body": "【新品】SIE PS5 プレイステーション5 デジタル・エディション 日本語専用 Console Language： Japanese only CFI-2200B01 825GBは前週¥54,275から¥53,730へ、¥545値下がりしました。"
       },
       {
         "kind": "new",
-        "sourceKey": "ps5",
-        "itemCode": "yamada-denki:10674982",
-        "itemName": "PlayStation(R)5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01",
-        "title": "PS5にPlayStation(R)5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01が新登場",
-        "body": "PlayStation(R)5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01がPS5ランキング1位に新しく入りました。"
-      },
-      {
-        "kind": "rank-rise",
         "sourceKey": "switch",
-        "itemCode": "myhomeshop:10000303",
-        "itemName": "Switch1/2代対応 【楽天1位！COUPONで2,980円！】switch コントローラー switch2 プロコン ダブルホール機能 TURBO連射 マクロ機能 背面ボタン RGBライト Bluetooth スイッチ コントローラー ジャイロセンサー 4階段HD振動 プロコン Switch全世代 Android/IOS/PC",
-        "title": "SwitchでSwitch1/2代対応 【楽天1位！COUPONで2,980円！】switch コントローラー switch2 プロコン ダブルホール機能 TURBO連射 マクロ機能 背面ボタン RGBライト Bluetooth スイッチ コントローラー ジャイロセンサー 4階段HD振動 プロコン Switch全世代 Android/IOS/PCが上昇",
-        "body": "Switch1/2代対応 【楽天1位！COUPONで2,980円！】switch コントローラー switch2 プロコン ダブルホール機能 TURBO連射 マクロ機能 背面ボタン RGBライト Bluetooth スイッチ コントローラー ジャイロセンサー 4階段HD振動 プロコン Switch全世代 Android/IOS/PCはSwitchランキングで前週22位から9位へ、13ランク上昇しました。"
+        "itemCode": "gamedarake:10004999",
+        "itemName": "【送料無料・即日出荷】【新品】Nintendo Switch 本体 Joy-Con(L) ネオンブルー/(R) ネオンレッド 140561【ラッピング対応不可】",
+        "title": "Switchに【送料無料・即日出荷】【新品】Nintendo Switch 本体 Joy-Con(L) ネオンブルー/(R) ネオンレッド 140561【ラッピング対応不可】が新登場",
+        "body": "【送料無料・即日出荷】【新品】Nintendo Switch 本体 Joy-Con(L) ネオンブルー/(R) ネオンレッド 140561【ラッピング対応不可】がSwitchランキング1位に新しく入りました。"
       }
     ],
-    "publishedAt": "2026-08-10T00:00:00+09:00",
-    "updatedAt": "2026-08-16T11:10:06.665Z",
+    "publishedAt": "2026-08-17T00:00:00+09:00",
+    "updatedAt": "2026-08-17T04:41:40.961Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
@@ -39,44 +39,44 @@
     "dataDisclosure": "楽天市場の機種別ランキングを7日前と比較し、順位・価格の変化から自動生成しています。"
   },
   "cardWeekly": {
-    "weekKey": "2026-W33",
-    "periodLabel": "2026年8月10日〜8月16日",
-    "headline": "2026年8月10日〜8月16日のカードゲームランキングで動いた3商品",
-    "summary": "ポケモンカードゲーム MEGA スターターセットex ニャオハ＆…、ポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張…など、カードゲーム総合ランキングの7日間の順位・価格変化を確認します。",
+    "weekKey": "2026-W34",
+    "periodLabel": "2026年8月17日〜8月23日",
+    "headline": "2026年8月17日〜8月23日のカードゲームランキングで動いた3商品",
+    "summary": "7月31日発売 予約 レビュー特典付き ばら売り 5パック/10…、9月16日発売 予約 ばら売り 5パック/10パック/15パック…など、カードゲーム総合ランキングの7日間の順位・価格変化を確認します。",
     "points": [
-      {
-        "kind": "rank-rise",
-        "sourceKey": "card-games",
-        "franchiseKey": "pokemon",
-        "franchiseLabel": "ポケモンカード",
-        "itemCode": "yum-yum:10002136",
-        "itemName": "ポケモンカードゲーム MEGA スターターセットex ニャオハ＆マスカーニャex 新品未開封",
-        "title": "ポケモンカード関連でポケモンカードゲーム MEGA スターターセットex ニャオハ＆マスカーニャex 新品未開封が上昇",
-        "body": "ポケモンカードゲーム MEGA スターターセットex ニャオハ＆マスカーニャex 新品未開封はカードゲーム総合ランキングで前週21位から14位へ、7ランク上昇しました。"
-      },
       {
         "kind": "price-drop",
         "sourceKey": "card-games",
         "franchiseKey": "pokemon",
         "franchiseLabel": "ポケモンカード",
-        "itemCode": "yum-yum:10002096",
-        "itemName": "ポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張パック 新品未開封 シュリンク付き",
-        "title": "ポケモンカード関連で¥2,420値下がり",
-        "body": "ポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張パック 新品未開封 シュリンク付きは前週¥21,880から¥19,460へ、¥2,420値下がりしました。"
+        "itemCode": "hankuroom:10015551",
+        "itemName": "7月31日発売 予約 レビュー特典付き ばら売り 5パック/10パック/15パック ポケモンカードゲーム MEGA 拡張パック ストームエメラルダ BOX ボックス",
+        "title": "ポケモンカード関連で¥190値下がり",
+        "body": "7月31日発売 予約 レビュー特典付き ばら売り 5パック/10パック/15パック ポケモンカードゲーム MEGA 拡張パック ストームエメラルダ BOX ボックスは前週¥2,080から¥1,890へ、¥190値下がりしました。"
       },
       {
         "kind": "new",
         "sourceKey": "card-games",
-        "franchiseKey": "one-piece",
-        "franchiseLabel": "ONE PIECE",
-        "itemCode": "card-shop-alpha:10000444",
-        "itemName": "【レビュー特典あり！】 ワンピースカード オリパ 【 女の子確定 メロメロガチャ 】 全500口 ALPHAのオリパ",
-        "title": "ONE PIECE関連に【レビュー特典あり！】 ワンピースカード オリパ 【 女の子確定 メロメロガチャ 】 全50…が新登場",
-        "body": "【レビュー特典あり！】 ワンピースカード オリパ 【 女の子確定 メロメロガチャ 】 全500口 ALPHAのオリパがカードゲーム総合ランキング1位に新しく入りました。"
+        "franchiseKey": "pokemon",
+        "franchiseLabel": "ポケモンカード",
+        "itemCode": "toysbox2nd:10016731",
+        "itemName": "9月16日発売 予約 ばら売り 5パック/10パック/15パック レビュー特典付き ポケモンカードゲーム MEGA 拡張パック 30th CELEBRATION BOX 30周年 セレブレーション BOX ボックス",
+        "title": "ポケモンカード関連に9月16日発売 予約 ばら売り 5パック/10パック/15パック レビュー特典付き ポケモン…が新登場",
+        "body": "9月16日発売 予約 ばら売り 5パック/10パック/15パック レビュー特典付き ポケモンカードゲーム MEGA 拡張パック 30th CELEBRATION BOX 30周年 セレブレーション BOX ボックスがカードゲーム総合ランキング1位に新しく入りました。"
+      },
+      {
+        "kind": "new",
+        "sourceKey": "card-games",
+        "franchiseKey": "pokemon",
+        "franchiseLabel": "ポケモンカード",
+        "itemCode": "toysprime:10001996",
+        "itemName": "ポケモンカード くじ シュリンク付 ポケモン 第37弾 ポケモンカード BOXくじ 未開封シュリンク BOX 全500口 バトルパートナーズ アビスアイ",
+        "title": "ポケモンカード関連にポケモンカード くじ シュリンク付 ポケモン 第37弾 ポケモンカード BOXくじ 未開封シ…が新登場",
+        "body": "ポケモンカード くじ シュリンク付 ポケモン 第37弾 ポケモンカード BOXくじ 未開封シュリンク BOX 全500口 バトルパートナーズ アビスアイがカードゲーム総合ランキング2位に新しく入りました。"
       }
     ],
-    "publishedAt": "2026-08-10T00:00:00+09:00",
-    "updatedAt": "2026-08-16T11:10:06.665Z",
+    "publishedAt": "2026-08-17T00:00:00+09:00",
+    "updatedAt": "2026-08-17T04:41:40.961Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,

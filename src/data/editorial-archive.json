@@ -2,6 +2,45 @@
   "version": 2,
   "weeks": [
     {
+      "weekKey": "2026-W33",
+      "periodLabel": "2026年8月10日〜8月16日",
+      "headline": "2026年8月10日〜8月16日のゲームランキングで動いた3商品",
+      "summary": "【特典】グランド・セフト・オートVI (コードインボックス版、配送日：2026年11月12日、プレイ開始日：2026年11月19日)(【初回購入封入特典】ヴィンテージ・バイスシティパック)、PlayStation(R)5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01など、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
+      "points": [
+        {
+          "kind": "rank-rise",
+          "sourceKey": "ps5",
+          "itemCode": "book:22041887",
+          "itemName": "【特典】グランド・セフト・オートVI (コードインボックス版、配送日：2026年11月12日、プレイ開始日：2026年11月19日)(【初回購入封入特典】ヴィンテージ・バイスシティパック)",
+          "title": "PS5で【特典】グランド・セフト・オートVI (コードインボックス版、配送日：2026年11月12日、プレイ開始日：2026年11月19日)(【初回購入封入特典】ヴィンテージ・バイスシティパック)が上昇",
+          "body": "【特典】グランド・セフト・オートVI (コードインボックス版、配送日：2026年11月12日、プレイ開始日：2026年11月19日)(【初回購入封入特典】ヴィンテージ・バイスシティパック)はPS5ランキングで前週16位から2位へ、14ランク上昇しました。"
+        },
+        {
+          "kind": "new",
+          "sourceKey": "ps5",
+          "itemCode": "yamada-denki:10674982",
+          "itemName": "PlayStation(R)5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01",
+          "title": "PS5にPlayStation(R)5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01が新登場",
+          "body": "PlayStation(R)5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01がPS5ランキング1位に新しく入りました。"
+        },
+        {
+          "kind": "rank-rise",
+          "sourceKey": "switch",
+          "itemCode": "myhomeshop:10000303",
+          "itemName": "Switch1/2代対応 【楽天1位！COUPONで2,980円！】switch コントローラー switch2 プロコン ダブルホール機能 TURBO連射 マクロ機能 背面ボタン RGBライト Bluetooth スイッチ コントローラー ジャイロセンサー 4階段HD振動 プロコン Switch全世代 Android/IOS/PC",
+          "title": "SwitchでSwitch1/2代対応 【楽天1位！COUPONで2,980円！】switch コントローラー switch2 プロコン ダブルホール機能 TURBO連射 マクロ機能 背面ボタン RGBライト Bluetooth スイッチ コントローラー ジャイロセンサー 4階段HD振動 プロコン Switch全世代 Android/IOS/PCが上昇",
+          "body": "Switch1/2代対応 【楽天1位！COUPONで2,980円！】switch コントローラー switch2 プロコン ダブルホール機能 TURBO連射 マクロ機能 背面ボタン RGBライト Bluetooth スイッチ コントローラー ジャイロセンサー 4階段HD振動 プロコン Switch全世代 Android/IOS/PCはSwitchランキングで前週22位から9位へ、13ランク上昇しました。"
+        }
+      ],
+      "publishedAt": "2026-08-10T00:00:00+09:00",
+      "updatedAt": "2026-08-16T11:10:06.665Z",
+      "authorName": "モノ上昇便データ編集部",
+      "generationMode": "automatic",
+      "comparisonReady": true,
+      "archiveEligible": true,
+      "dataDisclosure": "楽天市場の機種別ランキングを7日前と比較し、順位・価格の変化から自動生成しています。"
+    },
+    {
       "weekKey": "2026-W32",
       "periodLabel": "2026年8月3日〜8月9日",
       "headline": "2026年8月3日〜8月9日のゲームランキングで動いた3商品",
@@ -198,6 +237,51 @@
     }
   ],
   "cardWeeks": [
+    {
+      "weekKey": "2026-W33",
+      "periodLabel": "2026年8月10日〜8月16日",
+      "headline": "2026年8月10日〜8月16日のカードゲームランキングで動いた3商品",
+      "summary": "ポケモンカードゲーム MEGA スターターセットex ニャオハ＆…、ポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張…など、カードゲーム総合ランキングの7日間の順位・価格変化を確認します。",
+      "points": [
+        {
+          "kind": "rank-rise",
+          "sourceKey": "card-games",
+          "franchiseKey": "pokemon",
+          "franchiseLabel": "ポケモンカード",
+          "itemCode": "yum-yum:10002136",
+          "itemName": "ポケモンカードゲーム MEGA スターターセットex ニャオハ＆マスカーニャex 新品未開封",
+          "title": "ポケモンカード関連でポケモンカードゲーム MEGA スターターセットex ニャオハ＆マスカーニャex 新品未開封が上昇",
+          "body": "ポケモンカードゲーム MEGA スターターセットex ニャオハ＆マスカーニャex 新品未開封はカードゲーム総合ランキングで前週21位から14位へ、7ランク上昇しました。"
+        },
+        {
+          "kind": "price-drop",
+          "sourceKey": "card-games",
+          "franchiseKey": "pokemon",
+          "franchiseLabel": "ポケモンカード",
+          "itemCode": "yum-yum:10002096",
+          "itemName": "ポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張パック 新品未開封 シュリンク付き",
+          "title": "ポケモンカード関連で¥2,420値下がり",
+          "body": "ポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張パック 新品未開封 シュリンク付きは前週¥21,880から¥19,460へ、¥2,420値下がりしました。"
+        },
+        {
+          "kind": "new",
+          "sourceKey": "card-games",
+          "franchiseKey": "one-piece",
+          "franchiseLabel": "ONE PIECE",
+          "itemCode": "card-shop-alpha:10000444",
+          "itemName": "【レビュー特典あり！】 ワンピースカード オリパ 【 女の子確定 メロメロガチャ 】 全500口 ALPHAのオリパ",
+          "title": "ONE PIECE関連に【レビュー特典あり！】 ワンピースカード オリパ 【 女の子確定 メロメロガチャ 】 全50…が新登場",
+          "body": "【レビュー特典あり！】 ワンピースカード オリパ 【 女の子確定 メロメロガチャ 】 全500口 ALPHAのオリパがカードゲーム総合ランキング1位に新しく入りました。"
+        }
+      ],
+      "publishedAt": "2026-08-10T00:00:00+09:00",
+      "updatedAt": "2026-08-16T11:10:06.665Z",
+      "authorName": "モノ上昇便データ編集部",
+      "generationMode": "automatic",
+      "comparisonReady": true,
+      "archiveEligible": true,
+      "dataDisclosure": "楽天市場のカードゲーム総合ランキングを7日前と比較し、順位・価格の変化から自動生成しています。"
+    },
     {
       "weekKey": "2026-W32",
       "periodLabel": "2026年8月3日〜8月9日",
