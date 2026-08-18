@@ -3,35 +3,35 @@
     "weekKey": "2026-W34",
     "periodLabel": "2026年8月17日〜8月23日",
     "headline": "2026年8月17日〜8月23日のゲームランキングで動いた3商品",
-    "summary": "トモダチコレクション わくわく生活 【Switch】 HAC-P-BLFGA、任天堂 【Switch】リズム天国 ミラクルスターズ [HAC-P-BFLTA NSW リズムテンゴク ミラクルスタ-ズ]など、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
+    "summary": "【特典】Marvel’s Wolverine(【早期購入封入特典】DLC)、【新品】SIE PS5 プレイステーション5 デジタル・エディション 日本語専用 Console Language： Japanese only CFI-2200B01 825GBなど、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
     "points": [
       {
         "kind": "rank-rise",
-        "sourceKey": "switch",
-        "itemCode": "yamada-denki:10677676",
-        "itemName": "トモダチコレクション わくわく生活 【Switch】 HAC-P-BLFGA",
-        "title": "Switchでトモダチコレクション わくわく生活 【Switch】 HAC-P-BLFGAが上昇",
-        "body": "トモダチコレクション わくわく生活 【Switch】 HAC-P-BLFGAはSwitchランキングで前週26位から24位へ、2ランク上昇しました。"
+        "sourceKey": "ps5",
+        "itemCode": "book:21984024",
+        "itemName": "【特典】Marvel’s Wolverine(【早期購入封入特典】DLC)",
+        "title": "PS5で【特典】Marvel’s Wolverine(【早期購入封入特典】DLC)が上昇",
+        "body": "【特典】Marvel’s Wolverine(【早期購入封入特典】DLC)はPS5ランキングで前週14位から8位へ、6ランク上昇しました。"
+      },
+      {
+        "kind": "price-drop",
+        "sourceKey": "ps5",
+        "itemCode": "auc-worldichi:10031624",
+        "itemName": "【新品】SIE PS5 プレイステーション5 デジタル・エディション 日本語専用 Console Language： Japanese only CFI-2200B01 825GB",
+        "title": "PS5で¥330値下がり",
+        "body": "【新品】SIE PS5 プレイステーション5 デジタル・エディション 日本語専用 Console Language： Japanese only CFI-2200B01 825GBは前週¥53,975から¥53,645へ、¥330値下がりしました。"
       },
       {
         "kind": "new",
         "sourceKey": "switch",
-        "itemCode": "jism:14788711",
-        "itemName": "任天堂 【Switch】リズム天国 ミラクルスターズ [HAC-P-BFLTA NSW リズムテンゴク ミラクルスタ-ズ]",
-        "title": "Switchに任天堂 【Switch】リズム天国 ミラクルスターズ [HAC-P-BFLTA NSW リズムテンゴク ミラクルスタ-ズ]が新登場",
-        "body": "任天堂 【Switch】リズム天国 ミラクルスターズ [HAC-P-BFLTA NSW リズムテンゴク ミラクルスタ-ズ]がSwitchランキング1位に新しく入りました。"
-      },
-      {
-        "kind": "rank-rise",
-        "sourceKey": "switch",
-        "itemCode": "book:20479977",
-        "itemName": "Nintendo Switch（有機ELモデル） Joy-Con(L)/(R) ホワイト",
-        "title": "SwitchでNintendo Switch（有機ELモデル） Joy-Con(L)/(R) ホワイトが上昇",
-        "body": "Nintendo Switch（有機ELモデル） Joy-Con(L)/(R) ホワイトはSwitchランキングで前週4位から3位へ、1ランク上昇しました。"
+        "itemCode": "yamada-denki:10164458",
+        "itemName": "スーパーマリオ オデッセイ 通常版 【Switch】HAC-P-AAACA",
+        "title": "Switchにスーパーマリオ オデッセイ 通常版 【Switch】HAC-P-AAACAが新登場",
+        "body": "スーパーマリオ オデッセイ 通常版 【Switch】HAC-P-AAACAがSwitchランキング1位に新しく入りました。"
       }
     ],
     "publishedAt": "2026-08-17T00:00:00+09:00",
-    "updatedAt": "2026-08-17T23:29:20.819Z",
+    "updatedAt": "2026-08-18T04:36:00.066Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
@@ -42,41 +42,41 @@
     "weekKey": "2026-W34",
     "periodLabel": "2026年8月17日〜8月23日",
     "headline": "2026年8月17日〜8月23日のカードゲームランキングで動いた3商品",
-    "summary": "【新品未開封カートン】hololive OFFICIAL CAR…、メジャーリーグ カード オリパ 【 大谷翔平 争奪オリパ 】 全…など、カードゲーム総合ランキングの7日間の順位・価格変化を確認します。",
+    "summary": "ポケモンカードゲーム MEGA スターターセットex ゾロア&ゾ…、【購入特典あり】【送料無料】【新品未開封】ONE PIECE ワ…など、カードゲーム総合ランキングの7日間の順位・価格変化を確認します。",
     "points": [
       {
-        "kind": "new",
-        "sourceKey": "card-games",
-        "franchiseKey": "other",
-        "franchiseLabel": "その他",
-        "itemCode": "goldhobby:10079592",
-        "itemName": "【新品未開封カートン】hololive OFFICIAL CARD GAME エクストラブースターパック 「サマー・ホログラム」ホロライブカードゲーム",
-        "title": "その他関連に【新品未開封カートン】hololive OFFICIAL CARD GAME エクストラブー…が新登場",
-        "body": "【新品未開封カートン】hololive OFFICIAL CARD GAME エクストラブースターパック 「サマー・ホログラム」ホロライブカードゲームがカードゲーム総合ランキング1位に新しく入りました。"
-      },
-      {
-        "kind": "new",
-        "sourceKey": "card-games",
-        "franchiseKey": "other",
-        "franchiseLabel": "その他",
-        "itemCode": "card-shop-alpha:10000307",
-        "itemName": "メジャーリーグ カード オリパ 【 大谷翔平 争奪オリパ 】 全800口 トップス ALPHAのオリパ",
-        "title": "その他関連にメジャーリーグ カード オリパ 【 大谷翔平 争奪オリパ 】 全800口 トップス ALPH…が新登場",
-        "body": "メジャーリーグ カード オリパ 【 大谷翔平 争奪オリパ 】 全800口 トップス ALPHAのオリパがカードゲーム総合ランキング2位に新しく入りました。"
-      },
-      {
-        "kind": "new",
+        "kind": "price-drop",
         "sourceKey": "card-games",
         "franchiseKey": "pokemon",
         "franchiseLabel": "ポケモンカード",
-        "itemCode": "yum-yum:10001773",
-        "itemName": "ポケモンカードゲーム メガブレイブ メガシンフォニア BOX MEGA 拡張パック 新品未開封 シュリンク付き",
-        "title": "ポケモンカード関連にポケモンカードゲーム メガブレイブ メガシンフォニア BOX MEGA 拡張パック 新品未開…が新登場",
-        "body": "ポケモンカードゲーム メガブレイブ メガシンフォニア BOX MEGA 拡張パック 新品未開封 シュリンク付きがカードゲーム総合ランキング3位に新しく入りました。"
+        "itemCode": "yum-yum:10002137",
+        "itemName": "ポケモンカードゲーム MEGA スターターセットex ゾロア&ゾロアークex 新品未開封",
+        "title": "ポケモンカード関連で¥120値下がり",
+        "body": "ポケモンカードゲーム MEGA スターターセットex ゾロア&ゾロアークex 新品未開封は前週¥2,280から¥2,160へ、¥120値下がりしました。"
+      },
+      {
+        "kind": "new",
+        "sourceKey": "card-games",
+        "franchiseKey": "one-piece",
+        "franchiseLabel": "ONE PIECE",
+        "itemCode": "goldhobby:10079079",
+        "itemName": "【購入特典あり】【送料無料】【新品未開封】ONE PIECE ワンピースカードゲーム ブースターパック 世界最強の戦士 OP-17 1BOX ワンピカード トレカ トレーディングカード バンダイ 国内正規品 ボックス 箱買い コレクション",
+        "title": "ONE PIECE関連に【購入特典あり】【送料無料】【新品未開封】ONE PIECE ワンピースカードゲーム ブース…が新登場",
+        "body": "【購入特典あり】【送料無料】【新品未開封】ONE PIECE ワンピースカードゲーム ブースターパック 世界最強の戦士 OP-17 1BOX ワンピカード トレカ トレーディングカード バンダイ 国内正規品 ボックス 箱買い コレクションがカードゲーム総合ランキング1位に新しく入りました。"
+      },
+      {
+        "kind": "new",
+        "sourceKey": "card-games",
+        "franchiseKey": "other",
+        "franchiseLabel": "その他",
+        "itemCode": "jism:14442855",
+        "itemName": "HEY！ 【再生産】国旗カードゲーム 国旗王（こっきんぐ） ボードゲーム",
+        "title": "その他関連にHEY！ 【再生産】国旗カードゲーム 国旗王（こっきんぐ） ボードゲームが新登場",
+        "body": "HEY！ 【再生産】国旗カードゲーム 国旗王（こっきんぐ） ボードゲームがカードゲーム総合ランキング2位に新しく入りました。"
       }
     ],
     "publishedAt": "2026-08-17T00:00:00+09:00",
-    "updatedAt": "2026-08-17T23:29:20.819Z",
+    "updatedAt": "2026-08-18T04:36:00.066Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
