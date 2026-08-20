@@ -3,7 +3,7 @@
     "weekKey": "2026-W34",
     "periodLabel": "2026年8月17日〜8月23日",
     "headline": "2026年8月17日〜8月23日のゲームランキングで動いた3商品",
-    "summary": "トモダチコレクション わくわく生活、PlayStation5 Pro用カバー ”Marvel’s Wolverine” バトルイエロー リミテッドエディションなど、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
+    "summary": "トモダチコレクション わくわく生活、ソニー・インタラクティブエンタテインメント｜SIE PlayStation5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01など、Switch・PS5・PS4の7日間の順位・価格変化を確認します。",
     "points": [
       {
         "kind": "rank-rise",
@@ -11,15 +11,15 @@
         "itemCode": "book:21864503",
         "itemName": "トモダチコレクション わくわく生活",
         "title": "Switchでトモダチコレクション わくわく生活が上昇",
-        "body": "トモダチコレクション わくわく生活はSwitchランキングで前週22位から3位へ、19ランク上昇しました。"
+        "body": "トモダチコレクション わくわく生活はSwitchランキングで前週22位から5位へ、17ランク上昇しました。"
       },
       {
         "kind": "new",
         "sourceKey": "ps5",
-        "itemCode": "book:22071865",
-        "itemName": "PlayStation5 Pro用カバー ”Marvel’s Wolverine” バトルイエロー リミテッドエディション",
-        "title": "PS5にPlayStation5 Pro用カバー ”Marvel’s Wolverine” バトルイエロー リミテッドエディションが新登場",
-        "body": "PlayStation5 Pro用カバー ”Marvel’s Wolverine” バトルイエロー リミテッドエディションがPS5ランキング1位に新しく入りました。"
+        "itemCode": "biccamera:15315331",
+        "itemName": "ソニー・インタラクティブエンタテインメント｜SIE PlayStation5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01",
+        "title": "PS5にソニー・インタラクティブエンタテインメント｜SIE PlayStation5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01が新登場",
+        "body": "ソニー・インタラクティブエンタテインメント｜SIE PlayStation5 デジタル・エディション 日本語専用 Console Language: Japanese only CFI-2200B01がPS5ランキング1位に新しく入りました。"
       },
       {
         "kind": "rank-rise",
@@ -27,11 +27,11 @@
         "itemCode": "book:21931441",
         "itemName": "リズム天国 ミラクルスターズ",
         "title": "Switchでリズム天国 ミラクルスターズが上昇",
-        "body": "リズム天国 ミラクルスターズはSwitchランキングで前週30位から12位へ、18ランク上昇しました。"
+        "body": "リズム天国 ミラクルスターズはSwitchランキングで前週30位から14位へ、16ランク上昇しました。"
       }
     ],
     "publishedAt": "2026-08-17T00:00:00+09:00",
-    "updatedAt": "2026-08-20T04:37:09.380Z",
+    "updatedAt": "2026-08-20T11:16:41.248Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
@@ -42,41 +42,41 @@
     "weekKey": "2026-W34",
     "periodLabel": "2026年8月17日〜8月23日",
     "headline": "2026年8月17日〜8月23日のカードゲームランキングで動いた3商品",
-    "summary": "9月16日発売 予約 BOX レビュー特典付き ポケモンカードゲ…、8月8日発売 予約 BOX レビュー特典付き ドラゴンボールスー…など、カードゲーム総合ランキングの7日間の順位・価格変化を確認します。",
+    "summary": "【8/20〜抽選で最大10万ポイント対象※条件あり】仮面ライダー…、ポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張…など、カードゲーム総合ランキングの7日間の順位・価格変化を確認します。",
     "points": [
       {
         "kind": "new",
         "sourceKey": "card-games",
-        "franchiseKey": "pokemon",
-        "franchiseLabel": "ポケモンカード",
-        "itemCode": "laffeystore:10003220",
-        "itemName": "9月16日発売 予約 BOX レビュー特典付き ポケモンカードゲーム MEGA 拡張パック 30th CELEBRATION BOX 30周年 セレブレーション ボックス",
-        "title": "ポケモンカード関連に9月16日発売 予約 BOX レビュー特典付き ポケモンカードゲーム MEGA 拡張パック …が新登場",
-        "body": "9月16日発売 予約 BOX レビュー特典付き ポケモンカードゲーム MEGA 拡張パック 30th CELEBRATION BOX 30周年 セレブレーション ボックスがカードゲーム総合ランキング1位に新しく入りました。"
-      },
-      {
-        "kind": "new",
-        "sourceKey": "card-games",
-        "franchiseKey": "dragon-ball",
-        "franchiseLabel": "ドラゴンボール",
-        "itemCode": "toysbox2nd:10016722",
-        "itemName": "8月8日発売 予約 BOX レビュー特典付き ドラゴンボールスーパーカードゲーム フュージョンワールド STORY BOOSTER 01 ST01 ボックス",
-        "title": "ドラゴンボール関連に8月8日発売 予約 BOX レビュー特典付き ドラゴンボールスーパーカードゲーム フュージョ…が新登場",
-        "body": "8月8日発売 予約 BOX レビュー特典付き ドラゴンボールスーパーカードゲーム フュージョンワールド STORY BOOSTER 01 ST01 ボックスがカードゲーム総合ランキング2位に新しく入りました。"
+        "franchiseKey": "other",
+        "franchiseLabel": "その他",
+        "itemCode": "es-toys:12242754",
+        "itemName": "【8/20〜抽選で最大10万ポイント対象※条件あり】仮面ライダーバトル ガンバレジェンズ ガンバライドクロニクル3(BOX)おもちゃ こども 子供 その他仮面ライダー",
+        "title": "その他関連に【8/20〜抽選で最大10万ポイント対象※条件あり】仮面ライダーバトル ガンバレジェンズ ガ…が新登場",
+        "body": "【8/20〜抽選で最大10万ポイント対象※条件あり】仮面ライダーバトル ガンバレジェンズ ガンバライドクロニクル3(BOX)おもちゃ こども 子供 その他仮面ライダーがカードゲーム総合ランキング1位に新しく入りました。"
       },
       {
         "kind": "new",
         "sourceKey": "card-games",
         "franchiseKey": "pokemon",
         "franchiseLabel": "ポケモンカード",
-        "itemCode": "andmoa:10000207",
-        "itemName": "クーポンあり！ストームエメラルダ 20％以上が当たり！ポケモンカード BOXくじ 全200口 未開封シュリンク付き BOX ポケカ ポケモンカードゲーム オリパ 福袋",
-        "title": "ポケモンカード関連にクーポンあり！ストームエメラルダ 20％以上が当たり！ポケモンカード BOXくじ 全200口…が新登場",
-        "body": "クーポンあり！ストームエメラルダ 20％以上が当たり！ポケモンカード BOXくじ 全200口 未開封シュリンク付き BOX ポケカ ポケモンカードゲーム オリパ 福袋がカードゲーム総合ランキング3位に新しく入りました。"
+        "itemCode": "yum-yum:10002096",
+        "itemName": "ポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張パック 新品未開封 シュリンク付き",
+        "title": "ポケモンカード関連にポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張パック 新品未開封 シュリン…が新登場",
+        "body": "ポケモンカードゲーム ストームエメラルダ BOX MEGA 拡張パック 新品未開封 シュリンク付きがカードゲーム総合ランキング2位に新しく入りました。"
+      },
+      {
+        "kind": "new",
+        "sourceKey": "card-games",
+        "franchiseKey": "one-piece",
+        "franchiseLabel": "ONE PIECE",
+        "itemCode": "hankuroom:10015665",
+        "itemName": "2026年8月21日発売 予約 Vジャンプ 2026年 10月号 雑誌 付録 モンキー・D・ルフィ P-110 ロロノア・ゾロ OP16-053 サンジ OP09-105",
+        "title": "ONE PIECE関連に2026年8月21日発売 予約 Vジャンプ 2026年 10月号 雑誌 付録 モンキー・D・…が新登場",
+        "body": "2026年8月21日発売 予約 Vジャンプ 2026年 10月号 雑誌 付録 モンキー・D・ルフィ P-110 ロロノア・ゾロ OP16-053 サンジ OP09-105がカードゲーム総合ランキング3位に新しく入りました。"
       }
     ],
     "publishedAt": "2026-08-17T00:00:00+09:00",
-    "updatedAt": "2026-08-20T04:37:09.380Z",
+    "updatedAt": "2026-08-20T11:16:41.248Z",
     "authorName": "モノ上昇便データ編集部",
     "generationMode": "automatic",
     "comparisonReady": true,
